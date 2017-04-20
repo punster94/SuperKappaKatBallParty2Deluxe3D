@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{45d41acc-2c3c-43d2-bc10-02aa73ffc7c7}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Action.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionCreateAction.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionDestroyAction.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionEvent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionExpression.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionList.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionListIf.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Attributed.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Datum.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Entity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EventMessageAttributed.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EventPublisher.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EventQueue.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameClock.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameTime.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)IXmlParseHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Reaction.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ReactionAttributed.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ResizeStrategy.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Scope.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ScopeParseHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Sector.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)World.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)WorldState.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)XmlParseMaster.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Action.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionCreateAction.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionDestroyAction.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionEvent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionExpression.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionList.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionListIf.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Attributed.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Datum.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DefaultHash.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Entity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Event.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EventMessageAttributed.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EventPublisher.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EventQueue.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EventSubscriber.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Factory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameClock.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameTime.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HashMap.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)IXmlParseHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Notes.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Reaction.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ReactionAttributed.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ResizeStrategy.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)RTTI.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Scope.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ScopeParseHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Sector.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SList.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Vector.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)World.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)WorldState.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)XmlParseMaster.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)DefaultHash.inl">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Event.inl" />
+    <None Include="$(MSBuildThisFileDirectory)Factory.inl" />
+    <None Include="$(MSBuildThisFileDirectory)HashMap.inl" />
+    <None Include="$(MSBuildThisFileDirectory)SList.inl" />
+    <None Include="$(MSBuildThisFileDirectory)Vector.inl" />
+  </ItemGroup>
+</Project>

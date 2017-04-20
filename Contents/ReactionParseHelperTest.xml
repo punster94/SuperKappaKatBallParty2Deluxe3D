@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<world name='World 1'>
+	<reaction name='Reaction 1' class='ReactionAttributed'>
+		<string name='subtypes' value='subtype 1'/>
+		<string name='subtypes' value='subtype 2'/>
+	</reaction>
+	<action name='Event 1' class='ActionEvent'>
+		<string name='subtype' value='subtype 1'/>
+		<integer name='delay' value='2'/>
+		<integer name='argument' value='12'/>
+	</action>
+	<action name='Cleaner' class='ActionDestroyAction'>
+		<string name='instance' value='Event 1'/>
+	</action>
+</world>

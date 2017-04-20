@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<world name='World 1'>
+	<float name='number' value='5.0'/>
+	<float name='otherNumber' value='3.0'/>
+	<if>
+		<expression value='number > otherNumber'/>
+		<then class='ActionList'>
+			<action name='Creator' class='ActionCreateAction'>
+				<string name='instance' value='Created Action'/>
+				<string name='class' value='ActionList'/>
+			</action>
+		</then>
+		<else class='ActionList'>
+			<action class='ActionList' name='Created Action'/>
+			<action name='Destroyer' class='ActionDestroyAction'>
+				<string name='instance' value='Created Action'/>
+			</action>
+		</else>
+	</if>
+</world>

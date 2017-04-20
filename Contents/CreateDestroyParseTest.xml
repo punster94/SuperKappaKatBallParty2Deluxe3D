@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<world name='World 1'>
+	<integer name='true' value='1'/>
+	<integer name='false' value='0'/>
+	<if>
+		<expression value='true'/>
+		<then class='ActionList'>
+			<action name='Creator' class='ActionCreateAction'>
+				<string name='instance' value='Created Action'/>
+				<string name='class' value='ActionList'/>
+			</action>
+		</then>
+		<else class='ActionList'>
+			<action class='ActionList' name='Created Action'/>
+			<action name='Destroyer' class='ActionDestroyAction'>
+				<string name='instance' value='Created Action'/>
+			</action>
+		</else>
+	</if>
+</world>

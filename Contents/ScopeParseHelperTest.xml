@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scope name = 'Character 1'>
+	<integer name='Health' value='10'/>
+	<float name='Speed' value='2.5'/>
+	<string name='Aliases' value='Steals McGee'/>
+	<string name='Aliases' value='Sanjay'/>
+	<scope name='Powers'>
+		<integer name='Power Count' value='1'/>
+		<scope name='Shape Shift'>
+			<integer name='Form Count' value='2'/>
+			<string name='Forms' value='Spider'/>
+			<string name='Forms' value='Sneaky Snake'/>
+		</scope>
+	</scope>
+	<scope name='Box'>
+		<float name='Side Length' value='1.0'/>
+	</scope>
+	<vector name='Position' value='0.0,0.0,0.0,0.0,'/>
+	<matrix name='Corner Positions' value='10.0,0.0,0.0,0.0,0.0,10.0,0.0,0.0,0.0,0.0,10.0,0.0,0.0,0.0,0.0,10.0,'/>
+</scope>

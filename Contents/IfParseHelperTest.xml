@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<world name='World 1'>
+	<integer name='true' value='1'/>
+	<integer name='false' value='0'/>
+	<sector name='Sector 1'>
+		<if>
+			<expression value='false'/>
+			<then class='ActionList'>
+				<action class='ActionList' name='Sector 1 True'></action>
+			</then>
+		</if>
+	</sector>
+	<sector name='Sector 2'>
+		<if>
+			<expression value='true'/>
+			<then class='ActionList'>
+				<action class='ActionList' name='Sector 2 True'></action>
+			</then>
+		</if>
+	</sector>
+	<sector name='Sector 3'>
+		<if>
+			<expression value='false'/>
+			<then class='ActionList'>
+				<action class='ActionList' name='Sector 3 True'></action>
+			</then>
+			<else class='ActionList'>
+				<action class='ActionList' name='Sector 3 False'></action>
+			</else>
+		</if>
+	</sector>
+	<sector name='Sector 4'>
+		<if>
+			<expression value='true'/>
+			<then class='ActionList'>
+				<action class='ActionList' name='Sector 4 True'></action>
+			</then>
+			<else class='ActionList'>
+				<action class='ActionList' name='Sector 4 False'></action>
+			</else>
+		</if>
+	</sector>
+	<sector name='Sector 5'>
+		<if>
+			<expression value='false'/>
+			<else class='ActionList'>
+				<action class='ActionList' name='Sector 5 False'></action>
+			</else>
+		</if>
+	</sector>
+	<sector name='Sector 6'>
+		<if>
+			<expression value='true'/>
+			<else class='ActionList'>
+				<action class='ActionList' name='Sector 5 False'></action>
+			</else>
+		</if>
+	</sector>
+</world>

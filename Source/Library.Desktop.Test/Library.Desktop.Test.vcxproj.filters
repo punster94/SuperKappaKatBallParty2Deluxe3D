@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="Foo.h">
+      <Filter>Utility Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="FooHashFunctor.h">
+      <Filter>Utility Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="AttributedFoo.h">
+      <Filter>Utility Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="FooParseHelper.h">
+      <Filter>Utility Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="FooSharedData.h">
+      <Filter>Utility Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="FooSubscriber.h">
+      <Filter>Utility Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="ExceptionSubscriber.h">
+      <Filter>Utility Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="EventThrowSubscriber.h">
+      <Filter>Utility Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearSubscriber.h">
+      <Filter>Utility Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="SubscribeSubscriber.h">
+      <Filter>Utility Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="UnsubscribeSubscriber.h">
+      <Filter>Utility Classes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SListTest.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Foo.cpp">
+      <Filter>Utility Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="VectorTest.cpp" />
+    <ClCompile Include="HashMapTest.cpp" />
+    <ClCompile Include="FooHashFunctor.cpp">
+      <Filter>Utility Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="DatumTest.cpp" />
+    <ClCompile Include="ScopeTest.cpp" />
+    <ClCompile Include="AttributedFoo.cpp">
+      <Filter>Utility Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="AttributedTest.cpp" />
+    <ClCompile Include="FooParseHelper.cpp">
+      <Filter>Utility Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlParseMasterTest.cpp" />
+    <ClCompile Include="FooSharedData.cpp">
+      <Filter>Utility Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="ScopeParseHelperTest.cpp" />
+    <ClCompile Include="FactoryTest.cpp" />
+    <ClCompile Include="WorldStateTest.cpp" />
+    <ClCompile Include="EntityTest.cpp" />
+    <ClCompile Include="SectorTest.cpp" />
+    <ClCompile Include="WorldTest.cpp" />
+    <ClCompile Include="ActionListTest.cpp" />
+    <ClCompile Include="ActionListIfTest.cpp" />
+    <ClCompile Include="ActionCreateActionTest.cpp" />
+    <ClCompile Include="ActionDestroyActionTest.cpp" />
+    <ClCompile Include="FooSubscriber.cpp">
+      <Filter>Utility Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="EventTest.cpp" />
+    <ClCompile Include="ActionExpressionTest.cpp" />
+    <ClCompile Include="ReactionAttributedTest.cpp" />
+    <ClCompile Include="EventMessageAttributedTest.cpp" />
+    <ClCompile Include="ActionEventTest.cpp" />
+    <ClCompile Include="ExceptionSubscriber.cpp">
+      <Filter>Utility Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="EventThrowSubscriber.cpp">
+      <Filter>Utility Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearSubscriber.cpp">
+      <Filter>Utility Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="SubscribeSubscriber.cpp">
+      <Filter>Utility Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="UnsubscribeSubscriber.cpp">
+      <Filter>Utility Classes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Utility Classes">
+      <UniqueIdentifier>{7f2312f9-aad4-4815-9c14-99b86e44881e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test XML Files">
+      <UniqueIdentifier>{da9ecd29-14dd-4eb6-8e1a-2c095c490360}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\..\Contents\FooParseHelperTest.xml">
+      <Filter>Test XML Files</Filter>
+    </Xml>
+    <Xml Include="..\..\Contents\WorldParseHelperTest.xml">
+      <Filter>Test XML Files</Filter>
+    </Xml>
+    <Xml Include="..\..\Contents\ActionParseHelperTest.xml">
+      <Filter>Test XML Files</Filter>
+    </Xml>
+    <Xml Include="..\..\Contents\IfParseHelperTest.xml">
+      <Filter>Test XML Files</Filter>
+    </Xml>
+    <Xml Include="..\..\Contents\ScopeParseHelperTest.xml">
+      <Filter>Test XML Files</Filter>
+    </Xml>
+    <Xml Include="..\..\Contents\CreateDestroyParseTest.xml">
+      <Filter>Test XML Files</Filter>
+    </Xml>
+    <Xml Include="..\..\Contents\ExpressionParseTest.xml">
+      <Filter>Test XML Files</Filter>
+    </Xml>
+    <Xml Include="..\..\Contents\ReactionParseHelperTest.xml">
+      <Filter>Test XML Files</Filter>
+    </Xml>
+  </ItemGroup>
+</Project>
