@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "Scope.h"
 
 namespace FieaGameEngine
 {

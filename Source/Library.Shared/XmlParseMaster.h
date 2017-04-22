@@ -4,6 +4,7 @@
 #include <string>
 #include "Vector.h"
 #include "HashMap.h"
+#include "RTTI.h"
 #include "expat.h"
 
 namespace FieaGameEngine

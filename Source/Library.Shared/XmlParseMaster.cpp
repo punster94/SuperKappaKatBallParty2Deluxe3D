@@ -1,4 +1,6 @@
 #include "pch.h"
+#include "XmlParseMaster.h"
+#include "IXmlParseHelper.h"
 
 namespace FieaGameEngine
 {

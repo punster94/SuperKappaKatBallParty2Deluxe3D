@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "EventMessageAttributed.h"
 
 namespace FieaGameEngine
 {

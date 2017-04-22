@@ -1,4 +1,7 @@
 #include "pch.h"
+#include "World.h"
+#include "Reaction.h"
+#include "WorldState.h"
 
 namespace FieaGameEngine
 {

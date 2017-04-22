@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Program.h"
+#include "glfw3.h"
 
 GLFWwindow* window;
 

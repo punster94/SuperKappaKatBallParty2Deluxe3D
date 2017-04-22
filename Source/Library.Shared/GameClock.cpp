@@ -1,4 +1,6 @@
 #include "pch.h"
+#include "GameClock.h"
+#include "GameTime.h"
 
 using namespace std::chrono;
 

@@ -1,4 +1,6 @@
 #include "pch.h"
+#include "Action.h"
+#include "Reaction.h"
 
 namespace FieaGameEngine
 {

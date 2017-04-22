@@ -1,4 +1,9 @@
 #include "pch.h"
+#include "ActionEvent.h"
+#include "EventMessageAttributed.h"
+#include "WorldState.h"
+#include "Event.h"
+#include "World.h"
 
 namespace FieaGameEngine
 {

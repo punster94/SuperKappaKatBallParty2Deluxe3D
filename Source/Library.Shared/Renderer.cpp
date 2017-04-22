@@ -4,20 +4,20 @@
 
 namespace FieaGameEngine
 {
-	void Renderer::Render(const World& world)
+	void Renderer::Render(World& world)
 	{
 		InitRenderFrame();
 
-		const Datum& sectors = world.Sectors();
+		Datum& sectors = world.Sectors();
 		for (std::uint32_t i = 0; i < sectors.Size(); ++i)
 		{
 			Render(static_cast<Sector&>(sectors.Get<Scope&>(i)));
 		}
 	}
 
-	void Renderer::Render(const Sector& sector)
+	void Renderer::Render(Sector& sector)
 	{
-		const Datum& entities = sector.Entities();
+		Datum& entities = sector.Entities();
 		for (std::uint32_t i = 0; i < entities.Size(); ++i)
 		{
 			Renderable* renderable = static_cast<Entity&>(entities.Get<Scope&>(i)).As<Renderable>();

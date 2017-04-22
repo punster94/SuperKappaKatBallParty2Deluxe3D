@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "ResizeStrategy.h"
 
 namespace FieaGameEngine
 {

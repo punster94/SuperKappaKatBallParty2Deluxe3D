@@ -1,4 +1,9 @@
 #include "pch.h"
+#include "ScopeParseHelper.h"
+#include "World.h"
+#include "ActionListIf.h"
+#include "ActionExpression.h"
+#include "Reaction.h"
 
 namespace FieaGameEngine
 {

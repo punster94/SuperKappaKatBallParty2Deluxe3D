@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Vector.h"
-#include "Entity.h"
+#include "World.h"
 
 namespace FieaGameEngine
 {
@@ -26,12 +26,12 @@ namespace FieaGameEngine
 		*	Renderers each renderable entity in a given World.
 		*	@param world The World that contains Entities to render.
 		*/
-		void Render(const World& world);
+		void Render(World& world);
 
 		/**
 		*	Renderers each renderable entity in a given Sector.
 		*	@param sector The Sector that contains Entities to render.
 		*/
-		void Render(const Sector& sector);
+		void Render(Sector& sector);
 	};
 }

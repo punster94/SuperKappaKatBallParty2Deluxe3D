@@ -1,4 +1,9 @@
 #include "pch.h"
+#include "ReactionAttributed.h"
+#include "Event.h"
+#include "EventMessageAttributed.h"
+#include "EventSubscriber.h"
+#include "EventPublisher.h"
 
 namespace FieaGameEngine
 {

@@ -3,6 +3,7 @@
 #include <chrono>
 #include <mutex>
 #include "Vector.h"
+#include "GameTime.h"
 
 namespace FieaGameEngine
 {

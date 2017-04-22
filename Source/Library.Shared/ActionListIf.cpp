@@ -1,4 +1,7 @@
 #include "pch.h"
+#include "ActionListIf.h"
+#include "WorldState.h"
+#include "ActionExpression.h"
 
 namespace FieaGameEngine
 {

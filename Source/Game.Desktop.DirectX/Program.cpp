@@ -1,5 +1,8 @@
 #include "pch.h"
 #include "program.h"
+#include <d3d11.h>
+#include <DirectXMath.h>
+#include <DirectXColors.h>
 
 UINT mScreenWidth = 720;
 UINT mScreenHeight = 480;
