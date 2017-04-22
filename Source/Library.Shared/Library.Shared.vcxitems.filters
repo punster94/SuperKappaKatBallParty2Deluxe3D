@@ -16,6 +16,9 @@
     <Filter Include="Event System">
       <UniqueIdentifier>{852926d9-6b25-4c7c-b2ff-aec1e219d6db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{ab6993be-da13-4240-babb-732aa475c3c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp" />
@@ -93,6 +96,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionEvent.cpp">
       <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Renderer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Renderable.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +201,12 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionEvent.h">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Renderer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Renderable.h">
+      <Filter>Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
