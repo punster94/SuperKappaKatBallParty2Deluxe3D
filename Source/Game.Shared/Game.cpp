@@ -3,10 +3,21 @@
 
 namespace KatBall
 {
+	Game::Game(FieaGameEngine::Renderer& renderer)
+		: mRenderer(&renderer)
+	{
+	}
+	
 	void Game::Run()
 	{
 		Init();
-		Update();
+
+		while (mRenderer->IsValid())
+		{
+			Update();
+		}
+
+		Shutdown();
 	}
 
 	void Game::Init()
@@ -17,6 +28,13 @@ namespace KatBall
 	void Game::Update()
 	{
 		mWorld.Update(mWorldState);
+		mRenderer->InitRenderFrame();
 		mRenderer->Render(mWorld);
+		mRenderer->EndRenderFrame();
+	}
+
+	void Game::Shutdown()
+	{
+
 	}
 }

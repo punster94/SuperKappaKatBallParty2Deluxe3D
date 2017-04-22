@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RenderableDirectX.h" />
+    <ClInclude Include="RenderConfigurationDirectX.h" />
+    <ClInclude Include="RenderConfigurationOpenGL.h" />
     <ClInclude Include="RendererDirectX.h" />
     <ClInclude Include="RendererOpenGL.h" />
   </ItemGroup>
@@ -106,7 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\expat\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\External\gl3w\include\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\glfw\include\;$(SolutionDir)..\External\expat\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4201</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -131,7 +133,7 @@
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\expat\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\External\gl3w\include\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\glfw\include\;$(SolutionDir)..\External\expat\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4201</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -158,7 +160,7 @@
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\expat\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\External\gl3w\include\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\glfw\include\;$(SolutionDir)..\External\expat\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4201</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -187,7 +189,7 @@
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\expat\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\External\gl3w\include\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\glfw\include\;$(SolutionDir)..\External\expat\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4201</DisableSpecificWarnings>
     </ClCompile>
     <Link>

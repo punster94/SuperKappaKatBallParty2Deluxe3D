@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Vector.h"
 #include "World.h"
+#include "RenderConfiguration.h"
 
 namespace FieaGameEngine
 {
@@ -13,6 +13,11 @@ namespace FieaGameEngine
 	{
 	public:
 		/**
+		*	Initializes the renderer with the configuration settings.
+		*/
+		Renderer(RenderConfiguration& config);
+
+		/**
 		*	Initializes the graphics systems.
 		*/
 		virtual void Init() = 0;
@@ -21,6 +26,21 @@ namespace FieaGameEngine
 		*	Initializes the graphics systems for rendering a frame.
 		*/
 		virtual void InitRenderFrame() = 0;
+
+		/**
+		*	Handles any additional functionality needed at the end of a frame.
+		*/
+		virtual void EndRenderFrame() = 0;
+
+		/**
+		*	True when the renderer can continue rendering, false otherwise.
+		*/
+		virtual bool IsValid() = 0;
+
+		/**
+		*	Destroys the graphics systems.
+		*/
+		virtual void Shutdown() = 0;
 
 		/**
 		*	Renderers each renderable entity in a given World.
@@ -33,5 +53,8 @@ namespace FieaGameEngine
 		*	@param sector The Sector that contains Entities to render.
 		*/
 		void Render(Sector& sector);
+
+	protected:
+		RenderConfiguration* mConfig;
 	};
 }

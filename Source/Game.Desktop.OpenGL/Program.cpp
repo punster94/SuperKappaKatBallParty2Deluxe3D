@@ -1,13 +1,14 @@
 #include "pch.h"
-#include "Program.h"
-#include "glfw3.h"
+#include "Game.h"
+#include "RendererOpenGL.h"
+#include "RenderConfigurationOpenGL.h"
 
-GLFWwindow* window;
+UINT windowWidth = 720;
+UINT windowHeight = 480;
+std::string windowName = "Super Kappa Kat Ball Party 2 Deluxe 3D";
 
-UINT windowWidth = 1920;
-UINT windowHeight = 1080;
-
-char* windowName = "OpenGL Game";
+using namespace KatBall;
+using namespace FieaGameEngine;
 
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR commandLine, int showCommand)
 {
@@ -16,26 +17,15 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR command
 	UNREFERENCED_PARAMETER(commandLine);
 	UNREFERENCED_PARAMETER(showCommand);
 
-	//FieaGameEngine::SList list(20);
-	//std::int32_t data = list.Data();
-	//data;
+	RenderConfigurationOpenGL config;
+	config.windowWidth = windowWidth;
+	config.windowHeight = windowHeight;
+	config.windowName = windowName;
 
-	InitializeWindow();
-
-	while (!(glfwWindowShouldClose(window)))
-	{
-		glfwSwapBuffers(window);
-		glfwPollEvents();
-	}
+	RendererOpenGL renderer(config);
+	
+	Game game(renderer);
+	game.Run();
 
 	return 0;
-}
-
-void InitializeWindow()
-{
-	glfwInit();
-	window = glfwCreateWindow(windowWidth, windowHeight, windowName, nullptr, nullptr);
-	glfwMakeContextCurrent(window);
-
-	glfwInit();
 }

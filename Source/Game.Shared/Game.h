@@ -8,14 +8,17 @@
 
 namespace KatBall
 {
-	class Game
+	class Game final
 	{
 	public:
+		Game(FieaGameEngine::Renderer& renderer);
+
 		void Run();
 
 	private:
 		void Init();
 		void Update();
+		void Shutdown();
 
 		FieaGameEngine::Renderer* mRenderer;
 		FieaGameEngine::World mWorld;

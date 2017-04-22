@@ -15,6 +15,12 @@
     <ClInclude Include="RendererOpenGL.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="RenderConfigurationDirectX.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderConfigurationOpenGL.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RendererDirectX.cpp">

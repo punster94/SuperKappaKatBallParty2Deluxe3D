@@ -175,9 +175,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Program.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Library.Desktop\Library.Desktop.vcxproj">
       <Project>{0e22df5b-8526-4832-9aae-595cf0b278de}</Project>
     </ProjectReference>
