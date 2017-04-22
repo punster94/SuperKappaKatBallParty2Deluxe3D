@@ -18,6 +18,14 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RenderableDirectX.h" />
+    <ClInclude Include="RendererDirectX.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="RenderableDirectX.cpp" />
+    <ClCompile Include="RendererDirectX.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0E22DF5B-8526-4832-9AAE-595CF0B278DE}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
