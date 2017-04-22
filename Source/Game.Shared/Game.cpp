@@ -35,6 +35,6 @@ namespace KatBall
 
 	void Game::Shutdown()
 	{
-
+		mRenderer->Shutdown();
 	}
 }
