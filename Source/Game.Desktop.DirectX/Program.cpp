@@ -1,15 +1,12 @@
 #include "pch.h"
 #include "program.h"
 
-UINT mScreenWidth = 1920;
-UINT mScreenHeight = 1080;
+UINT mScreenWidth = 720;
+UINT mScreenHeight = 480;
 
 HWND mWindowHandle;
 WNDCLASSEX mWindow;
 
-const FLOAT blue[4] = { 0, 0.2f, 0.4f, 1.0f };
-
-D3D_FEATURE_LEVEL mFeatureLevel;
 ID3D11Device* mDevice;
 ID3D11DeviceContext* mDeviceContext;
 IDXGISwapChain* mSwapChain;
@@ -23,11 +20,7 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR command
 	UNREFERENCED_PARAMETER(commandLine);
 	UNREFERENCED_PARAMETER(showCommand);
 
-	//FieaGameEngine::SList<std::int32_t> list(10);
-	//std::int32_t data = list.Data();
-	//data;
-
-	InitializeWindow(instance, L"RenderingClass", L"DirectX Game", showCommand);
+	InitializeWindow(instance, L"RenderingClass", L"Super Kappa Kat Ball Party 2 Deluxe 3D", showCommand);
 	InitializeDirectX();
 
 	MSG message;
@@ -42,11 +35,7 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR command
 		}
 		else
 		{
-			mDeviceContext->ClearRenderTargetView(mRenderTargetView, blue);
-			mDeviceContext->ClearDepthStencilView(mDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-
-			// GAME
-			RenderBlueFrame();
+			RenderGame();
 		}
 	}
 
@@ -119,9 +108,10 @@ void ShutdownDirectX()
 	mDeviceContext->Release();
 }
 
-void RenderBlueFrame()
+void RenderGame()
 {
-	mDeviceContext->ClearRenderTargetView(mRenderTargetView, blue);
+	mDeviceContext->ClearRenderTargetView(mRenderTargetView, DirectX::Colors::Lavender);
+	mDeviceContext->ClearDepthStencilView(mDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	mSwapChain->Present(0, 0);
 }
 

@@ -9,6 +9,8 @@
 
 // DirectX libraries
 #include <d3d11.h>
+#include <DirectXMath.h>
+#include <DirectXColors.h>
 
 // Local libraries
 #include "SList.h"
