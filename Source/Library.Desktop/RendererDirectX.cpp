@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "RendererDirectX.h"
 #include "RenderConfigurationDirectX.h"
+#include "MeshDirectX.h"
 #include <DirectXColors.h>
 
 namespace FieaGameEngine
@@ -106,6 +107,11 @@ namespace FieaGameEngine
 		mSwapChain->Release();
 		mDevice->Release();
 		mDeviceContext->Release();
+	}
+
+	Mesh& RendererDirectX::CreateMesh(const std::string& meshPath)
+	{
+		return *(new MeshDirectX(*this, meshPath, "MeshVertex.cso", "MeshPixel.cso"));
 	}
 
 	ID3D11Device* RendererDirectX::Device()

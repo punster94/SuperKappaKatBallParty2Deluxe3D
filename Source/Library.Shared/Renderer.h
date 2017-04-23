@@ -60,7 +60,7 @@ namespace FieaGameEngine
 		*	@param The path where the mesh data exists.
 		*	@return A reference to the created mesh.
 		*/
-		//virtual Mesh& CreateMesh(const std::string& meshPath) = 0;
+		virtual Mesh& CreateMesh(const std::string& meshPath) = 0;
 
 	protected:
 		RenderConfiguration* mConfig;

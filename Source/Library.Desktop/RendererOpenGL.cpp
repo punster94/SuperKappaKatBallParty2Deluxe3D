@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "RendererOpenGL.h"
 #include "RenderConfigurationOpenGL.h"
+#include "MeshOpenGL.h"
 
 namespace FieaGameEngine
 {
@@ -34,5 +35,11 @@ namespace FieaGameEngine
 
 	void RendererOpenGL::Shutdown()
 	{
+	}
+
+	Mesh& RendererOpenGL::CreateMesh(const std::string& meshPath)
+	{
+		meshPath;
+		return *(new MeshOpenGL());
 	}
 }

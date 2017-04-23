@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MeshDirectX.h" />
+    <ClInclude Include="MeshOpenGL.h" />
     <ClInclude Include="RenderConfigurationDirectX.h" />
     <ClInclude Include="RenderConfigurationOpenGL.h" />
     <ClInclude Include="RendererDirectX.h" />
@@ -28,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MeshDirectX.cpp" />
+    <ClCompile Include="MeshOpenGL.cpp" />
     <ClCompile Include="RendererDirectX.cpp" />
     <ClCompile Include="RendererOpenGL.cpp" />
     <ClCompile Include="Utils.cpp" />
