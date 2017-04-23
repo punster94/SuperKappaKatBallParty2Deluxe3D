@@ -60,8 +60,7 @@ namespace FieaGameEngine
 		// create vertex buffer
 		bufferDesc.ByteWidth = sizeof(glm::vec3) * mNumVertices;
 		bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-		HRESULT hr = directX->Device()->CreateBuffer(&bufferDesc, &vertexData, &mVertexBuffer);
-		hr;
+		directX->Device()->CreateBuffer(&bufferDesc, &vertexData, &mVertexBuffer);
 
 		D3D11_SUBRESOURCE_DATA indexData;
 		indexData.pSysMem = mIndices;
