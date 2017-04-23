@@ -16,6 +16,16 @@ namespace FieaGameEngine
 	 *	Prevents cyclical dependencies by forward declaring the WorldState class.
 	 */
 	class WorldState;
+	
+	/** Forward Declaration of Renderer
+	*	Prevents cyclical dependencies by forward declaring the Renderer class.
+	*/
+	class Renderer;
+
+	/** Forward Declaration of Renderable
+	*	Prevents cyclical dependencies by forward declaring the Renderable class.
+	*/
+	class Renderable;
 
 	/** Entity class
 	 *	An Attributed class that represents an entity in the game world.
@@ -130,6 +140,12 @@ namespace FieaGameEngine
 		 */
 		void Update(WorldState& worldState);
 
+		/** Entity Render
+		*	Renders the Renderable objects of this Entity.
+		*	@param renderer The Renderer used to render the Renderable objects.
+		*/
+		void Render(Renderer& renderer);
+
 		/** Entity Copy
 		 *	Creates a copy of this Entity as a Scope pointer.
 		 *	@return a Scope pointer constructed as an Entity.
@@ -142,6 +158,11 @@ namespace FieaGameEngine
 		 *	Initializes the prescribed attributes for instances of this class.
 		 */
 		void InitializeSignatures();
+
+		/** Entity mRenderables
+		*	List of renderable objects for this Entity.
+		*/
+		Vector<Renderable*> mRenderables;
 
 	private:
 

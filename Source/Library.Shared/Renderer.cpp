@@ -23,11 +23,7 @@ namespace FieaGameEngine
 		Datum& entities = sector.Entities();
 		for (std::uint32_t i = 0; i < entities.Size(); ++i)
 		{
-			Renderable* renderable = static_cast<Entity&>(entities.Get<Scope&>(i)).As<Renderable>();
-			if (renderable != nullptr)
-			{
-				renderable->Render(this);
-			}
+			static_cast<Entity&>(entities.Get<Scope&>(i)).Render(*this);
 		}
 	}
 }

@@ -35,7 +35,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Reaction.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ReactionAttributed.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Renderable.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Renderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ResizeStrategy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scope.cpp" />

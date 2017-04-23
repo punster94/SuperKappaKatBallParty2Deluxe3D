@@ -3,6 +3,8 @@
 #include "Sector.h"
 #include "Reaction.h"
 #include "WorldState.h"
+#include "Renderer.h"
+#include "Renderable.h"
 
 namespace FieaGameEngine
 {
@@ -123,6 +125,14 @@ namespace FieaGameEngine
 		for (std::uint32_t i = 0; i < actions.Size(); ++i)
 		{
 			static_cast<Action*>(&actions.Get<Scope&>(i))->Update(worldState);
+		}
+	}
+
+	void Entity::Render(Renderer& renderer)
+	{
+		for (auto& renderable : mRenderables)
+		{
+			renderable->Render(renderer);
 		}
 	}
 

@@ -19,14 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RenderableDirectX.h" />
     <ClInclude Include="RenderConfigurationDirectX.h" />
     <ClInclude Include="RenderConfigurationOpenGL.h" />
     <ClInclude Include="RendererDirectX.h" />
     <ClInclude Include="RendererOpenGL.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="RenderableDirectX.cpp" />
     <ClCompile Include="RendererDirectX.cpp" />
     <ClCompile Include="RendererOpenGL.cpp" />
   </ItemGroup>

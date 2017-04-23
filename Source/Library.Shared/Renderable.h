@@ -5,11 +5,9 @@
 
 namespace FieaGameEngine
 {
-	class Renderable abstract : public Entity
+	class Renderable abstract
 	{
-		RTTI_DECLARATIONS(Renderable, Entity)
-
 	public:
-		virtual void Render(Renderer* renderer) = 0;
+		virtual void Render(Renderer& renderer) = 0;
 	};
 }
