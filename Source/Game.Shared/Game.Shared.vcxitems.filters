@@ -16,16 +16,5 @@
     <Filter Include="Core">
       <UniqueIdentifier>{e3da0b12-a3f9-4661-bdbd-5931975f4109}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shaders">
-      <UniqueIdentifier>{14722c75-6dea-4608-8f87-3d7a7e46baed}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="$(MSBuildThisFileDirectory)MeshPixel.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="$(MSBuildThisFileDirectory)MeshVertex.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
   </ItemGroup>
 </Project>
