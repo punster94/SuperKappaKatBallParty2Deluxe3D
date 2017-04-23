@@ -56,7 +56,8 @@ namespace FieaGameEngine
 		swapChainDescription.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 		swapChainDescription.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 		swapChainDescription.OutputWindow = mWindow;
-		swapChainDescription.SampleDesc.Count = 4;
+		swapChainDescription.SampleDesc.Count = 1;
+		swapChainDescription.SampleDesc.Quality = 0;
 		swapChainDescription.Windowed = TRUE;
 
 		D3D11CreateDeviceAndSwapChain(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, 0, nullptr, 0, D3D11_SDK_VERSION, &swapChainDescription, &mSwapChain, &mDevice, nullptr, &mDeviceContext);
@@ -76,6 +77,8 @@ namespace FieaGameEngine
 		viewport.TopLeftY = 0;
 		viewport.Width = (FLOAT)config->windowWidth;
 		viewport.Height = (FLOAT)config->windowHeight;
+		viewport.MinDepth = 0.0f;
+		viewport.MaxDepth = 1.0f;
 
 		mDeviceContext->RSSetViewports(1, &viewport);
 	}
@@ -111,7 +114,9 @@ namespace FieaGameEngine
 
 	Mesh& RendererDirectX::CreateMesh(const std::string& meshPath)
 	{
-		return *(new MeshDirectX(*this, meshPath, "MeshVertex.cso", "MeshPixel.cso"));
+		Mesh* mesh = new MeshDirectX(this, meshPath, "MeshVertex.cso", "MeshPixel.cso");
+		assert(mesh != nullptr);
+		return *mesh;
 	}
 
 	ID3D11Device* RendererDirectX::Device()

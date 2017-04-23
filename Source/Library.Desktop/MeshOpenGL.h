@@ -7,6 +7,6 @@ namespace FieaGameEngine
 	class MeshOpenGL : public Mesh
 	{
 	public:
-		virtual void Render(Renderer& renderer) override;
+		virtual void Render(Renderer* renderer) override;
 	};
 }

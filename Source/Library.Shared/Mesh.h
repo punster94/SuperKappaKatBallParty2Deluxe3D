@@ -7,6 +7,6 @@ namespace FieaGameEngine
 	class Mesh abstract : public Renderable
 	{
 	public:
-		virtual void Render(Renderer& renderer) override = 0;
+		virtual void Render(Renderer* renderer) override = 0;
 	};
 }

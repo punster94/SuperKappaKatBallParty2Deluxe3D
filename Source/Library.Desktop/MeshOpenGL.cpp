@@ -3,7 +3,7 @@
 
 namespace FieaGameEngine
 {
-	void MeshOpenGL::Render(Renderer& renderer)
+	void MeshOpenGL::Render(Renderer* renderer)
 	{
 		renderer;
 	}

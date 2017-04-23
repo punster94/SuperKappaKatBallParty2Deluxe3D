@@ -27,8 +27,9 @@
     <FxCompile Include="$(MSBuildThisFileDirectory)MeshPixel.hlsl">
       <ShaderType>Pixel</ShaderType>
     </FxCompile>
-    <FxCompile Include="$(MSBuildThisFileDirectory)MeshVert.hlsl">
+    <FxCompile Include="$(MSBuildThisFileDirectory)MeshVertex.hlsl">
       <ShaderType>Vertex</ShaderType>
+      <FileType>Document</FileType>
     </FxCompile>
   </ItemGroup>
 </Project>

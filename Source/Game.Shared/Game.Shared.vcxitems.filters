@@ -21,10 +21,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="$(MSBuildThisFileDirectory)MeshVert.hlsl">
+    <FxCompile Include="$(MSBuildThisFileDirectory)MeshPixel.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
-    <FxCompile Include="$(MSBuildThisFileDirectory)MeshPixel.hlsl">
+    <FxCompile Include="$(MSBuildThisFileDirectory)MeshVertex.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

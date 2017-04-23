@@ -128,7 +128,7 @@ namespace FieaGameEngine
 		}
 	}
 
-	void Entity::Render(Renderer& renderer)
+	void Entity::Render(Renderer* renderer)
 	{
 		for (auto& renderable : mRenderables)
 		{

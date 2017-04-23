@@ -5,6 +5,7 @@
 #include "GameClock.h"
 #include "WorldState.h"
 #include "Renderer.h"
+#include "Mesh.h"
 
 namespace KatBall
 {
@@ -20,6 +21,7 @@ namespace KatBall
 		void Update();
 		void Shutdown();
 
+		FieaGameEngine::Mesh* mMeshTest;
 		FieaGameEngine::Renderer* mRenderer;
 		FieaGameEngine::World mWorld;
 		FieaGameEngine::WorldState mWorldState;

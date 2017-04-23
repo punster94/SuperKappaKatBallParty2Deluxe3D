@@ -5,22 +5,29 @@
 
 namespace FieaGameEngine
 {
-	MeshDirectX::MeshDirectX(Renderer& renderer, const std::string& meshPath, const std::string& vertexShaderPath, const std::string& pixelShaderPath)
+	MeshDirectX::MeshDirectX(Renderer* renderer, const std::string& meshPath, const std::string& vertexShaderPath, const std::string& pixelShaderPath)
 	{
-		RendererDirectX& directX = reinterpret_cast<RendererDirectX&>(renderer);
+		RendererDirectX* directX = reinterpret_cast<RendererDirectX*>(renderer);
 
 		// ignore mesh path for testing
 		meshPath;
 		mVertices = new glm::vec3[3];
 		mIndices = new std::uint32_t[3];
-		mNumIndices = 3;
+
+		mVertices[0] = glm::vec3(-1.0f, -1.0f, 0.0f);
+		mVertices[1] = glm::vec3(0.0f, 1.0f, 0.0f);
+		mVertices[2] = glm::vec3(1.0f, -1.0f, 0.0f);
+		mIndices[0] = 0;
+		mIndices[1] = 1;
+		mIndices[2] = 2;
+
+		mNumVertices = 3;
 		mNumIndices = 3;
 
-		// create vertex shader
+		//// create vertex shader
 		std::uint32_t fileSize = 0;
-		char* fileData = DesktopUtils::ReadFile(vertexShaderPath, fileSize);
-		directX.Device()->CreateVertexShader(fileData, fileSize, nullptr, &mVertexShader);
-		delete fileData;
+		char* vertexFileData = DesktopUtils::ReadFile(vertexShaderPath, fileSize);
+		directX->Device()->CreateVertexShader(vertexFileData, fileSize, nullptr, &mVertexShader);
 
 		D3D11_INPUT_ELEMENT_DESC vertexInputs[1];
 
@@ -33,26 +40,38 @@ namespace FieaGameEngine
 		vertexInputs[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 		vertexInputs[0].InstanceDataStepRate = 0;
 
-		directX.Device()->CreateInputLayout(vertexInputs, 1, fileData, fileSize, &mVertexLayout);
+		directX->Device()->CreateInputLayout(vertexInputs, 1, vertexFileData, fileSize, &mVertexLayout);
+		delete vertexFileData;
 
 		// create pixel shader
-		fileData = DesktopUtils::ReadFile(pixelShaderPath, fileSize);
-		directX.Device()->CreatePixelShader(fileData, fileSize, nullptr, &mPixelShader);
-		delete fileData;
+		char* pixelFileData = DesktopUtils::ReadFile(pixelShaderPath, fileSize);
+		directX->Device()->CreatePixelShader(pixelFileData, fileSize, nullptr, &mPixelShader);
+		delete pixelFileData;
 
-		D3D11_BUFFER_DESC bufferDesc = { 0 };
+		D3D11_BUFFER_DESC bufferDesc;
+		ZeroMemory(&bufferDesc, sizeof(bufferDesc));
 		bufferDesc.Usage = D3D11_USAGE_DEFAULT;
-		bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+
+		D3D11_SUBRESOURCE_DATA vertexData;
+		vertexData.pSysMem = mVertices;
+		vertexData.SysMemPitch = 0;
+		vertexData.SysMemSlicePitch = 0;
 
 		// create vertex buffer
 		bufferDesc.ByteWidth = sizeof(glm::vec3) * mNumVertices;
 		bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-		directX.Device()->CreateBuffer(&bufferDesc, nullptr, &mVertexBuffer);
+		HRESULT hr = directX->Device()->CreateBuffer(&bufferDesc, &vertexData, &mVertexBuffer);
+		hr;
+
+		D3D11_SUBRESOURCE_DATA indexData;
+		indexData.pSysMem = mIndices;
+		indexData.SysMemPitch = 0;
+		indexData.SysMemSlicePitch = 0;
 
 		// create index buffer
 		bufferDesc.ByteWidth = sizeof(std::uint32_t) * mNumIndices;
 		bufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
-		directX.Device()->CreateBuffer(&bufferDesc, nullptr, &mIndexBuffer);
+		directX->Device()->CreateBuffer(&bufferDesc, &indexData, &mIndexBuffer);
 	}
 
 	MeshDirectX::~MeshDirectX()
@@ -66,17 +85,18 @@ namespace FieaGameEngine
 		delete[] mIndices;
 	}
 
-	void MeshDirectX::Render(Renderer& renderer)
+	void MeshDirectX::Render(Renderer* renderer)
 	{
-		RendererDirectX& directX = reinterpret_cast<RendererDirectX&>(renderer);
+		RendererDirectX* directX = reinterpret_cast<RendererDirectX*>(renderer);
 
 		UINT stride = sizeof(glm::vec3);
 		UINT offset = 0;
 
 		// set shaders
-		directX.Context()->VSSetShader(mVertexShader, nullptr, 0);
-		directX.Context()->PSSetShader(mPixelShader, nullptr, 0);
-		directX.Context()->IASetInputLayout(mVertexLayout);
+		directX->Context()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		directX->Context()->VSSetShader(mVertexShader, nullptr, 0);
+		directX->Context()->PSSetShader(mPixelShader, nullptr, 0);
+		directX->Context()->IASetInputLayout(mVertexLayout);
 
 		// TODO: Something along these lines for updating cbuffer on render...
 		//D3D11_MAPPED_SUBRESOURCE mapResource;
@@ -87,8 +107,8 @@ namespace FieaGameEngine
 		//context.VSSetConstantBuffers(1, 1, &graphics.objectCBuffer.buffer);
 
 		// draw mesh
-		directX.Context()->IASetVertexBuffers(0, 1, &mVertexBuffer, &stride, &offset);
-		directX.Context()->IASetIndexBuffer(mIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
-		directX.Context()->DrawIndexed(mNumIndices, 0, 0);
+		directX->Context()->IASetVertexBuffers(0, 1, &mVertexBuffer, &stride, &offset);
+		directX->Context()->IASetIndexBuffer(mIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
+		directX->Context()->DrawIndexed(mNumIndices, 0, 0);
 	}
 }

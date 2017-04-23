@@ -8,10 +8,10 @@ namespace FieaGameEngine
 	class MeshDirectX : public Mesh
 	{
 	public:
-		MeshDirectX(Renderer& renderer, const std::string& meshPath, const std::string& vertexShaderPath, const std::string& pixelShaderPath);
+		MeshDirectX(Renderer* renderer, const std::string& meshPath, const std::string& vertexShaderPath, const std::string& pixelShaderPath);
 		~MeshDirectX();
 
-		virtual void Render(Renderer& renderer) override;
+		virtual void Render(Renderer* renderer) override;
 
 	private:
 		ID3D11VertexShader* mVertexShader;
