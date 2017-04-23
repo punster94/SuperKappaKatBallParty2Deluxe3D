@@ -108,6 +108,16 @@ namespace FieaGameEngine
 		mDeviceContext->Release();
 	}
 
+	ID3D11Device* RendererDirectX::Device()
+	{
+		return mDevice;
+	}
+
+	ID3D11DeviceContext* RendererDirectX::Context()
+	{
+		return mDeviceContext;
+	}
+
 	LRESULT WINAPI RendererDirectX::WndProc(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		if (message == WM_DESTROY)

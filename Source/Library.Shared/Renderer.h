@@ -2,6 +2,7 @@
 
 #include "World.h"
 #include "RenderConfiguration.h"
+#include "Mesh.h"
 
 namespace FieaGameEngine
 {
@@ -53,6 +54,13 @@ namespace FieaGameEngine
 		*	@param sector The Sector that contains Entities to render.
 		*/
 		void Render(Sector& sector);
+
+		/**
+		*	Creates a mesh at the given path.
+		*	@param The path where the mesh data exists.
+		*	@return A reference to the created mesh.
+		*/
+		//virtual Mesh& CreateMesh(const std::string& meshPath) = 0;
 
 	protected:
 		RenderConfiguration* mConfig;

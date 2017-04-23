@@ -4,6 +4,9 @@
     <Filter Include="Rendering">
       <UniqueIdentifier>{f52c499c-f5ae-4e62-a496-1de844a9013d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{35fad459-da11-4a76-a742-f5ecef5a03d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RendererDirectX.h">
@@ -18,6 +21,12 @@
     <ClInclude Include="RenderConfigurationOpenGL.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="MeshDirectX.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RendererDirectX.cpp">
@@ -25,6 +34,12 @@
     </ClCompile>
     <ClCompile Include="RendererOpenGL.cpp">
       <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshDirectX.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

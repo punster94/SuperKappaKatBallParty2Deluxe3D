@@ -19,14 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MeshDirectX.h" />
     <ClInclude Include="RenderConfigurationDirectX.h" />
     <ClInclude Include="RenderConfigurationOpenGL.h" />
     <ClInclude Include="RendererDirectX.h" />
     <ClInclude Include="RendererOpenGL.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MeshDirectX.cpp" />
     <ClCompile Include="RendererDirectX.cpp" />
     <ClCompile Include="RendererOpenGL.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0E22DF5B-8526-4832-9AAE-595CF0B278DE}</ProjectGuid>

@@ -39,6 +39,16 @@ namespace FieaGameEngine
 		*/
 		virtual void Shutdown() override;
 
+		/**
+		*	Gets the DirectX device.
+		*/
+		ID3D11Device* Device();
+
+		/**
+		*	Gets the DirectX device immediate context.
+		*/
+		ID3D11DeviceContext* Context();
+
 	private:
 		void InitWindow();
 		void InitDirectX();

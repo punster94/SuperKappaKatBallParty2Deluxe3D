@@ -1,10 +1,11 @@
 #pragma once
 
-#include "Renderer.h"
 #include "Entity.h"
 
 namespace FieaGameEngine
 {
+	class Renderer;
+
 	class Renderable abstract
 	{
 	public:
