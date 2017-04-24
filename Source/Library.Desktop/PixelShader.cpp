@@ -27,8 +27,17 @@ namespace FieaGameEngine
 
 	void PixelShader::Load(char* data, std::uint32_t size)
 	{
-		data;
-		size;
+		RendererDirectX* directX = RendererDirectX::Get();
+		assert(directX != nullptr);
+
+		// Release any previously loaded shader
+		if (mPixelShader != nullptr)
+		{
+			mPixelShader->Release();
+			mPixelShader = nullptr;
+		}
+
+		directX->Device()->CreatePixelShader(data, size, nullptr, &mPixelShader);
 	}
 
 	void PixelShader::SetRenderingState(Renderer* renderer)

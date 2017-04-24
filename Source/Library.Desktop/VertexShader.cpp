@@ -48,6 +48,7 @@ namespace FieaGameEngine
 
 		// Make a copy of the binary for use when creating input layouts
 		mBinaryData = reinterpret_cast<char*>(malloc(size));
+		memcpy(mBinaryData, data, size);
 		mBinarySize = size;
 	}
 

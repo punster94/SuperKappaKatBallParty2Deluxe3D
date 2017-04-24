@@ -7,7 +7,7 @@ namespace FieaGameEngine
 
 	Mesh::Mesh() :
 		mOwner(nullptr),
-		mVisible(false)
+		mVisible(true)
 	{
 
 	}

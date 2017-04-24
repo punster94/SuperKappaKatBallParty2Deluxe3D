@@ -6,5 +6,5 @@
 
 #define MESH_KAT "monkey.obj"
 
-#define SHADER_MESH_VERTEX "MeshVertex.cmo"
-#define SHADER_MESH_PIXEL "MeshPixel.cmo"
+#define SHADER_MESH_VERTEX "MeshVertex.cso"
+#define SHADER_MESH_PIXEL "MeshPixel.cso"
