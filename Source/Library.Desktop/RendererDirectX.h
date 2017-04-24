@@ -82,5 +82,7 @@ namespace FieaGameEngine
 		ID3D11Texture2D* mDepthStencilBuffer;
 		ID3D11RenderTargetView* mRenderTargetView;
 		ID3D11DepthStencilView* mDepthStencilView;
+		ID3D11DepthStencilState* mDepthStencilState;
+		ID3D11RasterizerState* mRasterizerState;
 	};
 }
