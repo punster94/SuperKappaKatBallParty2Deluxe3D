@@ -7,6 +7,9 @@
     <Filter Include="Utils">
       <UniqueIdentifier>{35fad459-da11-4a76-a742-f5ecef5a03d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{c960870f-b49d-41f5-a22b-002cfe1786c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RendererDirectX.h">
@@ -30,6 +33,18 @@
     <ClInclude Include="MeshOpenGL.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="MeshGeometry.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RendererDirectX.cpp">
@@ -46,6 +61,18 @@
     </ClCompile>
     <ClCompile Include="MeshOpenGL.cpp">
       <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset.cpp">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshGeometry.cpp">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Assets</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

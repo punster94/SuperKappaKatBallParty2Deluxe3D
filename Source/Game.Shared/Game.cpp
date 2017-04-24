@@ -23,7 +23,6 @@ namespace KatBall
 	void Game::Init()
 	{
 		mRenderer->Init();
-		mMeshTest = &mRenderer->CreateMesh("");
 	}
 
 	void Game::Update()
@@ -31,7 +30,6 @@ namespace KatBall
 		mWorld.Update(mWorldState);
 		mRenderer->InitRenderFrame();
 		mRenderer->Render(mWorld);
-		mMeshTest->Render(mRenderer);
 		mRenderer->EndRenderFrame();
 	}
 

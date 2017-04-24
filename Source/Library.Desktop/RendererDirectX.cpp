@@ -6,6 +6,31 @@
 
 namespace FieaGameEngine
 {
+
+	RendererDirectX* RendererDirectX::Create(RenderConfiguration& config)
+	{
+		if (sInstance == nullptr)
+		{
+			sInstance = new RendererDirectX(config);
+		}
+
+		return static_cast<RendererDirectX*>(sInstance);
+	}
+
+	RendererDirectX* RendererDirectX::Get()
+	{
+		return static_cast<RendererDirectX*>(sInstance);
+	}
+
+	void RendererDirectX::Destroy()
+	{
+		if (sInstance != nullptr)
+		{
+			delete sInstance;
+			sInstance = nullptr;
+		}
+	}
+
 	RendererDirectX::RendererDirectX(RenderConfiguration& config)
 		: Renderer(config)
 	{
@@ -85,7 +110,7 @@ namespace FieaGameEngine
 
 	void RendererDirectX::InitRenderFrame()
 	{
-		mDeviceContext->ClearRenderTargetView(mRenderTargetView, DirectX::Colors::Lavender);
+		mDeviceContext->ClearRenderTargetView(mRenderTargetView, DirectX::Colors::Blue);
 		mDeviceContext->ClearDepthStencilView(mDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	}
 
@@ -110,13 +135,6 @@ namespace FieaGameEngine
 		mSwapChain->Release();
 		mDevice->Release();
 		mDeviceContext->Release();
-	}
-
-	Mesh& RendererDirectX::CreateMesh(const std::string& meshPath)
-	{
-		Mesh* mesh = new MeshDirectX(this, meshPath, "MeshVertex.cso", "MeshPixel.cso");
-		assert(mesh != nullptr);
-		return *mesh;
 	}
 
 	ID3D11Device* RendererDirectX::Device()

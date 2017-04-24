@@ -9,10 +9,21 @@ namespace FieaGameEngine
 	class RendererDirectX final : public Renderer
 	{
 	public:
+
 		/**
-		*	Initializes the renderer with the configuration.
+		*	Creates a singleton.
 		*/
-		RendererDirectX(RenderConfiguration& config);
+		static RendererDirectX* Create(RenderConfiguration& config);
+
+		/**
+		*	Gets the singleton
+		*/
+		static RendererDirectX* Get();
+
+		/**
+		*	Destroys the singleton
+		*/
+		static void Destroy();
 
 		/**
 		*	Initializes the window and DirectX for rendering.
@@ -39,8 +50,6 @@ namespace FieaGameEngine
 		*/
 		virtual void Shutdown() override;
 
-		virtual Mesh& CreateMesh(const std::string& meshPath) override;
-
 		/**
 		*	Gets the DirectX device.
 		*/
@@ -52,6 +61,14 @@ namespace FieaGameEngine
 		ID3D11DeviceContext* Context();
 
 	private:
+
+		/**
+		*	Initializes the renderer with the configuration.
+		*/
+		RendererDirectX(RenderConfiguration& config);
+
+		~RendererDirectX() = default;
+
 		void InitWindow();
 		void InitDirectX();
 

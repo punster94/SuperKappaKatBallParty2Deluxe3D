@@ -22,9 +22,9 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE previousInstance, LPSTR command
 	config.windowHeight = windowHeight;
 	config.windowName = windowName;
 
-	RendererDirectX renderer(config);
+	RendererDirectX* renderer = RendererDirectX::Create(config);
 
-	Game game(renderer);
+	Game game(*renderer);
 	game.Run();
 
 	return 0;

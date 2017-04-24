@@ -13,10 +13,18 @@ namespace FieaGameEngine
 	class Renderer abstract
 	{
 	public:
+
+		virtual ~Renderer() = default;
+
 		/**
-		*	Initializes the renderer with the configuration settings.
+		*	Gets the singleton
 		*/
-		Renderer(RenderConfiguration& config);
+		static Renderer* Get();
+
+		/**
+		*	Destroys the singleton
+		*/
+		static void Destroy();
 
 		/**
 		*	Initializes the graphics systems.
@@ -55,14 +63,15 @@ namespace FieaGameEngine
 		*/
 		void Render(Sector& sector);
 
-		/**
-		*	Creates a mesh at the given path.
-		*	@param The path where the mesh data exists.
-		*	@return A reference to the created mesh.
-		*/
-		virtual Mesh& CreateMesh(const std::string& meshPath) = 0;
-
 	protected:
+
+		/**
+		*	Initializes the renderer with the configuration settings.
+		*/
+		Renderer(RenderConfiguration& config);
+
+		static Renderer* sInstance;
+
 		RenderConfiguration* mConfig;
 	};
 }
