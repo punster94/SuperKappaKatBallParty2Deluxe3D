@@ -6,7 +6,7 @@
 #include "Texture.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
-#include "Actor.h"
+#include "Entity.h"
 
 namespace FieaGameEngine
 {

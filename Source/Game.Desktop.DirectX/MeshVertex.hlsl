@@ -35,9 +35,13 @@ struct PS_INPUT
 PS_INPUT main( VS_INPUT input )
 {
     PS_INPUT output = (PS_INPUT)0;
-    output.Position = mul( input.Position, World );
-    output.Position = mul( output.Position, View );
-    output.Position = mul( output.Position, Projection );
+    //output.Position = mul( input.Position, World );
+    //output.Position = mul( output.Position, View );
+    //output.Position = mul( output.Position, Projection );
+	//float4 pos;
+	//pos.xy = input.Position.xyz;
+	output.Position = input.Position;
+	output.Position.z = 0.0f;
     output.Texcoord = input.Texcoord;
 	output.Normal = input.Normal;
     

@@ -128,6 +128,36 @@ namespace FieaGameEngine
 		}
 	}
 
+	void Entity::SetPosition(glm::vec3 position)
+	{
+		mPosition = position;
+	}
+
+	void Entity::SetRotation(glm::vec3 rotation)
+	{
+		mRotation = rotation;
+	}
+
+	void Entity::SetScale(glm::vec3 scale)
+	{
+		mScale = scale;
+	}
+
+	glm::vec3 Entity::GetPosition() const
+	{
+		return mPosition;
+	}
+
+	glm::vec3 Entity::GetRotation() const
+	{
+		return mRotation;
+	}
+
+	glm::vec3 Entity::GetScale() const
+	{
+		return mScale;
+	}
+
 	void Entity::Render(Renderer* renderer)
 	{
 		for (auto& renderable : mRenderables)

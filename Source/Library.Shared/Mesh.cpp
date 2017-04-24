@@ -12,7 +12,7 @@ namespace FieaGameEngine
 
 	}
 
-	Mesh::Mesh(Actor& owner)
+	Mesh::Mesh(Entity& owner)
 		: mOwner(&owner)
 	{
 
@@ -23,7 +23,7 @@ namespace FieaGameEngine
 		mVisible = visible;
 	}
 
-	void Mesh::SetOwner(Actor& owner)
+	void Mesh::SetOwner(Entity& owner)
 	{
 		mOwner = &owner;
 	}

@@ -152,6 +152,14 @@ namespace FieaGameEngine
 		 */
 		virtual Scope* Copy() const override;
 
+		void SetPosition(glm::vec3 position);
+		void SetRotation(glm::vec3 rotation);
+		void SetScale(glm::vec3 scale);
+
+		glm::vec3 GetPosition() const;
+		glm::vec3 GetRotation() const;
+		glm::vec3 GetScale() const;
+
 	protected:
 
 		/** Entity InitializeSignatures
@@ -169,6 +177,10 @@ namespace FieaGameEngine
 		*	List of renderable objects for this Entity.
 		*/
 		Vector<Renderable*> mRenderables;
+
+		glm::vec3 mPosition;
+		glm::vec3 mRotation;
+		glm::vec3 mScale;
 
 	private:
 

@@ -31,6 +31,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="VertexShader.h" />
+    <ClInclude Include="ViewTarget.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Asset.cpp" />
@@ -43,6 +44,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="VertexShader.cpp" />
+    <ClCompile Include="ViewTarget.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0E22DF5B-8526-4832-9AAE-595CF0B278DE}</ProjectGuid>

@@ -194,7 +194,6 @@ namespace FieaGameEngine
 		mRasterizerState->Release();
 		mDepthStencilView->Release();
 		mDepthStencilState->Release();
-		mDepthStencilBuffer->Release();
 		mRenderTargetView->Release();
 
 		mSwapChain->Release();

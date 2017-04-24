@@ -13,9 +13,9 @@ namespace FieaGameEngine
 
 		Mesh();
 
-		Mesh(class Actor& owner);
+		Mesh(class Entity& owner);
 
-		void SetOwner(Actor& owner);
+		void SetOwner(Entity& owner);
 
 		void SetVisible(bool visible);
 
@@ -27,7 +27,7 @@ namespace FieaGameEngine
 
 	protected:
 
-		class Actor* mOwner;
+		class Entity* mOwner;
 
 		bool mVisible;
 

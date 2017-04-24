@@ -1,13 +1,13 @@
 #pragma once
 
 #include "MeshDirectX.h"
-#include "Actor.h"
+#include "Entity.h"
 
 namespace KatBall
 {
-	class Kat : public FieaGameEngine::Actor
+	class Kat : public FieaGameEngine::Entity
 	{
-		RTTI_DECLARATIONS(Kat, FieaGameEngine::Actor)
+		RTTI_DECLARATIONS(Kat, FieaGameEngine::Entity)
 
 	public:
 

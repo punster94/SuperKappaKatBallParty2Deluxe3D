@@ -48,6 +48,9 @@
     <ClInclude Include="PixelShader.h">
       <Filter>Assets</Filter>
     </ClInclude>
+    <ClInclude Include="ViewTarget.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RendererDirectX.cpp">
@@ -79,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="PixelShader.cpp">
       <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewTarget.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -103,11 +103,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Mesh.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Actor.cpp">
-      <Filter>Game Constructs</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Renderable.cpp">
       <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Camera.cpp">
+      <Filter>Game Constructs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -220,7 +220,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Mesh.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Actor.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)Camera.h">
       <Filter>Game Constructs</Filter>
     </ClInclude>
   </ItemGroup>
