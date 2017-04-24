@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Shader.h"
+#include "PixelShader.h"
 #include "RendererDirectX.h"
 
 #include <d3dcompiler.h>
@@ -8,23 +8,16 @@
 
 namespace FieaGameEngine
 {
-	RTTI_DEFINITIONS(Shader)
+	RTTI_DEFINITIONS(PixelShader)
 
-	Shader::Shader() : 
-		mVertexShader(nullptr),
+		PixelShader::PixelShader() :
 		mPixelShader(nullptr)
 	{
 
 	}
 
-	Shader::~Shader()
+	PixelShader::~PixelShader()
 	{
-		if (mVertexShader != nullptr)
-		{
-			mVertexShader->Release();
-			mVertexShader = nullptr;
-		}
-
 		if (mPixelShader != nullptr)
 		{
 			mPixelShader->Release();
@@ -32,19 +25,18 @@ namespace FieaGameEngine
 		}
 	}
 
-	void Shader::Load(char* data)
+	void PixelShader::Load(char* data, std::uint32_t size)
 	{
 		data;
+		size;
 	}
 
-	void Shader::SetRenderingState(Renderer* renderer)
+	void PixelShader::SetRenderingState(Renderer* renderer)
 	{
-		if (mVertexShader != nullptr &&
-			mPixelShader != nullptr)
+		if (mPixelShader != nullptr)
 		{
 			RendererDirectX* directX = reinterpret_cast<RendererDirectX*>(renderer);
 
-			directX->Context()->VSSetShader(mVertexShader, nullptr, 0);
 			directX->Context()->PSSetShader(mPixelShader, nullptr, 0);
 		}
 	}

@@ -4,7 +4,8 @@
 #include <d3d11.h>
 #include "MeshGeometry.h"
 #include "Texture.h"
-#include "Shader.h"
+#include "VertexShader.h"
+#include "PixelShader.h"
 #include "Actor.h"
 
 namespace FieaGameEngine
@@ -16,10 +17,6 @@ namespace FieaGameEngine
 
 	public:
 		MeshDirectX();
-		MeshDirectX(Actor& actor,
-					MeshGeometry* geometry,
-					Shader* shader = nullptr,
-					Texture* texture = nullptr);
 
 		~MeshDirectX();
 
@@ -27,14 +24,18 @@ namespace FieaGameEngine
 
 		void SetMeshGeometry(MeshGeometry* geometry);
 
-		void SetShader(Shader* shader);
+		void SetShaders(VertexShader* vertexShader,
+						PixelShader* pixelShader);
 
 		void SetTexture(Texture* texture);
 
 	private:
 
 		MeshGeometry* mMeshGeometry;
-		Shader* mShader;
+		VertexShader* mVertexShader;
+		PixelShader* mPixelShader;
 		Texture* mTexture;
+
+		ID3D11InputLayout* mInputLayout;
 	};
 }

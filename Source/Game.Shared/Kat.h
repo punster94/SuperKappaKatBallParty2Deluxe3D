@@ -18,8 +18,6 @@ namespace KatBall
 	private:
 
 		FieaGameEngine::MeshDirectX mMesh;
-		FieaGameEngine::Texture mTexture;
-		FieaGameEngine::Shader mShader;
 	};
 
 	

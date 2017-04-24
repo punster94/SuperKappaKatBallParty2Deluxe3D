@@ -23,24 +23,26 @@
     <ClInclude Include="MeshGeometry.h" />
     <ClInclude Include="MeshDirectX.h" />
     <ClInclude Include="MeshOpenGL.h" />
+    <ClInclude Include="PixelShader.h" />
     <ClInclude Include="RenderConfigurationDirectX.h" />
     <ClInclude Include="RenderConfigurationOpenGL.h" />
     <ClInclude Include="RendererDirectX.h" />
     <ClInclude Include="RendererOpenGL.h" />
-    <ClInclude Include="Shader.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Utils.h" />
+    <ClInclude Include="VertexShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Asset.cpp" />
     <ClCompile Include="MeshDirectX.cpp" />
     <ClCompile Include="MeshGeometry.cpp" />
     <ClCompile Include="MeshOpenGL.cpp" />
+    <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="RendererDirectX.cpp" />
     <ClCompile Include="RendererOpenGL.cpp" />
-    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="VertexShader.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0E22DF5B-8526-4832-9AAE-595CF0B278DE}</ProjectGuid>

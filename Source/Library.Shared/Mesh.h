@@ -15,6 +15,10 @@ namespace FieaGameEngine
 
 		Mesh(class Actor& owner);
 
+		void SetOwner(Actor& owner);
+
+		void SetVisible(bool visible);
+
 		virtual void Render(Renderer* renderer) override = 0;
 
 		void SetRelativePosition(glm::vec3 position);
@@ -24,6 +28,8 @@ namespace FieaGameEngine
 	protected:
 
 		class Actor* mOwner;
+
+		bool mVisible;
 
 		glm::vec3 mRelativePosition;
 		glm::vec3 mRelativeRotation;

@@ -6,15 +6,17 @@
 // Asset types
 #include "MeshGeometry.h"
 #include "Texture.h"
-#include "Shader.h"
+#include "VertexShader.h"
+#include "PixelShader.h"
 
 namespace FieaGameEngine
 {
 	RTTI_DEFINITIONS(Asset)
 
-	const std::string Asset::ASSET_TYPE_MESH = "mesh";
-	const std::string Asset::ASSET_TYPE_TEXTURE = "texture";
-	const std::string Asset::ASSET_TYPE_SHADER = "shader";
+	const std::string Asset::TYPE_MESH = "MeshGeometry";
+	const std::string Asset::TYPE_TEXTURE = "Texture";
+	const std::string Asset::TYPE_VERTEX_SHADER = "VertexShader";
+	const std::string Asset::TYPE_PIXEL_SHADER = "PixelShader";
 
 	HashMap<std::string, Asset*> Asset::sAssetMap;
 
@@ -38,9 +40,10 @@ namespace FieaGameEngine
 		return mName;
 	}
 
-	void Asset::Load(char* data)
+	void Asset::Load(char* data, std::uint32_t size)
 	{
 		data;
+		size;
 	}
 
 	bool Asset::Load(const std::string& path,
@@ -60,15 +63,20 @@ namespace FieaGameEngine
 			// TODO: Figure out how to get factory to work
 			MeshGeometryFactory meshFactory;
 			TextureFactory textureFactory;
-			ShaderFactory shaderFactory;
+			VertexShaderFactory vertexShaderFactory;
+			PixelShaderFactory pixelShaderFactory;
 
 			Asset* asset = Factory<Asset>::Create(type);
 			
-			if (asset != nullptr)
+			if (asset == nullptr)
 			{
-				asset->Load(fileData);
-				sAssetMap[name] = asset;
+				delete fileData;
+				fileData = nullptr;
+				return false;
 			}
+
+			asset->Load(fileData, fileSize);
+			sAssetMap[name] = asset;
 			
 			delete fileData;
 			fileData = nullptr;

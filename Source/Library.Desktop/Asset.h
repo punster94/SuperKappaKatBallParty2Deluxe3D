@@ -12,9 +12,10 @@ namespace FieaGameEngine
 
 	public:
 
-		static const std::string ASSET_TYPE_MESH;
-		static const std::string ASSET_TYPE_TEXTURE;
-		static const std::string ASSET_TYPE_SHADER;
+		static const std::string TYPE_MESH;
+		static const std::string TYPE_TEXTURE;
+		static const std::string TYPE_VERTEX_SHADER;
+		static const std::string TYPE_PIXEL_SHADER;
 
 	public:
 
@@ -22,7 +23,7 @@ namespace FieaGameEngine
 
 		virtual ~Asset();
 
-		virtual void Load(char* data);
+		virtual void Load(char* data, std::uint32_t size);
 
 		const std::string& GetPath() const;
 

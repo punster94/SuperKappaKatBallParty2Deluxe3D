@@ -159,6 +159,12 @@ namespace FieaGameEngine
 		 */
 		void InitializeSignatures();
 
+		void AddRenderable(Renderable& renderable);
+
+		void RemoveRenderable(Renderable& renderable);
+
+		void RemoveAllRenderables();
+
 		/** Entity mRenderables
 		*	List of renderable objects for this Entity.
 		*/

@@ -7,26 +7,25 @@
 
 namespace FieaGameEngine
 {
-	class Shader final : public Asset
+	class PixelShader final : public Asset
 	{
 
-		RTTI_DECLARATIONS(Shader, Asset)
+		RTTI_DECLARATIONS(PixelShader, Asset)
 
 	public:
 
-		Shader();
+		PixelShader();
 
-		~Shader();
+		~PixelShader();
 
-		virtual void Load(char* data) override;
+		virtual void Load(char* data, std::uint32_t size) override;
 
 		void SetRenderingState(Renderer* renderer);
 
 	private:
 
-		ID3D11VertexShader* mVertexShader;
 		ID3D11PixelShader* mPixelShader;
 	};
 
-	ConcreteFactory(Asset, Shader);
+	ConcreteFactory(Asset, PixelShader);
 }

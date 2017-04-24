@@ -36,13 +36,16 @@
     <ClInclude Include="MeshGeometry.h">
       <Filter>Assets</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>Assets</Filter>
-    </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Assets</Filter>
     </ClInclude>
     <ClInclude Include="Asset.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexShader.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="PixelShader.h">
       <Filter>Assets</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,10 +71,13 @@
     <ClCompile Include="MeshGeometry.cpp">
       <Filter>Assets</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
+    <ClCompile Include="Texture.cpp">
       <Filter>Assets</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
+    <ClCompile Include="VertexShader.cpp">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelShader.cpp">
       <Filter>Assets</Filter>
     </ClCompile>
   </ItemGroup>

@@ -16,9 +16,10 @@ namespace FieaGameEngine
 
 	}
 
-	void Texture::Load(char* data)
+	void Texture::Load(char* data, std::uint32_t size)
 	{
 		data;
+		size;
 	}
 
 	void Texture::SetRenderingState(Renderer* renderer)

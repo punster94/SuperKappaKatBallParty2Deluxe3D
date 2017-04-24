@@ -5,7 +5,9 @@ namespace FieaGameEngine
 {
 	RTTI_DEFINITIONS(Mesh)
 
-	Mesh::Mesh()
+	Mesh::Mesh() :
+		mOwner(nullptr),
+		mVisible(false)
 	{
 
 	}
@@ -14,6 +16,16 @@ namespace FieaGameEngine
 		: mOwner(&owner)
 	{
 
+	}
+
+	void Mesh::SetVisible(bool visible)
+	{
+		mVisible = visible;
+	}
+
+	void Mesh::SetOwner(Actor& owner)
+	{
+		mOwner = &owner;
 	}
 
 	void Mesh::SetRelativePosition(glm::vec3 position)

@@ -1,8 +1,14 @@
 #include "pch.h"
 #include "Game.h"
+#include "Kat.h"
+#include "Entity.h"
+
+using namespace FieaGameEngine;
 
 namespace KatBall
 {
+	static Kat* sKat;
+
 	Game::Game(FieaGameEngine::Renderer& renderer)
 		: mRenderer(&renderer)
 	{
@@ -23,6 +29,7 @@ namespace KatBall
 	void Game::Init()
 	{
 		mRenderer->Init();
+		sKat = new Kat();
 	}
 
 	void Game::Update()
@@ -30,6 +37,7 @@ namespace KatBall
 		mWorld.Update(mWorldState);
 		mRenderer->InitRenderFrame();
 		mRenderer->Render(mWorld);
+		sKat->As<Entity>()->Render(mRenderer);
 		mRenderer->EndRenderFrame();
 	}
 

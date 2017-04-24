@@ -15,7 +15,7 @@ namespace FieaGameEngine
 
 		~Texture();
 
-		virtual void Load(char* data) override;
+		virtual void Load(char* data, std::uint32_t size) override;
 
 		void SetRenderingState(class Renderer* renderer);
 

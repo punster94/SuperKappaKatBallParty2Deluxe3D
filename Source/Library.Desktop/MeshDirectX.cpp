@@ -75,22 +75,16 @@ namespace FieaGameEngine
 		//	directX->Device()->CreateBuffer(&bufferDesc, &indexData, &mIndexBuffer);
 		//}
 
-	MeshDirectX::MeshDirectX()
+	MeshDirectX::MeshDirectX() :
+		mMeshGeometry(nullptr),
+		mVertexShader(nullptr),
+		mPixelShader(nullptr),
+		mTexture(nullptr),
+		mInputLayout(nullptr)
 	{
 
 	}
 
-	MeshDirectX::MeshDirectX(Actor& actor,
-							 MeshGeometry* geometry,
-							 Shader* shader,
-							 Texture* texture) :
-		Mesh(actor),
-		mMeshGeometry(geometry),
-		mShader(shader),
-		mTexture(texture)
-	{
-
-	}
 
 	MeshDirectX::~MeshDirectX()
 	{
@@ -99,11 +93,24 @@ namespace FieaGameEngine
 
 	void MeshDirectX::Render(Renderer* renderer)
 	{
-		if (mMeshGeometry != nullptr &&
-			mShader != nullptr)
+		if (mVisible)
 		{
+			assert(mMeshGeometry != nullptr);
+			assert(mVertexShader != nullptr);
+			assert(mPixelShader != nullptr);
+
 			RendererDirectX* directX = reinterpret_cast<RendererDirectX*>(renderer);
 
+			mMeshGeometry->SetRenderingState(renderer);
+			mVertexShader->SetRenderingState(renderer);
+			mPixelShader->SetRenderingState(renderer);
+
+			if (mTexture != nullptr)
+			{
+				mTexture->SetRenderingState(renderer);
+			}
+
+			directX->Context()->IASetInputLayout(mInputLayout);
 
 			// TODO: Something along these lines for updating cbuffer on render...
 			//D3D11_MAPPED_SUBRESOURCE mapResource;
@@ -122,9 +129,46 @@ namespace FieaGameEngine
 		mMeshGeometry = geometry;
 	}
 
-	void MeshDirectX::SetShader(Shader* shader)
+	void MeshDirectX::SetShaders(VertexShader* vertexShader,
+								 PixelShader* pixelShader)
 	{
-		mShader = shader;
+		RendererDirectX* directX = RendererDirectX::Get();
+		assert(directX != nullptr);
+
+		mVertexShader = vertexShader;
+		mPixelShader = pixelShader;
+
+		if (mVertexShader != nullptr &&
+			mPixelShader != nullptr)
+		{
+			// About to recreate the input layout object. So delete any pre-existing layout
+			if (mInputLayout != nullptr)
+			{
+				mInputLayout->Release();
+				mInputLayout = nullptr;
+			}
+
+			// Define the input layout for vertices
+			D3D11_INPUT_ELEMENT_DESC layout[] =
+			{
+				{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+				{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+				{  "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 20, D3D11_INPUT_PER_VERTEX_DATA, 0}
+			};
+			UINT numElements = ARRAYSIZE(layout);
+
+			// Create the input layout
+			HRESULT hr = directX->Device()->CreateInputLayout(layout, numElements, mVertexShader->GetBinaryData(),
+				mVertexShader->GetBinarySize(), &mInputLayout);
+
+			if (FAILED(hr))
+			{
+				printf("Failed to bind input layout. Possible attribute mismatch.\n");
+				mVertexShader = nullptr;
+				mPixelShader = nullptr;
+			}
+		}
+
 	}
 
 	void MeshDirectX::SetTexture(Texture* texture)

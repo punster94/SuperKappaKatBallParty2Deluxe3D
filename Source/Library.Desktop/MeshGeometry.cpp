@@ -15,9 +15,7 @@ namespace FieaGameEngine
 
 	MeshGeometry::MeshGeometry() :
 		mVertexBuffer(nullptr),
-		mVertexLayout(nullptr),
 		mFaces(0U)
-		
 	{
 	
 	}
@@ -29,16 +27,12 @@ namespace FieaGameEngine
 			mVertexBuffer->Release();
 			mVertexBuffer = nullptr;
 		}
-
-		if (mVertexLayout != nullptr)
-		{
-			mVertexLayout->Release();
-			mVertexLayout = nullptr;
-		}
 	}
 
-	void MeshGeometry::Load(char* data)
+	void MeshGeometry::Load(char* data, std::uint32_t size)
 	{
+		size;
+
 		if (mVertexBuffer != nullptr)
 		{
 			mVertexBuffer->Release();
@@ -80,7 +74,6 @@ namespace FieaGameEngine
 		RendererDirectX* directX = reinterpret_cast<RendererDirectX*>(renderer);
 
 		directX->Context()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		directX->Context()->IASetInputLayout(mVertexLayout);
 		directX->Context()->IASetVertexBuffers(0, 1, &mVertexBuffer, &stride, &offset);
 	}
 

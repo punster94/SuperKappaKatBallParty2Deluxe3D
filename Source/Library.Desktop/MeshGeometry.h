@@ -31,7 +31,7 @@ namespace FieaGameEngine
 
 		~MeshGeometry();
 
-		virtual void Load(char* data) override;
+		virtual void Load(char* data, std::uint32_t size) override;
 
 		std::uint32_t GetFaces() const;
 
@@ -64,7 +64,6 @@ namespace FieaGameEngine
 	private:
 
 		ID3D11Buffer* mVertexBuffer;
-		ID3D11InputLayout* mVertexLayout;
 
 		std::uint32_t mFaces;
 	};
