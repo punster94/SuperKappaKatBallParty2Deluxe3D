@@ -165,12 +165,27 @@ namespace FieaGameEngine
 
 		mDevice->CreateRasterizerState(&rasterizerDesc, &mRasterizerState);
 		mDeviceContext->RSSetState(mRasterizerState);
+
+		// Create the global CBuffer
+		D3D11_BUFFER_DESC bd;
+		ZeroMemory(&bd, sizeof(bd));
+
+		bd.Usage = D3D11_USAGE_DEFAULT;
+		bd.ByteWidth = sizeof(CBGlobal);
+		bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+		bd.CPUAccessFlags = 0;
+		mDevice->CreateBuffer(&bd, nullptr, &mGlobalCB);
 	}
 
 	void RendererDirectX::InitRenderFrame()
 	{
 		mDeviceContext->ClearRenderTargetView(mRenderTargetView, DirectX::Colors::Blue);
 		mDeviceContext->ClearDepthStencilView(mDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+
+		CBGlobal globals;
+		mViewTarget.UpdateViewProjection(globals);
+
+		mDeviceContext->UpdateSubresource(mGlobalCB, 0, nullptr, &globals, 0, 0);
 	}
 
 	void RendererDirectX::EndRenderFrame()
@@ -209,6 +224,16 @@ namespace FieaGameEngine
 	ID3D11DeviceContext* RendererDirectX::Context()
 	{
 		return mDeviceContext;
+	}
+
+	void RendererDirectX::SetCamera(Camera* camera)
+	{
+		mViewTarget.SetCamera(camera);
+	}
+
+	ID3D11Buffer* RendererDirectX::GetGlobalCBuffer()
+	{
+		return mGlobalCB;
 	}
 
 	LRESULT WINAPI RendererDirectX::WndProc(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam)

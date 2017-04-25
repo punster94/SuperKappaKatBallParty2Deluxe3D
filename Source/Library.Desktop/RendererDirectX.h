@@ -2,10 +2,18 @@
 
 #include <Windows.h>
 #include <d3d11.h>
+#include <DirectXMath.h>
 #include "Renderer.h"
+#include "ViewTarget.h"
 
 namespace FieaGameEngine
 {
+	struct CBGlobal
+	{
+		DirectX::XMMATRIX mView;
+		DirectX::XMMATRIX mProjection;
+	};
+
 	class RendererDirectX final : public Renderer
 	{
 	public:
@@ -60,6 +68,10 @@ namespace FieaGameEngine
 		*/
 		ID3D11DeviceContext* Context();
 
+		void SetCamera(Camera* camera) override;
+
+		ID3D11Buffer* GetGlobalCBuffer();
+
 	private:
 
 		/**
@@ -84,5 +96,9 @@ namespace FieaGameEngine
 		ID3D11DepthStencilView* mDepthStencilView;
 		ID3D11DepthStencilState* mDepthStencilState;
 		ID3D11RasterizerState* mRasterizerState;
+
+		ID3D11Buffer* mGlobalCB;
+
+		ViewTarget mViewTarget;
 	};
 }

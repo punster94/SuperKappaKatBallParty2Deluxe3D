@@ -63,6 +63,8 @@ namespace FieaGameEngine
 		*/
 		void Render(Sector& sector);
 
+		virtual void SetCamera(class Camera* camera);
+
 	protected:
 
 		/**

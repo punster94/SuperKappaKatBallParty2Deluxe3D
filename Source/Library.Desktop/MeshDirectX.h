@@ -10,6 +10,11 @@
 
 namespace FieaGameEngine
 {
+	struct CBMesh
+	{
+		DirectX::XMMATRIX mWorld;
+	};
+
 	class MeshDirectX : public Mesh
 	{
 
@@ -29,7 +34,11 @@ namespace FieaGameEngine
 
 		void SetTexture(Texture* texture);
 
+		
+
 	private:
+
+		void UpdateWorldMatrix(CBMesh& meshConstants);
 
 		MeshGeometry* mMeshGeometry;
 		VertexShader* mVertexShader;
@@ -37,5 +46,7 @@ namespace FieaGameEngine
 		Texture* mTexture;
 
 		ID3D11InputLayout* mInputLayout;
+
+		ID3D11Buffer* mConstantBuffer;
 	};
 }

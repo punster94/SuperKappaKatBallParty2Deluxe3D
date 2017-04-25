@@ -13,7 +13,7 @@ namespace FieaGameEngine
 
 		void SetCamera(Camera* camera);
 
-		void UpdateViewProjection();
+		void UpdateViewProjection(struct CBGlobal& globals);
 
 	private:
 

@@ -12,6 +12,7 @@ namespace KatBall
 	class Game final
 	{
 	public:
+
 		Game(FieaGameEngine::Renderer& renderer);
 
 		void Run();
@@ -21,7 +22,6 @@ namespace KatBall
 		void Update();
 		void Shutdown();
 
-		FieaGameEngine::Mesh* mMeshTest;
 		FieaGameEngine::Renderer* mRenderer;
 		FieaGameEngine::World mWorld;
 		FieaGameEngine::WorldState mWorldState;

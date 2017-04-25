@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "ViewTarget.h"
 #include <DirectXMath.h>
+#include "RendererDirectX.h"
 
 using namespace DirectX;
 
@@ -21,15 +22,35 @@ namespace FieaGameEngine
 		mCamera = camera;
 	}
 
-	void ViewTarget::UpdateViewProjection()
+	void ViewTarget::UpdateViewProjection(CBGlobal& globals)
 	{
 		if (mCamera != nullptr)
 		{
+			// Update view matrix based on camera position + rotation.
+			XMMATRIX viewMatrix;
+
+			glm::vec3 rotation = mCamera->GetRotation();
+			glm::vec3 translation = mCamera->GetPosition();
+
+			viewMatrix = XMMatrixRotationZ(-rotation.z);
+			viewMatrix *= XMMatrixRotationX(-rotation.x);
+			viewMatrix *= XMMatrixRotationX(-rotation.y);
+
+			viewMatrix *= XMMatrixTranslation(-translation.x, -translation.y, -translation.z);
+
+			globals.mView = XMMatrixTranspose(viewMatrix);
+
+			// Update projection matrix based on camera settings
 			const CameraSettings& settings = mCamera->GetCameraSettings();
 
-			settings;
-			//XMMATRIX viewMatrix;
+			XMMATRIX projectionMatrix;
 
+			projectionMatrix = XMMatrixPerspectiveLH(settings.mRight - settings.mLeft,
+													 settings.mTop - settings.mBottom,
+													 settings.mNear,
+													 settings.mFar);
+
+			globals.mProjection = XMMatrixTranspose(projectionMatrix);
 		}
 	}
 }

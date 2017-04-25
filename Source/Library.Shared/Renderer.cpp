@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Renderer.h"
 #include "Renderable.h"
+#include "Camera.h"
 
 namespace FieaGameEngine
 {
@@ -41,5 +42,10 @@ namespace FieaGameEngine
 		{
 			static_cast<Entity&>(entities.Get<Scope&>(i)).Render(this);
 		}
+	}
+
+	void Renderer::SetCamera(Camera* camera)
+	{
+		camera;
 	}
 }

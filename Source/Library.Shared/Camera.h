@@ -42,5 +42,6 @@ namespace FieaGameEngine
 		ProjectionMode mProjectionMode;
 
 		CameraSettings mSettings;
+
 	};
 }

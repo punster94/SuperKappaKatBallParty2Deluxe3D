@@ -3,86 +3,32 @@
 #include "RendererDirectX.h"
 #include "Utils.h"
 
+using namespace DirectX;
+
 namespace FieaGameEngine
 {
 	RTTI_DEFINITIONS(MeshDirectX)
-
-		//MeshDirectX::MeshDirectX(Renderer* renderer, const std::string& meshPath, const std::string& vertexShaderPath, const std::string& pixelShaderPath)
-		//{
-		//	RendererDirectX* directX = reinterpret_cast<RendererDirectX*>(renderer);
-
-		//	// ignore mesh path for testing
-		//	meshPath;
-		//	mVertices = new glm::vec3[3];
-		//	mIndices = new std::uint32_t[3];
-
-		//	mVertices[0] = glm::vec3(-1.0f, -1.0f, 0.0f);
-		//	mVertices[1] = glm::vec3(0.0f, 1.0f, 0.0f);
-		//	mVertices[2] = glm::vec3(1.0f, -1.0f, 0.0f);
-		//	mIndices[0] = 0;
-		//	mIndices[1] = 1;
-		//	mIndices[2] = 2;
-
-		//	mNumVertices = 3;
-		//	mNumIndices = 3;
-
-		//	//// create vertex shader
-		//	std::uint32_t fileSize = 0;
-		//	char* vertexFileData = DesktopUtils::ReadFile(vertexShaderPath, fileSize);
-		//	directX->Device()->CreateVertexShader(vertexFileData, fileSize, nullptr, &mVertexShader);
-
-		//	D3D11_INPUT_ELEMENT_DESC vertexInputs[1];
-
-		//	vertexInputs[0] = { 0 };
-		//	vertexInputs[0].SemanticName = "POSITION";
-		//	vertexInputs[0].SemanticIndex = 0;
-		//	vertexInputs[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
-		//	vertexInputs[0].InputSlot = 0;
-		//	vertexInputs[0].AlignedByteOffset = 0;
-		//	vertexInputs[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-		//	vertexInputs[0].InstanceDataStepRate = 0;
-
-		//	directX->Device()->CreateInputLayout(vertexInputs, 1, vertexFileData, fileSize, &mVertexLayout);
-		//	delete vertexFileData;
-
-		//	// create pixel shader
-		//	char* pixelFileData = DesktopUtils::ReadFile(pixelShaderPath, fileSize);
-		//	directX->Device()->CreatePixelShader(pixelFileData, fileSize, nullptr, &mPixelShader);
-		//	delete pixelFileData;
-
-		//	D3D11_BUFFER_DESC bufferDesc;
-		//	ZeroMemory(&bufferDesc, sizeof(bufferDesc));
-		//	bufferDesc.Usage = D3D11_USAGE_DEFAULT;
-
-		//	D3D11_SUBRESOURCE_DATA vertexData;
-		//	vertexData.pSysMem = mVertices;
-		//	vertexData.SysMemPitch = 0;
-		//	vertexData.SysMemSlicePitch = 0;
-
-		//	// create vertex buffer
-		//	bufferDesc.ByteWidth = sizeof(glm::vec3) * mNumVertices;
-		//	bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-		//	directX->Device()->CreateBuffer(&bufferDesc, &vertexData, &mVertexBuffer);
-
-		//	D3D11_SUBRESOURCE_DATA indexData;
-		//	indexData.pSysMem = mIndices;
-		//	indexData.SysMemPitch = 0;
-		//	indexData.SysMemSlicePitch = 0;
-
-		//	// create index buffer
-		//	bufferDesc.ByteWidth = sizeof(std::uint32_t) * mNumIndices;
-		//	bufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
-		//	directX->Device()->CreateBuffer(&bufferDesc, &indexData, &mIndexBuffer);
-		//}
 
 	MeshDirectX::MeshDirectX() :
 		mMeshGeometry(nullptr),
 		mVertexShader(nullptr),
 		mPixelShader(nullptr),
 		mTexture(nullptr),
-		mInputLayout(nullptr)
+		mInputLayout(nullptr),
+		mConstantBuffer(nullptr)
 	{
+		RendererDirectX* directX = RendererDirectX::Get();
+		assert(directX != nullptr);
 
+		// Create the constant buffer
+		D3D11_BUFFER_DESC bd;
+		ZeroMemory(&bd, sizeof(bd));
+
+		bd.Usage = D3D11_USAGE_DEFAULT;
+		bd.ByteWidth = sizeof(CBMesh);
+		bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+		bd.CPUAccessFlags = 0;
+		directX->Device()->CreateBuffer(&bd, nullptr, &mConstantBuffer);
 	}
 
 
@@ -110,15 +56,16 @@ namespace FieaGameEngine
 				mTexture->SetRenderingState(renderer);
 			}
 
+			// CBuffer updates + bindings
 			directX->Context()->IASetInputLayout(mInputLayout);
 
-			// TODO: Something along these lines for updating cbuffer on render...
-			//D3D11_MAPPED_SUBRESOURCE mapResource;
-			//context.Map(graphics.objectCBuffer.buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mapResource);
-			//ObjectCBuffer* objectCBufferData = reinterpret_cast<ObjectCBuffer*>(mapResource.pData);
-			//DirectX::XMStoreFloat4x4(&objectCBufferData->MVPMatrix, XMMatrixMultiplyTranspose(Transform::MMatrix(transform), vpMatrix));
-			//context.Unmap(graphics.objectCBuffer.buffer, 0);
-			//context.VSSetConstantBuffers(1, 1, &graphics.objectCBuffer.buffer);
+			CBMesh meshConstants;
+			UpdateWorldMatrix(meshConstants);
+
+			directX->Context()->UpdateSubresource(mConstantBuffer, 0, nullptr, &meshConstants, 0, 0);
+
+			ID3D11Buffer* cbuffers[2] = { directX->GetGlobalCBuffer(), mConstantBuffer };
+			directX->Context()->VSSetConstantBuffers(0, 2, cbuffers);
 
 			directX->Context()->Draw(mMeshGeometry->GetFaces() * 3, 0U);
 		}
@@ -174,5 +121,26 @@ namespace FieaGameEngine
 	void MeshDirectX::SetTexture(Texture* texture)
 	{
 		mTexture = texture;
+	}
+
+	void MeshDirectX::UpdateWorldMatrix(CBMesh& meshConstants)
+	{
+		assert(mOwner != nullptr);
+
+		XMMATRIX worldMatrix;
+
+		glm::vec3 position = mOwner->GetPosition();
+		glm::vec3 rotation = mOwner->GetRotation();
+
+		position += mRelativePosition;
+		rotation += mRelativeRotation;
+
+		worldMatrix = XMMatrixRotationZ(rotation.z);
+		worldMatrix = worldMatrix * XMMatrixRotationX(rotation.x);
+		worldMatrix = worldMatrix * XMMatrixRotationY(rotation.y);
+
+		worldMatrix = worldMatrix * XMMatrixTranslation(position.x, position.y, position.z);
+
+		meshConstants.mWorld = XMMatrixTranspose(worldMatrix);
 	}
 }
