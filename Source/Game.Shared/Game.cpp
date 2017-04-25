@@ -35,6 +35,12 @@ namespace KatBall
 		sCamera = new Camera();
 		sCamera->SetPosition(glm::vec3(0.0f, 0.0f, -10.0f));
 		mRenderer->SetCamera(sCamera);
+
+		if (mBackgroundMusic.openFromFile("Retribution.ogg"))
+		{
+			mBackgroundMusic.setLoop(true);
+			mBackgroundMusic.play();
+		}
 	}
 
 	void Game::Update()
