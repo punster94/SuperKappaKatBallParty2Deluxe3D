@@ -38,7 +38,7 @@ namespace KatBall
 
 		sDummy = new TestDummy();
 		sCamera = new Camera();
-		sCamera->SetPosition(glm::vec3(0.0f, 0.0f, -2.0f));
+		sCamera->SetPosition(glm::vec3(0.0f, 0.0f, -12.0f));
 		mRenderer->SetCamera(sCamera);
 
 		if (mBackgroundMusic.openFromFile("Retribution.ogg"))

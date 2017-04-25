@@ -49,7 +49,6 @@ namespace FieaGameEngine
 		RendererDirectX* renderer = RendererDirectX::Get();
 		assert(renderer != nullptr);
 
-		int i = 0;
 		unsigned char* pData = 0;
 		unsigned char* pSrc = 0;
 
@@ -75,17 +74,27 @@ namespace FieaGameEngine
 
 			pData = new unsigned char[nWidth * nHeight * 4];
 
-			int j = 0;
+			unsigned char* pDst = pData;
 
-			for (i = 0; i < nWidth * nHeight * 4; i += 4)
+			int nPadding = (nWidth * 3) % 4;
+
+			if (nPadding != 0)
+				nPadding = 4 - nPadding;
+
+			for (int i = 0; i < nHeight; i++)
 			{
-				// Swap the B and R byte because windows bitmap format is in BGR
-				pData[i] = pSrc[j + 2];
-				pData[i + 1] = pSrc[j + 1];
-				pData[i + 2] = pSrc[j];
-				pData[i + 3] = 255;
+				for (int j = 0; j < nWidth; j++)
+				{
+					pDst[0] = pSrc[2];
+					pDst[1] = pSrc[1];
+					pDst[2] = pSrc[0];
+					pDst[3] = 255;
 
-				j += 3;
+					pDst += 4;
+					pSrc += 3;
+				}
+
+				pSrc += nPadding;
 			}
 
 			// Create texture object
