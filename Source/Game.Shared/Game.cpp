@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Game.h"
+#include "SFML/Audio.hpp"
 
 namespace KatBall
 {
@@ -24,6 +25,12 @@ namespace KatBall
 	{
 		mRenderer->Init();
 		mMeshTest = &mRenderer->CreateMesh("");
+
+		if (mBackgroundMusic.openFromFile("Retribution.ogg"))
+		{
+			mBackgroundMusic.setLoop(true);
+			mBackgroundMusic.play();
+		}
 	}
 
 	void Game::Update()

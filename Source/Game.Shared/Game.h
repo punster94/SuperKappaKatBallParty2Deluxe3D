@@ -6,6 +6,7 @@
 #include "WorldState.h"
 #include "Renderer.h"
 #include "Mesh.h"
+#include "SFML/Audio.hpp"
 
 namespace KatBall
 {
@@ -23,6 +24,7 @@ namespace KatBall
 
 		FieaGameEngine::Mesh* mMeshTest;
 		FieaGameEngine::Renderer* mRenderer;
+		sf::Music mBackgroundMusic;
 		FieaGameEngine::World mWorld;
 		FieaGameEngine::WorldState mWorldState;
 		FieaGameEngine::GameTime mGameTime;
