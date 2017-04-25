@@ -32,11 +32,11 @@ namespace FieaGameEngine
 			glm::vec3 rotation = mCamera->GetRotation();
 			glm::vec3 translation = mCamera->GetPosition();
 
-			viewMatrix = XMMatrixRotationZ(-rotation.z);
-			viewMatrix *= XMMatrixRotationX(-rotation.x);
-			viewMatrix *= XMMatrixRotationX(-rotation.y);
+			viewMatrix = XMMatrixTranslation(-translation.x, -translation.y, -translation.z);
 
-			viewMatrix *= XMMatrixTranslation(-translation.x, -translation.y, -translation.z);
+			viewMatrix *= XMMatrixRotationY(-rotation.y);
+			viewMatrix *= XMMatrixRotationX(-rotation.x);
+			viewMatrix *= XMMatrixRotationZ(-rotation.z);
 
 			globals.mView = XMMatrixTranspose(viewMatrix);
 

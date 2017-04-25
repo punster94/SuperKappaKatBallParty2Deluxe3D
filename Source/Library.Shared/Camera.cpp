@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "Camera.h"
 
-#define DEFAULT_WIDTH 0.2f
-#define DEFAULT_HEIGHT 0.14f
+#define DEFAULT_WIDTH 0.05f
+#define DEFAULT_HEIGHT 0.035f
 #define DEFAULT_NEAR 0.1f
 #define DEFAULT_FAR 1024.0f
 

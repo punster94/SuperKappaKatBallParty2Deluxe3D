@@ -23,6 +23,10 @@ namespace KatBall
 		void Update();
 		void Shutdown();
 
+		void DebugUpdate();
+
+		void LoadAssets();
+
 		FieaGameEngine::Renderer* mRenderer;
 		sf::Music mBackgroundMusic;
 		FieaGameEngine::World mWorld;

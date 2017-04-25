@@ -152,13 +152,26 @@ namespace FieaGameEngine
 		 */
 		virtual Scope* Copy() const override;
 
+		/** Transform properties set methods
+		 *	Change position, rotation, or scale.
+		 */
 		void SetPosition(glm::vec3 position);
 		void SetRotation(glm::vec3 rotation);
 		void SetScale(glm::vec3 scale);
 
+		/** Transform properties get methods
+		 *	Get position, rotation, or scale.
+		 */
 		glm::vec3 GetPosition() const;
 		glm::vec3 GetRotation() const;
 		glm::vec3 GetScale() const;
+
+		/** Adjust transform properties
+		 *	Adjust position, rotation, or scale.
+		 */
+		void Translate(glm::vec3 delta);
+		void Rotate(glm::vec3 delta);
+		void Scale(glm::vec3 delta);
 
 	protected:
 

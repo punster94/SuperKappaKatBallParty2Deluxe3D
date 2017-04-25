@@ -79,6 +79,8 @@ namespace FieaGameEngine
 
 		swapChainDescription.BufferCount = 1;
 		swapChainDescription.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+		swapChainDescription.BufferDesc.RefreshRate.Numerator = 60;
+		swapChainDescription.BufferDesc.RefreshRate.Denominator = 1;
 		swapChainDescription.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 		swapChainDescription.OutputWindow = mWindow;
 		swapChainDescription.SampleDesc.Count = 1;
@@ -190,7 +192,7 @@ namespace FieaGameEngine
 
 	void RendererDirectX::EndRenderFrame()
 	{
-		mSwapChain->Present(0, 0);
+		mSwapChain->Present(DXGI_SWAP_EFFECT_SEQUENTIAL, 0);
 	}
 
 	bool RendererDirectX::IsValid()

@@ -132,13 +132,18 @@ namespace FieaGameEngine
 		glm::vec3 rotation = mOwner->GetRotation();
 
 		position += mRelativePosition;
-		rotation += mRelativeRotation;
 
-		worldMatrix = XMMatrixRotationZ(rotation.z);
-		worldMatrix = worldMatrix * XMMatrixRotationX(rotation.x);
-		worldMatrix = worldMatrix * XMMatrixRotationY(rotation.y);
+		worldMatrix = XMMatrixIdentity();
+
+		worldMatrix = worldMatrix * XMMatrixRotationY(mRelativeRotation.y);
+		worldMatrix = worldMatrix * XMMatrixRotationX(mRelativeRotation.x);
+		worldMatrix = worldMatrix * XMMatrixRotationZ(mRelativeRotation.z);
 
 		worldMatrix = worldMatrix * XMMatrixTranslation(position.x, position.y, position.z);
+
+		worldMatrix = worldMatrix * XMMatrixRotationY(rotation.y);
+		worldMatrix = worldMatrix * XMMatrixRotationX(rotation.x);
+		worldMatrix = worldMatrix * XMMatrixRotationZ(rotation.z);
 
 		meshConstants.mWorld = XMMatrixTranspose(worldMatrix);
 	}

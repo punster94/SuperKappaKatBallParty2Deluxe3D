@@ -3,8 +3,8 @@
 #include "RenderConfigurationDirectX.h"
 #include "RendererDirectX.h"
 
-UINT windowWidth = 720;
-UINT windowHeight = 480;
+UINT windowWidth = 1280;
+UINT windowHeight = 720;
 std::wstring windowName = L"Super Kappa Kat Ball Party 2 Deluxe 3D";
 
 using namespace KatBall;

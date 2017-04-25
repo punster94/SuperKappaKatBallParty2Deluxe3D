@@ -18,4 +18,9 @@ namespace FieaGameEngine
 	{
 		mGameTime.SetCurrentTime(gameTime);
 	}
+
+	float WorldState::DeltaTime() const
+	{
+		return mGameTime.ElapsedGameTime().count() / 1000.0f;
+	}
 }

@@ -42,4 +42,19 @@ namespace FieaGameEngine
 	{
 		mRelativeScale = scale;
 	}
+
+	void Mesh::AddRelativePosition(glm::vec3 deltaPosition)
+	{
+		mRelativePosition += deltaPosition;
+	}
+
+	void Mesh::AddRelativeRotation(glm::vec3 deltaRotation)
+	{
+		mRelativeRotation += deltaRotation;
+	}
+
+	void Mesh::AddRelativeScale(glm::vec3 deltaScale)
+	{
+		mRelativeScale += deltaScale;
+	}
 }

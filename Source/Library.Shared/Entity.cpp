@@ -158,6 +158,21 @@ namespace FieaGameEngine
 		return mScale;
 	}
 
+	void Entity::Translate(glm::vec3 delta)
+	{
+		mPosition += delta;
+	}
+
+	void  Entity::Rotate(glm::vec3 delta)
+	{
+		mRotation += delta;
+	}
+
+	void  Entity::Scale(glm::vec3 delta)
+	{
+		mScale += delta;
+	}
+
 	void Entity::Render(Renderer* renderer)
 	{
 		for (auto& renderable : mRenderables)

@@ -25,6 +25,10 @@ namespace FieaGameEngine
 		void SetRelativeRotation(glm::vec3 rotation);
 		void SetRelativeScale(glm::vec3 scale);
 
+		void AddRelativePosition(glm::vec3 deltaPosition);
+		void AddRelativeRotation(glm::vec3 deltaRotation);
+		void AddRelativeScale(glm::vec3 deltaScale);
+
 	protected:
 
 		class Entity* mOwner;

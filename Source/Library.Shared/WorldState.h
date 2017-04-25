@@ -30,6 +30,10 @@ namespace FieaGameEngine
 		 */
 		const std::chrono::high_resolution_clock::time_point& GetGameTime() const;
 
+		/** Returns the time in seconds since last frame.
+		 *	@return Time in seconds since last frame. */
+		float DeltaTime() const;
+
 		/** WorldState SetGameTime
 		 *	Sets the current time of the WorldState.
 		 *	@param gameTime a constant reference to a std::chrono::milliseconds instance to set the time to.
