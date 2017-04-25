@@ -6,5 +6,7 @@
 
 #define MESH_KAT "monkey.obj"
 
+#define TEXTURE_KAT "grid.bmp"
+
 #define SHADER_MESH_VERTEX "MeshVertex.cso"
 #define SHADER_MESH_PIXEL "MeshPixel.cso"

@@ -33,7 +33,7 @@ namespace KatBall
 		mRenderer->Init();
 		sKat = new Kat();
 		sCamera = new Camera();
-		sCamera->SetPosition(glm::vec3(0.0f, 0.0f, -10.0f));
+		sCamera->SetPosition(glm::vec3(0.0f, 0.0f, -2.0f));
 		mRenderer->SetCamera(sCamera);
 
 		if (mBackgroundMusic.openFromFile("Retribution.ogg"))

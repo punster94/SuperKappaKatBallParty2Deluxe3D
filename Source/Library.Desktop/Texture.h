@@ -2,6 +2,7 @@
 
 #include "Factory.h"
 #include "Asset.h"
+#include <d3d11.h>
 
 namespace FieaGameEngine
 {
@@ -19,6 +20,11 @@ namespace FieaGameEngine
 
 		void SetRenderingState(class Renderer* renderer);
 
+	private:
+
+		ID3D11Texture2D* mTexture;
+		ID3D11ShaderResourceView* mResourceView;
+		ID3D11SamplerState* mSamplerState;
 	};
 
 	ConcreteFactory(Asset, Texture);

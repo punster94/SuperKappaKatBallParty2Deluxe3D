@@ -31,7 +31,6 @@ namespace FieaGameEngine
 		directX->Device()->CreateBuffer(&bd, nullptr, &mConstantBuffer);
 	}
 
-
 	MeshDirectX::~MeshDirectX()
 	{
 
