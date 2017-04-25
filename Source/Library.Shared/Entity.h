@@ -138,7 +138,7 @@ namespace FieaGameEngine
 		 *	Updates the components of this Entity and notifies the worldState that this is the current Entity.
 		 *	@param worldState a WorldState reference containing the data of the world at this moment in time.
 		 */
-		void Update(WorldState& worldState);
+		virtual void Update(WorldState& worldState);
 
 		/** Entity Render
 		*	Renders the Renderable objects of this Entity.
@@ -158,6 +158,12 @@ namespace FieaGameEngine
 		 *	Initializes the prescribed attributes for instances of this class.
 		 */
 		void InitializeSignatures();
+
+		void AddRenderable(Renderable& renderable);
+
+		void RemoveRenderable(Renderable& renderable);
+
+		void RemoveAllRenderables();
 
 		/** Entity mRenderables
 		*	List of renderable objects for this Entity.
@@ -198,7 +204,7 @@ namespace FieaGameEngine
 	/** ConcreteEntityFactory Macro Definition
 	 *	Defines the macro that creates the classes for Entity Factories.
 	 */
-#define ConcreteEntityFactory(ConcreteProductT) ConcreteFactory(Entity, ConcreteProductT)
+#define ConcreteEntityFactory(ConcreteProductT) ConcreteFactory(FieaGameEngine::Entity, ConcreteProductT)
 
 	/** ConcreteEntityFactory of Entity Macro Call
 	 *	Defines the EntityFactory class that returns Entity pointers from its create call.

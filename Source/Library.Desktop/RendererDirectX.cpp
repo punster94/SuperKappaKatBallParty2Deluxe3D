@@ -6,6 +6,31 @@
 
 namespace FieaGameEngine
 {
+
+	RendererDirectX* RendererDirectX::Create(RenderConfiguration& config)
+	{
+		if (sInstance == nullptr)
+		{
+			sInstance = new RendererDirectX(config);
+		}
+
+		return static_cast<RendererDirectX*>(sInstance);
+	}
+
+	RendererDirectX* RendererDirectX::Get()
+	{
+		return static_cast<RendererDirectX*>(sInstance);
+	}
+
+	void RendererDirectX::Destroy()
+	{
+		if (sInstance != nullptr)
+		{
+			delete sInstance;
+			sInstance = nullptr;
+		}
+	}
+
 	RendererDirectX::RendererDirectX(RenderConfiguration& config)
 		: Renderer(config)
 	{
@@ -81,11 +106,70 @@ namespace FieaGameEngine
 		viewport.MaxDepth = 1.0f;
 
 		mDeviceContext->RSSetViewports(1, &viewport);
+
+		D3D11_DEPTH_STENCIL_DESC dsDesc = { 0 };
+
+		dsDesc.DepthEnable = true;
+		dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+		dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
+		dsDesc.StencilEnable = false;
+		dsDesc.StencilReadMask = 0xFF;
+		dsDesc.StencilWriteMask = 0xFF;
+		dsDesc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+		dsDesc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_INCR;
+		dsDesc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+		dsDesc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+		dsDesc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+		dsDesc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_DECR;
+		dsDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+		dsDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+
+		mDevice->CreateDepthStencilState(&dsDesc, &mDepthStencilState);
+		mDeviceContext->OMSetDepthStencilState(mDepthStencilState, 1);
+
+		D3D11_TEXTURE2D_DESC dsBufferDesc = { 0 };
+		dsBufferDesc.Width = config->windowWidth;
+		dsBufferDesc.Height = config->windowHeight;
+		dsBufferDesc.MipLevels = 1;
+		dsBufferDesc.ArraySize = 1;
+		dsBufferDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+		dsBufferDesc.SampleDesc.Count = 1;
+		dsBufferDesc.SampleDesc.Quality = 0;
+		dsBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+		dsBufferDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+		dsBufferDesc.CPUAccessFlags = 0;
+		dsBufferDesc.MiscFlags = 0;
+
+		mDevice->CreateTexture2D(&dsBufferDesc, nullptr, &backBuffer);
+
+		D3D11_DEPTH_STENCIL_VIEW_DESC dsViewDesc;
+		ZeroMemory(&dsViewDesc, sizeof(dsViewDesc));
+		dsViewDesc.Format = dsBufferDesc.Format;
+		dsViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+		dsViewDesc.Texture2D.MipSlice = 0;
+		mDevice->CreateDepthStencilView(backBuffer, &dsViewDesc, &mDepthStencilView);
+		backBuffer->Release();
+		mDeviceContext->OMSetRenderTargets(1, &mRenderTargetView, mDepthStencilView);
+
+		D3D11_RASTERIZER_DESC rasterizerDesc;
+		rasterizerDesc.FillMode = D3D11_FILL_SOLID;
+		rasterizerDesc.CullMode = D3D11_CULL_FRONT;
+		rasterizerDesc.FrontCounterClockwise = true;
+		rasterizerDesc.DepthBias = 0;
+		rasterizerDesc.DepthBiasClamp = 0.0f;
+		rasterizerDesc.DepthClipEnable = true;
+		rasterizerDesc.MultisampleEnable = false;
+		rasterizerDesc.ScissorEnable = false;
+		rasterizerDesc.AntialiasedLineEnable = false;
+		rasterizerDesc.SlopeScaledDepthBias = 0.0f;
+
+		mDevice->CreateRasterizerState(&rasterizerDesc, &mRasterizerState);
+		mDeviceContext->RSSetState(mRasterizerState);
 	}
 
 	void RendererDirectX::InitRenderFrame()
 	{
-		mDeviceContext->ClearRenderTargetView(mRenderTargetView, DirectX::Colors::Lavender);
+		mDeviceContext->ClearRenderTargetView(mRenderTargetView, DirectX::Colors::Blue);
 		mDeviceContext->ClearDepthStencilView(mDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	}
 
@@ -107,16 +191,15 @@ namespace FieaGameEngine
 
 	void RendererDirectX::Shutdown()
 	{
+		mRasterizerState->Release();
+		mDepthStencilView->Release();
+		mDepthStencilState->Release();
+		mDepthStencilBuffer->Release();
+		mRenderTargetView->Release();
+
 		mSwapChain->Release();
 		mDevice->Release();
 		mDeviceContext->Release();
-	}
-
-	Mesh& RendererDirectX::CreateMesh(const std::string& meshPath)
-	{
-		Mesh* mesh = new MeshDirectX(this, meshPath, "MeshVertex.cso", "MeshPixel.cso");
-		assert(mesh != nullptr);
-		return *mesh;
 	}
 
 	ID3D11Device* RendererDirectX::Device()

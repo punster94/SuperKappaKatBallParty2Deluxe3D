@@ -36,10 +36,4 @@ namespace FieaGameEngine
 	void RendererOpenGL::Shutdown()
 	{
 	}
-
-	Mesh& RendererOpenGL::CreateMesh(const std::string& meshPath)
-	{
-		meshPath;
-		return *(new MeshOpenGL());
-	}
 }

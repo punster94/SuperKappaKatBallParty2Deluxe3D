@@ -4,6 +4,22 @@
 
 namespace FieaGameEngine
 {
+	Renderer* Renderer::sInstance = nullptr;
+
+	Renderer* Renderer::Get()
+	{
+		return sInstance;
+	}
+
+	void Renderer::Destroy()
+	{
+		if (sInstance != nullptr)
+		{
+			delete sInstance;
+			sInstance = nullptr;
+		}
+	}
+
 	Renderer::Renderer(RenderConfiguration& config)
 		: mConfig(&config)
 	{

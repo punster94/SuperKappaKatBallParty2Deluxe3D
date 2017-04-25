@@ -151,6 +151,21 @@ namespace FieaGameEngine
 		AddEmptyTable(Reaction::sReactionsKey);
 	}
 
+	void Entity::AddRenderable(Renderable& renderable)
+	{
+		mRenderables.PushBack(&renderable);
+	}
+
+	void Entity::RemoveRenderable(Renderable& renderable)
+	{
+		mRenderables.Remove(&renderable);
+	}
+
+	void Entity::RemoveAllRenderables()
+	{
+		mRenderables.Clear();
+	}
+
 	void Entity::CopyPrivateDataMembers(const Entity& otherEntity)
 	{
 		mName = otherEntity.mName;

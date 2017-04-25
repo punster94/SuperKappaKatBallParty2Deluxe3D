@@ -1,9 +1,14 @@
 #include "pch.h"
 #include "Game.h"
-#include "SFML/Audio.hpp"
+#include "Kat.h"
+#include "Entity.h"
+
+using namespace FieaGameEngine;
 
 namespace KatBall
 {
+	static Kat* sKat;
+
 	Game::Game(FieaGameEngine::Renderer& renderer)
 		: mRenderer(&renderer)
 	{
@@ -24,7 +29,7 @@ namespace KatBall
 	void Game::Init()
 	{
 		mRenderer->Init();
-		mMeshTest = &mRenderer->CreateMesh("");
+		sKat = new Kat();
 
 		if (mBackgroundMusic.openFromFile("Retribution.ogg"))
 		{
@@ -38,7 +43,7 @@ namespace KatBall
 		mWorld.Update(mWorldState);
 		mRenderer->InitRenderFrame();
 		mRenderer->Render(mWorld);
-		mMeshTest->Render(mRenderer);
+		sKat->As<Entity>()->Render(mRenderer);
 		mRenderer->EndRenderFrame();
 	}
 

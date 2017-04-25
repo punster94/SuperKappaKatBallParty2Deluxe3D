@@ -2,26 +2,40 @@
 
 #include "Mesh.h"
 #include <d3d11.h>
+#include "MeshGeometry.h"
+#include "Texture.h"
+#include "VertexShader.h"
+#include "PixelShader.h"
+#include "Actor.h"
 
 namespace FieaGameEngine
 {
 	class MeshDirectX : public Mesh
 	{
+
+		RTTI_DECLARATIONS(MeshDirectX, Mesh)
+
 	public:
-		MeshDirectX(Renderer* renderer, const std::string& meshPath, const std::string& vertexShaderPath, const std::string& pixelShaderPath);
+		MeshDirectX();
+
 		~MeshDirectX();
 
 		virtual void Render(Renderer* renderer) override;
 
+		void SetMeshGeometry(MeshGeometry* geometry);
+
+		void SetShaders(VertexShader* vertexShader,
+						PixelShader* pixelShader);
+
+		void SetTexture(Texture* texture);
+
 	private:
-		ID3D11VertexShader* mVertexShader;
-		ID3D11InputLayout* mVertexLayout;
-		ID3D11PixelShader* mPixelShader;
-		ID3D11Buffer* mVertexBuffer;
-		ID3D11Buffer* mIndexBuffer;
-		glm::vec3* mVertices;
-		std::uint32_t* mIndices;
-		std::uint32_t mNumVertices;
-		std::uint32_t mNumIndices;
+
+		MeshGeometry* mMeshGeometry;
+		VertexShader* mVertexShader;
+		PixelShader* mPixelShader;
+		Texture* mTexture;
+
+		ID3D11InputLayout* mInputLayout;
 	};
 }

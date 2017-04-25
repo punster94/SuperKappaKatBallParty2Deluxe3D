@@ -39,8 +39,6 @@ namespace FieaGameEngine
 		*/
 		virtual void Shutdown() override;
 
-		virtual Mesh& CreateMesh(const std::string& meshPath) override;
-
 	private:
 		GLFWwindow* mWindow;
 	};
