@@ -140,6 +140,9 @@ namespace FieaGameEngine
 			sampDesc.MinLOD = 0;
 			sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
 			renderer->Device()->CreateSamplerState(&sampDesc, &mSamplerState);
+
+			delete[] pData;
+			pData = nullptr;
 		}
 		else
 		{
