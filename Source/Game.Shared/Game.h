@@ -7,6 +7,7 @@
 #include "Renderer.h"
 #include "Mesh.h"
 #include "SFML/Audio.hpp"
+#include "Gamepad.h"
 
 namespace KatBall
 {

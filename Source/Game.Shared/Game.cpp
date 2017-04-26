@@ -13,6 +13,8 @@ namespace KatBall
 {
 	static TestDummy* sDummy;
 	static Camera* sCamera;
+	static Gamepad* sGamepad1;
+	static Gamepad* sGamepad2;
 
 	Game::Game(FieaGameEngine::Renderer& renderer)
 		: mRenderer(&renderer)
@@ -38,6 +40,8 @@ namespace KatBall
 
 		sDummy = new TestDummy();
 		sCamera = new Camera();
+		sGamepad1 = new Gamepad(0);
+		sGamepad2 = new Gamepad(1);
 		sCamera->SetPosition(glm::vec3(0.0f, 0.0f, -12.0f));
 		mRenderer->SetCamera(sCamera);
 
@@ -69,6 +73,34 @@ namespace KatBall
 
 		// DEBUG
 		DebugUpdate();
+		// END
+
+		// DEBUG
+		float lAnalogY;
+		float rAnalogY;
+		float lAnalogX;
+		float rAnalogX;
+		if (sGamepad1->Refresh())
+		{
+			if (sGamepad1->IsPressed(XINPUT_GAMEPAD_A))
+			{
+				lAnalogY = sGamepad1->leftStickY;
+				rAnalogY = sGamepad1->rightStickY;
+				lAnalogX = sGamepad1->leftStickX;
+				rAnalogX = sGamepad1->rightStickX;
+			}
+		}
+
+		if (sGamepad2->Refresh())
+		{
+			if (sGamepad2->IsPressed(XINPUT_GAMEPAD_A))
+			{
+				lAnalogY = sGamepad2->leftStickY;
+				rAnalogY = sGamepad2->rightStickY;
+				lAnalogX = sGamepad2->leftStickX;
+				rAnalogX = sGamepad2->rightStickX;
+			}
+		}
 		// END
 	}
 
