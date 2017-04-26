@@ -11,9 +11,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TestDummy.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Gamepad.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Gamepad.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
@@ -29,9 +27,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TestDummy.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Gamepad.h">
-      <Filter>Core</Filter>
-    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Gamepad.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
