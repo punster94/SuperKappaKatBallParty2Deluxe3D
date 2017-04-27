@@ -4,7 +4,7 @@
 
 namespace FieaGameEngine
 {
-	class KatMusic : public Attributed
+	class KatMusic final : public Attributed
 	{
 		RTTI_DECLARATIONS(KatMusic, Attributed)
 
