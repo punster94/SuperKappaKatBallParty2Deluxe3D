@@ -66,6 +66,6 @@ namespace FieaGameEngine
 	{
 		Attributed::InitializeSignatures();
 
-		AddExternalAttribute("ExternalString", &mMusicFileName);
+		AddExternalAttribute("MusicFile", &mMusicFileName);
 	}
 }

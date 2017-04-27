@@ -1,6 +1,6 @@
 #pragma once
 #include "Attributed.h"
-#include "SFML/Audio/Music.hpp"
+#include <SFML/Audio/Music.hpp>
 
 namespace FieaGameEngine
 {
