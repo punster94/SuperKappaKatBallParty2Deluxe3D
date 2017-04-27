@@ -5,9 +5,7 @@
 #include "GameClock.h"
 #include "WorldState.h"
 #include "Renderer.h"
-#include "Mesh.h"
-#include "SFML/Audio.hpp"
-#include "Gamepad.h"
+#include "KatMusic.h"
 
 namespace KatBall
 {
@@ -15,7 +13,7 @@ namespace KatBall
 	{
 	public:
 
-		Game(FieaGameEngine::Renderer& renderer);
+		explicit Game(FieaGameEngine::Renderer& renderer);
 
 		void Run();
 
@@ -29,7 +27,7 @@ namespace KatBall
 		void LoadAssets();
 
 		FieaGameEngine::Renderer* mRenderer;
-		sf::Music mBackgroundMusic;
+		FieaGameEngine::KatMusic mBackgroundMusic;
 		FieaGameEngine::World mWorld;
 		FieaGameEngine::WorldState mWorldState;
 		FieaGameEngine::GameTime mGameTime;

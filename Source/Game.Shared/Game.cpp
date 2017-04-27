@@ -6,6 +6,7 @@
 #include "Camera.h"
 #include "Asset.h"
 #include "Constants.h"
+#include "Gamepad.h"
 
 using namespace FieaGameEngine;
 
@@ -45,11 +46,8 @@ namespace KatBall
 		sCamera->SetPosition(glm::vec3(0.0f, 0.0f, -12.0f));
 		mRenderer->SetCamera(sCamera);
 
-		if (mBackgroundMusic.openFromFile(ASSET_DIRECTORY_MUSIC "Retribution.ogg"))
-		{
-			mBackgroundMusic.setLoop(true);
-			mBackgroundMusic.play();
-		}
+		mBackgroundMusic.SetMusicFile("Retribution.ogg");
+		mBackgroundMusic.Play();
 	}
 
 	void Game::Update()

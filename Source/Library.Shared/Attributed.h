@@ -187,7 +187,7 @@ namespace FieaGameEngine
 		 *	@param data the external data to set the added attribute to.
 		 *	@param size a constant unsigned integer representing the number of elements that should be in the added attribute.
 		 */
-		void AddExternalAttribute(const std::string& key, std::int32_t* data, const std::uint32_t size);
+		void AddExternalAttribute(const std::string& key, std::int32_t* data, const std::uint32_t size = 1);
 
 		/** Attributed AddExternalAttribute for floats
 		 *	Adds a prescribed float attribute of the given size.
@@ -197,7 +197,7 @@ namespace FieaGameEngine
 		 *	@param data the external data to set the added attribute to.
 		 *	@param size a constant unsigned integer representing the number of elements that should be in the added attribute.
 		 */
-		void AddExternalAttribute(const std::string& key, float* data, const std::uint32_t size);
+		void AddExternalAttribute(const std::string& key, float* data, const std::uint32_t size = 1);
 
 		/** Attributed AddExternalAttribute for vectors
 		 *	Adds a prescribed vector attribute of the given size.
@@ -207,7 +207,7 @@ namespace FieaGameEngine
 		 *	@param data the external data to set the added attribute to.
 		 *	@param size a constant unsigned integer representing the number of elements that should be in the added attribute.
 		 */
-		void AddExternalAttribute(const std::string& key, glm::vec4* data, const std::uint32_t size);
+		void AddExternalAttribute(const std::string& key, glm::vec4* data, const std::uint32_t size = 1);
 
 		/** Attributed AddExternalAttribute for matrix
 		 *	Adds a prescribed matrix attribute of the given size.
@@ -217,7 +217,7 @@ namespace FieaGameEngine
 		 *	@param data the external data to set the added attribute to.
 		 *	@param size a constant unsigned integer representing the number of elements that should be in the added attribute.
 		 */
-		void AddExternalAttribute(const std::string& key, glm::mat4* data, const std::uint32_t size);
+		void AddExternalAttribute(const std::string& key, glm::mat4* data, const std::uint32_t size = 1);
 
 		/** Attributed AddExternalAttribute for strings
 		 *	Adds a prescribed string attribute of the given size.
@@ -227,7 +227,7 @@ namespace FieaGameEngine
 		 *	@param data the external data to set the added attribute to.
 		 *	@param size a constant unsigned integer representing the number of elements that should be in the added attribute.
 		 */
-		void AddExternalAttribute(const std::string& key, std::string* data, const std::uint32_t size);
+		void AddExternalAttribute(const std::string& key, std::string* data, const std::uint32_t size = 1);
 
 		/** Attributed AddExternalAttribute for RTTI pointers
 		 *	Adds a prescribed pointer attribute of the given size.
@@ -237,7 +237,7 @@ namespace FieaGameEngine
 		 *	@param data the external data to set the added attribute to.
 		 *	@param size a constant unsigned integer representing the number of elements that should be in the added attribute.
 		 */
-		void AddExternalAttribute(const std::string& key, RTTI** data, const std::uint32_t size);
+		void AddExternalAttribute(const std::string& key, RTTI** data, const std::uint32_t size = 1);
 
 		/** Attributed AddNestedScope
 		 *	Adds a prescribed table attribute by appending a Scope to this Attributed.
