@@ -74,7 +74,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)RenderConfiguration.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Renderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)IXmlParseHelper.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Notes.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Notes.txt" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Reaction.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ReactionAttributed.h" />
