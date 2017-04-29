@@ -77,9 +77,6 @@ namespace KatBall
 		sGamepad2 = new Gamepad(1);
 		sCamera->SetPosition(glm::vec3(0.0f, 0.0f, -12.0f));
 		mRenderer->SetCamera(sCamera);
-
-		mBackgroundMusic.SetMusicFile("Retribution.ogg");
-		mBackgroundMusic.Play();
 	}
 
 	void Game::Update()
