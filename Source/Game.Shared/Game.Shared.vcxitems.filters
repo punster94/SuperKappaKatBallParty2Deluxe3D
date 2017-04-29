@@ -15,6 +15,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionPunch.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HUD.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ScoreAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Constants.h" />
@@ -32,6 +34,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)InputSubscriber.h">
       <Filter>Subscribers</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HUD.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ScoreAction.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
