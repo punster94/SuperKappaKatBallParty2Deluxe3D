@@ -17,13 +17,13 @@ namespace KatBall
 		AddExternalAttribute("Spawn Location", &mSpawnLocation, 1);
 		AddExternalAttribute("Spawn Chance", &mSpawnChance, 1);
 
-		AddExternalAttribute("Long Boy Spawn Weight", &mLongBoySpawnWeight, 1);
-		AddExternalAttribute("Big Boy Spawn Weight", &mBigBoySpawnWeight, 1);
-		AddExternalAttribute("Vortex Boy Spawn Weight", &mVortexBoySpawnWeight, 1);
+		AddExternalAttribute("Long Boi Spawn Weight", &mLongBoiSpawnWeight, 1);
+		AddExternalAttribute("Big Boi Spawn Weight", &mBigBoiSpawnWeight, 1);
+		AddExternalAttribute("Vortex Boi Spawn Weight", &mVortexBoiSpawnWeight, 1);
 
-		AddExternalAttribute("Long Boy Length Increase", &mLongBoyLengthIncrease, 1);
-		AddExternalAttribute("Big Boy Scale Increase", &mBigBoyScaleIncrease, 1);
-		AddExternalAttribute("Vortex Boy Rotation Speed", &mVortexBoyRotationSpeed, 1);
+		AddExternalAttribute("Long Boi Length Increase", &mLongBoiLengthIncrease, 1);
+		AddExternalAttribute("Big Boi Scale Increase", &mBigBoiScaleIncrease, 1);
+		AddExternalAttribute("Vortex Boi Rotation Speed", &mVortexBoiRotationSpeed, 1);
 	}
 
 	glm::vec4 PowerupSpawner::GetSpawnLocation() const
@@ -46,64 +46,64 @@ namespace KatBall
 		mSpawnChance = spawnChance;
 	}
 
-	float PowerupSpawner::GetLongBoyLengthIncrease() const
+	float PowerupSpawner::GetLongBoiLengthIncrease() const
 	{
-		return mLongBoyLengthIncrease;
+		return mLongBoiLengthIncrease;
 	}
 
-	void PowerupSpawner::SetLongBoyLengthIncrease(const float& lengthIncrease)
+	void PowerupSpawner::SetLongBoiLengthIncrease(const float& lengthIncrease)
 	{
-		mLongBoyLengthIncrease = lengthIncrease;
+		mLongBoiLengthIncrease = lengthIncrease;
 	}
 
-	float PowerupSpawner::GetBigBoyScaleIncrease() const
+	float PowerupSpawner::GetBigBoiScaleIncrease() const
 	{
-		return mBigBoyScaleIncrease;
+		return mBigBoiScaleIncrease;
 	}
 
-	void PowerupSpawner::SetBigBoyScaleIncrase(const float& scaleIncrease)
+	void PowerupSpawner::SetBigBoiScaleIncrase(const float& scaleIncrease)
 	{
-		mBigBoyScaleIncrease = scaleIncrease;
+		mBigBoiScaleIncrease = scaleIncrease;
 	}
 
-	float PowerupSpawner::getVortexBoyRotationSpeed() const
+	float PowerupSpawner::getVortexBoiRotationSpeed() const
 	{
-		return mVortexBoyRotationSpeed;
+		return mVortexBoiRotationSpeed;
 	}
 
-	void PowerupSpawner::SetVortexBoyRotationSpeed(const float& rotationSpeed)
+	void PowerupSpawner::SetVortexBoiRotationSpeed(const float& rotationSpeed)
 	{
-		mVortexBoyRotationSpeed = rotationSpeed;
+		mVortexBoiRotationSpeed = rotationSpeed;
 	}
 
-	std::int32_t PowerupSpawner::GetLongBoySpawnWeight() const
+	std::int32_t PowerupSpawner::GetLongBoiSpawnWeight() const
 	{
-		return mLongBoySpawnWeight;
+		return mLongBoiSpawnWeight;
 	}
 
-	void PowerupSpawner::SetLongBoySpawnWeight(const std::int32_t& spawnWeight)
+	void PowerupSpawner::SetLongBoiSpawnWeight(const std::int32_t& spawnWeight)
 	{
-		mLongBoySpawnWeight = spawnWeight;
+		mLongBoiSpawnWeight = spawnWeight;
 	}
 
-	std::int32_t PowerupSpawner::GetBigBoySpawnWeight() const
+	std::int32_t PowerupSpawner::GetBigBoiSpawnWeight() const
 	{
-		return mBigBoySpawnWeight;
+		return mBigBoiSpawnWeight;
 	}
 
-	void PowerupSpawner::SetBigBoySpawnWeight(const std::int32_t& spawnWeight)
+	void PowerupSpawner::SetBigBoiSpawnWeight(const std::int32_t& spawnWeight)
 	{
-		mBigBoySpawnWeight = spawnWeight;
+		mBigBoiSpawnWeight = spawnWeight;
 	}
 
-	std::int32_t PowerupSpawner::GetVortexBoySpawnWeight() const
+	std::int32_t PowerupSpawner::GetVortexBoiSpawnWeight() const
 	{
-		return mVortexBoySpawnWeight;
+		return mVortexBoiSpawnWeight;
 	}
 
-	void PowerupSpawner::SetVortexBoySpawnWeight(const std::int32_t& spawnWeight)
+	void PowerupSpawner::SetVortexBoiSpawnWeight(const std::int32_t& spawnWeight)
 	{
-		mVortexBoySpawnWeight = spawnWeight;
+		mVortexBoiSpawnWeight = spawnWeight;
 	}
 
 	void PowerupSpawner::AttemptSpawn()
@@ -114,21 +114,21 @@ namespace KatBall
 
 		if (roll <= mSpawnChance)
 		{
-			std::uint32_t totalSpawnWeight = mLongBoySpawnWeight + mBigBoySpawnWeight + mVortexBoySpawnWeight;
+			std::uint32_t totalSpawnWeight = mLongBoiSpawnWeight + mBigBoiSpawnWeight + mVortexBoiSpawnWeight;
 			std::uniform_int_distribution<std::uint32_t> weightedDistribution(0, totalSpawnWeight);
 			std::uint32_t weightedRoll = distribution(generator);
 
-			if (weightedRoll <= mLongBoySpawnWeight)
+			if (weightedRoll <= mLongBoiSpawnWeight)
 			{
-				// TODO: Spawn a long boy
+				// TODO: Spawn a long Boi
 			}
-			else if (weightedRoll <= mLongBoySpawnWeight + mBigBoySpawnWeight)
+			else if (weightedRoll <= mLongBoiSpawnWeight + mBigBoiSpawnWeight)
 			{
-				// TODO: Spawn a big boy
+				// TODO: Spawn a big Boi
 			}
-			else if (weightedRoll <= mLongBoySpawnWeight + mBigBoySpawnWeight + mVortexBoySpawnWeight)
+			else if (weightedRoll <= mLongBoiSpawnWeight + mBigBoiSpawnWeight + mVortexBoiSpawnWeight)
 			{
-				// TODO: Spawn a vortex boy
+				// TODO: Spawn a vortex Boi
 			}
 		}
 	}

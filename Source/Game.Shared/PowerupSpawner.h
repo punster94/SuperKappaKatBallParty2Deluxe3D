@@ -32,53 +32,53 @@ namespace KatBall
 		/// @Param spawnChance: The chance that this object will spawn a powerup
 		void SetSpawnChance(const float& spawnChance);
 
-		/// Accessor method for the long boy's length increase stat
-		/// @Return: The amount that long boy increases length by
-		float GetLongBoyLengthIncrease() const;
+		/// Accessor method for the long Boi's length increase stat
+		/// @Return: The amount that long Boi increases length by
+		float GetLongBoiLengthIncrease() const;
 
-		/// Mutator method for the long boy's length increase stat
-		/// @Param lengthIncrease: The amount that long boy increases length by
-		void SetLongBoyLengthIncrease(const float& lengthIncrease);
+		/// Mutator method for the long Boi's length increase stat
+		/// @Param lengthIncrease: The amount that long Boi increases length by
+		void SetLongBoiLengthIncrease(const float& lengthIncrease);
 
-		/// Accessor method for the big boy's scale increase stat
-		/// @Return: The amount that big boy increases the player's scale by
-		float GetBigBoyScaleIncrease() const;
+		/// Accessor method for the big Boi's scale increase stat
+		/// @Return: The amount that big Boi increases the player's scale by
+		float GetBigBoiScaleIncrease() const;
 
-		/// Mutator method for the big boy's scale increase stat
-		/// @Param scaleIncrease: The amount that big boy increases the player's scale by
-		void SetBigBoyScaleIncrase(const float& scaleIncrease);
+		/// Mutator method for the big Boi's scale increase stat
+		/// @Param scaleIncrease: The amount that big Boi increases the player's scale by
+		void SetBigBoiScaleIncrase(const float& scaleIncrease);
 
-		/// Accessor method for the vortex boy rotation speed stat
-		/// @Return: The rotation speed increase for vortex boy
-		float getVortexBoyRotationSpeed() const;
+		/// Accessor method for the vortex Boi rotation speed stat
+		/// @Return: The rotation speed increase for vortex Boi
+		float getVortexBoiRotationSpeed() const;
 
-		/// Mutator method for the vortex boy rotation speed stat
-		/// @Param rotationSpeed: The rotation speed increase for vortex boy
-		void SetVortexBoyRotationSpeed(const float& rotationSpeed);
+		/// Mutator method for the vortex Boi rotation speed stat
+		/// @Param rotationSpeed: The rotation speed increase for vortex Boi
+		void SetVortexBoiRotationSpeed(const float& rotationSpeed);
 
-		/// Accessor method for long boy spawn weight
-		/// @Return: Spawn weight of long boy
-		std::int32_t GetLongBoySpawnWeight() const;
+		/// Accessor method for long Boi spawn weight
+		/// @Return: Spawn weight of long Boi
+		std::int32_t GetLongBoiSpawnWeight() const;
 
-		/// Mutator method for long boy spawn weight
-		/// @Param spawnWeight: Spawn weight of long boy
-		void SetLongBoySpawnWeight(const std::int32_t& spawnWeight);
+		/// Mutator method for long Boi spawn weight
+		/// @Param spawnWeight: Spawn weight of long Boi
+		void SetLongBoiSpawnWeight(const std::int32_t& spawnWeight);
 
-		/// Accessor method for big boy spawn weight
-		/// @Return: Spawn weight of big boy
-		std::int32_t GetBigBoySpawnWeight() const;
+		/// Accessor method for big Boi spawn weight
+		/// @Return: Spawn weight of big Boi
+		std::int32_t GetBigBoiSpawnWeight() const;
 
-		/// Mutator method for big boy spawn weight
-		/// @Param spawnWeight: Spawn weight of big boy
-		void SetBigBoySpawnWeight(const std::int32_t& spawnWeight);
+		/// Mutator method for big Boi spawn weight
+		/// @Param spawnWeight: Spawn weight of big Boi
+		void SetBigBoiSpawnWeight(const std::int32_t& spawnWeight);
 
-		/// Accessor method for vortex boy spawn weight
-		/// @Return: Spawn weight for vortex boy
-		std::int32_t GetVortexBoySpawnWeight() const;
+		/// Accessor method for vortex Boi spawn weight
+		/// @Return: Spawn weight for vortex Boi
+		std::int32_t GetVortexBoiSpawnWeight() const;
 		
-		/// Mutator method for vortex boy spawn weight
-		/// @Param spawnWeight: Spawn weight for vortex boy
-		void SetVortexBoySpawnWeight(const std::int32_t& spawnWeight);
+		/// Mutator method for vortex Boi spawn weight
+		/// @Param spawnWeight: Spawn weight for vortex Boi
+		void SetVortexBoiSpawnWeight(const std::int32_t& spawnWeight);
 
 		/// Rolls for chance to spawn, and on success, instantiates a powerup at the spawn location
 		/// Rolls are between 1 and 100. If roll is <= spawnChance, a powerup is spawned
@@ -88,13 +88,13 @@ namespace KatBall
 		glm::vec4 mSpawnLocation;	// Location that powerups will be spawned from this object
 		float mSpawnChance;			// Chance between 0.0 and 100.0 that this spawner will generate an item
 
-		std::int32_t mLongBoySpawnWeight;	// Relative chance for spawning long boys
-		std::int32_t mBigBoySpawnWeight;	// Relative chance for spawning big boys
-		std::int32_t mVortexBoySpawnWeight;	// Relative chance for spawning vortex boys
+		std::int32_t mLongBoiSpawnWeight;	// Relative chance for spawning long Bois
+		std::int32_t mBigBoiSpawnWeight;	// Relative chance for spawning big Bois
+		std::int32_t mVortexBoiSpawnWeight;	// Relative chance for spawning vortex Bois
 
-		float mLongBoyLengthIncrease;	// The length increase of longboy on pickup
-		float mBigBoyScaleIncrease;		// The size scale incrrase of bigboy on pickup
-		float mVortexBoyRotationSpeed;	// How fast the vortex boy goes whoosh
+		float mLongBoiLengthIncrease;	// The length increase of longBoi on pickup
+		float mBigBoiScaleIncrease;		// The size scale incrrase of bigBoi on pickup
+		float mVortexBoiRotationSpeed;	// How fast the vortex Boi goes whoosh
 	};
 }
 
