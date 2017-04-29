@@ -12,7 +12,7 @@ namespace KatBall
 		(*this)["SpawnChance"].SetStorage(&mSpawnChance, 1);
 	}
 
-	glm::vec4 PowerupSpawner::GetSpawnLocation()
+	glm::vec4 PowerupSpawner::GetSpawnLocation() const
 	{
 		return mSpawnLocation;
 	}
@@ -22,7 +22,7 @@ namespace KatBall
 		mSpawnLocation = spawnLocation;
 	}
 
-	float PowerupSpawner::GetSpawnChance()
+	float PowerupSpawner::GetSpawnChance() const
 	{
 		return mSpawnChance;
 	}

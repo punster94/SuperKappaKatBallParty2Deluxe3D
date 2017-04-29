@@ -15,7 +15,7 @@ namespace KatBall
 
 		/// Accessor method for the powerup spawner's spawn location
 		/// @Return: The location that the powerups from this object will spawn
-		glm::vec4 GetSpawnLocation();
+		glm::vec4 GetSpawnLocation() const;
 
 		/// Mutator method for the powerup spawner's spawn location
 		/// @Param spawnLocation: The new location from which powerups will spawn from this object
@@ -23,7 +23,7 @@ namespace KatBall
 
 		/// Accessor method for the powerup spawner's spawn chance
 		/// @Return: The chance that this object will spawn a powerup
-		float GetSpawnChance();
+		float GetSpawnChance() const;
 
 		/// Mutator method for the powerup spawner's spawn chance
 		/// @Param spawnChance: The chance that this object will spawn a powerup
