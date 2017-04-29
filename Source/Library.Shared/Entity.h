@@ -173,7 +173,7 @@ namespace FieaGameEngine
 		void Rotate(glm::vec3 delta);
 		void Scale(glm::vec3 delta);
 
-		void Initialize();
+		virtual void Initialize(WorldState& worldState);
 
 	protected:
 
