@@ -1,6 +1,8 @@
 #include "pch.h"
 #include <experimental/filesystem>
 
+#include "InputSubscriber.h"
+
 using namespace FieaGameEngine;
 
 namespace KatBall
@@ -9,6 +11,7 @@ namespace KatBall
 	static Camera* sCamera;
 	static Gamepad* sGamepad1;
 	static Gamepad* sGamepad2;
+	static InputSubscriber* sInputSubscriber;
 
 	static Quad* sQuad;
 
@@ -43,6 +46,8 @@ namespace KatBall
 		master.AddHelper(&helper);
 
 		EntityFactory ef;
+		RigidBodyFactory rbf;
+		KatMusicFactory kmf;
 
 		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
 
@@ -51,7 +56,6 @@ namespace KatBall
 			master.ParseFromFile(path.path().string());
 
 			Entity* entity = sharedData.mScope->Copy()->As<Entity>();
-			sector->Entities().PushBack(*entity);
 			entity->SetSector(*sector);
 		}
 
@@ -60,26 +64,22 @@ namespace KatBall
 		// DEBUG
 		sQuad = new Quad();
 		sQuad->SetShaders(Asset::Get(SHADER_QUAD_VERTEX)->As<VertexShader>(),
-			Asset::Get(SHADER_QUAD_PIXEL)->As<PixelShader>());
+						  Asset::Get(SHADER_QUAD_PIXEL)->As<PixelShader>());
 		sQuad->SetRect(0.5f, 0.8f, 0.2f, 0.18f);
-		sQuad->SetTexture(Asset::Get(TEXTURE_MANKEY_BALL)->As<Texture>());
+		sQuad->SetTexture(Asset::Get(TEXTURE_MANKEY_BALL_PNG)->As<Texture>());
 		sQuad->SetColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 		mRenderer->AddViewRenderable(*sQuad);
 		
 		sDummy = new TestDummy();
 		// END
 
-		mWorld.Initialize(mWorldState);
-
 		sCamera = new Camera();
 
 		sGamepad1 = new Gamepad(0);
 		sGamepad2 = new Gamepad(1);
+		sInputSubscriber = new InputSubscriber();
 		sCamera->SetPosition(glm::vec3(0.0f, 0.0f, -12.0f));
 		mRenderer->SetCamera(sCamera);
-
-		mBackgroundMusic.SetMusicFile("Retribution.ogg");
-		mBackgroundMusic.Play();
 	}
 
 	void Game::Update()
@@ -112,8 +112,10 @@ namespace KatBall
 		float rAnalogX;
 		if (sGamepad1->Refresh())
 		{
-			if (sGamepad1->IsPressed(XINPUT_GAMEPAD_A))
+			if (sGamepad1->GetState()->wButtons != 0)
 			{
+				Event<Gamepad>* event = new Event<Gamepad>(*sGamepad1);
+				mWorld.Enqueue(*event, mWorldState, 0);
 				lAnalogY = sGamepad1->leftStickY;
 				rAnalogY = sGamepad1->rightStickY;
 				lAnalogX = sGamepad1->leftStickX;
@@ -206,6 +208,7 @@ namespace KatBall
 		// Textures
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_KAT, TEXTURE_KAT, Asset::TYPE_TEXTURE);
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_MANKEY_BALL, TEXTURE_MANKEY_BALL, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_MANKEY_BALL_PNG, TEXTURE_MANKEY_BALL_PNG, Asset::TYPE_TEXTURE);
 
 		// Vertex Shaders
 		Asset::Load(ASSET_DIRECTORY_SHADERS SHADER_MESH_VERTEX, SHADER_MESH_VERTEX, Asset::TYPE_VERTEX_SHADER);

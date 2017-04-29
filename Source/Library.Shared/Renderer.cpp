@@ -44,6 +44,11 @@ namespace FieaGameEngine
 		}
 	}
 
+	void Renderer::SetDepthTesting(bool enabled)
+	{
+		enabled;
+	}
+
 	void Renderer::SetCamera(Camera* camera)
 	{
 		camera;

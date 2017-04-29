@@ -25,7 +25,7 @@ namespace FieaGameEngine
 		}
 	}
 
-	void PixelShader::Load(char* data, std::uint32_t size)
+	void PixelShader::Load(char* data, std::uint32_t size, const std::string& path)
 	{
 		RendererDirectX* directX = RendererDirectX::Get();
 		assert(directX != nullptr);

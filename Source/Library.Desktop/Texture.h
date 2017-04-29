@@ -16,11 +16,17 @@ namespace FieaGameEngine
 
 		~Texture();
 
-		virtual void Load(char* data, std::uint32_t size) override;
+		virtual void Load(char* data, std::uint32_t size, const std::string& path) override;
 
 		void SetRenderingState(class Renderer* renderer);
 
 	private:
+
+		void LoadPNG(const std::string& path);
+
+		void LoadBMP(char* data, std::uint32_t size);
+
+		void GenerateVertexBuffer(unsigned char* data, std::uint32_t width, std::uint32_t height);
 
 		ID3D11Texture2D* mTexture;
 		ID3D11ShaderResourceView* mResourceView;

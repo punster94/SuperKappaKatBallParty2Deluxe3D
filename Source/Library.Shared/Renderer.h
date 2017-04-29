@@ -51,6 +51,8 @@ namespace FieaGameEngine
 		*/
 		virtual void Shutdown() = 0;
 
+		virtual void SetDepthTesting(bool enabled);
+
 		/**
 		*	Renderers each renderable entity in a given World.
 		*	@param world The World that contains Entities to render.

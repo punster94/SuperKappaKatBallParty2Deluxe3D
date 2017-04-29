@@ -78,6 +78,8 @@ namespace FieaGameEngine
 
 		virtual void Render(World& world) override;
 
+		virtual void SetDepthTesting(bool enabled) override;
+
 	private:
 
 		/**
@@ -100,8 +102,11 @@ namespace FieaGameEngine
 		ID3D11Texture2D* mDepthStencilBuffer;
 		ID3D11RenderTargetView* mRenderTargetView;
 		ID3D11DepthStencilView* mDepthStencilView;
-		ID3D11DepthStencilState* mDepthStencilState;
+		ID3D11DepthStencilState* mDepthStencilStateDepthTest;
+		ID3D11DepthStencilState* mDepthStencilStateNoDepthTest;
 		ID3D11RasterizerState* mRasterizerState;
+
+		ID3D11BlendState* mBlendState;
 
 		ID3D11Buffer* mGlobalCB;
 

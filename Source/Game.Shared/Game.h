@@ -27,7 +27,6 @@ namespace KatBall
 		void LoadAssets();
 
 		FieaGameEngine::Renderer* mRenderer;
-		FieaGameEngine::KatMusic mBackgroundMusic;
 		FieaGameEngine::World mWorld;
 		FieaGameEngine::WorldState mWorldState;
 		FieaGameEngine::GameTime mGameTime;

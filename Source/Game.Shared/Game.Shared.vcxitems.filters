@@ -9,6 +9,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PowerupSpawner.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestDummy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Powerup.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)InputSubscriber.cpp">
+      <Filter>Subscribers</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionPunch.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Constants.h" />
@@ -20,6 +26,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PowerupSpawner.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestDummy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Powerup.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionPunch.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)InputSubscriber.h">
+      <Filter>Subscribers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -27,6 +39,12 @@
     </Filter>
     <Filter Include="Game Entities">
       <UniqueIdentifier>{7570848a-b34d-4350-8425-7922de149f97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actions">
+      <UniqueIdentifier>{7fa87e4e-48ab-4749-a2dc-c3aa07cfbce5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Subscribers">
+      <UniqueIdentifier>{5ac18544-5f8b-45a9-b46e-080db0a4f1d3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

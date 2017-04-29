@@ -22,6 +22,8 @@ namespace KatBall
 	// Returns false if the controller has been disconnected
 	bool Gamepad::Refresh()
 	{
+		mCurrentButton = 0;
+
 		if (CheckConnection())
 		{
 			float normLX = fmaxf(-1, (float)mState.Gamepad.sThumbLX / 32767);
@@ -52,6 +54,17 @@ namespace KatBall
 
 	bool Gamepad::IsPressed(WORD button)
 	{
-		return (mState.Gamepad.wButtons & button) != 0;
+		bool pressed = (mState.Gamepad.wButtons & button) != 0;
+		if (pressed)
+		{
+			mCurrentButton = button;
+		}
+
+		return pressed;
+	}
+
+	int Gamepad::GetPort()
+	{
+		return mControllerId;
 	}
 }

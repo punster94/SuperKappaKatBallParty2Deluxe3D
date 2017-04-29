@@ -32,8 +32,10 @@ namespace FieaGameEngine
 	}
 
 	RendererDirectX::RendererDirectX(RenderConfiguration& config)
-		: Renderer(config)
+		: Renderer(config),
+		  mBlendState(nullptr)
 	{
+
 	}
 
 	void RendererDirectX::Init()
@@ -126,8 +128,12 @@ namespace FieaGameEngine
 		dsDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
 		dsDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
 
-		mDevice->CreateDepthStencilState(&dsDesc, &mDepthStencilState);
-		mDeviceContext->OMSetDepthStencilState(mDepthStencilState, 1);
+		mDevice->CreateDepthStencilState(&dsDesc, &mDepthStencilStateDepthTest);
+		mDeviceContext->OMSetDepthStencilState(mDepthStencilStateDepthTest, 1);
+
+		dsDesc.DepthFunc = D3D11_COMPARISON_ALWAYS;
+		dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+		mDevice->CreateDepthStencilState(&dsDesc, &mDepthStencilStateNoDepthTest);
 
 		D3D11_TEXTURE2D_DESC dsBufferDesc = { 0 };
 		dsBufferDesc.Width = config->windowWidth;
@@ -177,11 +183,25 @@ namespace FieaGameEngine
 		bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 		bd.CPUAccessFlags = 0;
 		mDevice->CreateBuffer(&bd, nullptr, &mGlobalCB);
+
+		D3D11_BLEND_DESC blendDesc;
+		ZeroMemory(&blendDesc, sizeof(blendDesc));
+		blendDesc.RenderTarget[0].BlendEnable = TRUE;
+		blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+		blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+		blendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+		blendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+		blendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+		blendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+		blendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+		mDevice->CreateBlendState(&blendDesc, &mBlendState);
+		mDeviceContext->OMSetBlendState(mBlendState, nullptr, 0xffffffff);
 	}
 
 	void RendererDirectX::InitRenderFrame()
 	{
-		mDeviceContext->ClearRenderTargetView(mRenderTargetView, DirectX::Colors::Blue);
+		mDeviceContext->ClearRenderTargetView(mRenderTargetView, DirectX::Colors::Lavender);
 		mDeviceContext->ClearDepthStencilView(mDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
 		CBGlobal globals;
@@ -206,11 +226,23 @@ namespace FieaGameEngine
 		return (mMessage.message != WM_QUIT);
 	}
 
+	void RendererDirectX::SetDepthTesting(bool enabled)
+	{
+		if (enabled)
+		{
+			mDeviceContext->OMSetDepthStencilState(mDepthStencilStateDepthTest, 1);
+		}
+		else
+		{
+			mDeviceContext->OMSetDepthStencilState(mDepthStencilStateNoDepthTest, 1);
+		}
+	}
+
 	void RendererDirectX::Shutdown()
 	{
 		mRasterizerState->Release();
 		mDepthStencilView->Release();
-		mDepthStencilState->Release();
+		mDepthStencilStateDepthTest->Release();
 		mRenderTargetView->Release();
 
 		mSwapChain->Release();

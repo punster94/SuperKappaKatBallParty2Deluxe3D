@@ -23,7 +23,9 @@ namespace FieaGameEngine
 
 		virtual ~Asset();
 
-		virtual void Load(char* data, std::uint32_t size);
+		virtual void Load(char* data,
+						  std::uint32_t size,
+						  const std::string& path);
 
 		const std::string& GetPath() const;
 

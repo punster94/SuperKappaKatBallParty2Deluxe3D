@@ -109,8 +109,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Camera.cpp">
       <Filter>Game Constructs</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)KatMusic.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)KatSound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)SList.h">
@@ -224,8 +222,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Camera.h">
       <Filter>Game Constructs</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)KatMusic.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)KatSound.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Notes.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -28,9 +28,10 @@ namespace FieaGameEngine
 		}
 	}
 
-	void MeshGeometry::Load(char* data, std::uint32_t size)
+	void MeshGeometry::Load(char* data, std::uint32_t size, const std::string& path)
 	{
 		size;
+		path;
 
 		if (mVertexBuffer != nullptr)
 		{

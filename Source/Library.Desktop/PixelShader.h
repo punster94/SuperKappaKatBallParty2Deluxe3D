@@ -18,7 +18,7 @@ namespace FieaGameEngine
 
 		~PixelShader();
 
-		virtual void Load(char* data, std::uint32_t size) override;
+		virtual void Load(char* data, std::uint32_t size, const std::string& path) override;
 
 		void SetRenderingState(Renderer* renderer);
 
