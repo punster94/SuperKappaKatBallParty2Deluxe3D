@@ -48,4 +48,14 @@ namespace FieaGameEngine
 	{
 		camera;
 	}
+
+	void Renderer::AddViewRenderable(Renderable& renderable)
+	{
+		renderable;
+	}
+
+	void Renderer::RemoveViewRenderable(Renderable& renderable)
+	{
+		renderable;
+	}
 }

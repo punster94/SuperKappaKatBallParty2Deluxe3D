@@ -12,6 +12,19 @@ namespace FieaGameEngine
 		RTTI_DECLARATIONS(Renderable, RTTI)
 
 	public:
+		
+		Renderable();
+
+		virtual ~Renderable() = default;
+
 		virtual void Render(Renderer* renderer) = 0;
+
+		bool IsVisible();
+
+		void SetVisible(bool visible);
+
+	protected:
+
+		bool mVisible;
 	};
 }

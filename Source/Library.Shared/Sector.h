@@ -157,7 +157,7 @@ namespace FieaGameEngine
 		 */
 		virtual Scope* Copy() const override;
 
-		void Initialize();
+		void Initialize(WorldState& worldState);
 
 	private:
 

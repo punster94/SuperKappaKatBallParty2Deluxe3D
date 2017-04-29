@@ -14,4 +14,7 @@
 #define TEXTURE_MANKEY_BALL "mankey_ball.bmp"
 
 #define SHADER_MESH_VERTEX "MeshVertex.cso"
+#define SHADER_QUAD_VERTEX "QuadVertex.cso"
+
 #define SHADER_MESH_PIXEL "MeshPixel.cso"
+#define SHADER_QUAD_PIXEL "QuadPixel.cso"

@@ -238,6 +238,23 @@ namespace FieaGameEngine
 		return mGlobalCB;
 	}
 
+	void RendererDirectX::AddViewRenderable(Renderable& renderable)
+	{
+		mViewTarget.AddRenderable(renderable);
+	}
+
+	void RendererDirectX::RemoveViewRenderable(Renderable& renderable)
+	{
+		mViewTarget.RemoveRenderable(renderable);
+	}
+
+	void RendererDirectX::Render(World& world)
+	{
+		Renderer::Render(world);
+		
+		mViewTarget.Render(this);
+	}
+
 	LRESULT WINAPI RendererDirectX::WndProc(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		if (message == WM_DESTROY)
