@@ -18,7 +18,7 @@ namespace KatBall
 
 		virtual ~RigidBody();
 
-		virtual void Initialize(WorldState& worldState) override;
+		virtual void Initialize(FieaGameEngine::WorldState& worldState) override;
 
 		typedef void(RigidBody::*CreateCollider)(btScalar x, btScalar y, btScalar z);
 
