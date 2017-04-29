@@ -85,16 +85,16 @@ namespace KatBall
 		void AttemptSpawn();
 
 	private:
-		glm::vec4 mSpawnLocation; // Location that powerups will be spawned from this object
-		float mSpawnChance; // Chance between 0.0 and 100.0 that this spawner will generate an item
+		glm::vec4 mSpawnLocation;	// Location that powerups will be spawned from this object
+		float mSpawnChance;			// Chance between 0.0 and 100.0 that this spawner will generate an item
 
 		std::int32_t mLongBoySpawnWeight;	// Relative chance for spawning long boys
 		std::int32_t mBigBoySpawnWeight;	// Relative chance for spawning big boys
 		std::int32_t mVortexBoySpawnWeight;	// Relative chance for spawning vortex boys
 
-		float mLongBoyLengthIncrease; // The length increase of longboy on pickup
-		float mBigBoyScaleIncrease; // The size scale incrrase of bigboy on pickup
-		float mVortexBoyRotationSpeed; // How fast the vortex boy goes whoosh
+		float mLongBoyLengthIncrease;	// The length increase of longboy on pickup
+		float mBigBoyScaleIncrease;		// The size scale incrrase of bigboy on pickup
+		float mVortexBoyRotationSpeed;	// How fast the vortex boy goes whoosh
 	};
 }
 
