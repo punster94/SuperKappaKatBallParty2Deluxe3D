@@ -103,7 +103,5 @@ namespace FieaGameEngine
 		 *	A Vector of EventPublisher pointers that holds the Events enqueued in the EventQueue.
 		 */
 		std::vector<EventPublisher*> mQueue;
-
-		mutable std::mutex mMutex;
 	};
 }

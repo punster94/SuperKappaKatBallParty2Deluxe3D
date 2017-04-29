@@ -53,7 +53,6 @@ namespace KatBall
 		if (isDynamic)
 		{
 			mCollider->calculateLocalInertia(mMass, mLocalIntertia);
-
 		}
 
 		mMotionState = new btDefaultMotionState(mTransform);

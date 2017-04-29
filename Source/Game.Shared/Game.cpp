@@ -1,4 +1,5 @@
 #include "pch.h"
+#include <experimental/filesystem>
 
 using namespace FieaGameEngine;
 
@@ -8,6 +9,8 @@ namespace KatBall
 	static Camera* sCamera;
 	static Gamepad* sGamepad1;
 	static Gamepad* sGamepad2;
+
+	static Quad* sQuad;
 
 	Game::Game(FieaGameEngine::Renderer& renderer)
 		: mRenderer(&renderer)
@@ -31,10 +34,45 @@ namespace KatBall
 		mRenderer->Init();
 		LoadAssets();
 
+		Sector* sector = mWorld.CreateSector("");
+
+		ScopeParseHelper::ScopeSharedData sharedData;
+		XmlParseMaster master(&sharedData);
+		ScopeParseHelper helper;
+
+		master.AddHelper(&helper);
+
+		EntityFactory ef;
+
+		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
+
+		for(std::experimental::filesystem::directory_entry path : directoryIt)
+		{
+			master.ParseFromFile(path.path().string());
+
+			Entity* entity = sharedData.mScope->Copy()->As<Entity>();
+			sector->Entities().PushBack(*entity);
+			entity->SetSector(*sector);
+		}
+
 		mWorld.Initialize(mWorldState);
 
+		// DEBUG
+		sQuad = new Quad();
+		sQuad->SetShaders(Asset::Get(SHADER_QUAD_VERTEX)->As<VertexShader>(),
+			Asset::Get(SHADER_QUAD_PIXEL)->As<PixelShader>());
+		sQuad->SetRect(0.5f, 0.8f, 0.2f, 0.18f);
+		sQuad->SetTexture(Asset::Get(TEXTURE_MANKEY_BALL)->As<Texture>());
+		sQuad->SetColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+		mRenderer->AddViewRenderable(*sQuad);
+		
 		sDummy = new TestDummy();
+		// END
+
+		mWorld.Initialize(mWorldState);
+
 		sCamera = new Camera();
+
 		sGamepad1 = new Gamepad(0);
 		sGamepad2 = new Gamepad(1);
 		sCamera->SetPosition(glm::vec3(0.0f, 0.0f, -12.0f));
@@ -171,8 +209,10 @@ namespace KatBall
 
 		// Vertex Shaders
 		Asset::Load(ASSET_DIRECTORY_SHADERS SHADER_MESH_VERTEX, SHADER_MESH_VERTEX, Asset::TYPE_VERTEX_SHADER);
+		Asset::Load(ASSET_DIRECTORY_SHADERS SHADER_QUAD_VERTEX, SHADER_QUAD_VERTEX, Asset::TYPE_VERTEX_SHADER);
 
 		// Pixel Shaders
 		Asset::Load(ASSET_DIRECTORY_SHADERS SHADER_MESH_PIXEL, SHADER_MESH_PIXEL, Asset::TYPE_PIXEL_SHADER);
+		Asset::Load(ASSET_DIRECTORY_SHADERS SHADER_QUAD_PIXEL, SHADER_QUAD_PIXEL, Asset::TYPE_PIXEL_SHADER);
 	}
 }

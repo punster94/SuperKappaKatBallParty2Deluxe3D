@@ -46,11 +46,29 @@ namespace FieaGameEngine
 			XMMATRIX projectionMatrix;
 
 			projectionMatrix = XMMatrixPerspectiveLH(settings.mRight - settings.mLeft,
-													 settings.mTop - settings.mBottom,
-													 settings.mNear,
-													 settings.mFar);
+				settings.mTop - settings.mBottom,
+				settings.mNear,
+				settings.mFar);
 
 			globals.mProjection = XMMatrixTranspose(projectionMatrix);
+		}
+	}
+
+	void ViewTarget::AddRenderable(Renderable& renderable)
+	{
+		mRenderables.PushBack(&renderable);
+	}
+
+	void ViewTarget::RemoveRenderable(Renderable& renderable)
+	{
+		mRenderables.Remove(&renderable);
+	}
+
+	void ViewTarget::Render(Renderer* renderer) const
+	{
+		for (Renderable* renderable : mRenderables)
+		{
+			renderable->Render(renderer);
 		}
 	}
 }
