@@ -43,6 +43,7 @@ namespace KatBall
 		master.AddHelper(&helper);
 
 		EntityFactory ef;
+		RigidBodyFactory rbf;
 
 		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
 
@@ -51,7 +52,6 @@ namespace KatBall
 			master.ParseFromFile(path.path().string());
 
 			Entity* entity = sharedData.mScope->Copy()->As<Entity>();
-			sector->Entities().PushBack(*entity);
 			entity->SetSector(*sector);
 		}
 
@@ -68,8 +68,6 @@ namespace KatBall
 		
 		sDummy = new TestDummy();
 		// END
-
-		mWorld.Initialize(mWorldState);
 
 		sCamera = new Camera();
 

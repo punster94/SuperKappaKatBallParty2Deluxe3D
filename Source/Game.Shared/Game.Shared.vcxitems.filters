@@ -8,7 +8,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)RigidBody.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PowerupSpawner.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestDummy.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Powerup.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Constants.h" />
@@ -19,7 +18,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)RigidBody.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PowerupSpawner.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestDummy.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Powerup.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

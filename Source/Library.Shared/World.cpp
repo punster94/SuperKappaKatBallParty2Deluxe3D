@@ -188,6 +188,8 @@ namespace FieaGameEngine
 
 	void World::Initialize(WorldState& worldState)
 	{
+		worldState.mWorld = this;
+
 		Datum& sectors = Sectors();
 
 		for (std::uint32_t i = 0; i < sectors.Size(); ++i)

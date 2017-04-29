@@ -236,7 +236,7 @@ namespace FieaGameEngine
 
 			if (sharedData->mScope != nullptr)
 			{
-				sharedData->mScope->Adopt(*entity, attributes[sNameAttribute]);
+				sharedData->mScope->Adopt(*entity, Sector::sSectorEntitiesKey);
 			}
 			
 			sharedData->mScope = entity;
