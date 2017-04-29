@@ -157,6 +157,8 @@ namespace FieaGameEngine
 		 */
 		virtual Scope* Copy() const override;
 
+		void Initialize();
+
 	private:
 
 		/** Sector InitializeSignatures

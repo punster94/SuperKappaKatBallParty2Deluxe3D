@@ -1,12 +1,4 @@
 #include "pch.h"
-#include "Game.h"
-#include "Kat.h"
-#include "TestDummy.h"
-#include "Entity.h"
-#include "Camera.h"
-#include "Asset.h"
-#include "Constants.h"
-#include "Gamepad.h"
 
 using namespace FieaGameEngine;
 
@@ -38,6 +30,8 @@ namespace KatBall
 	{
 		mRenderer->Init();
 		LoadAssets();
+
+		mWorld.Initialize();
 
 		sDummy = new TestDummy();
 		sCamera = new Camera();

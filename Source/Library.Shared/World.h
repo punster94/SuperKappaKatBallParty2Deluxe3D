@@ -6,6 +6,9 @@
 #include "Sector.h"
 #include "EventQueue.h"
 
+#define BT_NO_SIMD_OPERATOR_OVERLOADS
+#include "btBulletDynamicsCommon.h"
+
 namespace FieaGameEngine
 {	
 	/** Forward Declaration of WorldState
@@ -153,6 +156,10 @@ namespace FieaGameEngine
 		 */
 		std::uint32_t QueueSize() const;
 
+		void Initialize();
+
+		void RegisterRigidBody(btCollisionShape& shape, btRigidBody& body);
+
 	private:
 
 		/** World InitializeSignatures
@@ -181,12 +188,30 @@ namespace FieaGameEngine
 		 */
 		EventQueue mEventQueue;
 
+		///collision configuration contains default setup for memory, collision setup. Advanced users can create their own configuration.
+		btDefaultCollisionConfiguration* mCollisionConfiguration;
+
+		///use the default collision dispatcher. For parallel processing you can use a different dispatcher (see Extras/BulletMultiThreaded)
+		btCollisionDispatcher* mDispatcher;
+
+		///btDbvtBroadphase is a good general purpose broadphase. You can also try out btAxis3Sweep.
+		btBroadphaseInterface* mOverlappingPairCache;
+
+		///the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
+		btSequentialImpulseConstraintSolver* mSolver;
+
+		btDiscreteDynamicsWorld* mDynamicsWorld;
+
+		btAlignedObjectArray<btCollisionShape*> mCollisionShapes;
+
+
 	public:
 
 		/** World sWorldNameKey
 		 *	A string representing the key names are held at within a World.
 		 */
 		static const std::string sWorldNameKey;
+		static const std::string sGroundDimensionsKey;
 
 		/** World sWorldSectorsKey
 		 *	A string representing the key Sector instance's are held at within a World.
