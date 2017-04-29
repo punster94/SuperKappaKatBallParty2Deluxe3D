@@ -56,10 +56,12 @@ namespace KatBall
 		bool CheckConnection();
 		bool Refresh();
 		bool IsPressed(WORD button);
+		int GetPort();
 
 	private:
 		int mControllerId;
 		XINPUT_STATE mState;
+		WORD mCurrentButton;
 
 		float mDeadzoneX;
 		float mDeadzoneY;
