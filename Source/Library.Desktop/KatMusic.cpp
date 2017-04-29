@@ -20,10 +20,10 @@ namespace FieaGameEngine
 		mMusic.setLoop(true);
 	}
 
-	KatMusic::KatMusic(const KatMusic& otherKatMusic):
-		Entity(otherKatMusic)
+	KatMusic::KatMusic(const KatMusic& other):
+		Entity(other)
 	{
-		CopyPrivateDataMembers(otherKatMusic);
+		CopyPrivateDataMembers(other);
 	}
 
 	KatMusic::~KatMusic()
@@ -87,10 +87,10 @@ namespace FieaGameEngine
 		AddExternalAttribute(PlayOnAwakeKey, &mPlayOnAwake);
 	}
 
-	void KatMusic::CopyPrivateDataMembers(const KatMusic& otherKatMusic)
+	void KatMusic::CopyPrivateDataMembers(const KatMusic& other)
 	{
-		mMusicFileName = otherKatMusic.mMusicFileName;
-		mPlayOnAwake = otherKatMusic.mPlayOnAwake;
+		mMusicFileName = other.mMusicFileName;
+		mPlayOnAwake = other.mPlayOnAwake;
 	}
 
 	Scope* KatMusic::Copy() const
