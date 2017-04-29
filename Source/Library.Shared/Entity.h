@@ -173,6 +173,8 @@ namespace FieaGameEngine
 		void Rotate(glm::vec3 delta);
 		void Scale(glm::vec3 delta);
 
+		virtual void Initialize(WorldState& worldState);
+
 	protected:
 
 		/** Entity InitializeSignatures
@@ -194,6 +196,10 @@ namespace FieaGameEngine
 		glm::vec3 mPosition;
 		glm::vec3 mRotation;
 		glm::vec3 mScale;
+
+		glm::vec4 mPositionVec4;
+		glm::vec4 mRotationVec4;
+		glm::vec4 mScaleVec4;
 
 	private:
 
@@ -224,6 +230,16 @@ namespace FieaGameEngine
 		 *	A string representing the key names are held at within an Entity.
 		 */
 		static const std::string sEntityNameKey;
+
+		static const std::string sTransformPositionKey;
+
+		static const std::string sTransformRotationKey;
+
+		static const std::string sTransformScaleKey;
+
+		static const std::string sMeshesKey;
+
+
 	};
 
 	/** ConcreteEntityFactory Macro Definition

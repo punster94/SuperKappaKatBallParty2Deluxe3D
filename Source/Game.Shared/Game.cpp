@@ -1,13 +1,4 @@
 #include "pch.h"
-#include "Game.h"
-#include "Kat.h"
-#include "TestDummy.h"
-#include "Entity.h"
-#include "Camera.h"
-#include "Asset.h"
-#include "Constants.h"
-#include "Gamepad.h"
-#include "Quad.h"
 
 using namespace FieaGameEngine;
 
@@ -50,10 +41,12 @@ namespace KatBall
 		sQuad->SetTexture(Asset::Get(TEXTURE_MANKEY_BALL)->As<Texture>());
 		sQuad->SetColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 		mRenderer->AddViewRenderable(*sQuad);
-
+		
 		sDummy = new TestDummy();
 		// END
 		
+		mWorld.Initialize(mWorldState);
+
 		sCamera = new Camera();
 
 		sGamepad1 = new Gamepad(0);

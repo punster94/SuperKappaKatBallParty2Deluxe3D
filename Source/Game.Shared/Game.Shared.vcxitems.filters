@@ -12,6 +12,10 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Gamepad.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)RigidBody.cpp">
+      <Filter>Game Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PowerupSpawner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
@@ -28,10 +32,17 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Gamepad.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)RigidBody.h">
+      <Filter>Game Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PowerupSpawner.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
       <UniqueIdentifier>{e3da0b12-a3f9-4661-bdbd-5931975f4109}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Entities">
+      <UniqueIdentifier>{7570848a-b34d-4350-8425-7922de149f97}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

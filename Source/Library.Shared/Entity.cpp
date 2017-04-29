@@ -191,9 +191,13 @@ namespace FieaGameEngine
 		Attributed::InitializeSignatures();
 
 		AddExternalAttribute(sEntityNameKey, &mName, 1);
+		AddExternalAttribute(sTransformPositionKey, &mPositionVec4, 1);
+		AddExternalAttribute(sTransformRotationKey, &mRotationVec4, 1);
+		AddExternalAttribute(sTransformScaleKey, &mScaleVec4, 1);
 
 		AddEmptyTable(Action::sActionsKey);
 		AddEmptyTable(Reaction::sReactionsKey);
+		AddEmptyString(sMeshesKey);
 	}
 
 	void Entity::AddRenderable(Renderable& renderable)
@@ -224,5 +228,29 @@ namespace FieaGameEngine
 		Append(sEntityNameKey).SetStorage(&mName, 1);
 	}
 
+	void Entity::Initialize(WorldState& worldState)
+	{
+		mPosition.x = mPositionVec4.x;
+		mPosition.y = mPositionVec4.y;
+		mPosition.z = mPositionVec4.z;
+
+		mRotation.x = mRotationVec4.x;
+		mRotation.y = mRotationVec4.y;
+		mRotation.z = mRotationVec4.z;
+
+		mScale.x = mScaleVec4.x;
+		mScale.y = mScaleVec4.y;
+		mScale.z = mScaleVec4.z;
+
+	}
+
 	const std::string Entity::sEntityNameKey = "name";
+
+	const std::string Entity::sTransformPositionKey = "position";
+
+	const std::string Entity::sTransformRotationKey = "rotation";
+
+	const std::string Entity::sTransformScaleKey = "scale";
+
+	const std::string Entity::sMeshesKey = "meshes";
 }
