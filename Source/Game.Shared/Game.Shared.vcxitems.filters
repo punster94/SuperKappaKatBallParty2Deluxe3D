@@ -16,10 +16,8 @@
       <Filter>Game Entities</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PowerupSpawner.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)IPowerup.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)VortexPowerup.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BigBoiPowerup.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)LongBoiPowerup.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Powerup.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
@@ -40,10 +38,8 @@
       <Filter>Game Entities</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PowerupSpawner.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)IPowerup.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)VortexPowerup.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BigBoiPowerup.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)LongBoiPowerup.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Powerup.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
