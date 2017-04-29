@@ -55,8 +55,11 @@ namespace FieaGameEngine
 		*	Renderers each renderable entity in a given World.
 		*	@param world The World that contains Entities to render.
 		*/
-		void Render(World& world);
+		virtual void Render(World& world);
 
+		virtual void AddViewRenderable(Renderable& renderable);
+
+		virtual void RemoveViewRenderable(Renderable& renderable);
 		/**
 		*	Renderers each renderable entity in a given Sector.
 		*	@param sector The Sector that contains Entities to render.

@@ -72,6 +72,12 @@ namespace FieaGameEngine
 
 		ID3D11Buffer* GetGlobalCBuffer();
 
+		void AddViewRenderable(Renderable& renderable) override;
+
+		void RemoveViewRenderable(Renderable& renderable) override;
+
+		virtual void Render(World& world) override;
+
 	private:
 
 		/**

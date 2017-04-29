@@ -114,7 +114,6 @@ namespace FieaGameEngine
 				mPixelShader = nullptr;
 			}
 		}
-
 	}
 
 	void MeshDirectX::SetTexture(Texture* texture)
