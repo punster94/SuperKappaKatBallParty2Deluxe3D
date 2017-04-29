@@ -15,9 +15,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)RigidBody.cpp">
       <Filter>Game Entities</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\ddiaz\Documents\GitHub\SuperKappaKatBallParty2Deluxe3D\Source\Game.Shared\PowerupSpawner.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PowerupSpawner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
@@ -37,9 +35,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)RigidBody.h">
       <Filter>Game Entities</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\ddiaz\Documents\GitHub\SuperKappaKatBallParty2Deluxe3D\Source\Game.Shared\PowerupSpawner.h">
-      <Filter>Core</Filter>
-    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PowerupSpawner.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

@@ -56,13 +56,28 @@ namespace KatBall
 		/// @Param rotationSpeed: The rotation speed increase for vortex boy
 		void SetVortexBoyRotationSpeed(const float& rotationSpeed);
 
+		/// Accessor method for long boy spawn weight
+		/// @Return: Spawn weight of long boy
 		std::int32_t GetLongBoySpawnWeight() const;
+
+		/// Mutator method for long boy spawn weight
+		/// @Param spawnWeight: Spawn weight of long boy
 		void SetLongBoySpawnWeight(const std::int32_t& spawnWeight);
 
+		/// Accessor method for big boy spawn weight
+		/// @Return: Spawn weight of big boy
 		std::int32_t GetBigBoySpawnWeight() const;
+
+		/// Mutator method for big boy spawn weight
+		/// @Param spawnWeight: Spawn weight of big boy
 		void SetBigBoySpawnWeight(const std::int32_t& spawnWeight);
 
+		/// Accessor method for vortex boy spawn weight
+		/// @Return: Spawn weight for vortex boy
 		std::int32_t GetVortexBoySpawnWeight() const;
+		
+		/// Mutator method for vortex boy spawn weight
+		/// @Param spawnWeight: Spawn weight for vortex boy
 		void SetVortexBoySpawnWeight(const std::int32_t& spawnWeight);
 
 		/// Rolls for chance to spawn, and on success, instantiates a powerup at the spawn location

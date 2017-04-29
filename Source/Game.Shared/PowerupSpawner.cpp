@@ -98,7 +98,7 @@ namespace KatBall
 
 	std::int32_t PowerupSpawner::GetVortexBoySpawnWeight() const
 	{
-		return GetVortexBoySpawnWeight();
+		return mVortexBoySpawnWeight;
 	}
 
 	void PowerupSpawner::SetVortexBoySpawnWeight(const std::int32_t& spawnWeight)
