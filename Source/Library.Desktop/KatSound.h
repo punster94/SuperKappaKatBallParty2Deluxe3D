@@ -10,8 +10,6 @@ namespace FieaGameEngine
 		RTTI_DECLARATIONS(KatSound, Entity)
 
 	public:
-		static const std::string SoundFolder;
-
 		KatSound();
 		~KatSound();
 
@@ -39,6 +37,10 @@ namespace FieaGameEngine
 		sf::Sound mSound;
 
 		static HashMap<std::string, std::shared_ptr<sf::SoundBuffer>> sBufferMap;
+
+	public:
+		static const std::string SoundFolder;
+		static const std::string SoundFileKey;
 	};
 
 	ConcreteEntityFactory(KatSound);

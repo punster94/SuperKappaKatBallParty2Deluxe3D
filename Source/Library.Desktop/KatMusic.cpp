@@ -8,8 +8,11 @@ namespace FieaGameEngine
 	RTTI_DEFINITIONS(KatMusic)
 
 	const string KatMusic::MusicFolder = "music/";
+	const string KatMusic::MusicFileKey = "MusicFile";
+	const string KatMusic::PlayOnAwakeKey = "PlayOnAwake";
 
-	KatMusic::KatMusic()
+	KatMusic::KatMusic() :
+		mPlayOnAwake(0)
 	{
 		InitializeSignatures();
 
@@ -21,6 +24,14 @@ namespace FieaGameEngine
 	{
 	}
 
+	void KatMusic::Initialize(WorldState& worldState)
+	{
+		if (mPlayOnAwake)
+		{
+			Play();
+		}
+	}
+
 	const string& KatMusic::GetMusicFile() const
 	{
 		return mMusicFileName;
@@ -29,11 +40,11 @@ namespace FieaGameEngine
 	void KatMusic::SetMusicFile(const string& file)
 	{
 		mMusicFileName = file;
-		mMusic.openFromFile(MusicFolder + mMusicFileName);
 	}
 
 	void KatMusic::Play()
 	{
+		mMusic.openFromFile(MusicFolder + mMusicFileName);
 		mMusic.play();
 	}
 
@@ -66,6 +77,7 @@ namespace FieaGameEngine
 	{
 		Attributed::InitializeSignatures();
 
-		AddExternalAttribute("MusicFile", &mMusicFileName);
+		AddExternalAttribute(MusicFileKey, &mMusicFileName);
+		AddExternalAttribute(PlayOnAwakeKey, &mPlayOnAwake);
 	}
 }

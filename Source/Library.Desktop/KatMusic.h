@@ -9,11 +9,10 @@ namespace FieaGameEngine
 		RTTI_DECLARATIONS(KatMusic, Entity)
 
 	public:
-		static const std::string MusicFolder;
-
 		KatMusic();
 		~KatMusic();
 
+		void Initialize(WorldState& worldState) override;
 		const std::string& GetMusicFile() const;
 		void SetMusicFile(const std::string& file);
 
@@ -30,7 +29,13 @@ namespace FieaGameEngine
 
 	private:
 		std::string mMusicFileName;
+		std::int32_t mPlayOnAwake;
 		sf::Music mMusic;
+
+	public:
+		static const std::string MusicFolder;
+		static const std::string MusicFileKey;
+		static const std::string PlayOnAwakeKey;
 	};
 
 	ConcreteEntityFactory(KatMusic);

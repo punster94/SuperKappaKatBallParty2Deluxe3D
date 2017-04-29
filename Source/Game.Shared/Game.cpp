@@ -43,6 +43,7 @@ namespace KatBall
 		master.AddHelper(&helper);
 
 		EntityFactory ef;
+		KatMusicFactory kmf;
 
 		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
 

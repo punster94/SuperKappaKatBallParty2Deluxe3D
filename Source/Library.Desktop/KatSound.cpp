@@ -9,6 +9,7 @@ namespace FieaGameEngine
 	RTTI_DEFINITIONS(KatSound)
 
 	const string KatSound::SoundFolder = "sfx/";
+	const string KatSound::SoundFileKey = "SoundFile";
 	HashMap<string, shared_ptr<SoundBuffer>> KatSound::sBufferMap;
 
 	KatSound::KatSound()
@@ -28,8 +29,6 @@ namespace FieaGameEngine
 	void KatSound::SetSoundFile(const string& file)
 	{
 		mSoundFileName = file;
-
-		mSound.setBuffer(LoadSoundBuffer(file));
 	}
 
 	SoundBuffer& KatSound::LoadSoundBuffer(const string& file)
@@ -62,6 +61,7 @@ namespace FieaGameEngine
 
 	void KatSound::Play()
 	{
+		mSound.setBuffer(LoadSoundBuffer(mSoundFileName));
 		mSound.play();
 	}
 
@@ -94,6 +94,6 @@ namespace FieaGameEngine
 	{
 		Attributed::InitializeSignatures();
 
-		AddExternalAttribute("SoundFile", &mSoundFileName);
+		AddExternalAttribute(SoundFileKey, &mSoundFileName);
 	}
 }
