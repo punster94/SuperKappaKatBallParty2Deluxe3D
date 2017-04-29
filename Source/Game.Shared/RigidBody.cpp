@@ -21,7 +21,7 @@ namespace KatBall
 		Entity::InitializeSignatures();
 
 		AddExternalAttribute(sColliderDimensionsKey, &mColliderDimensions, 1);
-		AddExternalAttribute(sLocalIntertiaKey, &mLocalIntertia, 1);
+		AddExternalAttribute(sLocalIntertiaKey, &mTransformLocalIntertia, 1);
 		AddExternalAttribute(sMassKey, &mMass, 1);
 		AddExternalAttribute(sColliderTypeKey, &mColliderType, 1);
 	}
@@ -36,8 +36,31 @@ namespace KatBall
 		mCollider = new btSphereShape(x);
 	}
 
-	void Initialize()
+
+	void RigidBody::Initialize(WorldState& worldState)
 	{
+		Entity::Initialize(worldState);
+
+		(const_cast<RigidBody*>(this)->*sCreateColliders[sColliderTypeKey])(mColliderDimensions.x, mColliderDimensions.y, mColliderDimensions.z);
+
+		mTransform.setIdentity();
+		mTransform.setOrigin(btVector3(mPosition.x, mPosition.y, mPosition.z));
+
+		bool isDynamic = (mMass != 0.0f);
+
+		mLocalIntertia = btVector3(mTransformLocalIntertia.x, mTransformLocalIntertia.y, mTransformLocalIntertia.z);
+
+		if (isDynamic)
+		{
+			mCollider->calculateLocalInertia(mMass, mLocalIntertia);
+
+		}
+
+		mMotionState = new btDefaultMotionState(mTransform);
+		btRigidBody::btRigidBodyConstructionInfo rbInfo(mMass, mMotionState, mCollider, mLocalIntertia);
+		mBody = new btRigidBody(rbInfo);
+
+		worldState.mWorld->RegisterRigidBody(*mCollider, *mBody);
 
 	}
 
@@ -52,6 +75,12 @@ namespace KatBall
 
 	const std::string RigidBody::sMassKey = "mass";
 
-	const std::string RigidBody::sColliderTypeKey = "type";
+	const std::string RigidBody::sColliderTypeKey = "shape";
+
+	const HashMap<std::string, RigidBody::CreateCollider> RigidBody::sCreateColliders =
+	{
+		{ "box", &RigidBody::CreateBoxCollider },
+		{ "sphere", &RigidBody::CreateSphereCollider },
+	};
 
 }

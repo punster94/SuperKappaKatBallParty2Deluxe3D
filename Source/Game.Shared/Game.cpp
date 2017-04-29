@@ -31,7 +31,7 @@ namespace KatBall
 		mRenderer->Init();
 		LoadAssets();
 
-		mWorld.Initialize();
+		mWorld.Initialize(mWorldState);
 
 		sDummy = new TestDummy();
 		sCamera = new Camera();

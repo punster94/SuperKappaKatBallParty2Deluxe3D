@@ -4,6 +4,7 @@
 #include "MeshDirectX.h"
 #define BT_NO_SIMD_OPERATOR_OVERLOADS
 #include "btBulletDynamicsCommon.h"
+#include "WorldState.h"
 
 namespace KatBall
 {
@@ -17,7 +18,11 @@ namespace KatBall
 
 		virtual ~RigidBody();
 
-		void Initialize();
+		virtual void Initialize(FieaGameEngine::WorldState& worldState) override;
+
+		typedef void(RigidBody::*CreateCollider)(btScalar x, btScalar y, btScalar z);
+
+		static const FieaGameEngine::HashMap<std::string, CreateCollider> sCreateColliders;
 
 	protected:
 
@@ -31,7 +36,7 @@ namespace KatBall
 
 		glm::vec4 mTransformRotation;
 
-		glm::vec4 mLocalIntertia;
+		glm::vec4 mTransformLocalIntertia;
 
 		float  mMass;
 
@@ -41,21 +46,17 @@ namespace KatBall
 
 		btMotionState* mMotionState;
 
+		btRigidBody* mBody;
+
 		btTransform mTransform;
 
-		btVector3 localIntertia;
+		btVector3 mLocalIntertia;
 
 		std::string mColliderType;
 
 		void CreateBoxCollider(btScalar x, btScalar y, btScalar z);
 
-		void CreateSphereCollider(btScalar x, btScalar y, btScalar z);
-
-		void SetupPhysicsInformation();
-
-		typedef void(RigidBody::*CreateCollider)(btScalar x,btScalar y, btScalar z);
-
-		static const FieaGameEngine::HashMap<std::string, CreateCollider> sCreateColliders;
+		void CreateSphereCollider(btScalar x, btScalar , btScalar );
 
 		static const std::string sColliderDimensionsKey;
 

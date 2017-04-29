@@ -183,13 +183,13 @@ namespace FieaGameEngine
 		Append(sSectorNameKey).SetStorage(&mName, 1);
 	}
 
-	void Sector::Initialize()
+	void Sector::Initialize(WorldState& worldState)
 	{
 		Datum& entities = Entities();
 
 		for (std::uint32_t i = 0; i < entities.Size(); ++i)
 		{
-			static_cast<Entity*>(&entities.Get<Scope&>(i))->Initialize();
+			static_cast<Entity*>(&entities.Get<Scope&>(i))->Initialize(worldState);
 		}
 	}
 
