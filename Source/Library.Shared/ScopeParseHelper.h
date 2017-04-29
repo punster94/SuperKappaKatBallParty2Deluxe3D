@@ -34,6 +34,7 @@ namespace FieaGameEngine
 			ParsingIf,
 			ParsingExpression,
 			ParsingReaction,
+			ParsingSubfile
 		};
 
 		/** ScopeParseHelper::ScopeSharedData Class
@@ -244,6 +245,15 @@ namespace FieaGameEngine
 		 */
 		void ReactionStartElementAction(const std::string& element, ScopeSharedData* sharedData, HashMap<std::string, std::string>& attributes);
 
+		/** ScopeParseHelper SubfileStartElementAction
+		 *	Parses the given information as a subfile element.
+		 *	@exception will fail if the entered element does not conform to the current state of parsing and expected grammar.
+		 *	@param element a constant string reference representing the name of the element tag being parsed.
+		 *	@param sharedData a ScopeSharedData pointer pointing to the SharedData the Scope element will be appended to.
+		 *	@param attributes a HashMap<std::string, std::string> reference containing the attribute values of the element being parsed.
+		 */
+		void SubfileStartElementAction(const std::string& element, ScopeSharedData* sharedData, HashMap<std::string, std::string>& attributes);
+
 		/** ScopeParseHelper PrimitiveEndElementAction
 		 *	Changes the state of this ScopeParseHelper from a primitive to the parent parsing type of the completed element.
 		 *	@exception will fail if the closing element does not conform to the current state of parsing and expected grammar.
@@ -317,6 +327,14 @@ namespace FieaGameEngine
 		 */
 		void ReactionEndElementAction(const std::string& element, ScopeSharedData* sharedData);
 
+		/** ScopeParseHelper SubfileEndElementAction
+		 *	Changes the state of this ScopeParseHelper from subfile to the parent parsing type of the completed element.
+		 *	@exception will fail if the closing element does not conform to the current state of parsing and expected grammar.
+		 *	@param element a constant string reference representing the name of the element tag being parsed.
+		 *	@param sharedData a ScopeSharedData pointer pointing to the SharedData that contains the constructed Scope.
+		 */
+		void SubfileEndElementAction(const std::string& element, ScopeSharedData* sharedData);
+
 		/** ScopeParseHelper AllowsForDataMembers
 		 *	Determines whether the current state allows for primitive data to be appended to the current scope.
 		 *	@return a boolean representing whether the current state allows for primitive data to be appended.
@@ -367,5 +385,10 @@ namespace FieaGameEngine
 		 *	A static constant string representing the value expected for instance attributes.
 		 */
 		static const std::string sInstanceAttribute;
+
+		/** ScopeParseHelper sPathAttribute
+		 *	A static constant string representing the value expected for path attributes.
+		 */
+		static const std::string sPathAttribute;
 	};
 }

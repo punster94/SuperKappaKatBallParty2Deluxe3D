@@ -324,6 +324,13 @@ namespace FieaGameEngine
 		sharedData->PushState(State::ParsingReaction);
 	}
 
+	void ScopeParseHelper::SubfileStartElementAction(const std::string&, ScopeSharedData* sharedData, HashMap<std::string, std::string>& attributes)
+	{
+		UNREFERENCED_PARAMETER(sharedData);
+		UNREFERENCED_PARAMETER(attributes);
+		// TODO
+	}
+
 #pragma endregion ScopeParseHelper StartElementAction Functions
 
 #pragma region
@@ -435,6 +442,12 @@ namespace FieaGameEngine
 		sharedData->PopState();
 	}
 
+	void ScopeParseHelper::SubfileEndElementAction(const std::string&, ScopeSharedData* sharedData)
+	{
+		UNREFERENCED_PARAMETER(sharedData);
+		// TODO
+	}
+
 #pragma endregion ScopeParseHelper EndElementAction Functions
 
 	bool ScopeParseHelper::AllowsForDataMembers(ScopeSharedData* sharedData)
@@ -466,6 +479,7 @@ namespace FieaGameEngine
 		{ "else", &ScopeParseHelper::ElseStartElementAction },
 		{ "expression", &ScopeParseHelper::ExpressionStartElementAction },
 		{ "reaction", &ScopeParseHelper::ReactionStartElementAction },
+		{ "subfile", &ScopeParseHelper::SubfileStartElementAction }
 	};
 
 	const HashMap<std::string, ScopeParseHelper::EndElementAction> ScopeParseHelper::sEndElementActions =
@@ -485,6 +499,7 @@ namespace FieaGameEngine
 		{ "else", &ScopeParseHelper::ActionEndElementAction },
 		{ "expression", &ScopeParseHelper::ExpressionEndElementAction },
 		{ "reaction", &ScopeParseHelper::ReactionEndElementAction },
+		{ "subfile", &ScopeParseHelper::SubfileEndElementAction }
 	};
 
 	const HashMap<std::string, std::pair<Datum::DatumType, ScopeParseHelper::State>> ScopeParseHelper::sPrimitiveTypeMap =
@@ -503,6 +518,8 @@ namespace FieaGameEngine
 	const std::string ScopeParseHelper::sClassAttribute = "class";
 
 	const std::string ScopeParseHelper::sInstanceAttribute = "instance";
+
+	const std::string ScopeParseHelper::sPathAttribute = "path";
 
 #pragma endregion ScopeParseHelper Static Data
 }
