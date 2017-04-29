@@ -4,6 +4,7 @@
 #define ASSET_DIRECTORY_MUSIC "music/"
 #define ASSET_DIRECTORY_SHADERS "shaders/"
 #define ASSET_DIRECTORY_TEXTURES "textures/"
+#define ASSET_DIRECTORY_ENTITIES "entities/"
 
 #define MESH_KAT "monkey.obj"
 #define MESH_FLAT_SPHERE "flat_sphere.obj"

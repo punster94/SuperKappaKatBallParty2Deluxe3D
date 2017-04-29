@@ -222,15 +222,25 @@ namespace FieaGameEngine
 	}
 
 	void ScopeParseHelper::EntityStartElementAction(const std::string&, ScopeSharedData* sharedData, HashMap<std::string, std::string>& attributes)
-	{
-		if (sharedData->PeekState() != State::ParsingSector || sharedData->mScope == nullptr)
+	{	
+		if (sharedData->mScope != nullptr && sharedData->As<Sector>() != nullptr)
 		{
-			throw std::exception("Invalid state detected.");
+			Sector* sector = sharedData->mScope->As<Sector>();
+			
+			sharedData->mScope = sector->CreateEntity(attributes[sClassAttribute], attributes[sNameAttribute]);
 		}
-		
-		Sector* sector = sharedData->mScope->As<Sector>();
+		else
+		{
+			Entity* entity = Factory<Entity>::Create(attributes[sClassAttribute]);
+			entity->SetName(attributes[sNameAttribute]);
 
-		sharedData->mScope = sector->CreateEntity(attributes[sClassAttribute], attributes[sNameAttribute]);
+			if (sharedData->mScope != nullptr)
+			{
+				sharedData->mScope->Adopt(*entity, attributes[sNameAttribute]);
+			}
+			
+			sharedData->mScope = entity;
+		}
 
 		sharedData->PushState(State::ParsingEntity);
 	}
@@ -382,7 +392,10 @@ namespace FieaGameEngine
 			throw std::exception("Invalid state detected.");
 		}
 
-		sharedData->mScope = sharedData->mScope->GetParent();
+		if (sharedData->mScope->GetParent() != nullptr)
+		{
+			sharedData->mScope = sharedData->mScope->GetParent();
+		}
 
 		sharedData->PopState();
 	}

@@ -1,4 +1,5 @@
 #include "pch.h"
+#include <experimental/filesystem>
 
 using namespace FieaGameEngine;
 
@@ -30,6 +31,27 @@ namespace KatBall
 	{
 		mRenderer->Init();
 		LoadAssets();
+
+		Sector* sector = mWorld.CreateSector("");
+
+		ScopeParseHelper::ScopeSharedData sharedData;
+		XmlParseMaster master(&sharedData);
+		ScopeParseHelper helper;
+
+		master.AddHelper(&helper);
+
+		EntityFactory ef;
+
+		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
+
+		for(std::experimental::filesystem::directory_entry path : directoryIt)
+		{
+			master.ParseFromFile(path.path().string());
+
+			Entity* entity = sharedData.mScope->Copy()->As<Entity>();
+			sector->Entities().PushBack(*entity);
+			entity->SetSector(*sector);
+		}
 
 		mWorld.Initialize();
 

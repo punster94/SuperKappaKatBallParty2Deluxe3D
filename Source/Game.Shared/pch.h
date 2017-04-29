@@ -17,5 +17,7 @@
 #include "Entity.h"
 #include "Camera.h"
 #include "RigidBody.h"
+#include "XmlParseMaster.h"
+#include "ScopeParseHelper.h"
 
 #define GLM_FORCE_CXX98
