@@ -44,7 +44,7 @@ namespace KatBall
 		
 		sDummy = new TestDummy();
 		// END
-		
+
 		mWorld.Initialize(mWorldState);
 
 		sCamera = new Camera();
