@@ -51,6 +51,9 @@
     <ClInclude Include="ViewTarget.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Quad.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RendererDirectX.cpp">
@@ -84,6 +87,9 @@
       <Filter>Assets</Filter>
     </ClCompile>
     <ClCompile Include="ViewTarget.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Quad.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
   </ItemGroup>

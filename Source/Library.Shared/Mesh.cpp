@@ -6,8 +6,7 @@ namespace FieaGameEngine
 	RTTI_DEFINITIONS(Mesh)
 
 	Mesh::Mesh() :
-		mOwner(nullptr),
-		mVisible(true)
+		mOwner(nullptr)
 	{
 
 	}
@@ -16,11 +15,6 @@ namespace FieaGameEngine
 		: mOwner(&owner)
 	{
 
-	}
-
-	void Mesh::SetVisible(bool visible)
-	{
-		mVisible = visible;
 	}
 
 	void Mesh::SetOwner(Entity& owner)

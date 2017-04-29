@@ -17,8 +17,6 @@ namespace FieaGameEngine
 
 		void SetOwner(Entity& owner);
 
-		void SetVisible(bool visible);
-
 		virtual void Render(Renderer* renderer) override = 0;
 
 		void SetRelativePosition(glm::vec3 position);
@@ -32,8 +30,6 @@ namespace FieaGameEngine
 	protected:
 
 		class Entity* mOwner;
-
-		bool mVisible;
 
 		glm::vec3 mRelativePosition;
 		glm::vec3 mRelativeRotation;

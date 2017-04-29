@@ -18,5 +18,6 @@
 #include "Camera.h"
 #include "RigidBody.h"
 #include "WorldState.h"
+#include "Quad.h"
 
 #define GLM_FORCE_CXX98
