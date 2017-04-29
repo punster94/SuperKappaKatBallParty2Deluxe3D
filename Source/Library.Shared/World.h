@@ -156,7 +156,7 @@ namespace FieaGameEngine
 		 */
 		std::uint32_t QueueSize() const;
 
-		void Initialize();
+		void Initialize(WorldState& worldState);
 
 		void RegisterRigidBody(btCollisionShape& shape, btRigidBody& body);
 

@@ -228,8 +228,19 @@ namespace FieaGameEngine
 		Append(sEntityNameKey).SetStorage(&mName, 1);
 	}
 
-	void Entity::Initialize()
+	void Entity::Initialize(WorldState& worldState)
 	{
+		mPosition.x = mPositionVec4.x;
+		mPosition.y = mPositionVec4.y;
+		mPosition.z = mPositionVec4.z;
+
+		mRotation.x = mRotationVec4.x;
+		mRotation.y = mRotationVec4.y;
+		mRotation.z = mRotationVec4.z;
+
+		mScale.x = mScaleVec4.x;
+		mScale.y = mScaleVec4.y;
+		mScale.z = mScaleVec4.z;
 
 	}
 

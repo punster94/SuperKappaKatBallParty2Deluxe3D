@@ -15,7 +15,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)RigidBody.cpp">
       <Filter>Game Entities</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)PowerupSpawner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
@@ -35,7 +34,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)RigidBody.h">
       <Filter>Game Entities</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)PowerupSpawner.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
