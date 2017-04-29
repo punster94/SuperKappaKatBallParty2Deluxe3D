@@ -14,32 +14,26 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)BigBoiPowerup.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Game.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Gamepad.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)IPowerup.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Powerup.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Kat.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)LongBoiPowerup.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)RigidBody.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PowerupSpawner.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestDummy.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)VortexPowerup.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)BigBoiPowerup.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Constants.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Game.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Gamepad.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)IPowerup.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Powerup.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Kat.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)LongBoiPowerup.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)RigidBody.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PowerupSpawner.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestDummy.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)VortexPowerup.h" />
   </ItemGroup>
 </Project>
