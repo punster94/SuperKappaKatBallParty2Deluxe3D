@@ -12,6 +12,7 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Gamepad.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PowerupSpawner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
@@ -28,6 +29,7 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Gamepad.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PowerupSpawner.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
