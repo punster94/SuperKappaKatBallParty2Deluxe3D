@@ -24,6 +24,7 @@
     <ClInclude Include="MeshDirectX.h" />
     <ClInclude Include="MeshOpenGL.h" />
     <ClInclude Include="PixelShader.h" />
+    <ClInclude Include="Quad.h" />
     <ClInclude Include="RenderConfigurationDirectX.h" />
     <ClInclude Include="RenderConfigurationOpenGL.h" />
     <ClInclude Include="RendererDirectX.h" />
@@ -39,6 +40,7 @@
     <ClCompile Include="MeshGeometry.cpp" />
     <ClCompile Include="MeshOpenGL.cpp" />
     <ClCompile Include="PixelShader.cpp" />
+    <ClCompile Include="Quad.cpp" />
     <ClCompile Include="RendererDirectX.cpp" />
     <ClCompile Include="RendererOpenGL.cpp" />
     <ClCompile Include="Texture.cpp" />
