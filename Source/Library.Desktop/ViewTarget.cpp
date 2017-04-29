@@ -66,9 +66,13 @@ namespace FieaGameEngine
 
 	void ViewTarget::Render(Renderer* renderer) const
 	{
+		renderer->SetDepthTesting(false);
+
 		for (Renderable* renderable : mRenderables)
 		{
 			renderable->Render(renderer);
 		}
+
+		renderer->SetDepthTesting(true);
 	}
 }

@@ -14,5 +14,12 @@ struct PS_INPUT
 float4 main( PS_INPUT input) : SV_Target
 {
 	//return float4(1.0f, 0.0f, 0.0f, 1.0f);
-    return txDiffuse.Sample( samLinear, input.Texcoord );
+	float4 texColor = txDiffuse.Sample(samLinear, input.Texcoord);
+
+	if (texColor.a < 0.1f)
+	{
+		discard;
+	}
+
+	return texColor;
 }

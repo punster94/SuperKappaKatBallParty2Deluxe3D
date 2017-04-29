@@ -26,7 +26,7 @@ namespace KatBall
 			Asset::Get(SHADER_MESH_PIXEL)->As<PixelShader>());
 		AddRenderable(mOffsetMesh);
 
-		mOffsetMesh.SetRelativePosition(glm::vec3(4.0f, 3.0f, 2.0f));
+		mOffsetMesh.SetRelativePosition(glm::vec3(4.0f, 0.0f, 2.0f));
 	}
 
 	TestDummy::~TestDummy()
