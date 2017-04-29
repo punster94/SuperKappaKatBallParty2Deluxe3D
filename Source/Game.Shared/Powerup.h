@@ -3,8 +3,6 @@
 #include "Entity.h"
 #include "Kat.h"
 
-using namespace FieaGameEngine;
-
 namespace KatBall
 {
 	class Powerup final : public Entity
@@ -36,10 +34,10 @@ namespace KatBall
 	private:
 		void InitializeSignatures();
 
-		const std::string mName = "powerup";
-		const std::string mScaleIncreaseKey = "scaleIncrease";
-		const std::string mLengthIncreaseKey = "lengthIncrease";
-		const std::string mRotationSpeedKey = "rotationSpeed";
+		const std::string mName;
+		const std::string mScaleIncreaseKey;
+		const std::string mLengthIncreaseKey;
+		const std::string mRotationSpeedKey;
 
 		std::float_t mScaleIncrease;
 		std::float_t mLengthIncrease;

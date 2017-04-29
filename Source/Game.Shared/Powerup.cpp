@@ -8,13 +8,13 @@ namespace KatBall
 	{
 		switch (type)
 		{
-		case BigBoi:
+		case PowerupType.BigBoi:
 			mScaleIncrease = stat;
 			break;
-		case LongBoi:
+		case PowerupType.LongBoi:
 			mLengthIncrease = stat;
 			break;
-		case VortexBoi:
+		case PowerupType.VortexBoi:
 			mRotationSpeed = stat;
 			break;
 		}
@@ -26,11 +26,13 @@ namespace KatBall
 	{
 		switch (mType)
 		{
-		case BigBoi:
+		case PowerupType.BigBoi:
 			break;
-		case LongBoi:
+		case PowerupType.LongBoi:
 			break;
-		case VortexBoi:
+		case PowerupType.VortexBoi:
+			break;
+		case default:
 			break;
 		}
 	}
@@ -71,4 +73,12 @@ namespace KatBall
 		AddExternalAttribute(mLengthIncreaseKey, &mLengthIncrease, 1);
 		AddExternalAttribute(mRotationSpeedKey, &mRotationSpeed, 1);
 	}
+
+	const std::string Powerup::mName = "powerup";
+
+	const std::string Powerup::mScaleIncreaseKey = "scaleIncrease";
+
+	const std::string Powerup::mLengthIncreaseKey = "lengthIncrease";
+
+	const std::string Powerup::mRotationSpeedKey = "rotationSpeed";
 }
