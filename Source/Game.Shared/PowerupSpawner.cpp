@@ -5,7 +5,7 @@
 
 namespace KatBall
 {
-	PowerupSpawner::PowerupSpawner():
+	PowerupSpawner::PowerupSpawner() :
 		mSpawnLocation(glm::vec4(0)), mSpawnChance(0.0f)
 	{
 		PowerupSpawner::InitializeSignatures();

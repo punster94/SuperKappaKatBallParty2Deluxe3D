@@ -9,7 +9,7 @@ namespace KatBall
 
 		/// Constructor
 		PowerupSpawner();
-		
+
 		/// Destructor (defaulted)
 		~PowerupSpawner() = default;
 
