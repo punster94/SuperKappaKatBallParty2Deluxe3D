@@ -209,7 +209,7 @@ namespace FieaGameEngine
 
 	void ScopeParseHelper::SectorStartElementAction(const std::string&, ScopeSharedData* sharedData, HashMap<std::string, std::string>& attributes)
 	{
-		if (sharedData->PeekState() != State::ParsingWorld || sharedData->mScope == nullptr)
+		if (sharedData->PeekState() != State::ParsingWorld && sharedData->PeekState() != State::NotParsing)// TODO || sharedData->mScope == nullptr)
 		{
 			throw std::exception("Invalid state detected.");
 		}
@@ -223,7 +223,7 @@ namespace FieaGameEngine
 
 	void ScopeParseHelper::EntityStartElementAction(const std::string&, ScopeSharedData* sharedData, HashMap<std::string, std::string>& attributes)
 	{
-		if (sharedData->PeekState() != State::ParsingSector || sharedData->mScope == nullptr)
+		if (sharedData->PeekState() != State::ParsingSector && sharedData->PeekState() != State::NotParsing)// TODO || sharedData->mScope == nullptr)
 		{
 			throw std::exception("Invalid state detected.");
 		}
@@ -326,9 +326,54 @@ namespace FieaGameEngine
 
 	void ScopeParseHelper::SubfileStartElementAction(const std::string&, ScopeSharedData* sharedData, HashMap<std::string, std::string>& attributes)
 	{
-		UNREFERENCED_PARAMETER(sharedData);
-		UNREFERENCED_PARAMETER(attributes);
-		// TODO
+		if(!AllowsForDataMembers(sharedData) || sharedData->mScope == nullptr)
+		{
+			throw std::exception("Invalid state detected");
+		}
+
+		std::string subfileName = attributes[sPathAttribute];
+		if(subfileName != "")
+		{
+			// create filepath to subfile
+			std::string subfilePath = sharedData->GetXmlParseMaster()->GetFileName();
+			subfilePath.erase(subfilePath.find_last_of('/') + 1);
+			subfilePath.append(subfileName);
+
+			// parse from subfile on clone so we don't step on toes of current parse
+			std::unique_ptr<XmlParseMaster> masterClone(sharedData->GetXmlParseMaster()->Clone());
+			masterClone->ParseFromFile(subfilePath);
+
+			// validate that subfile scope holds data and is not of type "World"
+			ScopeSharedData* sharedDataClone = masterClone->GetSharedData()->As<ScopeSharedData>();
+			assert(sharedDataClone->mScope != nullptr && !sharedDataClone->mScope->Is(World::TypeIdClass()));
+
+			std::uint64_t subfileScopeType = sharedDataClone->mScope->TypeIdInstance();
+
+			// subfile was "Sector" -- validate that current type is "World"
+			if(subfileScopeType == Sector::TypeIdClass())
+			{
+				if(sharedData->PeekState() != State::ParsingWorld)
+				{
+					throw std::exception("Invalid state detected");
+				}
+				sharedData->mScope->Adopt(*sharedDataClone->mScope, World::sWorldSectorsKey);
+			}
+
+			// subfile was "Entity" -- validate that current type is "Entity"
+			else if(subfileScopeType == Entity::TypeIdClass())
+			{
+				if(sharedData->PeekState() != State::ParsingSector)
+				{
+					throw std::exception("Invalid state detected");
+				}
+				sharedData->mScope->Adopt(*sharedDataClone->mScope, Sector::sSectorEntitiesKey);
+			}
+
+			// null out scope of subfile shared data so it is not cleared -- it's managed by us now
+			sharedDataClone->mScope = nullptr;
+		}
+
+		sharedData->PushState(State::ParsingSubfile);
 	}
 
 #pragma endregion ScopeParseHelper StartElementAction Functions
@@ -444,8 +489,13 @@ namespace FieaGameEngine
 
 	void ScopeParseHelper::SubfileEndElementAction(const std::string&, ScopeSharedData* sharedData)
 	{
-		UNREFERENCED_PARAMETER(sharedData);
-		// TODO
+		if(sharedData->PeekState() != State::ParsingSubfile)
+		{
+			throw std::exception("Invalid state detected.");
+		}
+
+		// NOT setting scope here -- scope has already adopted the result of the subfile parse
+		sharedData->PopState();
 	}
 
 #pragma endregion ScopeParseHelper EndElementAction Functions
