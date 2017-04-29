@@ -98,8 +98,9 @@
       <PreprocessorDefinitions>SFML_STATIC;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\expat\include\;$(SolutionDir)..\Source\Library.Desktop\;$(SolutionDir)..\Source\Library.Shared\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\expat\include\;$(SolutionDir)..\Source\Library.Desktop\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\BulletPhysics\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -121,8 +122,9 @@
       <PreprocessorDefinitions>SFML_STATIC;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\expat\include\;$(SolutionDir)..\Source\Library.Desktop\;$(SolutionDir)..\Source\Library.Shared\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\expat\include\;$(SolutionDir)..\Source\Library.Desktop\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\BulletPhysics\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -146,8 +148,9 @@
       <PreprocessorDefinitions>SFML_STATIC;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\expat\include\;$(SolutionDir)..\Source\Library.Desktop\;$(SolutionDir)..\Source\Library.Shared\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\expat\include\;$(SolutionDir)..\Source\Library.Desktop\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\BulletPhysics\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -173,8 +176,9 @@
       <PreprocessorDefinitions>SFML_STATIC;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\expat\include\;$(SolutionDir)..\Source\Library.Desktop\;$(SolutionDir)..\Source\Library.Shared\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\expat\include\;$(SolutionDir)..\Source\Library.Desktop\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\BulletPhysics\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

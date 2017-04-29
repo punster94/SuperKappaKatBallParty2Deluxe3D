@@ -123,18 +123,19 @@
       <PreprocessorDefinitions>SFML_STATIC;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\gl3w\include\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\glfw\include\;$(SolutionDir)..\External\expat\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\gl3w\include\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\glfw\include\;$(SolutionDir)..\External\expat\Include;$(SolutionDir)..\External\BulletPhysics\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4201</DisableSpecificWarnings>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
     <Lib>
-      <AdditionalDependencies>expat.lib;xinput.lib;winmm.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;sfml-system-s-d.lib;sfml-audio-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>expat.lib;xinput.lib;winmm.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;LinearMath_vs2010_x64_debug.lib;BulletDynamics_vs2010_x64_debug.lib;BulletCollision_vs2010_x64_debug.lib;sfml-system-s-d.lib;sfml-audio-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\External\SFML\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\expat\lib\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\External\SFML\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\expat\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\BulletPhysics\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
     <PreLinkEvent>
       <Command>xcopy "$(SolutionDir)\..\External\Expat\lib\$(Platform)\$(Configuration)\Expat.pdb" "$(SolutionDir)\..\Source\Library.Desktop.Test\bin\$(Platform)\$(Configuration)\" /Y /I</Command>
@@ -148,18 +149,19 @@
       <PreprocessorDefinitions>SFML_STATIC;_DEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\gl3w\include\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\glfw\include\;$(SolutionDir)..\External\expat\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\gl3w\include\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\glfw\include\;$(SolutionDir)..\External\expat\Include;$(SolutionDir)..\External\BulletPhysics\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4201</DisableSpecificWarnings>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
     <Lib>
-      <AdditionalDependencies>expat.lib;xinput.lib;winmm.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;sfml-system-s-d.lib;sfml-audio-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>expat.lib;xinput.lib;winmm.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;LinearMath_vs2010_x64_debug.lib;BulletDynamics_vs2010_x64_debug.lib;BulletCollision_vs2010_x64_debug.lib;sfml-system-s-d.lib;sfml-audio-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\External\SFML\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\expat\lib\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\External\SFML\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\expat\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\BulletPhysics\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
     <PreLinkEvent>
       <Command>xcopy "$(SolutionDir)\..\External\Expat\lib\$(Platform)\$(Configuration)\Expat.pdb" "$(SolutionDir)\..\Source\Library.Desktop.Test\bin\$(Platform)\$(Configuration)\" /Y /I</Command>
@@ -175,9 +177,10 @@
       <PreprocessorDefinitions>SFML_STATIC;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\gl3w\include\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\glfw\include\;$(SolutionDir)..\External\expat\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\gl3w\include\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\glfw\include\;$(SolutionDir)..\External\expat\Include;$(SolutionDir)..\External\BulletPhysics\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4201</DisableSpecificWarnings>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -185,10 +188,10 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>expat.lib;xinput.lib;winmm.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;sfml-system-s.lib;sfml-audio-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>expat.lib;xinput.lib;winmm.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;LinearMath_vs2010_x64_debug.lib;BulletDynamics_vs2010_x64_debug.lib;BulletCollision_vs2010_x64_debug.lib;sfml-system-s.lib;sfml-audio-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\External\SFML\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\expat\lib\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\External\SFML\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\expat\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\BulletPhysics\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
     <PreLinkEvent>
       <Command>xcopy "$(SolutionDir)\..\External\Expat\lib\$(Platform)\$(Configuration)\Expat.pdb" "$(SolutionDir)\..\Source\Library.Desktop.Test\bin\$(Platform)\$(Configuration)\" /Y /I</Command>
@@ -204,9 +207,10 @@
       <PreprocessorDefinitions>SFML_STATIC;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\gl3w\include\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\glfw\include\;$(SolutionDir)..\External\expat\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\gl3w\include\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\glfw\include\;$(SolutionDir)..\External\expat\Include;$(SolutionDir)..\External\BulletPhysics\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4201</DisableSpecificWarnings>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -214,10 +218,10 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>expat.lib;xinput.lib;winmm.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;sfml-system-s.lib;sfml-audio-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>expat.lib;xinput.lib;winmm.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;LinearMath_vs2010_x64_debug.lib;BulletDynamics_vs2010_x64_debug.lib;BulletCollision_vs2010_x64_debug.lib;sfml-system-s.lib;sfml-audio-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\External\SFML\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\expat\lib\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\External\SFML\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\expat\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\BulletPhysics\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
     <PreLinkEvent>
       <Command>xcopy "$(SolutionDir)\..\External\Expat\lib\$(Platform)\$(Configuration)\Expat.pdb" "$(SolutionDir)\..\Source\Library.Desktop.Test\bin\$(Platform)\$(Configuration)\" /Y /I</Command>
