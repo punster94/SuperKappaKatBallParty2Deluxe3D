@@ -114,7 +114,22 @@ namespace KatBall
 
 		if (roll <= mSpawnChance)
 		{
-			// TODO: Pick a random powerup to spawn based on spawn weights, at mSpawnLocation
+			std::uint32_t totalSpawnWeight = mLongBoySpawnWeight + mBigBoySpawnWeight + mVortexBoySpawnWeight;
+			std::uniform_int_distribution<std::uint32_t> weightedDistribution(0, totalSpawnWeight);
+			std::uint32_t weightedRoll = distribution(generator);
+
+			if (weightedRoll <= mLongBoySpawnWeight)
+			{
+				// TODO: Spawn a long boy
+			}
+			else if (weightedRoll <= mLongBoySpawnWeight + mBigBoySpawnWeight)
+			{
+				// TODO: Spawn a big boy
+			}
+			else if (weightedRoll <= mLongBoySpawnWeight + mBigBoySpawnWeight + mVortexBoySpawnWeight)
+			{
+				// TODO: Spawn a vortex boy
+			}
 		}
 	}
 }
