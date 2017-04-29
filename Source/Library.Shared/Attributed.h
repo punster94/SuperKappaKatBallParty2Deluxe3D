@@ -123,7 +123,7 @@ namespace FieaGameEngine
 		 *	Provides the interface for classes that will inherit from Attributed to initialize their prescribed attributes.
 		 *	Explicitly deleted.
 		 */
-		void InitializeSignatures();
+		virtual void InitializeSignatures();
 
 		/** Attributed AddInternalAttribute for integer
 		 *	Adds a prescribed internal attribute of type integer.

@@ -8,8 +8,22 @@ namespace KatBall
 	PowerupSpawner::PowerupSpawner():
 		mSpawnLocation(glm::vec4(0)), mSpawnChance(0.0f)
 	{
-		(*this)["SpawnLocation"].SetStorage(&mSpawnLocation, 1);
-		(*this)["SpawnChance"].SetStorage(&mSpawnChance, 1);
+		PowerupSpawner::InitializeSignatures();
+	}
+
+	void PowerupSpawner::InitializeSignatures()
+	{
+		Entity::InitializeSignatures();
+		AddExternalAttribute("Spawn Location", &mSpawnLocation, 1);
+		AddExternalAttribute("Spawn Chance", &mSpawnChance, 1);
+
+		AddExternalAttribute("Long Boy Spawn Weight", &mLongBoySpawnWeight, 1);
+		AddExternalAttribute("Big Boy Spawn Weight", &mBigBoySpawnWeight, 1);
+		AddExternalAttribute("Vortex Boy Spawn Weight", &mVortexBoySpawnWeight, 1);
+
+		AddExternalAttribute("Long Boy Length Increase", &mLongBoyLengthIncrease, 1);
+		AddExternalAttribute("Big Boy Scale Increase", &mBigBoyScaleIncrease, 1);
+		AddExternalAttribute("Vortex Boy Rotation Speed", &mVortexBoyRotationSpeed, 1);
 	}
 
 	glm::vec4 PowerupSpawner::GetSpawnLocation() const
@@ -27,9 +41,69 @@ namespace KatBall
 		return mSpawnChance;
 	}
 
-	void PowerupSpawner::SetSpawnChance(const float spawnChance)
+	void PowerupSpawner::SetSpawnChance(const float& spawnChance)
 	{
 		mSpawnChance = spawnChance;
+	}
+
+	float PowerupSpawner::GetLongBoyLengthIncrease() const
+	{
+		return mLongBoyLengthIncrease;
+	}
+
+	void PowerupSpawner::SetLongBoyLengthIncrease(const float& lengthIncrease)
+	{
+		mLongBoyLengthIncrease = lengthIncrease;
+	}
+
+	float PowerupSpawner::GetBigBoyScaleIncrease() const
+	{
+		return mBigBoyScaleIncrease;
+	}
+
+	void PowerupSpawner::SetBigBoyScaleIncrase(const float& scaleIncrease)
+	{
+		mBigBoyScaleIncrease = scaleIncrease;
+	}
+
+	float PowerupSpawner::getVortexBoyRotationSpeed() const
+	{
+		return mVortexBoyRotationSpeed;
+	}
+
+	void PowerupSpawner::SetVortexBoyRotationSpeed(const float& rotationSpeed)
+	{
+		mVortexBoyRotationSpeed = rotationSpeed;
+	}
+
+	std::int32_t PowerupSpawner::GetLongBoySpawnWeight() const
+	{
+		return mLongBoySpawnWeight;
+	}
+
+	void PowerupSpawner::SetLongBoySpawnWeight(const std::int32_t& spawnWeight)
+	{
+		mLongBoySpawnWeight = spawnWeight;
+	}
+
+	std::int32_t PowerupSpawner::GetBigBoySpawnWeight() const
+	{
+		return mBigBoySpawnWeight;
+	}
+
+	void PowerupSpawner::SetBigBoySpawnWeight(const std::int32_t& spawnWeight)
+	{
+		mBigBoySpawnWeight = spawnWeight;
+	}
+
+	std::int32_t PowerupSpawner::GetVortexBoySpawnWeight() const
+	{
+		return GetVortexBoySpawnWeight();
+	}
+
+	void PowerupSpawner::SetVortexBoySpawnWeight(const std::int32_t& spawnWeight)
+	{
+		mVortexBoySpawnWeight = spawnWeight;
 	}
 
 	void PowerupSpawner::AttemptSpawn()
