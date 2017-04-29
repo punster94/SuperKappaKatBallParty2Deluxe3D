@@ -32,8 +32,10 @@ namespace FieaGameEngine
 	}
 
 	RendererDirectX::RendererDirectX(RenderConfiguration& config)
-		: Renderer(config)
+		: Renderer(config),
+		  mBlendState(nullptr)
 	{
+
 	}
 
 	void RendererDirectX::Init()
@@ -177,6 +179,20 @@ namespace FieaGameEngine
 		bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 		bd.CPUAccessFlags = 0;
 		mDevice->CreateBuffer(&bd, nullptr, &mGlobalCB);
+
+		D3D11_BLEND_DESC blendDesc;
+		ZeroMemory(&blendDesc, sizeof(blendDesc));
+		blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+		blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+		blendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+		blendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
+		blendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA;
+		blendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+		blendDesc.RenderTarget[0].BlendEnable = TRUE;
+		blendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+		mDevice->CreateBlendState(&blendDesc, &mBlendState);
+		mDeviceContext->OMSetBlendState(mBlendState, nullptr, 0xffffffff);
 	}
 
 	void RendererDirectX::InitRenderFrame()

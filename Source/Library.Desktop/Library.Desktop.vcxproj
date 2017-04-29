@@ -134,10 +134,10 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <Lib>
-      <AdditionalDependencies>expat.lib;xinput.lib;winmm.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;LinearMath_vs2010_x64_debug.lib;BulletDynamics_vs2010_x64_debug.lib;BulletCollision_vs2010_x64_debug.lib;sfml-system-s-d.lib;sfml-audio-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>expat.lib;xinput.lib;winmm.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;LinearMath_vs2010_x64_debug.lib;BulletDynamics_vs2010_x64_debug.lib;BulletCollision_vs2010_x64_debug.lib;libpng16.lib;zlib.lib;sfml-system-s-d.lib;sfml-audio-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\External\SFML\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\expat\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\BulletPhysics\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\External\SFML\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\expat\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\BulletPhysics\lib;$(SolutionDir)..\External\libpng\lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
     <PreLinkEvent>
       <Command>xcopy "$(SolutionDir)\..\External\Expat\lib\$(Platform)\$(Configuration)\Expat.pdb" "$(SolutionDir)\..\Source\Library.Desktop.Test\bin\$(Platform)\$(Configuration)\" /Y /I</Command>
@@ -152,7 +152,7 @@
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>false</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\gl3w\include\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\glfw\include\;$(SolutionDir)..\External\expat\Include;$(SolutionDir)..\External\BulletPhysics\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\gl3w\include\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\glfw\include\;$(SolutionDir)..\External\expat\Include;$(SolutionDir)..\External\BulletPhysics\;$(SolutionDir)..\External\libpng\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4201</DisableSpecificWarnings>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
@@ -160,10 +160,10 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <Lib>
-      <AdditionalDependencies>expat.lib;xinput.lib;winmm.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;LinearMath_vs2010_x64_debug.lib;BulletDynamics_vs2010_x64_debug.lib;BulletCollision_vs2010_x64_debug.lib;sfml-system-s-d.lib;sfml-audio-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>expat.lib;xinput.lib;winmm.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;LinearMath_vs2010_x64_debug.lib;BulletDynamics_vs2010_x64_debug.lib;BulletCollision_vs2010_x64_debug.lib;libpng16.lib;zlib.lib;sfml-system-s-d.lib;sfml-audio-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\External\SFML\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\expat\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\BulletPhysics\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\External\SFML\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\expat\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\BulletPhysics\lib;$(SolutionDir)..\External\libpng\lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
     <PreLinkEvent>
       <Command>xcopy "$(SolutionDir)\..\External\Expat\lib\$(Platform)\$(Configuration)\Expat.pdb" "$(SolutionDir)\..\Source\Library.Desktop.Test\bin\$(Platform)\$(Configuration)\" /Y /I</Command>
@@ -190,10 +190,10 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>expat.lib;xinput.lib;winmm.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;LinearMath_vs2010_x64_debug.lib;BulletDynamics_vs2010_x64_debug.lib;BulletCollision_vs2010_x64_debug.lib;sfml-system-s.lib;sfml-audio-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>expat.lib;xinput.lib;winmm.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;LinearMath_vs2010_x64_debug.lib;BulletDynamics_vs2010_x64_debug.lib;BulletCollision_vs2010_x64_debug.lib;libpng16.lib;zlib.lib;sfml-system-s.lib;sfml-audio-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\External\SFML\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\expat\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\BulletPhysics\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\External\SFML\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\expat\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\BulletPhysics\lib;$(SolutionDir)..\External\libpng\lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
     <PreLinkEvent>
       <Command>xcopy "$(SolutionDir)\..\External\Expat\lib\$(Platform)\$(Configuration)\Expat.pdb" "$(SolutionDir)\..\Source\Library.Desktop.Test\bin\$(Platform)\$(Configuration)\" /Y /I</Command>
@@ -210,7 +210,7 @@
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>false</TreatWarningAsError>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\gl3w\include\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\glfw\include\;$(SolutionDir)..\External\expat\Include;$(SolutionDir)..\External\BulletPhysics\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\External\SFML\include\;$(SolutionDir)..\External\gl3w\include\;$(SolutionDir)..\Source\Library.Shared\;$(SolutionDir)..\External\glfw\include\;$(SolutionDir)..\External\expat\Include;$(SolutionDir)..\External\BulletPhysics\;$(SolutionDir)..\External\libpng\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4201</DisableSpecificWarnings>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
@@ -220,10 +220,10 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>expat.lib;xinput.lib;winmm.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;LinearMath_vs2010_x64_debug.lib;BulletDynamics_vs2010_x64_debug.lib;BulletCollision_vs2010_x64_debug.lib;sfml-system-s.lib;sfml-audio-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>expat.lib;xinput.lib;winmm.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;LinearMath_vs2010_x64_debug.lib;BulletDynamics_vs2010_x64_debug.lib;BulletCollision_vs2010_x64_debug.lib;libpng16.lib;zlib.lib;sfml-system-s.lib;sfml-audio-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\External\SFML\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\expat\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\BulletPhysics\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\External\SFML\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\expat\lib\$(Platform)\$(Configuration)\;$(SolutionDir)..\External\BulletPhysics\lib;$(SolutionDir)..\External\libpng\lib\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
     <PreLinkEvent>
       <Command>xcopy "$(SolutionDir)\..\External\Expat\lib\$(Platform)\$(Configuration)\Expat.pdb" "$(SolutionDir)\..\Source\Library.Desktop.Test\bin\$(Platform)\$(Configuration)\" /Y /I</Command>

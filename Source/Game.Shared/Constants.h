@@ -11,6 +11,7 @@
 
 #define TEXTURE_KAT "grid.bmp"
 #define TEXTURE_MANKEY_BALL "mankey_ball.bmp"
+#define TEXTURE_MANKEY_BALL_PNG "mankey_ball.png"
 
 #define SHADER_MESH_VERTEX "MeshVertex.cso"
 #define SHADER_QUAD_VERTEX "QuadVertex.cso"

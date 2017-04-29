@@ -14,7 +14,7 @@ namespace KatBall
 	{
 		mMesh.SetOwner(*this);
 		mMesh.SetMeshGeometry(Asset::Get(MESH_CUBE)->As<MeshGeometry>());
-		mMesh.SetTexture(Asset::Get(TEXTURE_MANKEY_BALL)->As<Texture>());
+		mMesh.SetTexture(Asset::Get(TEXTURE_MANKEY_BALL_PNG)->As<Texture>());
 		mMesh.SetShaders(Asset::Get(SHADER_MESH_VERTEX)->As<VertexShader>(),
 			Asset::Get(SHADER_MESH_PIXEL)->As<PixelShader>());
 		AddRenderable(mMesh);

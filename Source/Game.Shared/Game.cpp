@@ -36,9 +36,9 @@ namespace KatBall
 		// DEBUG
 		sQuad = new Quad();
 		sQuad->SetShaders(Asset::Get(SHADER_QUAD_VERTEX)->As<VertexShader>(),
-			Asset::Get(SHADER_QUAD_PIXEL)->As<PixelShader>());
+						  Asset::Get(SHADER_QUAD_PIXEL)->As<PixelShader>());
 		sQuad->SetRect(0.5f, 0.8f, 0.2f, 0.18f);
-		sQuad->SetTexture(Asset::Get(TEXTURE_MANKEY_BALL)->As<Texture>());
+		sQuad->SetTexture(Asset::Get(TEXTURE_MANKEY_BALL_PNG)->As<Texture>());
 		sQuad->SetColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 		mRenderer->AddViewRenderable(*sQuad);
 		
@@ -182,6 +182,7 @@ namespace KatBall
 		// Textures
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_KAT, TEXTURE_KAT, Asset::TYPE_TEXTURE);
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_MANKEY_BALL, TEXTURE_MANKEY_BALL, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_MANKEY_BALL_PNG, TEXTURE_MANKEY_BALL_PNG, Asset::TYPE_TEXTURE);
 
 		// Vertex Shaders
 		Asset::Load(ASSET_DIRECTORY_SHADERS SHADER_MESH_VERTEX, SHADER_MESH_VERTEX, Asset::TYPE_VERTEX_SHADER);

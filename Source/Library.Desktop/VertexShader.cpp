@@ -27,8 +27,10 @@ namespace FieaGameEngine
 		}
 	}
 
-	void VertexShader::Load(char* data, std::uint32_t size)
+	void VertexShader::Load(char* data, std::uint32_t size, const std::string& path)
 	{
+		path;
+
 		RendererDirectX* directX = RendererDirectX::Get();
 		assert(directX != nullptr);
 
