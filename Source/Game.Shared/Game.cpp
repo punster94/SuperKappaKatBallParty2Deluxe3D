@@ -46,6 +46,7 @@ namespace KatBall
 		master.AddHelper(&helper);
 
 		EntityFactory ef;
+		KatMusicFactory kmf;
 
 		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
 
@@ -81,9 +82,6 @@ namespace KatBall
 		sInputSubscriber = new InputSubscriber();
 		sCamera->SetPosition(glm::vec3(0.0f, 0.0f, -12.0f));
 		mRenderer->SetCamera(sCamera);
-
-		mBackgroundMusic.SetMusicFile("Retribution.ogg");
-		mBackgroundMusic.Play();
 	}
 
 	void Game::Update()
