@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "PowerupSpawner.h"
 #include <random>
+#include "Powerup.h"
 
 
 namespace KatBall
@@ -120,15 +121,15 @@ namespace KatBall
 
 			if (weightedRoll <= mLongBoiSpawnWeight)
 			{
-				// TODO: Spawn a long Boi
+				new Powerup(Powerup::PowerupType::LongBoi, mLongBoiLengthIncrease, mSpawnLocation);
 			}
 			else if (weightedRoll <= mLongBoiSpawnWeight + mBigBoiSpawnWeight)
 			{
-				// TODO: Spawn a big Boi
+				new Powerup(Powerup::PowerupType::BigBoi, mBigBoiScaleIncrease, mSpawnLocation);
 			}
 			else if (weightedRoll <= mLongBoiSpawnWeight + mBigBoiSpawnWeight + mVortexBoiSpawnWeight)
 			{
-				// TODO: Spawn a vortex Boi
+				new Powerup(Powerup::PowerupType::VortexBoi, mVortexBoiRotationSpeed, mSpawnLocation);
 			}
 		}
 	}
