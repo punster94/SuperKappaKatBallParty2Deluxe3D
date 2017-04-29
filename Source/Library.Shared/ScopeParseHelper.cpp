@@ -209,28 +209,42 @@ namespace FieaGameEngine
 
 	void ScopeParseHelper::SectorStartElementAction(const std::string&, ScopeSharedData* sharedData, HashMap<std::string, std::string>& attributes)
 	{
-		if (sharedData->PeekState() != State::ParsingWorld && sharedData->PeekState() != State::NotParsing)// TODO || sharedData->mScope == nullptr)
+		if (sharedData->PeekState() != State::NotParsing && sharedData->PeekState() != State::ParsingWorld)// TODO || sharedData->mScope == nullptr)
 		{
 			throw std::exception("Invalid state detected.");
 		}
 
-		World* world = sharedData->mScope->As<World>();
-
-		sharedData->mScope = world->CreateSector(attributes[sNameAttribute]);
+		if(sharedData->mScope == nullptr)
+		{
+			sharedData->mScope = new Sector(attributes[sNameAttribute]);
+		}
+		else
+		{
+			World* world = sharedData->mScope->As<World>();
+			sharedData->mScope = world->CreateSector(attributes[sNameAttribute]);
+		}
 		
 		sharedData->PushState(State::ParsingSector);
 	}
 
 	void ScopeParseHelper::EntityStartElementAction(const std::string&, ScopeSharedData* sharedData, HashMap<std::string, std::string>& attributes)
 	{
-		if (sharedData->PeekState() != State::ParsingSector && sharedData->PeekState() != State::NotParsing)// TODO || sharedData->mScope == nullptr)
+		if (sharedData->PeekState() != State::NotParsing && sharedData->PeekState() != State::ParsingSector)// TODO || sharedData->mScope == nullptr)
 		{
 			throw std::exception("Invalid state detected.");
 		}
 		
-		Sector* sector = sharedData->mScope->As<Sector>();
-
-		sharedData->mScope = sector->CreateEntity(attributes[sClassAttribute], attributes[sNameAttribute]);
+		if(sharedData->mScope == nullptr)
+		{
+			Entity* entity = Factory<Entity>::Create(attributes[sClassAttribute]);
+			entity->SetName(attributes[sNameAttribute]);
+			sharedData->mScope = entity;
+		}
+		else
+		{
+			Sector* sector = sharedData->mScope->As<Sector>();
+			sharedData->mScope = sector->CreateEntity(attributes[sClassAttribute], attributes[sNameAttribute]);
+		}
 
 		sharedData->PushState(State::ParsingEntity);
 	}

@@ -370,6 +370,7 @@ namespace LibraryDesktopTest
 		{
 			ScopeParseHelper::ScopeSharedData sharedData;
 			XmlParseMaster master(&sharedData);
+			sharedData.SetXmlParseMaster(&master);
 			ScopeParseHelper helper;
 
 			master.AddHelper(&helper);

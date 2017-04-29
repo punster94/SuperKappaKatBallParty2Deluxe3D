@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <world name='World 1'>
+	<subfile path='subfile/SectorSubfile.xml' />
+	
 	<integer name='Sector Count' value='2'/>
 	<sector name='Sector 1'>
 		<integer name='Entity Count' value='2'/>
