@@ -27,10 +27,13 @@ namespace KatBall
 		switch (mType)
 		{
 		case BigBoi:
+			// katBoi.IncreaseScaleFactor(stat);
 			break;
 		case LongBoi:
+			// katBoi.IncreaseArmLength(stat);
 			break;
 		case VortexBoi:
+			// katBoi.IncreaseRotationSpeed(stat);
 			break;
 		}
 	}
