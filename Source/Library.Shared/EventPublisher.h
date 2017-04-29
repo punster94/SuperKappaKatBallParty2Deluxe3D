@@ -30,7 +30,7 @@ namespace FieaGameEngine
 		 *	@param mutex a recursive_mutex reference that locks the given subscriber list.
 		 *	@param deleteAfterPublishing an optional boolean that represents whether to delete this event when published, defaulted to true.
 		 */
-		EventPublisher(const Vector<EventSubscriber*>& subscriberList, std::mutex& mutex, bool deleteAfterPublishing = true);
+		EventPublisher(const Vector<EventSubscriber*>& subscriberList, bool deleteAfterPublishing = true);
 
 		/** EventPublisher Destructor
 		 *	A virtual destructor for EventPublishers.
@@ -122,7 +122,5 @@ namespace FieaGameEngine
 		 *	A boolean representing whether this EventPublisher should be deleted after being published.
 		 */
 		bool mDeleteAfterPublishing;
-
-		std::mutex* mMutex;
 	};
 }
