@@ -1,6 +1,8 @@
 #include "pch.h"
 #include <experimental/filesystem>
 
+#include "InputSubscriber.h"
+
 using namespace FieaGameEngine;
 
 namespace KatBall
@@ -9,6 +11,7 @@ namespace KatBall
 	static Camera* sCamera;
 	static Gamepad* sGamepad1;
 	static Gamepad* sGamepad2;
+	static InputSubscriber* sInputSubscriber;
 
 	static Quad* sQuad;
 
@@ -44,6 +47,7 @@ namespace KatBall
 
 		EntityFactory ef;
 		RigidBodyFactory rbf;
+		KatMusicFactory kmf;
 
 		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
 
@@ -73,11 +77,9 @@ namespace KatBall
 
 		sGamepad1 = new Gamepad(0);
 		sGamepad2 = new Gamepad(1);
+		sInputSubscriber = new InputSubscriber();
 		sCamera->SetPosition(glm::vec3(0.0f, 0.0f, -12.0f));
 		mRenderer->SetCamera(sCamera);
-
-		mBackgroundMusic.SetMusicFile("Retribution.ogg");
-		mBackgroundMusic.Play();
 	}
 
 	void Game::Update()
@@ -110,8 +112,10 @@ namespace KatBall
 		float rAnalogX;
 		if (sGamepad1->Refresh())
 		{
-			if (sGamepad1->IsPressed(XINPUT_GAMEPAD_A))
+			if (sGamepad1->GetState()->wButtons != 0)
 			{
+				Event<Gamepad>* event = new Event<Gamepad>(*sGamepad1);
+				mWorld.Enqueue(*event, mWorldState, 0);
 				lAnalogY = sGamepad1->leftStickY;
 				rAnalogY = sGamepad1->rightStickY;
 				lAnalogX = sGamepad1->leftStickX;

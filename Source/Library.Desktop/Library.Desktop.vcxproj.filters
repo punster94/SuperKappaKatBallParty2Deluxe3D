@@ -10,6 +10,9 @@
     <Filter Include="Assets">
       <UniqueIdentifier>{c960870f-b49d-41f5-a22b-002cfe1786c2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{c1719c04-564e-439a-8037-f308c341957b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RendererDirectX.h">
@@ -54,6 +57,12 @@
     <ClInclude Include="Quad.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="KatMusic.h">
+      <Filter>Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="KatSound.h">
+      <Filter>Audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RendererDirectX.cpp">
@@ -91,6 +100,12 @@
     </ClCompile>
     <ClCompile Include="Quad.cpp">
       <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="KatMusic.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="KatSound.cpp">
+      <Filter>Audio</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
