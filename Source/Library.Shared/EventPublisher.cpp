@@ -6,17 +6,16 @@ namespace FieaGameEngine
 {
 	RTTI_DEFINITIONS(EventPublisher)
 
-	EventPublisher::EventPublisher(const Vector<EventSubscriber*>& subscriberList, std::mutex& mutex, bool deleteAfterPublishing) :
+	EventPublisher::EventPublisher(const Vector<EventSubscriber*>& subscriberList, bool deleteAfterPublishing) :
 		mSubscriberList(&subscriberList), mDelay(std::chrono::milliseconds::zero()),
-		mDeleteAfterPublishing(deleteAfterPublishing), mMutex(&mutex)
+		mDeleteAfterPublishing(deleteAfterPublishing)
 	{
 
 	}
 
 	EventPublisher::EventPublisher(const EventPublisher& otherEventPublisher) :
 		mSubscriberList(otherEventPublisher.mSubscriberList), mTimeEnqueued(otherEventPublisher.mTimeEnqueued),
-		mDelay(otherEventPublisher.mDelay), mDeleteAfterPublishing(otherEventPublisher.mDeleteAfterPublishing),
-		mMutex(otherEventPublisher.mMutex)
+		mDelay(otherEventPublisher.mDelay), mDeleteAfterPublishing(otherEventPublisher.mDeleteAfterPublishing)
 	{
 		
 	}
@@ -29,7 +28,6 @@ namespace FieaGameEngine
 			mTimeEnqueued = otherEventPublisher.mTimeEnqueued;
 			mDelay = otherEventPublisher.mDelay;
 			mDeleteAfterPublishing = otherEventPublisher.mDeleteAfterPublishing;
-			mMutex = otherEventPublisher.mMutex;
 		}
 
 		return *this;
@@ -37,14 +35,12 @@ namespace FieaGameEngine
 
 	EventPublisher::EventPublisher(EventPublisher&& previousEventPublisher) :
 		mSubscriberList(previousEventPublisher.mSubscriberList), mTimeEnqueued(std::move(previousEventPublisher.mTimeEnqueued)),
-		mDelay(std::move(previousEventPublisher.mDelay)), mDeleteAfterPublishing(previousEventPublisher.mDeleteAfterPublishing),
-		mMutex(previousEventPublisher.mMutex)
+		mDelay(std::move(previousEventPublisher.mDelay)), mDeleteAfterPublishing(previousEventPublisher.mDeleteAfterPublishing)
 	{
 		previousEventPublisher.mSubscriberList = nullptr;
 		previousEventPublisher.mTimeEnqueued = std::chrono::high_resolution_clock::time_point();
 		previousEventPublisher.mDelay = std::chrono::milliseconds::zero();
 		previousEventPublisher.mDeleteAfterPublishing = true;
-		previousEventPublisher.mMutex = nullptr;
 	}
 
 	EventPublisher& EventPublisher::operator=(EventPublisher&& previousEventPublisher)
@@ -56,13 +52,11 @@ namespace FieaGameEngine
 
 			mSubscriberList = previousEventPublisher.mSubscriberList;
 			mDeleteAfterPublishing = previousEventPublisher.mDeleteAfterPublishing;
-			mMutex = previousEventPublisher.mMutex;
 
 			previousEventPublisher.mSubscriberList = nullptr;
 			previousEventPublisher.mTimeEnqueued = std::chrono::high_resolution_clock::time_point();
 			previousEventPublisher.mDelay = std::chrono::milliseconds::zero();
 			previousEventPublisher.mDeleteAfterPublishing = true;
-			previousEventPublisher.mMutex = nullptr;
 		}
 
 		return *this;
@@ -91,26 +85,9 @@ namespace FieaGameEngine
 
 	void EventPublisher::Deliver() const
 	{
-		Vector<EventSubscriber*> buffer;
-
+		for (EventSubscriber* subscriber : *mSubscriberList)
 		{
-			std::lock_guard<std::mutex> lock(*mMutex);
-			buffer = *mSubscriberList;
-		}
-
-		std::vector<std::future<void>> futures;
-
-		for (EventSubscriber* subscriber : buffer)
-		{
-			futures.emplace_back(std::async([this, subscriber]
-			{
-				subscriber->Notify(*this);
-			}));
-		}
-
-		for (std::future<void>& result : futures)
-		{
-			result.get();
+			subscriber->Notify(*this);
 		}
 	}
 

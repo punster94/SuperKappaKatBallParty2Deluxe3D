@@ -116,9 +116,28 @@ namespace FieaGameEngine
 		return action;
 	}
 
+	Datum& Entity::Entities()
+	{
+		return const_cast<Datum&>(const_cast<const Entity*>(this)->Entities());
+	}
+
+	const Datum& Entity::Entities() const
+	{
+		const Datum* datum = Find(Sector::sSectorEntitiesKey);
+		assert(datum != nullptr);
+		return *datum;
+	}
+
 	void Entity::Update(WorldState& worldState)
 	{
 		worldState.mEntity = this;
+
+		Datum& entities = Entities();
+
+		for (std::uint32_t i = 0; i < entities.Size(); ++i)
+		{
+			static_cast<Entity*>(&entities.Get<Scope&>(i))->Update(worldState);
+		}
 
 		Datum& actions = Actions();
 
@@ -179,6 +198,13 @@ namespace FieaGameEngine
 		{
 			renderable->Render(renderer);
 		}
+
+		Datum& entities = Entities();
+
+		for (std::uint32_t i = 0; i < entities.Size(); ++i)
+		{
+			static_cast<Entity*>(&entities.Get<Scope&>(i))->Render(renderer);
+		}
 	}
 
 	Scope* Entity::Copy() const
@@ -197,6 +223,7 @@ namespace FieaGameEngine
 
 		AddEmptyTable(Action::sActionsKey);
 		AddEmptyTable(Reaction::sReactionsKey);
+		AddEmptyTable(Sector::sSectorEntitiesKey);
 		AddEmptyString(sMeshesKey);
 	}
 
@@ -220,12 +247,23 @@ namespace FieaGameEngine
 		mName = otherEntity.mName;
 		mSector = nullptr;
 
+		mPosition = otherEntity.mPosition;
+		mRotation = otherEntity.mRotation;
+		mScale = otherEntity.mScale;
+
+		mPositionVec4 = otherEntity.mPositionVec4;
+		mRotationVec4 = otherEntity.mRotationVec4;
+		mScaleVec4 = otherEntity.mScaleVec4;
+
 		FixExternalAttributes();
 	}
 
 	void Entity::FixExternalAttributes()
 	{
 		Append(sEntityNameKey).SetStorage(&mName, 1);
+		Append(sTransformPositionKey).SetStorage(&mPositionVec4, 1);
+		Append(sTransformRotationKey).SetStorage(&mRotationVec4, 1);
+		Append(sTransformScaleKey).SetStorage(&mScaleVec4, 1);
 	}
 
 	void Entity::Initialize(WorldState& worldState)
@@ -242,6 +280,14 @@ namespace FieaGameEngine
 		mScale.y = mScaleVec4.y;
 		mScale.z = mScaleVec4.z;
 
+		worldState.mEntity = this;
+
+		Datum& entities = Entities();
+
+		for (std::uint32_t i = 0; i < entities.Size(); ++i)
+		{
+			entities.Get<Scope&>(i).As<Entity>()->Initialize(worldState);
+		}
 	}
 
 	const std::string Entity::sEntityNameKey = "name";

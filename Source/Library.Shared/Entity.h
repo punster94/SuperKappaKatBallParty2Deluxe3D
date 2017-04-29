@@ -134,6 +134,10 @@ namespace FieaGameEngine
 		 */
 		Action* CreateAction(const std::string& className, const std::string& instanceName);
 
+		Datum& Entities();
+
+		const Datum& Entities() const;
+
 		/** Entity Update
 		 *	Updates the components of this Entity and notifies the worldState that this is the current Entity.
 		 *	@param worldState a WorldState reference containing the data of the world at this moment in time.

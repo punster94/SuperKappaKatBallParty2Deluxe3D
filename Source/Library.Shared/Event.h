@@ -97,8 +97,6 @@ namespace FieaGameEngine
 		 *	A static Vector of EventSubscriber pointers that contains the subscribers to this Event type.
 		 */
 		static Vector<EventSubscriber*> sSubscribers;
-
-		static std::mutex sMutex;
 	};
 }
 

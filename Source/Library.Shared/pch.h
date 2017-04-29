@@ -20,3 +20,4 @@
 
 // External libraries
 #include "expat.h"
+#include <SFML/Audio.hpp>

@@ -105,22 +105,22 @@ namespace FieaGameEngine
 	/** CreateFactory Macro
 	 *	Generates the Factory class used to create the given concrete product.
 	 */
-#define ConcreteFactory(AbstractProductT, ConcreteProductT)						\
-	class ConcreteProductT##Factory : public Factory<AbstractProductT>			\
-	{																			\
-	public:																		\
-		ConcreteProductT##Factory() { Add(this); }								\
-		~ConcreteProductT##Factory() { Remove(this); }							\
-		virtual const std::string GetClassName(void) const						\
-		{																		\
-			return #ConcreteProductT;											\
-		}																		\
-		virtual AbstractProductT* Create(void) const							\
-		{																		\
-			AbstractProductT* product = new ConcreteProductT();					\
-			assert(product != NULL);											\
-			return product;														\
-		}																		\
+#define ConcreteFactory(AbstractProductT, ConcreteProductT)								\
+	class ConcreteProductT##Factory : public FieaGameEngine::Factory<AbstractProductT>	\
+	{																					\
+	public:																				\
+		ConcreteProductT##Factory() { Add(this); }										\
+		~ConcreteProductT##Factory() { Remove(this); }									\
+		virtual const std::string GetClassName(void) const								\
+		{																				\
+			return #ConcreteProductT;													\
+		}																				\
+		virtual AbstractProductT* Create(void) const									\
+		{																				\
+			AbstractProductT* product = new ConcreteProductT();							\
+			assert(product != NULL);													\
+			return product;																\
+		}																				\
 	}
 
 #pragma endregion ConcreteFactory Macro Definition

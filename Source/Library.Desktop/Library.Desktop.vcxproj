@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asset.h" />
+    <ClInclude Include="KatMusic.h" />
+    <ClInclude Include="KatSound.h" />
     <ClInclude Include="MeshGeometry.h" />
     <ClInclude Include="MeshDirectX.h" />
     <ClInclude Include="MeshOpenGL.h" />
@@ -36,6 +38,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Asset.cpp" />
+    <ClCompile Include="KatMusic.cpp" />
+    <ClCompile Include="KatSound.cpp" />
     <ClCompile Include="MeshDirectX.cpp" />
     <ClCompile Include="MeshGeometry.cpp" />
     <ClCompile Include="MeshOpenGL.cpp" />

@@ -1,4 +1,7 @@
 #include "pch.h"
+#include <experimental/filesystem>
+
+#include "InputSubscriber.h"
 
 using namespace FieaGameEngine;
 
@@ -8,6 +11,7 @@ namespace KatBall
 	static Camera* sCamera;
 	static Gamepad* sGamepad1;
 	static Gamepad* sGamepad2;
+	static InputSubscriber* sInputSubscriber;
 
 	static Quad* sQuad;
 
@@ -33,6 +37,30 @@ namespace KatBall
 		mRenderer->Init();
 		LoadAssets();
 
+		Sector* sector = mWorld.CreateSector("");
+
+		ScopeParseHelper::ScopeSharedData sharedData;
+		XmlParseMaster master(&sharedData);
+		ScopeParseHelper helper;
+
+		master.AddHelper(&helper);
+
+		EntityFactory ef;
+		RigidBodyFactory rbf;
+		KatMusicFactory kmf;
+
+		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
+
+		for(std::experimental::filesystem::directory_entry path : directoryIt)
+		{
+			master.ParseFromFile(path.path().string());
+
+			Entity* entity = sharedData.mScope->Copy()->As<Entity>();
+			entity->SetSector(*sector);
+		}
+
+		mWorld.Initialize(mWorldState);
+
 		// DEBUG
 		sQuad = new Quad();
 		sQuad->SetShaders(Asset::Get(SHADER_QUAD_VERTEX)->As<VertexShader>(),
@@ -45,17 +73,13 @@ namespace KatBall
 		sDummy = new TestDummy();
 		// END
 
-		mWorld.Initialize(mWorldState);
-
 		sCamera = new Camera();
 
 		sGamepad1 = new Gamepad(0);
 		sGamepad2 = new Gamepad(1);
+		sInputSubscriber = new InputSubscriber();
 		sCamera->SetPosition(glm::vec3(0.0f, 0.0f, -12.0f));
 		mRenderer->SetCamera(sCamera);
-
-		mBackgroundMusic.SetMusicFile("Retribution.ogg");
-		mBackgroundMusic.Play();
 	}
 
 	void Game::Update()
@@ -88,8 +112,10 @@ namespace KatBall
 		float rAnalogX;
 		if (sGamepad1->Refresh())
 		{
-			if (sGamepad1->IsPressed(XINPUT_GAMEPAD_A))
+			if (sGamepad1->GetState()->wButtons != 0)
 			{
+				Event<Gamepad>* event = new Event<Gamepad>(*sGamepad1);
+				mWorld.Enqueue(*event, mWorldState, 0);
 				lAnalogY = sGamepad1->leftStickY;
 				rAnalogY = sGamepad1->rightStickY;
 				lAnalogX = sGamepad1->leftStickX;

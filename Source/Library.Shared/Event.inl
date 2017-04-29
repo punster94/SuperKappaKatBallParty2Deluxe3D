@@ -5,7 +5,7 @@ namespace FieaGameEngine
 
 	template <typename T>
 	Event<T>::Event(const T& message, bool deleteAfterPublishing) :
-		EventPublisher(sSubscribers, sMutex, deleteAfterPublishing), mMessage(message)
+		EventPublisher(sSubscribers, deleteAfterPublishing), mMessage(message)
 	{
 
 	}
@@ -53,8 +53,6 @@ namespace FieaGameEngine
 	template <typename T>
 	void Event<T>::Subscribe(EventSubscriber& subscriber)
 	{
-		std::lock_guard<std::mutex> lock(sMutex);
-
 		if (sSubscribers.Find(&subscriber) == sSubscribers.end())
 		{
 			sSubscribers.PushBack(&subscriber);
@@ -64,16 +62,12 @@ namespace FieaGameEngine
 	template <typename T>
 	void Event<T>::Unsubscribe(EventSubscriber& subscriber)
 	{
-		std::lock_guard<std::mutex> lock(sMutex);
-
 		sSubscribers.Remove(&subscriber);
 	}
 
 	template <typename T>
 	void Event<T>::UnsubscribeAll()
 	{
-		std::lock_guard<std::mutex> lock(sMutex);
-
 		sSubscribers.Clear();
 		sSubscribers.ShrinkToFit();
 		sSubscribers.Reserve(sSubscribers.defaultCapacity);
@@ -87,7 +81,4 @@ namespace FieaGameEngine
 
 	template <typename T>
 	Vector<EventSubscriber*> Event<T>::sSubscribers;
-
-	template <typename T>
-	std::mutex Event<T>::sMutex;
 }
