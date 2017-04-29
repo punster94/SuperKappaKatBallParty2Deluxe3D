@@ -17,6 +17,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)HUD.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PowerupSpawner.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ScoreAction.cpp">
+      <Filter>Game Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
@@ -38,6 +41,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)HUD.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PowerupSpawner.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ScoreAction.h">
+      <Filter>Game Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -45,6 +51,9 @@
     </Filter>
     <Filter Include="Game Entities">
       <UniqueIdentifier>{7570848a-b34d-4350-8425-7922de149f97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Actions">
+      <UniqueIdentifier>{7ef8232c-5c07-427d-af32-4db53d28d519}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -23,6 +23,7 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)RigidBody.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PowerupSpawner.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ScoreAction.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestDummy.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +35,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)RigidBody.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PowerupSpawner.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ScoreAction.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestDummy.h" />
   </ItemGroup>
 </Project>
