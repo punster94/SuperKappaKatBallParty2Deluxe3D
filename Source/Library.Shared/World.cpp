@@ -11,6 +11,16 @@ namespace FieaGameEngine
 		Attributed(), mName(name)
 	{
 		InitializeSignatures();
+
+		mCollisionConfiguration = new btDefaultCollisionConfiguration();
+
+		mDispatcher = new btCollisionDispatcher(mCollisionConfiguration);
+
+		mOverlappingPairCache = new btDbvtBroadphase();
+
+		mSolver = new btSequentialImpulseConstraintSolver;
+
+		mDynamicsWorld = new btDiscreteDynamicsWorld(mDispatcher, mOverlappingPairCache, mSolver, mCollisionConfiguration);
 	}
 
 	World::World(const World& otherWorld) :
@@ -174,6 +184,22 @@ namespace FieaGameEngine
 	void World::FixExternalAttributes()
 	{
 		Append(sWorldNameKey).SetStorage(&mName, 1);
+	}
+
+	void World::Initialize()
+	{
+		Datum& sectors = Sectors();
+
+		for (std::uint32_t i = 0; i < sectors.Size(); ++i)
+		{
+			static_cast<Sector*>(&sectors.Get<Scope&>(i))->Initialize();
+		}
+	}
+
+	void World::RegisterRigidBody(btCollisionShape& shape, btRigidBody& body)
+	{
+		mCollisionShapes.push_back(&shape);
+		mDynamicsWorld->addRigidBody(&body);
 	}
 
 	const std::string World::sWorldNameKey = "name";

@@ -1,7 +1,5 @@
 #include "pch.h"
 
-#include "Gamepad.h"
-
 namespace KatBall
 {
 	XINPUT_GAMEPAD* Gamepad::GetState()
