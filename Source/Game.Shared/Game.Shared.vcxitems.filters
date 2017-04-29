@@ -8,6 +8,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)RigidBody.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PowerupSpawner.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestDummy.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Powerup.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Constants.h" />
@@ -18,5 +19,14 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)RigidBody.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PowerupSpawner.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestDummy.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Powerup.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{e3da0b12-a3f9-4661-bdbd-5931975f4109}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Entities">
+      <UniqueIdentifier>{7570848a-b34d-4350-8425-7922de149f97}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
