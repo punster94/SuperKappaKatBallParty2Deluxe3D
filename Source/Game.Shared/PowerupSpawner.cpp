@@ -6,8 +6,6 @@
 
 namespace KatBall
 {
-	using namespace FieaGameEngine;
-
 	PowerupSpawner::PowerupSpawner() :
 		mSpawnLocation(glm::vec4(0)), mSpawnChance(0.0f)
 	{
@@ -17,7 +15,6 @@ namespace KatBall
 	void PowerupSpawner::Initialize(FieaGameEngine::WorldState& worldState)
 	{
 		Entity::Initialize(worldState);
-		//mRigidBody = FindChildEntityByName(sBallColliderKey)->As<RigidBody>();
 		mMeshEntity = FindChildEntityByName(sBallMeshKey)->As<MeshEntity>();
 	}
 
