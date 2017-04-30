@@ -26,6 +26,8 @@ const string HUD::sTimerLocationYKey = "timer_location_y";
 const string HUD::sTimeRemainingKey = "time_remaining";
 const string HUD::sTimerColorKey = "timer_color";
 
+const string HUD::sTimerKey = "timer";
+
 const std::string HUD::sNumbersIcons[] =
 {
 	TEXTURE_NUMBER_ZERO,
@@ -102,13 +104,15 @@ void HUD::InitializeSignatures()
 	AddExternalAttribute(sTimerLocationYKey, &mTimerLocationY, 1);
 	AddExternalAttribute(sTimeRemainingKey, &mTimeRemaining, 1);
 	AddExternalAttribute(sTimerColorKey, &mTimerColor, 1);
+
+	AddExternalAttribute(sTimerKey, &mTimer, 1);
 }
 
 void HUD::Initialize(WorldState& worldState)
 {
 	Entity::Initialize(worldState);
 
-	mTimer->Initialize(
+	static_cast<Timer*>(mTimer)->Initialize(
 		mTimerColor,			// timer color
 		mTimeRemaining,			// time remaining
 		mTimerLocationX,		// origin point
@@ -134,7 +138,7 @@ void HUD::Update(WorldState& worldState)
 {
 	Entity::Update(worldState);
 
-	mTimer->Update(worldState);
+	static_cast<Timer*>(mTimer)->Update(worldState);
 	
 	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
 	{
@@ -149,7 +153,7 @@ void HUD::Render(Renderer* renderer)
 	// turning off depth testing to prevent z-fighting
 	renderer->SetDepthTesting(false);
 
-	mTimer->Render(renderer);
+	static_cast<Timer*>(mTimer)->Render(renderer);
 
 	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
 	{

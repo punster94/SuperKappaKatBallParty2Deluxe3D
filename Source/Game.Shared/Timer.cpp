@@ -94,6 +94,12 @@ namespace KatBall
 		}
 	}
 
+	void Timer::Reset()
+	{
+		mTimeRemaining = mDefaultTimeRemaining;
+		mIsRunning = true;
+	}
+
 	void Timer::SetTimerRenderables()
 	{
 		uint32_t time = mTimeRemaining;

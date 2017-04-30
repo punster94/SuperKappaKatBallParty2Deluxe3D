@@ -63,7 +63,13 @@ void ActionRoundWinner::Update(class WorldState& worldState)
 
 				matchWinner = i;
 			}
+			
+			score->Reset();
 		}
+
+		Datum* timerDatum = Search(HUD::sTimerKey);
+		Timer* timer = static_cast<Timer*>(timerDatum->Get<RTTI*&>());
+		timer->Reset();
 
 		// match winner declared -- post event
 		if(matchWinner != -1)

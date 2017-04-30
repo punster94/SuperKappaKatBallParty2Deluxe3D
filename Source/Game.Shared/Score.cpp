@@ -61,7 +61,7 @@ void Score::Initialize(const string& playerIcon, const vec4& color, float x, flo
 	}
 
 	// init score and set digits
-	mScore = 0;
+	mScore = 10;
 	SetDigitTextures();
 
 	mIsWinning = false;
@@ -97,11 +97,20 @@ void Score::SetDigitTextures()
 void Score::UpdateNumWins()
 {
 	++mNumWins;
+	if (mNumWins < ROUNDS_TO_WIN)
+	{
+		mRenderables[2]->SetTexture(Asset::Get(HUD::sPlayerWinsIcons[mNumWins])->As<Texture>());
+	}
 }
 
 void Score::UpdateScore()
 {
 	++mScore;
+}
+
+void KatBall::Score::Reset()
+{
+	mScore = 0;
 }
 
 void Score::SetIsWinning(bool isWinning)

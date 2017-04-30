@@ -42,7 +42,7 @@ namespace KatBall
 		glm::vec4 mTimerColor;
 
 		RTTI* mScores[NUM_PLAYERS];
-		Timer* mTimer;
+		RTTI* mTimer;
 
 	public:
 
@@ -62,6 +62,8 @@ namespace KatBall
 		static const std::string sTimerLocationYKey;
 		static const std::string sTimeRemainingKey;
 		static const std::string sTimerColorKey;
+
+		static const std::string sTimerKey;
 
 		const static std::string sNumbersIcons[];
 		const static std::string sPlayerIcons[];

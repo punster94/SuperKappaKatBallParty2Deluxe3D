@@ -17,6 +17,7 @@ namespace KatBall
 		void Initialize(const glm::vec4& color, float time, float posX, float posY, float width, float height);
 		void Update(class FieaGameEngine::WorldState& state);
 		void Render(FieaGameEngine::Renderer* renderer);
+		void Reset();
 
 	private:
 

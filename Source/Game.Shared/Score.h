@@ -21,6 +21,7 @@ namespace KatBall
 
 		void UpdateNumWins();
 		void UpdateScore();
+		void Reset();
 
 		void SetIsWinning(bool isWinning);
 		std::uint32_t GetNumWins() const;
