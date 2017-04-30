@@ -2,6 +2,7 @@
 #pragma once
 
 #include "Entity.h"
+#include "Score.h"
 
 namespace KatBall
 {
@@ -17,6 +18,8 @@ namespace KatBall
 		virtual ~HUD();
 
 		virtual void Initialize(FieaGameEngine::WorldState& worldState) override;
+		virtual void Update(FieaGameEngine::WorldState& worldState) override;
+		virtual void Render(FieaGameEngine::Renderer* renderer) override;
 
 	protected:
 
@@ -24,16 +27,18 @@ namespace KatBall
 
 	private:
 
-		std::int32_t mScores[NUM_HUD_SLOTS];
-		glm::vec4 mLocations[NUM_HUD_SLOTS];
-		float mDimensions;
+		float mQuadDimensions;
+		glm::vec4 mScoreLocations[NUM_HUD_SLOTS];
+
+		RTTI* mScores[NUM_HUD_SLOTS];
 
 	public:
 
-		static const std::string sScoresKey;
-		static const std::string sLocationsKey;
-		static const std::string sDimensionsKey;
+		static const std::string sScoreLocationsKey;
+		static const std::string sQuadDimensionsKey;
+
 		static const std::string sPlayerIDKey;
+		static const std::string sScoresKey;
 
 		static const std::string sScoreEventSubtype;
 	};
