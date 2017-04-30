@@ -38,8 +38,6 @@ namespace FieaGameEngine
 
 		void SetTexture(Texture* texture);
 
-		
-
 	private:
 
 		void UpdateWorldMatrix(CBMesh& meshConstants);

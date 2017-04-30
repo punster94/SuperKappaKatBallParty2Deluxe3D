@@ -8,12 +8,6 @@
 // Constant Buffer Variables
 //--------------------------------------------------------------------------------------
 
-cbuffer cbPerMesh : register(b1)
-{
-	matrix World;
-}
-
-//--------------------------------------------------------------------------------------
 struct VS_INPUT
 {
     float4 Position : POSITION;

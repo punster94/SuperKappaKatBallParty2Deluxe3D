@@ -6,6 +6,13 @@
 
 namespace FieaGameEngine
 {
+	enum class DepthMode
+	{
+		MODE_OPAQUE = 0,
+		MODE_UI = 1,
+		MODE_TRANSLUCENT = 2
+	};
+
 	/**
 	*	Abstract base class for a renderer.
 	*	Handles global graphics-related tasks.
@@ -51,7 +58,7 @@ namespace FieaGameEngine
 		*/
 		virtual void Shutdown() = 0;
 
-		virtual void SetDepthTesting(bool enabled);
+		virtual void SetDepthMode(DepthMode mode);
 
 		/**
 		*	Renderers each renderable entity in a given World.
@@ -72,6 +79,8 @@ namespace FieaGameEngine
 
 		void SetLightDirection(const glm::vec4& lightDirection);
 
+		std::int32_t GetCurrentRenderPass();
+
 	protected:
 
 		static const glm::vec4 sDefaultLightDirection;
@@ -89,5 +98,7 @@ namespace FieaGameEngine
 		glm::vec4 mLightDirection;
 
 		glm::vec4 mAmbientLight;
+
+		std::int32_t mCurrentRenderPass;
 	};
 }

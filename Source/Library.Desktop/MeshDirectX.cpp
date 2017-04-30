@@ -38,7 +38,8 @@ namespace FieaGameEngine
 
 	void MeshDirectX::Render(Renderer* renderer)
 	{
-		if (mVisible)
+		if (mVisible &&
+			mRenderPass == renderer->GetCurrentRenderPass())
 		{
 			assert(mMeshGeometry != nullptr);
 			assert(mVertexShader != nullptr);

@@ -9,8 +9,9 @@
 			<float name='mass' value='50.0'/>
 		</entity>
 		<entity class='MeshEntity' name='ball mesh'>
-			<string name='mesh filename' value='flat_sphere.obj'/>
-			<string name='texture filename' value='mankey_ball.bmp'/>
+            <string name='mesh filename' value='smooth_sphere.obj'/>
+            <string name='texture filename' value='ball.png'/>
+            <integer name='render pass' value='1'/>
 		</entity>
 	</entity>
 </entity>
