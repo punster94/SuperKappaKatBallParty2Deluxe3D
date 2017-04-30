@@ -39,24 +39,24 @@ namespace KatBall
 	
 	void Timer::SetTimerPosition()
 	{
-		Quad background;
-		background.SetTexture(Asset::Get(TEXTURE_MANKEY_BALL_PNG)->As<Texture>());
-		background.SetRect(mPosX, mPosY, mWidth, mHeight);
-		background.SetColor(0, 0, 0, 1.0f);
-		Quad firstDigit;
-		firstDigit.SetRect(mPosX + .2f, mPosY, .1f, .2f);
-		background.SetColor(1.0f, 0, 0, 1.0f);
-		Quad secondDigit;
-		secondDigit.SetRect(mPosX + .1f, mPosY, .1f, .2f);
-		background.SetColor(0, 1.0f, 0, 1.0f);
-		Quad thirdDigit;
-		thirdDigit.SetRect(mPosX, mPosY, .1f, .2f);
-		background.SetColor(0, 0, 1.0f, 1.0f);
+		Quad* background = new Quad();
+		background->SetTexture(Asset::Get(TEXTURE_MANKEY_BALL_PNG)->As<Texture>());
+		background->SetRect(mPosX, mPosY, mWidth, mHeight);
+		background->SetColor(1, 1, 1, 1.0f);
+		Quad* firstDigit = new Quad();
+		firstDigit->SetRect(mPosX + .2f, mPosY, .1f, .2f);
+		firstDigit->SetColor(.83f, .686f, .215f, 1.0f);
+		Quad* secondDigit = new Quad();
+		secondDigit->SetRect(mPosX + .1f, mPosY, .1f, .2f);
+		secondDigit->SetColor(.83f, .686f, .215f, 1.0f);
+		Quad* thirdDigit = new Quad();
+		thirdDigit->SetRect(mPosX, mPosY, .1f, .2f);
+		thirdDigit->SetColor(.83f, .686f, .215f, 1.0f);
 
-		mTimerRenderables.PushBack(background);
-		mTimerRenderables.PushBack(firstDigit);
-		mTimerRenderables.PushBack(secondDigit);
-		mTimerRenderables.PushBack(thirdDigit);
+		mTimerRenderables.PushBack(*background);
+		mTimerRenderables.PushBack(*firstDigit);
+		mTimerRenderables.PushBack(*secondDigit);
+		mTimerRenderables.PushBack(*thirdDigit);
 
 		VertexShader* vs = Asset::Get(SHADER_QUAD_VERTEX)->As<VertexShader>();
 		PixelShader* ps = Asset::Get(SHADER_QUAD_PIXEL)->As<PixelShader>();

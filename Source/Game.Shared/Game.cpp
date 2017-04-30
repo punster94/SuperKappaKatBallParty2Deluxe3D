@@ -84,7 +84,7 @@ namespace KatBall
 		mRenderer->AddViewRenderable(*sQuad);
 
 		sTimer = new Timer();
-		//sTimer->Initialize(200.0f, -.9f, .7f, .5f, .25f);
+		sTimer->Initialize(200.0f, -.9f, .7f, .5f, .25f);
 		
 		sDummy = new TestDummy();
 		// END
@@ -103,7 +103,7 @@ namespace KatBall
 		mGameClock.UpdateGameTime(mWorldState.mGameTime);
 
 		mWorld.Update(mWorldState);
-		//sTimer->Update(mWorldState);
+		sTimer->Update(mWorldState);
 
 		 // DEBUG
 		sDummy->Update(mWorldState);
@@ -114,7 +114,9 @@ namespace KatBall
 		
 		// DEBUG
 		sDummy->Render(mRenderer);
+		mRenderer->SetDepthTesting(false);
 		sTimer->Render(mRenderer);
+		mRenderer->SetDepthTesting(true);
 		// END
 
 		mRenderer->EndRenderFrame();
