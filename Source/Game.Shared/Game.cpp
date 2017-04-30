@@ -9,6 +9,7 @@
 #include "Timer.h"
 #include "KatMusic.h"
 #include "KatSound.h"
+#include "PowerupSpawner.h"
 
 using namespace FieaGameEngine;
 
@@ -57,6 +58,7 @@ namespace KatBall
 		ReactionAttributedFactory raf;
 		QuadEntityFactory qef;
 		PlayerFactory pf;
+		PowerupSpawnerFactory psf;
 
 		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
 
@@ -156,6 +158,19 @@ namespace KatBall
 		if (GetAsyncKeyState(VK_UP))
 		{
 			deltaRot += glm::vec3(-cameraAngSpeed, 0.0f, 0.0f);
+		}
+
+		if (GetAsyncKeyState(VK_SPACE))
+		{
+			Datum& entities = mWorld.Sectors().Get<Scope&>(0).As<Sector>()->Entities();
+			for (uint32_t i = 0; i < entities.Size(); ++i)
+			{
+				if (entities.Get<Scope&>(i).Is(KatSound::TypeIdClass()))
+				{
+					static_cast<KatSound&>(entities.Get<Scope&>(i)).Play();
+					break;
+				}
+			}
 		}
 
 		sCamera->SetRelativePosition(cameraPos + deltaPos);

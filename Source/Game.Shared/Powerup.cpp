@@ -3,6 +3,8 @@
 
 namespace KatBall
 {
+	RTTI_DEFINITIONS(Powerup)
+
 	Powerup::Powerup(PowerupType type, std::float_t stat, glm::vec4 location) :
 		Entity(mName), mType(type), mLocation(location), mScaleIncrease(0), mLengthIncrease(0), mRotationSpeed(0)
 	{

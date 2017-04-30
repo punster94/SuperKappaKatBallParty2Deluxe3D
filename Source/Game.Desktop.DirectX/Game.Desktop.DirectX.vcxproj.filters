@@ -43,5 +43,8 @@
     <Xml Include="..\..\Contents\entities\BGM.xml">
       <Filter>Entities</Filter>
     </Xml>
+    <Xml Include="powerup.xml">
+      <Filter>Entities</Filter>
+    </Xml>
   </ItemGroup>
 </Project>
