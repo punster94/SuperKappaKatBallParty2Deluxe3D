@@ -61,12 +61,13 @@ namespace FieaGameEngine
 
 			CBMesh meshConstants;
 			UpdateWorldMatrix(meshConstants);
+			memcpy(&meshConstants.mColor, &mColor, sizeof(mColor));
 
 			directX->Context()->UpdateSubresource(mConstantBuffer, 0, nullptr, &meshConstants, 0, 0);
 
 			ID3D11Buffer* cbuffers[2] = { directX->GetGlobalCBuffer(), mConstantBuffer };
 			directX->Context()->VSSetConstantBuffers(0, 2, cbuffers);
-			directX->Context()->PSSetConstantBuffers(0, 1, cbuffers);
+			directX->Context()->PSSetConstantBuffers(0, 2, cbuffers);
 
 			directX->Context()->Draw(mMeshGeometry->GetFaces() * 3, 0U);
 		}

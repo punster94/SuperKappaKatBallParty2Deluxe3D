@@ -15,7 +15,7 @@ struct PS_INPUT
 //--------------------------------------------------------------------------------------
 float4 main( PS_INPUT input) : SV_Target
 {
-	float4 texColor = txDiffuse.Sample(samLinear, input.Texcoord);
+	float4 texColor = txDiffuse.Sample(samLinear, input.Texcoord) * MeshColor;
 	float intensity = max(0.0f, dot(input.Normal, -1.0f * LightDirection.xyz));
 
 	if (texColor.a < 0.05f)
