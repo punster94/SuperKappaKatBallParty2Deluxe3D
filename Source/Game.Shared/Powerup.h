@@ -2,13 +2,14 @@
 
 #include "Entity.h"
 #include "Kat.h"
-
-using namespace FieaGameEngine;
+#include "Player.h"
 
 namespace KatBall
 {
-	class Powerup final : public Entity
+	class Powerup final : public FieaGameEngine::Entity
 	{
+		RTTI_DECLARATIONS(Powerup, FieaGameEngine::Entity)
+
 	public:
 		enum PowerupType
 		{
