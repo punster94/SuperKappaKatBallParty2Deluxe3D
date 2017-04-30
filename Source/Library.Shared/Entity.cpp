@@ -11,7 +11,7 @@ namespace FieaGameEngine
 	RTTI_DEFINITIONS(Entity)
 
 		Entity::Entity(const std::string& name) :
-		Attributed(), mName(name), mSector(nullptr)
+		Attributed(), mName(name), mSector(nullptr), mScaleVec4(1.0f, 1.0f, 1.0f, 0.0f)
 	{
 		InitializeSignatures();
 	}

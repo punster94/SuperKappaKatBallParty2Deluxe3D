@@ -21,5 +21,6 @@
 #include "ScopeParseHelper.h"
 #include "WorldState.h"
 #include "Quad.h"
+#include "MeshEntity.h"
 
 #define GLM_FORCE_CXX98

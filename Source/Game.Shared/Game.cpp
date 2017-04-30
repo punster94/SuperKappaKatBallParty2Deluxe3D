@@ -57,6 +57,7 @@ namespace KatBall
 		HUDFactory hudFactory;
 		ScoreActionFactory scoreactionFactory;
 		// JUSTIN
+		MeshEntityFactory mef;
 
 		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
 

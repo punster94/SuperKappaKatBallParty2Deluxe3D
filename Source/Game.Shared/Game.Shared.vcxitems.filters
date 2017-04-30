@@ -8,15 +8,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)RigidBody.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PowerupSpawner.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestDummy.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MeshEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)InputSubscriber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Powerup.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)InputSubscriber.cpp">
-      <Filter>Subscribers</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ActionPunch.cpp">
-      <Filter>Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)HUD.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ScoreAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Constants.h" />
@@ -27,28 +21,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)RigidBody.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PowerupSpawner.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestDummy.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MeshEntity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)InputSubscriber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Powerup.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ActionPunch.h">
-      <Filter>Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)InputSubscriber.h">
-      <Filter>Subscribers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)HUD.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ScoreAction.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Core">
-      <UniqueIdentifier>{e3da0b12-a3f9-4661-bdbd-5931975f4109}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game Entities">
-      <UniqueIdentifier>{7570848a-b34d-4350-8425-7922de149f97}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actions">
-      <UniqueIdentifier>{7fa87e4e-48ab-4749-a2dc-c3aa07cfbce5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Subscribers">
-      <UniqueIdentifier>{5ac18544-5f8b-45a9-b46e-080db0a4f1d3}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>
