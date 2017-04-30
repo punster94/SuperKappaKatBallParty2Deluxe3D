@@ -1,5 +1,6 @@
 #include "pch.h"
 #include <experimental/filesystem>
+#include "KatMusic.h"
 
 #include "InputSubscriber.h"
 
