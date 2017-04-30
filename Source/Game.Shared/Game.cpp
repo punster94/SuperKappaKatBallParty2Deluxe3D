@@ -48,6 +48,7 @@ namespace KatBall
 		KatMusicFactory kmf;
 		MeshEntityFactory mef;
 		QuadEntityFactory qef;
+		PlayerFactory pf;
 
 		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
 
@@ -75,7 +76,8 @@ namespace KatBall
 
 		sCamera = new Camera();
 		sInputSubscriber = new InputSubscriber();
-		sCamera->SetPosition(glm::vec3(0.0f, 0.0f, -12.0f));
+		sCamera->SetPosition(glm::vec3(0.0f, 10.0f, -12.0f));
+		sCamera->SetRotation(glm::vec3(0.71f, 0.0f, 0.0f));
 		mRenderer->SetCamera(sCamera);
 	}
 

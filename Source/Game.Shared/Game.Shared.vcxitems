@@ -22,6 +22,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Powerup.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)QuadEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)RigidBody.cpp" />
@@ -36,6 +37,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Kat.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MeshEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Powerup.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)QuadEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)RigidBody.h" />

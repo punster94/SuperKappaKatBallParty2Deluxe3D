@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<entity class='Player' name='Baby'>
+	<vector name='position' value='-3.0,0.0,0.0,0.0'/>
+	<float name='movespeed' value='20.0'/>
+	<entity class='RigidBody' name='ball'>
+		<vector name='position' value='-3.0,0.0,0.0,0.0'/>
+		<string name='shape' value='sphere'/>
+		<vector name='dimensions' value='1.0,0.0,0.0,0.0'/>
+		<float name='mass' value='50.0'/>
+	</entity>
+	<entity class='MeshEntity' name='Ball'>
+		<vector name='position' value='-3.0,0.0,0.0,0.0'/>
+		<string name='mesh filename' value='flat_sphere.obj'/>
+		<string name='texture filename' value='mankey_ball.bmp'/>
+	</entity>
+</entity>

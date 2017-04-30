@@ -42,7 +42,7 @@ namespace KatBall
 	class Gamepad
 	{
 	public:
-		Gamepad(int controllerId) : mControllerId(controllerId), mDeadzoneX(0.05f), mDeadzoneY(0.02f) {}
+		Gamepad(int controllerId) : mControllerId(controllerId), mDeadzoneX(0.2f), mDeadzoneY(0.2f) {}
 		Gamepad(int controllerId, float dzX, float dzY) : mControllerId(controllerId), mDeadzoneX(dzX), mDeadzoneY(dzY) {}
 
 		float leftStickX;

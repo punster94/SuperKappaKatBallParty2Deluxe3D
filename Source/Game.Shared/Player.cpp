@@ -27,14 +27,14 @@ namespace KatBall
 
 		for (uint32_t i = 0; i < entities.Size(); ++i)
 		{
-			if (entities.Get<Scope*>(i)->Is(RigidBody::TypeIdClass()))
+			if (entities.Get<Scope&>(i).Is(RigidBody::TypeIdClass()))
 			{
-				mRigidBody = entities.Get<Scope*>(i)->As<RigidBody>();
+				mRigidBody = entities.Get<Scope&>(i).As<RigidBody>();
 			}
 
-			if (entities.Get<Scope*>(i)->Is(MeshEntity::TypeIdClass()))
+			if (entities.Get<Scope&>(i).Is(MeshEntity::TypeIdClass()))
 			{
-				mMeshEntity = entities.Get<Scope*>(i)->As<MeshEntity>();
+				mMeshEntity = entities.Get<Scope&>(i).As<MeshEntity>();
 			}
 		}
 
@@ -52,7 +52,7 @@ namespace KatBall
 
 		if (mGamepad->Refresh())
 		{
-			mRigidBody->mBody->applyCentralForce(btVector3(mMovementForce * mGamepad->leftStickX, mMovementForce * mGamepad->leftStickY, 0));
+			mRigidBody->mBody->applyCentralImpulse(btVector3(mMovementForce * mGamepad->leftStickX, 0, mMovementForce * mGamepad->leftStickY));
 		}
 
 		btTransform trans;
@@ -67,12 +67,14 @@ namespace KatBall
 
 	void Player::CopyPrivateDataMembers(const Player& otherPlayer)
 	{
+		mMovementForce = otherPlayer.mMovementForce;
 
+		FixExternalAttributes();
 	}
 
 	void Player::FixExternalAttributes()
 	{
-
+		Append(sMoveSpeedKey).SetStorage(&mMovementForce, 1);
 	}
 
 	void Player::InitializeSignatures()

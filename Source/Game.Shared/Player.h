@@ -49,7 +49,6 @@ namespace KatBall
 		static const std::string sMoveSpeedKey;
 
 		static std::int32_t sPlayerId;
-
 	};
 
 	ConcreteEntityFactory(Player);

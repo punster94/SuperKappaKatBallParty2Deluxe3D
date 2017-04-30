@@ -129,6 +129,7 @@ namespace FieaGameEngine
 
 		glm::vec3 position = mOwner->GetPosition();
 		glm::vec3 rotation = mOwner->GetRotation();
+		glm::vec3 scale = mOwner->GetScale();
 
 		position += mRelativePosition;
 
@@ -143,6 +144,8 @@ namespace FieaGameEngine
 		worldMatrix = worldMatrix * XMMatrixRotationY(rotation.y);
 		worldMatrix = worldMatrix * XMMatrixRotationX(rotation.x);
 		worldMatrix = worldMatrix * XMMatrixRotationZ(rotation.z);
+
+		worldMatrix = worldMatrix * XMMatrixScaling(scale.x, scale.y, scale.z);
 
 		meshConstants.mWorld = XMMatrixTranspose(worldMatrix);
 	}
