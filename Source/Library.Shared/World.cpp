@@ -131,6 +131,8 @@ namespace FieaGameEngine
 	{
 		worldState.mWorld = this;
 
+		mDynamicsWorld->stepSimulation(1.f / 60.f, 10);
+
 		Datum& actions = Actions();
 
 		for (std::uint32_t i = 0; i < actions.Size(); ++i)

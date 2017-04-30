@@ -25,6 +25,8 @@ namespace KatBall
 
 		virtual Scope* Copy() const override;
 
+		btRigidBody* mBody;
+
 	protected:
 
 		void InitializeSignatures();
@@ -40,8 +42,6 @@ namespace KatBall
 		btCollisionShape* mCollider;
 
 		btMotionState* mMotionState;
-
-		btRigidBody* mBody;
 
 		btTransform mTransform;
 

@@ -9,8 +9,6 @@ namespace KatBall
 {
 	static TestDummy* sDummy;
 	static Camera* sCamera;
-	static Gamepad* sGamepad1;
-	static Gamepad* sGamepad2;
 	static InputSubscriber* sInputSubscriber;
 
 	static Quad* sQuad;
@@ -76,9 +74,6 @@ namespace KatBall
 		// END
 
 		sCamera = new Camera();
-
-		sGamepad1 = new Gamepad(0);
-		sGamepad2 = new Gamepad(1);
 		sInputSubscriber = new InputSubscriber();
 		sCamera->SetPosition(glm::vec3(0.0f, 0.0f, -12.0f));
 		mRenderer->SetCamera(sCamera);
@@ -112,29 +107,7 @@ namespace KatBall
 		float rAnalogY;
 		float lAnalogX;
 		float rAnalogX;
-		if (sGamepad1->Refresh())
-		{
-			if (sGamepad1->GetState()->wButtons != 0)
-			{
-				Event<Gamepad>* event = new Event<Gamepad>(*sGamepad1);
-				mWorld.Enqueue(*event, mWorldState, 0);
-				lAnalogY = sGamepad1->leftStickY;
-				rAnalogY = sGamepad1->rightStickY;
-				lAnalogX = sGamepad1->leftStickX;
-				rAnalogX = sGamepad1->rightStickX;
-			}
-		}
-
-		if (sGamepad2->Refresh())
-		{
-			if (sGamepad2->IsPressed(XINPUT_GAMEPAD_A))
-			{
-				lAnalogY = sGamepad2->leftStickY;
-				rAnalogY = sGamepad2->rightStickY;
-				lAnalogX = sGamepad2->leftStickX;
-				rAnalogX = sGamepad2->rightStickX;
-			}
-		}
+		
 		// END
 	}
 

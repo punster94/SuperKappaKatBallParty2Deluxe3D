@@ -60,6 +60,8 @@ namespace KatBall
 		mConstructionInfo = new btRigidBody::btRigidBodyConstructionInfo(mMass, mMotionState, mCollider, mLocalIntertia);
 		mBody = new btRigidBody(*mConstructionInfo);
 
+		mBody->activate(true);
+
 		worldState.mWorld->RegisterRigidBody(*mCollider, *mBody);
 	}
 
