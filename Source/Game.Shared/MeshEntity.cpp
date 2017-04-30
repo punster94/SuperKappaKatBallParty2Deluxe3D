@@ -21,6 +21,8 @@ namespace KatBall
 
 	void MeshEntity::Initialize(FieaGameEngine::WorldState& worldState)
 	{
+		Entity::Initialize(worldState);
+
 		mMesh.SetOwner(*this);
 
 		if (Asset::Get(mMeshFileName) == nullptr)

@@ -9,6 +9,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PowerupSpawner.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestDummy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MeshEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)QuadEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)InputSubscriber.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Powerup.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Constants.h" />
@@ -20,5 +23,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PowerupSpawner.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestDummy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MeshEntity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)QuadEntity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)InputSubscriber.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Powerup.h" />
   </ItemGroup>
 </Project>
