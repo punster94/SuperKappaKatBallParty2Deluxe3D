@@ -5,15 +5,17 @@ using namespace FieaGameEngine;
 namespace KatBall
 {
 	RTTI_DEFINITIONS(RigidBody)
-	RigidBody::RigidBody() :
-		mMass(0.0f)
+
+	RigidBody::RigidBody(const std::string& name) :
+		Entity(name), mMass(0.0f)
 	{
-		mMesh.SetOwner(*this);
-		mMesh.SetMeshGeometry(Asset::Get(MESH_KAT)->As<MeshGeometry>());
-		mMesh.SetTexture(Asset::Get(TEXTURE_KAT)->As<Texture>());
-		mMesh.SetShaders(Asset::Get(SHADER_MESH_VERTEX)->As<VertexShader>(),
-			Asset::Get(SHADER_MESH_PIXEL)->As<PixelShader>());
-		AddRenderable(mMesh);
+		InitializeSignatures();
+	}
+
+	RigidBody::RigidBody(const RigidBody& otherRigidBody) :
+		Entity(otherRigidBody)
+	{
+		CopyPrivateDataMembers(otherRigidBody);
 	}
 
 	void RigidBody::InitializeSignatures()
@@ -36,12 +38,11 @@ namespace KatBall
 		mCollider = new btSphereShape(x);
 	}
 
-
 	void RigidBody::Initialize(WorldState& worldState)
 	{
 		Entity::Initialize(worldState);
 
-		(const_cast<RigidBody*>(this)->*sCreateColliders[sColliderTypeKey])(mColliderDimensions.x, mColliderDimensions.y, mColliderDimensions.z);
+		(const_cast<RigidBody*>(this)->*sCreateColliders[mColliderType])(mColliderDimensions.x, mColliderDimensions.y, mColliderDimensions.z);
 
 		mTransform.setIdentity();
 		mTransform.setOrigin(btVector3(mPosition.x, mPosition.y, mPosition.z));
@@ -56,16 +57,40 @@ namespace KatBall
 		}
 
 		mMotionState = new btDefaultMotionState(mTransform);
-		btRigidBody::btRigidBodyConstructionInfo rbInfo(mMass, mMotionState, mCollider, mLocalIntertia);
-		mBody = new btRigidBody(rbInfo);
+		mConstructionInfo = new btRigidBody::btRigidBodyConstructionInfo(mMass, mMotionState, mCollider, mLocalIntertia);
+		mBody = new btRigidBody(*mConstructionInfo);
+
+		mBody->activate(true);
 
 		worldState.mWorld->RegisterRigidBody(*mCollider, *mBody);
+	}
 
+	Scope* RigidBody::Copy() const
+	{
+		return new RigidBody(*this);
 	}
 
 	RigidBody::~RigidBody()
 	{
 
+	}
+
+	void RigidBody::CopyPrivateDataMembers(const RigidBody& otherRigidBody)
+	{
+		mColliderDimensions = otherRigidBody.mColliderDimensions;
+		mTransformLocalIntertia = otherRigidBody.mTransformLocalIntertia;
+		mMass = otherRigidBody.mMass;
+		mColliderType = otherRigidBody.mColliderType;
+
+		FixExternalAttributes();
+	}
+
+	void RigidBody::FixExternalAttributes()
+	{
+		Append(sColliderDimensionsKey).SetStorage(&mColliderDimensions, 1);
+		Append(sLocalIntertiaKey).SetStorage(&mTransformLocalIntertia, 1);
+		Append(sMassKey).SetStorage(&mMass, 1);
+		Append(sColliderTypeKey).SetStorage(&mColliderType, 1);
 	}
 
 	const std::string RigidBody::sColliderDimensionsKey = "dimensions";

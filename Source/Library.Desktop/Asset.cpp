@@ -40,7 +40,7 @@ namespace FieaGameEngine
 		return mName;
 	}
 
-	void Asset::Load(char* data, std::uint32_t size)
+	void Asset::Load(char* data, std::uint32_t size, const std::string& path)
 	{
 		data;
 		size;
@@ -75,7 +75,7 @@ namespace FieaGameEngine
 				return false;
 			}
 
-			asset->Load(fileData, fileSize);
+			asset->Load(fileData, fileSize, path);
 			sAssetMap[name] = asset;
 			
 			delete fileData;

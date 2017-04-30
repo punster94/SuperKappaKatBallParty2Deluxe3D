@@ -65,6 +65,7 @@ namespace FieaGameEngine
 
 			ID3D11Buffer* cbuffers[2] = { directX->GetGlobalCBuffer(), mConstantBuffer };
 			directX->Context()->VSSetConstantBuffers(0, 2, cbuffers);
+			directX->Context()->PSSetConstantBuffers(0, 1, cbuffers);
 
 			directX->Context()->Draw(mMeshGeometry->GetFaces() * 3, 0U);
 		}
@@ -126,9 +127,11 @@ namespace FieaGameEngine
 		assert(mOwner != nullptr);
 
 		XMMATRIX worldMatrix;
+		XMMATRIX normalMatrix;
 
 		glm::vec3 position = mOwner->GetPosition();
 		glm::vec3 rotation = mOwner->GetRotation();
+		glm::vec3 scale = mOwner->GetScale();
 
 		position += mRelativePosition;
 
@@ -137,6 +140,8 @@ namespace FieaGameEngine
 		worldMatrix = worldMatrix * XMMatrixRotationY(mRelativeRotation.y);
 		worldMatrix = worldMatrix * XMMatrixRotationX(mRelativeRotation.x);
 		worldMatrix = worldMatrix * XMMatrixRotationZ(mRelativeRotation.z);
+
+		worldMatrix = worldMatrix * XMMatrixScaling(scale.x, scale.y, scale.z);
 
 		worldMatrix = worldMatrix * XMMatrixTranslation(position.x, position.y, position.z);
 

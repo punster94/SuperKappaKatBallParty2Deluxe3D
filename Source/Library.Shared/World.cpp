@@ -21,6 +21,7 @@ namespace FieaGameEngine
 		mSolver = new btSequentialImpulseConstraintSolver;
 
 		mDynamicsWorld = new btDiscreteDynamicsWorld(mDispatcher, mOverlappingPairCache, mSolver, mCollisionConfiguration);
+		mDynamicsWorld->setGravity(btVector3(0.0f, -10.0f, 0.0f));
 	}
 
 	World::World(const World& otherWorld) :
@@ -131,6 +132,8 @@ namespace FieaGameEngine
 	{
 		worldState.mWorld = this;
 
+		mDynamicsWorld->stepSimulation(1.f / 60.f, 10);
+
 		Datum& actions = Actions();
 
 		for (std::uint32_t i = 0; i < actions.Size(); ++i)
@@ -188,6 +191,8 @@ namespace FieaGameEngine
 
 	void World::Initialize(WorldState& worldState)
 	{
+		worldState.mWorld = this;
+
 		Datum& sectors = Sectors();
 
 		for (std::uint32_t i = 0; i < sectors.Size(); ++i)

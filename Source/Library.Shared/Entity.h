@@ -134,6 +134,10 @@ namespace FieaGameEngine
 		 */
 		Action* CreateAction(const std::string& className, const std::string& instanceName);
 
+		Datum& Entities();
+
+		const Datum& Entities() const;
+
 		/** Entity Update
 		 *	Updates the components of this Entity and notifies the worldState that this is the current Entity.
 		 *	@param worldState a WorldState reference containing the data of the world at this moment in time.
@@ -144,7 +148,7 @@ namespace FieaGameEngine
 		*	Renders the Renderable objects of this Entity.
 		*	@param renderer The Renderer used to render the Renderable objects.
 		*/
-		void Render(Renderer* renderer);
+		virtual void Render(Renderer* renderer);
 
 		/** Entity Copy
 		 *	Creates a copy of this Entity as a Scope pointer.

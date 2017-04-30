@@ -12,7 +12,10 @@ namespace FieaGameEngine
 		KatMusic();
 		~KatMusic();
 
+		KatMusic(const KatMusic& otherKatMusic);
+
 		void Initialize(WorldState& worldState) override;
+		virtual FieaGameEngine::Scope* Copy() const override;
 		const std::string& GetMusicFile() const;
 		void SetMusicFile(const std::string& file);
 
@@ -31,6 +34,8 @@ namespace FieaGameEngine
 		std::string mMusicFileName;
 		std::int32_t mPlayOnAwake;
 		sf::Music mMusic;
+
+		void CopyPrivateDataMembers(const KatMusic& otherKatMusic);
 
 	public:
 		static const std::string MusicFolder;

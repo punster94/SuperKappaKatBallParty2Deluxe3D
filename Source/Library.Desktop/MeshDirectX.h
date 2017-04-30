@@ -20,6 +20,10 @@ namespace FieaGameEngine
 
 		RTTI_DECLARATIONS(MeshDirectX, Mesh)
 
+	private:
+
+		static D3D11_BLEND_DESC1* sBlendState;
+
 	public:
 		MeshDirectX();
 

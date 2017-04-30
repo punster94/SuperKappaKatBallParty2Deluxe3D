@@ -31,7 +31,7 @@ namespace FieaGameEngine
 
 		~MeshGeometry();
 
-		virtual void Load(char* data, std::uint32_t size) override;
+		virtual void Load(char* data, std::uint32_t size, const std::string& path) override;
 
 		std::uint32_t GetFaces() const;
 
