@@ -15,7 +15,7 @@ namespace KatBall
 		Score();
 		virtual ~Score();
 
-		void Initialize(const glm::vec4& color, float x, float y, float w, float h);
+		void Initialize(const std::string& playerIcon, const glm::vec4& color, float x, float y, float w, float h);
 		void Update(FieaGameEngine::WorldState& worldState);
 		void Render(FieaGameEngine::Renderer* renderer);
 
@@ -26,7 +26,7 @@ namespace KatBall
 		void SetDigitTextures();
 
 		std::uint32_t mScore;
-
+		std::uint32_t mNumWins;
 		FieaGameEngine::Vector<FieaGameEngine::Quad*> mRenderables;
 	};
 }

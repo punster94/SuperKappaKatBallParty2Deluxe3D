@@ -14,6 +14,9 @@ namespace KatBall
 	RTTI_DEFINITIONS(Timer)
 
 	const std::string Timer::sTimeUpEventSubtype = "timeup";
+	const float Timer::sNumberOffsetLeft = .05f;
+	const float Timer::sNumberOffsetBottom = .1f;
+	const float Timer::sNumberScaleFactor = .1f;
 
 	Timer::Timer()
 	{
@@ -35,17 +38,18 @@ namespace KatBall
 	void Timer::Initialize(const glm::vec4& color, float time, float posX, float posY, float width, float height)
 	{
 		// init quads
-		mTimerRenderables[0]->SetTexture(Asset::Get(TEXTURE_MANKEY_BALL_PNG)->As<Texture>());
-		mTimerRenderables[0]->SetRect(posX - 0.025f, posY - 0.025f, width * 3 + 0.05f, height + 0.05f);
+		mTimerRenderables[0]->SetTexture(Asset::Get(TEXTURE_TIMER_BACKGROUND)->As<Texture>());
+		//mTimerRenderables[0]->SetRect(posX - 0.025f, posY - 0.025f, width * 3 + 0.05f, height + 0.05f);
+		mTimerRenderables[0]->SetRect(posX, posY, width, height);
 		mTimerRenderables[0]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-		mTimerRenderables[1]->SetRect(posX + width + width, posY, width, height);
+		mTimerRenderables[1]->SetRect(posX + 2*sNumberOffsetLeft, posY + sNumberOffsetBottom, width * sNumberScaleFactor, height * sNumberScaleFactor * 1.5f);
 		mTimerRenderables[1]->SetColor(color);
 
-		mTimerRenderables[2]->SetRect(posX + width, posY, width, height);
+		mTimerRenderables[2]->SetRect(posX + sNumberOffsetLeft, posY + sNumberOffsetBottom, width* sNumberScaleFactor, height* sNumberScaleFactor * 1.5f);
 		mTimerRenderables[2]->SetColor(color);
 
-		mTimerRenderables[3]->SetRect(posX, posY, width, height);
+		mTimerRenderables[3]->SetRect(posX, posY + sNumberOffsetBottom, width* sNumberScaleFactor, height* sNumberScaleFactor * 1.5f);
 		mTimerRenderables[3]->SetColor(color);
 
 		// set shaders
@@ -99,7 +103,7 @@ namespace KatBall
 		uint32_t time = mTimeRemaining;
 		for (uint32_t i = 1; i < mTimerRenderables.Size(); ++i)
 		{
-			mTimerRenderables[i]->SetTexture(Asset::Get(HUD::sNumbersVector[time % 10])->As<Texture>());
+			mTimerRenderables[i]->SetTexture(Asset::Get(HUD::sNumbersIcons[time % 10])->As<Texture>());
 			time /= 10;
 		}
 	}

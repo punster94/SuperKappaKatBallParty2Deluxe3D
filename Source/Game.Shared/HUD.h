@@ -26,12 +26,15 @@ namespace KatBall
 
 	private:
 
-		float mQuadDimensionsX;
-		float mQuadDimensionsY;
+		float mScoreDimensionsX;
+		float mScoreDimensionsY;
 
 		glm::vec4 mScoreColors[NUM_PLAYERS];
 		float mScoreLocationsX[NUM_PLAYERS];
 		float mScoreLocationY;
+
+		float mTimerDimensionsX;
+		float mTimerDimensionsY;
 
 		float mTimerLocationX;
 		float mTimerLocationY;
@@ -43,8 +46,8 @@ namespace KatBall
 
 	public:
 
-		static const std::string sQuadDimensionsXKey;
-		static const std::string sQuadDimensionsYKey;
+		static const std::string sScoreDimensionsXKey;
+		static const std::string sScoreDimensionsYKey;
 		
 		static const std::string sScoreColorsKey;
 		static const std::string sScoreLocationsXKey;
@@ -52,12 +55,17 @@ namespace KatBall
 
 		static const std::string sScoresKey;
 
+		static const std::string sTimerDimensionsXKey;
+		static const std::string sTimerDimensionsYKey;
+
 		static const std::string sTimerLocationXKey;
 		static const std::string sTimerLocationYKey;
 		static const std::string sTimeRemainingKey;
 		static const std::string sTimerColorKey;
 
-		const static std::string sNumbersVector[];
+		const static std::string sNumbersIcons[];
+		const static std::string sPlayerIcons[];
+		const static std::string sPlayerWinsIcons[];
 	};
 
 	ConcreteFactory(FieaGameEngine::Entity, HUD);

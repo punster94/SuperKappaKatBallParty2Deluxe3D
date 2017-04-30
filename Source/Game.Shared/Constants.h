@@ -34,4 +34,13 @@
 #define TEXTURE_NUMBER_EIGHT "eight.png"
 #define TEXTURE_NUMBER_NINE "nine.png"
 
-#define TEXTURE_KAT_SCORE_IMAGE "mankey_ball.bmp"
+#define TEXTURE_PLAYER_ICON_ZERO  "GrumpyKat.png"
+#define TEXTURE_PLAYER_ICON_ONE	  "HappyKat.png"
+#define TEXTURE_PLAYER_ICON_TWO   "HelloKat.png"
+#define TEXTURE_PLAYER_ICON_THREE "TubbyKat.png"
+
+#define TEXTURE_SCORE_BAR "scorebar.png"
+#define TEXTURE_SCORE_BAR_ONE_WIN "scorebar_one_win.png"
+#define TEXTURE_SCORE_BAR_TWO_WINS "scorebar_two_wins.png"
+
+#define TEXTURE_TIMER_BACKGROUND "Timer_Background.png"

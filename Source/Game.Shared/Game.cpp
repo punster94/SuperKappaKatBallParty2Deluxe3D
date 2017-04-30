@@ -72,18 +72,6 @@ namespace KatBall
 
 		mWorld.Initialize(mWorldState);
 
-		// DEBUG
-		sQuad = new Quad();
-		sQuad->SetShaders(Asset::Get(SHADER_QUAD_VERTEX)->As<VertexShader>(),
-						  Asset::Get(SHADER_QUAD_PIXEL)->As<PixelShader>());
-		sQuad->SetRect(0.5f, 0.8f, 0.2f, 0.18f);
-		sQuad->SetTexture(Asset::Get(TEXTURE_MANKEY_BALL_PNG)->As<Texture>());
-		sQuad->SetColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
-		mRenderer->AddViewRenderable(*sQuad);
-		
-		sDummy = new TestDummy();
-		// END
-
 		sCamera = new Camera();
 		sInputSubscriber = new InputSubscriber();
 		sCamera->SetPosition(glm::vec3(0.0f, 10.0f, -12.0f));
@@ -97,31 +85,13 @@ namespace KatBall
 
 		mWorld.Update(mWorldState);
 
-		 // DEBUG
-		sDummy->Update(mWorldState);
-		// END
-
 		mRenderer->InitRenderFrame();
 		mRenderer->Render(mWorld);
-		
-		// DEBUG
-		sDummy->Render(mRenderer);
-		mRenderer->SetDepthTesting(false);
-		mRenderer->SetDepthTesting(true);
-		// END
 
 		mRenderer->EndRenderFrame();
 
 		// DEBUG
 		DebugUpdate();
-		// END
-
-		// DEBUG
-		float lAnalogY;
-		float rAnalogY;
-		float lAnalogX;
-		float rAnalogX;
-		
 		// END
 	}
 
@@ -209,7 +179,14 @@ namespace KatBall
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_SEVEN, TEXTURE_NUMBER_SEVEN, Asset::TYPE_TEXTURE);
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_EIGHT, TEXTURE_NUMBER_EIGHT, Asset::TYPE_TEXTURE);
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_NINE, TEXTURE_NUMBER_NINE, Asset::TYPE_TEXTURE);
-		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_KAT_SCORE_IMAGE, TEXTURE_KAT_SCORE_IMAGE, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_PLAYER_ICON_ZERO, TEXTURE_PLAYER_ICON_ZERO, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_PLAYER_ICON_ONE, TEXTURE_PLAYER_ICON_ONE, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_PLAYER_ICON_TWO, TEXTURE_PLAYER_ICON_TWO, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_PLAYER_ICON_THREE, TEXTURE_PLAYER_ICON_THREE, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_SCORE_BAR, TEXTURE_SCORE_BAR, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_SCORE_BAR_ONE_WIN, TEXTURE_SCORE_BAR_ONE_WIN, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_SCORE_BAR_TWO_WINS, TEXTURE_SCORE_BAR_TWO_WINS, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_TIMER_BACKGROUND, TEXTURE_TIMER_BACKGROUND, Asset::TYPE_TEXTURE);
 
 		// Vertex Shaders
 		Asset::Load(ASSET_DIRECTORY_SHADERS SHADER_MESH_VERTEX, SHADER_MESH_VERTEX, Asset::TYPE_VERTEX_SHADER);

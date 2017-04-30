@@ -9,8 +9,8 @@ using namespace glm;
 
 RTTI_DEFINITIONS(HUD)
 
-const string HUD::sQuadDimensionsXKey = "quad_dimensions_x";
-const string HUD::sQuadDimensionsYKey = "quad_dimensions_y";
+const string HUD::sScoreDimensionsXKey = "score_dimensions_x";
+const string HUD::sScoreDimensionsYKey = "score_dimensions_y";
 
 const string HUD::sScoreColorsKey = "score_colors";
 const string HUD::sScoreLocationsXKey = "score_locations_x";
@@ -18,12 +18,15 @@ const string HUD::sScoreLocationYKey = "score_location_y";
 
 const string HUD::sScoresKey = "scores";
 
+const string HUD::sTimerDimensionsXKey = "timer_dimensions_x";
+const string HUD::sTimerDimensionsYKey = "timer_dimensions_y";
+
 const string HUD::sTimerLocationXKey = "timer_location_x";
 const string HUD::sTimerLocationYKey = "timer_location_y";
 const string HUD::sTimeRemainingKey = "time_remaining";
 const string HUD::sTimerColorKey = "timer_color";
 
-const std::string HUD::sNumbersVector[] =
+const std::string HUD::sNumbersIcons[] =
 {
 	TEXTURE_NUMBER_ZERO,
 	TEXTURE_NUMBER_ONE,
@@ -35,6 +38,21 @@ const std::string HUD::sNumbersVector[] =
 	TEXTURE_NUMBER_SEVEN,
 	TEXTURE_NUMBER_EIGHT,
 	TEXTURE_NUMBER_NINE
+};
+
+const std::string HUD::sPlayerIcons[] =
+{
+	TEXTURE_PLAYER_ICON_ZERO,
+	TEXTURE_PLAYER_ICON_ONE,
+	TEXTURE_PLAYER_ICON_TWO,
+	TEXTURE_PLAYER_ICON_THREE
+};
+
+const std::string HUD::sPlayerWinsIcons[] =
+{
+	TEXTURE_SCORE_BAR,
+	TEXTURE_SCORE_BAR_ONE_WIN,
+	TEXTURE_SCORE_BAR_TWO_WINS
 };
 
 HUD::HUD(const string& name) :
@@ -67,8 +85,8 @@ void HUD::InitializeSignatures()
 	Entity::InitializeSignatures();
 
 	// init score attributes
-	AddExternalAttribute(sQuadDimensionsXKey, &mQuadDimensionsX, 1);
-	AddExternalAttribute(sQuadDimensionsYKey, &mQuadDimensionsY, 1);
+	AddExternalAttribute(sScoreDimensionsXKey, &mScoreDimensionsX, 1);
+	AddExternalAttribute(sScoreDimensionsYKey, &mScoreDimensionsY, 1);
 
 	AddExternalAttribute(sScoreColorsKey, mScoreColors, NUM_PLAYERS);
 	AddExternalAttribute(sScoreLocationsXKey, mScoreLocationsX, NUM_PLAYERS);
@@ -77,6 +95,9 @@ void HUD::InitializeSignatures()
 	AddExternalAttribute(sScoresKey, mScores, NUM_PLAYERS);
 
 	// init timer attributes
+	AddExternalAttribute(sTimerDimensionsXKey, &mTimerDimensionsX, 1);
+	AddExternalAttribute(sTimerDimensionsYKey, &mTimerDimensionsY, 1);
+
 	AddExternalAttribute(sTimerLocationXKey, &mTimerLocationX, 1);
 	AddExternalAttribute(sTimerLocationYKey, &mTimerLocationY, 1);
 	AddExternalAttribute(sTimeRemainingKey, &mTimeRemaining, 1);
@@ -92,18 +113,19 @@ void HUD::Initialize(WorldState& worldState)
 		mTimeRemaining,			// time remaining
 		mTimerLocationX,		// origin point
 		mTimerLocationY,
-		mQuadDimensionsX,		// quad dimensions
-		mQuadDimensionsY
+		mTimerDimensionsX,		// quad dimensions
+		mTimerDimensionsY
 	);
 
 	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
 	{
 		static_cast<Score*>(mScores[i])->Initialize(
+			sPlayerIcons[i],
 			mScoreColors[i],			// color for this score
 			mScoreLocationsX[i],		// origin point for this score
 			mScoreLocationY,
-			mQuadDimensionsX,			// quad dimensions
-			mQuadDimensionsY
+			mScoreDimensionsX,			// quad dimensions
+			mScoreDimensionsY
 		);
 	}
 }
