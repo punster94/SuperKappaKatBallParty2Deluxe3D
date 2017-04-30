@@ -48,6 +48,10 @@ namespace KatBall
 
 		static const std::string sMoveSpeedKey;
 
+		static const std::string sBallMeshKey;
+
+		static const std::string sBallColliderKey;
+
 		static std::int32_t sPlayerId;
 	};
 
