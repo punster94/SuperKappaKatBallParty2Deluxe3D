@@ -3,11 +3,9 @@
 #include "Entity.h"
 #include "Kat.h"
 
-using namespace FieaGameEngine;
-
 namespace KatBall
 {
-	class Powerup final : public Entity
+	class Powerup final : public FieaGameEngine::Entity
 	{
 	public:
 		enum PowerupType

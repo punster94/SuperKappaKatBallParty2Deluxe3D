@@ -4,7 +4,7 @@
 namespace KatBall
 {
 	Powerup::Powerup(PowerupType type, std::float_t stat, glm::vec4 location) :
-		Entity(mName), mType(type), mSpawnLocation(location), mScaleIncrease(0), mLengthIncrease(0), mRotationSpeed(0)
+		FieaGameEngine::Entity(mName), mType(type), mSpawnLocation(location), mScaleIncrease(0), mLengthIncrease(0), mRotationSpeed(0)
 	{
 		switch (type)
 		{
@@ -45,13 +45,13 @@ namespace KatBall
 		switch (mType)
 		{
 		case BigBoi:
-			// katBoi.IncreaseScaleFactor(stat);
+			// katBoi.IncreaseScaleFactor(mScaleIncrease);
 			break;
 		case LongBoi:
-			// katBoi.IncreaseArmLength(stat);
+			// katBoi.IncreaseArmLength(mLengthIncrease);
 			break;
 		case VortexBoi:
-			// katBoi.IncreaseRotationSpeed(stat);
+			// katBoi.IncreaseRotationSpeed(mRotationSpeed);
 			break;
 		}
 	}
