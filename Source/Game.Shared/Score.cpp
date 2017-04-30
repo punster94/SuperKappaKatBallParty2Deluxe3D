@@ -49,7 +49,7 @@ void Score::Initialize(const vec4& color, float x, float y, float w, float h)
 	}
 
 	// init score and set digits
-	mScore = 12;
+	mScore = 0;
 	SetDigitTextures();
 }
 
