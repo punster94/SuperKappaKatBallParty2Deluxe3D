@@ -6,6 +6,8 @@
 
 namespace KatBall
 {
+	using namespace FieaGameEngine;
+
 	PowerupSpawner::PowerupSpawner() :
 		mSpawnLocation(glm::vec4(0)), mSpawnChance(0.0f)
 	{
