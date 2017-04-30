@@ -6,8 +6,6 @@
 
 namespace KatBall
 {
-# define NUM_HUD_SLOTS 4
-
 	class HUD final : public FieaGameEngine::Entity
 	{
 		RTTI_DECLARATIONS(HUD, FieaGameEngine::Entity)
@@ -27,25 +25,23 @@ namespace KatBall
 
 	private:
 
-		float mQuadDimensions;
-		std::string mNumbersFile;
+		float mQuadDimensionsX;
+		float mQuadDimensionsY;
 
-		std::string mScoreImageFile;
-		glm::vec4 mScoreColors[NUM_HUD_SLOTS];
-		float mScoreLocationsX[NUM_HUD_SLOTS];
-		float mScoreLocationsY[NUM_HUD_SLOTS];
+		glm::vec4 mScoreColors[NUM_PLAYERS];
+		float mScoreLocationsX[NUM_PLAYERS];
+		float mScoreLocationY;
 
-		RTTI* mScores[NUM_HUD_SLOTS];
+		RTTI* mScores[NUM_PLAYERS];
 
 	public:
 
-		static const std::string sQuadDimensionsKey;
-		static const std::string sNumbersFileKey;
+		static const std::string sQuadDimensionsXKey;
+		static const std::string sQuadDimensionsYKey;
 		
 		static const std::string sScoreColorsKey;
-		static const std::string sScoreImageFileKey;
 		static const std::string sScoreLocationsXKey;
-		static const std::string sScoreLocationsYKey;
+		static const std::string sScoreLocationYKey;
 
 		static const std::string sScoresKey;
 

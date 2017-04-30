@@ -31,12 +31,12 @@ void ScoreAction::Update(WorldState& worldState)
 	{
 		// assert that playerID is valid
 		int32_t playerID = playerIDDatum->Get<int32_t&>();
-		assert(playerID >= 0 && playerID < NUM_HUD_SLOTS);
+		assert(playerID >= 0 && playerID < NUM_PLAYERS);
 
 		if(Datum* scoresDatum = Search(HUD::sScoresKey))
 		{
 			// get the scores from HUD and update using player ID
-			static_cast<Score*>(scoresDatum->Get<RTTI*&>(playerID))->Update();
+			static_cast<Score*>(scoresDatum->Get<RTTI*&>(playerID))->UpdateScore();
 		}
 	}
 }

@@ -15,16 +15,21 @@ namespace KatBall
 		Score();
 		virtual ~Score();
 
-		void Initialize(const std::string& numbersFilePath, const std::string& imageFilePath, const glm::vec4& color, float x, float y, float dimension);
+		void Initialize(const glm::vec4& color, float x, float y, float w, float h);
+		void Update(FieaGameEngine::WorldState& worldState);
 		void Render(FieaGameEngine::Renderer* renderer);
 
-		void Update();
+		void SetDigitTextures();
+		void UpdateScore();
 
 	private:
 
 		std::uint32_t mScore;
 
 		FieaGameEngine::Quad mImageQuad;
-		FieaGameEngine::Vector<FieaGameEngine::Quad> mDigitQuads;
+		FieaGameEngine::Quad mDigitTens;
+		FieaGameEngine::Quad mDigitOnes;
+
+		FieaGameEngine::Vector<FieaGameEngine::Quad> mRenderables;
 	};
 }

@@ -1,5 +1,7 @@
 #pragma once
 
+# define NUM_PLAYERS 4
+
 #define ASSET_DIRECTORY_MESHES "meshes/"
 #define ASSET_DIRECTORY_MUSIC "music/"
 #define ASSET_DIRECTORY_SHADERS "shaders/"
@@ -30,3 +32,5 @@
 #define TEXTURE_NUMBER_SEVEN "seven.png"
 #define TEXTURE_NUMBER_EIGHT "eight.png"
 #define TEXTURE_NUMBER_NINE "nine.png"
+
+#define TEXTURE_KAT_SCORE_IMAGE "mankey_ball.bmp"

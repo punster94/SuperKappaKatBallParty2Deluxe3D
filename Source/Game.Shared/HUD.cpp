@@ -9,13 +9,12 @@ using namespace glm;
 
 RTTI_DEFINITIONS(HUD)
 
-const string HUD::sQuadDimensionsKey = "quad_dimensions";
-const string HUD::sNumbersFileKey = "numbers_file";
+const string HUD::sQuadDimensionsXKey = "quad_dimensions_x";
+const string HUD::sQuadDimensionsYKey = "quad_dimensions_y";
 
 const string HUD::sScoreColorsKey = "score_colors";
-const string HUD::sScoreImageFileKey = "score_image_file";
-const string HUD::sScoreLocationsXKey = "score_x_locations";
-const string HUD::sScoreLocationsYKey = "score_y_locations";
+const string HUD::sScoreLocationsXKey = "score_locations_x";
+const string HUD::sScoreLocationYKey = "score_location_y";
 
 const string HUD::sScoresKey = "scores";
 
@@ -39,7 +38,7 @@ HUD::HUD(const string& name) :
 	InitializeSignatures();
 
 	// create score objects -- stored as rtti's so we can get them via scope search
-	for(uint32_t i = 0; i < NUM_HUD_SLOTS; ++i)
+	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
 	{
 		mScores[i] = new Score();
 	}
@@ -48,7 +47,7 @@ HUD::HUD(const string& name) :
 HUD::~HUD()
 {
 	// delete score objects
-	for(uint32_t i = 0; i < NUM_HUD_SLOTS; ++i)
+	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
 	{
 		delete mScores[i];
 	}
@@ -58,15 +57,14 @@ void HUD::InitializeSignatures()
 {
 	Entity::InitializeSignatures();
 
-	AddExternalAttribute(sQuadDimensionsKey, &mQuadDimensions, 1);
-	AddExternalAttribute(sNumbersFileKey, &mNumbersFile, 1);
+	AddExternalAttribute(sQuadDimensionsXKey, &mQuadDimensionsX, 1);
+	AddExternalAttribute(sQuadDimensionsYKey, &mQuadDimensionsY, 1);
 
-	AddExternalAttribute(sScoreImageFileKey, &mScoreImageFile, 1);
-	AddExternalAttribute(sScoreColorsKey, mScoreColors, NUM_HUD_SLOTS);
-	AddExternalAttribute(sScoreLocationsXKey, mScoreLocationsX, NUM_HUD_SLOTS);
-	AddExternalAttribute(sScoreLocationsYKey, mScoreLocationsY, NUM_HUD_SLOTS);
+	AddExternalAttribute(sScoreColorsKey, mScoreColors, NUM_PLAYERS);
+	AddExternalAttribute(sScoreLocationsXKey, mScoreLocationsX, NUM_PLAYERS);
+	AddExternalAttribute(sScoreLocationYKey, &mScoreLocationY, NUM_PLAYERS);
 
-	AddExternalAttribute(sScoresKey, mScores, NUM_HUD_SLOTS);
+	AddExternalAttribute(sScoresKey, mScores, NUM_PLAYERS);
 
 	// TODO
 }
@@ -78,15 +76,14 @@ void HUD::Initialize(WorldState& worldState)
 	// TODO
 
 	// initialize scores
-	for(uint32_t i = 0; i < NUM_HUD_SLOTS; ++i)
+	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
 	{
 		static_cast<Score*>(mScores[i])->Initialize(
-			mNumbersFile,				// file for numbers texture
-			mScoreImageFile,			// file for score image texture
 			mScoreColors[i],			// color for this score
-			mScoreLocationsX[i],		// origin x for this score
-			mScoreLocationsY[i],		// origin y for this score
-			mQuadDimensions				// quad dimensions
+			mScoreLocationsX[i],		// origin point for this score
+			mScoreLocationY,
+			mQuadDimensionsX,			// quad dimensions
+			mQuadDimensionsY
 		);
 	}
 }
@@ -97,7 +94,11 @@ void HUD::Update(WorldState& worldState)
 
 	// TODO
 
-	// NOTE -- not updating scores here (update increments score)
+	// update scores
+	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
+	{
+		static_cast<Score*>(mScores[i])->Update(worldState);
+	}
 }
 
 void HUD::Render(Renderer* renderer)
@@ -107,7 +108,7 @@ void HUD::Render(Renderer* renderer)
 	// TODO
 
 	// render scores
-	for(uint32_t i = 0; i < NUM_HUD_SLOTS; ++i)
+	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
 	{
 		static_cast<Score*>(mScores[i])->Render(renderer);
 	}
