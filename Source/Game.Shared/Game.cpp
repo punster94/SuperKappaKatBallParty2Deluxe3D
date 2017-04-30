@@ -9,6 +9,7 @@
 #include "Timer.h"
 #include "KatMusic.h"
 #include "KatSound.h"
+#include "PowerupSpawner.h"
 
 using namespace FieaGameEngine;
 
@@ -57,6 +58,7 @@ namespace KatBall
 		ReactionAttributedFactory raf;
 		QuadEntityFactory qef;
 		PlayerFactory pf;
+		PowerupSpawnerFactory psf;
 
 		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
 

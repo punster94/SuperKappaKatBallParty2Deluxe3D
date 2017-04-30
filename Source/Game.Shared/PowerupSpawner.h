@@ -13,6 +13,8 @@ namespace KatBall
 		/// Destructor (defaulted)
 		~PowerupSpawner() = default;
 
+		virtual void Initialize(FieaGameEngine::WorldState& worldState) override;
+
 		/// Initializes prescribed attributes for this class
 		void InitializeSignatures() override;
 
@@ -85,6 +87,8 @@ namespace KatBall
 		void AttemptSpawn();
 
 	private:
+		RigidBody* mRigidBody;
+		MeshEntity* mMeshEntity;	
 		glm::vec4 mSpawnLocation;	// Location that powerups will be spawned from this object
 		float mSpawnChance;			// Chance between 0.0 and 100.0 that this spawner will generate an item
 
@@ -95,6 +99,12 @@ namespace KatBall
 		float mLongBoiLengthIncrease;	// The length increase of longBoi on pickup
 		float mBigBoiScaleIncrease;		// The size scale incrrase of bigBoi on pickup
 		float mVortexBoiRotationSpeed;	// How fast the vortex Boi goes whoosh
+
+		static const std::string sRigidBodyKey;
+		static const std::string sBallColliderKey;
+		static const std::string sBallMeshKey;
 	};
+
+	ConcreteEntityFactory(PowerupSpawner);
 }
 
