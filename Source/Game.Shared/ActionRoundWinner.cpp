@@ -14,7 +14,10 @@ using namespace std;
 RTTI_DEFINITIONS(ActionRoundWinner)
 
 const string ActionRoundWinner::sMatchWonEventSubtype = "match_won";
-const string ActionRoundWinner::sMatchWinnerKey = "match_winner";
+const string ActionRoundWinner::sMatchWinnerIDKey = "match_winner";
+
+const uint32_t ActionRoundWinner::sNoMatchWinnerFlag = -1;
+const uint32_t ActionRoundWinner::sTieGameFlag = NUM_PLAYERS;
 
 ActionRoundWinner::ActionRoundWinner(const string& name) :
 	Action(name)
@@ -28,7 +31,8 @@ ActionRoundWinner::~ActionRoundWinner()
 
 void ActionRoundWinner::Update(class WorldState& worldState)
 {
-	if(Datum* scoresDatum = Search(HUD::sScoresKey))
+	Scope* scope = nullptr;
+	if(Datum* scoresDatum = Search(HUD::sScoresKey, &scope))
 	{
 		// get high score
 		uint32_t highScore = 0;
@@ -41,41 +45,46 @@ void ActionRoundWinner::Update(class WorldState& worldState)
 			}
 		}
 
-		// update players with high score
-		int32_t matchWinner = -1;
+		// update players that have the high score
+		int32_t matchWinnerID = sNoMatchWinnerFlag;
 		for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
 		{
+			// score matches high score -- round win for current player
 			Score* score = static_cast<Score*>(scoresDatum->Get<RTTI*&>(i));
 			if(score->GetScore() == highScore)
 			{
 				score->UpdateNumWins();
 			}
 
-			// find match winners
+			// does the current player have enough round wins for a mtach win?
 			if(score->GetNumWins() == ROUNDS_TO_WIN)
 			{
-				// tie game if match winner was already set
-				if(matchWinner != -1)
+				// tie game if the match winner ID has already been set
+				if(matchWinnerID != sNoMatchWinnerFlag)
 				{
-					matchWinner = NUM_PLAYERS;
+					matchWinnerID = sTieGameFlag;
 					break;
 				}
 
-				matchWinner = i;
+				matchWinnerID = i;
 			}
-			
-			score->Reset();
 		}
 
-		Datum* timerDatum = Search(HUD::sTimerKey);
-		Timer* timer = static_cast<Timer*>(timerDatum->Get<RTTI*&>());
-		timer->Reset();
+		// reset if no match winner
+		if(matchWinnerID == sNoMatchWinnerFlag)
+		{
+			if(HUD* hud = scope->As<HUD>())
+			{
+				// TODO -- reset everything for round
+				hud->Reset();
+			}
+		}
 
-		// match winner declared -- post event
-		if(matchWinner != -1)
+		// else post match won event
+		else
 		{
 			EventMessageAttributed args(sMatchWonEventSubtype, &worldState);
-			args.AppendAuxiliaryAttribute(sMatchWinnerKey) = matchWinner;
+			args.AppendAuxiliaryAttribute(sMatchWinnerIDKey) = matchWinnerID;
 
 			Event<EventMessageAttributed>* e = new Event<EventMessageAttributed>(args);
 			worldState.mWorld->Enqueue(*e, worldState, 0);

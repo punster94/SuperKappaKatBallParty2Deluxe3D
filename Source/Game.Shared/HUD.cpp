@@ -63,9 +63,9 @@ HUD::HUD(const string& name) :
 {
 	InitializeSignatures();
 
+	// create HUD elements -- stored as rtti's so we can get them via scope search
 	mTimer = new Timer();
 
-	// create score objects -- stored as rtti's so we can get them via scope search
 	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
 	{
 		mScores[i] = new Score();
@@ -113,24 +113,36 @@ void HUD::Initialize(WorldState& worldState)
 	Entity::Initialize(worldState);
 
 	static_cast<Timer*>(mTimer)->Initialize(
-		mTimerColor,			// timer color
-		mTimeRemaining,			// time remaining
-		mTimerLocationX,		// origin point
+		mTimerColor,				// timer color
+		mTimeRemaining,				// time remaining
+		mTimerLocationX,			// origin point
 		mTimerLocationY,
-		mTimerDimensionsX,		// quad dimensions
+		mTimerDimensionsX,			// quad dimensions
 		mTimerDimensionsY
 	);
 
 	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
 	{
 		static_cast<Score*>(mScores[i])->Initialize(
-			sPlayerIcons[i],
-			mScoreColors[i],			// color for this score
-			mScoreLocationsX[i],		// origin point for this score
+			sPlayerIcons[i],		// score image
+			mScoreColors[i],		// color for this score
+			mScoreLocationsX[i],	// origin point for this score
 			mScoreLocationY,
-			mScoreDimensionsX,			// quad dimensions
+			mScoreDimensionsX,		// quad dimensions
 			mScoreDimensionsY
 		);
+	}
+}
+
+void HUD::Reset()
+{
+	// TODO
+
+	static_cast<Timer*>(mTimer)->Reset();
+
+	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
+	{
+		static_cast<Score*>(mScores[i])->Reset();
 	}
 }
 
