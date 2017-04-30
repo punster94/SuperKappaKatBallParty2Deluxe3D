@@ -114,6 +114,7 @@
     <FxCompile>
       <ObjectFileOutput>$(TargetDir)shaders/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
+    <PreBuildEvent />
     <PreBuildEvent>
       <Command>rd /s /q "$(TargetDir)"</Command>
     </PreBuildEvent>
@@ -142,6 +143,7 @@
     <FxCompile>
       <ObjectFileOutput>$(TargetDir)shaders/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
+    <PreBuildEvent />
     <PreBuildEvent>
       <Command>rd /s /q "$(TargetDir)"</Command>
     </PreBuildEvent>
@@ -174,6 +176,7 @@
     <FxCompile>
       <ObjectFileOutput>$(TargetDir)shaders/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
+    <PreBuildEvent />
     <PreBuildEvent>
       <Command>rd /s /q "$(TargetDir)"</Command>
     </PreBuildEvent>
@@ -206,6 +209,7 @@
     <FxCompile>
       <ObjectFileOutput>$(TargetDir)shaders/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
+    <PreBuildEvent />
     <PreBuildEvent>
       <Command>rd /s /q "$(TargetDir)"</Command>
     </PreBuildEvent>
