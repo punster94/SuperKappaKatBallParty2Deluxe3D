@@ -3,6 +3,11 @@
 
 #include "InputSubscriber.h"
 
+// JUSTIN
+#include "HUD.h"
+#include "ScoreAction.h"
+// JUSTIN
+
 using namespace FieaGameEngine;
 
 namespace KatBall
@@ -48,6 +53,10 @@ namespace KatBall
 		EntityFactory ef;
 		RigidBodyFactory rbf;
 		KatMusicFactory kmf;
+		// JUSTIN
+		HUDFactory hudFactory;
+		ScoreActionFactory scoreactionFactory;
+		// JUSTIN
 
 		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
 
@@ -55,7 +64,9 @@ namespace KatBall
 		{
 			master.ParseFromFile(path.path().string());
 
-			Entity* entity = sharedData.mScope->Copy()->As<Entity>();
+			Entity* entity = sharedData.mScope->As<Entity>();
+			sharedData.mScope = nullptr;
+
 			entity->SetSector(*sector);
 		}
 
