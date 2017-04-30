@@ -16,10 +16,6 @@ namespace KatBall
 
 		virtual void Update(class FieaGameEngine::WorldState& worldState) override;
 
-	protected:
-
-		void InitializeSignatures();
-
 	private:
 
 		//

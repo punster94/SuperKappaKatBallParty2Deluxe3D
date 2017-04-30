@@ -148,7 +148,7 @@ namespace FieaGameEngine
 		*	Renders the Renderable objects of this Entity.
 		*	@param renderer The Renderer used to render the Renderable objects.
 		*/
-		void Render(Renderer* renderer);
+		virtual void Render(Renderer* renderer);
 
 		/** Entity Copy
 		 *	Creates a copy of this Entity as a Scope pointer.
