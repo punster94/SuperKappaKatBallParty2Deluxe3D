@@ -14,6 +14,7 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionPunch.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Game.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Gamepad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HUD.cpp" />
@@ -30,8 +31,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ScoreAction.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Score.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestDummy.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionPunch.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Constants.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Game.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Gamepad.h" />
@@ -47,5 +50,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ScoreAction.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Score.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestDummy.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h" />
   </ItemGroup>
 </Project>

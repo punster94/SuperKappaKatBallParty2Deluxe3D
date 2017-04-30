@@ -48,6 +48,8 @@ namespace KatBall
 		static const std::string sScoreLocationsYKey;
 
 		static const std::string sScoresKey;
+
+		const static std::string sNumbersVector[];
 	};
 
 	ConcreteFactory(FieaGameEngine::Entity, HUD);
