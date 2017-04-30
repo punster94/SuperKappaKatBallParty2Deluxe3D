@@ -48,6 +48,7 @@ namespace KatBall
 		EntityFactory ef;
 		RigidBodyFactory rbf;
 		KatMusicFactory kmf;
+		MeshEntityFactory mef;
 
 		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
 
