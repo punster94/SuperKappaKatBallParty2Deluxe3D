@@ -7,6 +7,9 @@ namespace FieaGameEngine
 {
 	Renderer* Renderer::sInstance = nullptr;
 
+	const glm::vec4 Renderer::sDefaultLightDirection(1.0f, -1.0f, 1.0f, 0.0f);
+	const glm::vec4 Renderer::sDefaultAmbientLight(0.2f, 0.2f, 0.2f, 1.0f);
+
 	Renderer* Renderer::Get()
 	{
 		return sInstance;
@@ -22,7 +25,9 @@ namespace FieaGameEngine
 	}
 
 	Renderer::Renderer(RenderConfiguration& config)
-		: mConfig(&config)
+		: mConfig(&config),
+		mLightDirection(sDefaultLightDirection),
+		mAmbientLight(sDefaultAmbientLight)
 	{
 	}
 

@@ -14,8 +14,6 @@ namespace KatBall
 {
 	static TestDummy* sDummy;
 	static Camera* sCamera;
-	static Gamepad* sGamepad1;
-	static Gamepad* sGamepad2;
 	static InputSubscriber* sInputSubscriber;
 
 	static Quad* sQuad;
@@ -58,6 +56,7 @@ namespace KatBall
 		ScoreActionFactory saf;
 		ReactionAttributedFactory raf;
 		QuadEntityFactory qef;
+		PlayerFactory pf;
 
 		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
 
@@ -86,11 +85,9 @@ namespace KatBall
 		// END
 
 		sCamera = new Camera();
-
-		sGamepad1 = new Gamepad(0);
-		sGamepad2 = new Gamepad(1);
 		sInputSubscriber = new InputSubscriber();
-		sCamera->SetPosition(glm::vec3(0.0f, 0.0f, -12.0f));
+		sCamera->SetPosition(glm::vec3(0.0f, 10.0f, -12.0f));
+		sCamera->SetRotation(glm::vec3(0.71f, 0.0f, 0.0f));
 		mRenderer->SetCamera(sCamera);
 	}
 
@@ -124,29 +121,7 @@ namespace KatBall
 		float rAnalogY;
 		float lAnalogX;
 		float rAnalogX;
-		if (sGamepad1->Refresh())
-		{
-			if (sGamepad1->GetState()->wButtons != 0)
-			{
-				Event<Gamepad>* event = new Event<Gamepad>(*sGamepad1);
-				mWorld.Enqueue(*event, mWorldState, 0);
-				lAnalogY = sGamepad1->leftStickY;
-				rAnalogY = sGamepad1->rightStickY;
-				lAnalogX = sGamepad1->leftStickX;
-				rAnalogX = sGamepad1->rightStickX;
-			}
-		}
-
-		if (sGamepad2->Refresh())
-		{
-			if (sGamepad2->IsPressed(XINPUT_GAMEPAD_A))
-			{
-				lAnalogY = sGamepad2->leftStickY;
-				rAnalogY = sGamepad2->rightStickY;
-				lAnalogX = sGamepad2->leftStickX;
-				rAnalogX = sGamepad2->rightStickX;
-			}
-		}
+		
 		// END
 	}
 
@@ -218,6 +193,7 @@ namespace KatBall
 		Asset::Load(ASSET_DIRECTORY_MESHES MESH_KAT, MESH_KAT, Asset::TYPE_MESH);
 		Asset::Load(ASSET_DIRECTORY_MESHES MESH_FLAT_SPHERE, MESH_FLAT_SPHERE, Asset::TYPE_MESH);
 		Asset::Load(ASSET_DIRECTORY_MESHES MESH_CUBE, MESH_CUBE, Asset::TYPE_MESH);
+		Asset::Load(ASSET_DIRECTORY_MESHES MESH_SMOOTH_SPHERE, MESH_SMOOTH_SPHERE, Asset::TYPE_MESH);
 
 		// Textures
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_KAT, TEXTURE_KAT, Asset::TYPE_TEXTURE);

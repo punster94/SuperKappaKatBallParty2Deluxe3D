@@ -70,7 +70,12 @@ namespace FieaGameEngine
 
 		virtual void SetCamera(class Camera* camera);
 
+		void SetLightDirection(const glm::vec4& lightDirection);
+
 	protected:
+
+		static const glm::vec4 sDefaultLightDirection;
+		static const glm::vec4 sDefaultAmbientLight;
 
 		/**
 		*	Initializes the renderer with the configuration settings.
@@ -80,5 +85,9 @@ namespace FieaGameEngine
 		static Renderer* sInstance;
 
 		RenderConfiguration* mConfig;
+
+		glm::vec4 mLightDirection;
+
+		glm::vec4 mAmbientLight;
 	};
 }

@@ -27,10 +27,6 @@ namespace KatBall
 
 		std::uint32_t mScore;
 
-		FieaGameEngine::Quad mImageQuad;
-		FieaGameEngine::Quad mDigitTens;
-		FieaGameEngine::Quad mDigitOnes;
-
-		FieaGameEngine::Vector<FieaGameEngine::Quad> mRenderables;
+		FieaGameEngine::Vector<FieaGameEngine::Quad*> mRenderables;
 	};
 }

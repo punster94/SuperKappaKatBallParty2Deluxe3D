@@ -24,11 +24,6 @@ namespace KatBall
 
 		float mTimeRemaining;
 
-		FieaGameEngine::Quad mBackground;
-		FieaGameEngine::Quad mDigitHuns;
-		FieaGameEngine::Quad mDigitTens;
-		FieaGameEngine::Quad mDigitOnes;
-
-		FieaGameEngine::Vector<FieaGameEngine::Quad> mTimerRenderables;
+		FieaGameEngine::Vector<FieaGameEngine::Quad*> mTimerRenderables;
 	};
 }

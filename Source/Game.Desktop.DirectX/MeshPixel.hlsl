@@ -1,3 +1,5 @@
+#include "Globals.hlsli"
+
 Texture2D txDiffuse : register( t0 );
 SamplerState samLinear : register( s0 );
 
@@ -13,13 +15,15 @@ struct PS_INPUT
 //--------------------------------------------------------------------------------------
 float4 main( PS_INPUT input) : SV_Target
 {
-	//return float4(1.0f, 0.0f, 0.0f, 1.0f);
 	float4 texColor = txDiffuse.Sample(samLinear, input.Texcoord);
+	float intensity = max(0.0f, dot(input.Normal, -1.0f * LightDirection.xyz));
 
-	if (texColor.a < 0.1f)
+	if (texColor.a < 0.05f)
 	{
 		discard;
 	}
 
-	return texColor;
+	float4 outputColor = max(texColor * intensity, texColor * AmbientLight);
+	outputColor.a = texColor.a;
+	return outputColor;
 }
