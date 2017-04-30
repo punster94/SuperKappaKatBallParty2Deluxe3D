@@ -6,7 +6,6 @@
 
 namespace FieaGameEngine
 {
-
 	RendererDirectX* RendererDirectX::Create(RenderConfiguration& config)
 	{
 		if (sInstance == nullptr)
@@ -194,7 +193,6 @@ namespace FieaGameEngine
 		blendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
 		blendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
 		blendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
-
 		mDevice->CreateBlendState(&blendDesc, &mBlendState);
 		mDeviceContext->OMSetBlendState(mBlendState, nullptr, 0xffffffff);
 	}
@@ -206,6 +204,8 @@ namespace FieaGameEngine
 
 		CBGlobal globals;
 		mViewTarget.UpdateViewProjection(globals);
+		memcpy(&globals.mLightDirection, &mLightDirection, sizeof(mLightDirection));
+		memcpy(&globals.mAmbientLight, &mAmbientLight, sizeof(mAmbientLight));
 
 		mDeviceContext->UpdateSubresource(mGlobalCB, 0, nullptr, &globals, 0, 0);
 	}

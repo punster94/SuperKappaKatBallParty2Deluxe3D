@@ -12,6 +12,8 @@ namespace FieaGameEngine
 	{
 		DirectX::XMMATRIX mView;
 		DirectX::XMMATRIX mProjection;
+		DirectX::XMFLOAT4 mLightDirection;
+		DirectX::XMFLOAT4 mAmbientLight;
 	};
 
 	class RendererDirectX final : public Renderer
