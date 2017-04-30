@@ -6,6 +6,7 @@
 // JUSTIN
 #include "HUD.h"
 #include "ScoreAction.h"
+#include "Timer.h"
 // JUSTIN
 
 using namespace FieaGameEngine;
@@ -17,6 +18,7 @@ namespace KatBall
 	static Gamepad* sGamepad1;
 	static Gamepad* sGamepad2;
 	static InputSubscriber* sInputSubscriber;
+	static Timer* sTimer;
 
 	static Quad* sQuad;
 
@@ -81,6 +83,9 @@ namespace KatBall
 		sQuad->SetTexture(Asset::Get(TEXTURE_MANKEY_BALL_PNG)->As<Texture>());
 		sQuad->SetColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 		mRenderer->AddViewRenderable(*sQuad);
+
+		sTimer = new Timer();
+		//sTimer->Initialize(200.0f, -.9f, .7f, .5f, .25f);
 		
 		sDummy = new TestDummy();
 		// END
@@ -99,6 +104,7 @@ namespace KatBall
 		mGameClock.UpdateGameTime(mWorldState.mGameTime);
 
 		mWorld.Update(mWorldState);
+		//sTimer->Update(mWorldState);
 
 		 // DEBUG
 		sDummy->Update(mWorldState);
@@ -109,6 +115,7 @@ namespace KatBall
 		
 		// DEBUG
 		sDummy->Render(mRenderer);
+		sTimer->Render(mRenderer);
 		// END
 
 		mRenderer->EndRenderFrame();
@@ -221,6 +228,16 @@ namespace KatBall
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_KAT, TEXTURE_KAT, Asset::TYPE_TEXTURE);
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_MANKEY_BALL, TEXTURE_MANKEY_BALL, Asset::TYPE_TEXTURE);
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_MANKEY_BALL_PNG, TEXTURE_MANKEY_BALL_PNG, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_ZERO, TEXTURE_NUMBER_ZERO, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_ONE, TEXTURE_NUMBER_ONE, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_TWO, TEXTURE_NUMBER_TWO, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_THREE, TEXTURE_NUMBER_THREE, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_FOUR, TEXTURE_NUMBER_FOUR, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_FIVE, TEXTURE_NUMBER_FIVE, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_SIX, TEXTURE_NUMBER_SIX, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_SEVEN, TEXTURE_NUMBER_SEVEN, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_EIGHT, TEXTURE_NUMBER_EIGHT, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_NINE, TEXTURE_NUMBER_NINE, Asset::TYPE_TEXTURE);
 
 		// Vertex Shaders
 		Asset::Load(ASSET_DIRECTORY_SHADERS SHADER_MESH_VERTEX, SHADER_MESH_VERTEX, Asset::TYPE_VERTEX_SHADER);

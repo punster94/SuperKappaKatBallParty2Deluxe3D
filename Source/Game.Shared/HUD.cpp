@@ -14,6 +14,19 @@ const string HUD::sDimensionsKey = "dimensions";
 const string HUD::sPlayerIDKey = "playerID";
 
 const string HUD::sScoreEventSubtype = "score";
+const std::string HUD::sNumbersVector[] =
+{
+	TEXTURE_NUMBER_ZERO,
+	TEXTURE_NUMBER_ONE,
+	TEXTURE_NUMBER_TWO,
+	TEXTURE_NUMBER_THREE,
+	TEXTURE_NUMBER_FOUR,
+	TEXTURE_NUMBER_FIVE,
+	TEXTURE_NUMBER_SIX,
+	TEXTURE_NUMBER_SEVEN,
+	TEXTURE_NUMBER_EIGHT,
+	TEXTURE_NUMBER_NINE
+};
 
 HUD::HUD(const string& name) :
 	Entity(name)

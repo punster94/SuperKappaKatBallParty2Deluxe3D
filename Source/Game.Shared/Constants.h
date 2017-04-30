@@ -19,3 +19,14 @@
 
 #define SHADER_MESH_PIXEL "MeshPixel.cso"
 #define SHADER_QUAD_PIXEL "QuadPixel.cso"
+
+#define TEXTURE_NUMBER_ZERO "zero.png"
+#define TEXTURE_NUMBER_ONE "one.png"
+#define TEXTURE_NUMBER_TWO "two.png"
+#define TEXTURE_NUMBER_THREE "three.png"
+#define TEXTURE_NUMBER_FOUR "four.png"
+#define TEXTURE_NUMBER_FIVE "five.png"
+#define TEXTURE_NUMBER_SIX "six.png"
+#define TEXTURE_NUMBER_SEVEN "seven.png"
+#define TEXTURE_NUMBER_EIGHT "eight.png"
+#define TEXTURE_NUMBER_NINE "nine.png"
