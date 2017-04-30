@@ -7,7 +7,7 @@ namespace KatBall
 	RTTI_DEFINITIONS(RigidBody)
 
 	RigidBody::RigidBody(const std::string& name) :
-		Entity(name), mMass(0.0f)
+		Entity(name), mMass(0.0f), mColliderDimensions(1.0f, 1.0f, 1.0f, 0.0f)
 	{
 		InitializeSignatures();
 	}
@@ -30,12 +30,13 @@ namespace KatBall
 
 	void RigidBody::CreateBoxCollider(btScalar x, btScalar y, btScalar z)
 	{
-		mCollider = new btBoxShape(btVector3(x, y, z));
+		glm::vec3 worldScale = GetWorldScale() * glm::vec3(x, y, z);
+		mCollider = new btBoxShape(btVector3(worldScale.x, worldScale.y, worldScale.z));
 	}
 
 	void RigidBody::CreateSphereCollider(btScalar x, btScalar , btScalar )
 	{
-		mCollider = new btSphereShape(x);
+		mCollider = new btSphereShape(GetWorldScale().x * x);
 	}
 
 	void RigidBody::Initialize(WorldState& worldState)
@@ -44,8 +45,9 @@ namespace KatBall
 
 		(const_cast<RigidBody*>(this)->*sCreateColliders[mColliderType])(mColliderDimensions.x, mColliderDimensions.y, mColliderDimensions.z);
 
+		glm::vec3 pos = GetWorldPosition();
 		mTransform.setIdentity();
-		mTransform.setOrigin(btVector3(mPosition.x, mPosition.y, mPosition.z));
+		mTransform.setOrigin(btVector3(pos.x, pos.y, pos.z));
 
 		bool isDynamic = (mMass != 0.0f);
 
