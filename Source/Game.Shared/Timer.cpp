@@ -84,14 +84,10 @@ namespace KatBall
 	
 	void Timer::Render(Renderer* renderer)
 	{
-		// turning off depth testing to prevent z-fighting with background
-		renderer->SetDepthTesting(false);
 		for (auto& it : mTimerRenderables)
 		{
 			it->Render(renderer);
 		}
-
-		renderer->SetDepthTesting(true);
 	}
 
 	void Timer::SetTimerRenderables()

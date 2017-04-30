@@ -34,4 +34,5 @@
 #define TEXTURE_NUMBER_EIGHT "eight.png"
 #define TEXTURE_NUMBER_NINE "nine.png"
 
-#define TEXTURE_KAT_SCORE_IMAGE "mankey_ball.bmp"
+#define TEXTURE_KAT_SCORE_IMAGE "kat_score.png"
+#define TEXTURE_CROWN "crown.png"

@@ -124,10 +124,15 @@ void HUD::Render(Renderer* renderer)
 {
 	Entity::Render(renderer);
 
+	// turning off depth testing to prevent z-fighting
+	renderer->SetDepthTesting(false);
+
 	mTimer->Render(renderer);
 
 	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
 	{
 		static_cast<Score*>(mScores[i])->Render(renderer);
 	}
+
+	renderer->SetDepthTesting(true);
 }
