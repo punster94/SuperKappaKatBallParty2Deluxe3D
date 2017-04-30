@@ -19,17 +19,20 @@ Score::~Score()
 void Score::Initialize(WorldState& worldState)
 {
 	UNREFERENCED_PARAMETER(worldState);
-	// TODO
-}
 
-void Score::Update(WorldState& worldState)
-{
-	UNREFERENCED_PARAMETER(worldState);
-	// TODO
+	mScore = 0;
+
+	// TODO -- init location, dimensions, texture
 }
 
 void Score::Render(Renderer* renderer)
 {
 	UNREFERENCED_PARAMETER(renderer);
-	// TODO
+
+	// TODO -- render quads
+}
+
+void Score::Update()
+{
+	++mScore;
 }

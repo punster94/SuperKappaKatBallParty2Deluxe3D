@@ -27,8 +27,8 @@ namespace KatBall
 
 	private:
 
-		float mQuadDimensions;
 		glm::vec4 mScoreLocations[NUM_HUD_SLOTS];
+		float mQuadDimensions;
 
 		RTTI* mScores[NUM_HUD_SLOTS];
 
@@ -37,10 +37,7 @@ namespace KatBall
 		static const std::string sScoreLocationsKey;
 		static const std::string sQuadDimensionsKey;
 
-		static const std::string sPlayerIDKey;
 		static const std::string sScoresKey;
-
-		static const std::string sScoreEventSubtype;
 	};
 
 	ConcreteFactory(FieaGameEngine::Entity, HUD);

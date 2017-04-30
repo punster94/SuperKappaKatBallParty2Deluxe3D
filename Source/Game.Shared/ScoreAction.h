@@ -19,6 +19,11 @@ namespace KatBall
 	private:
 
 		//
+
+	public:
+
+		static const std::string sScoreEventSubtype;
+		static const std::string sPlayerIDKey;
 	};
 
 	ConcreteFactory(FieaGameEngine::Action, ScoreAction);

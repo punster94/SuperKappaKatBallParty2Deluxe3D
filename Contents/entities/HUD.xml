@@ -1,3 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <entity class='HUD' name='HUD'>
+	<reaction class='ReactionAttributed' name='UpdateScore'>
+		<string name='subtypes' value='score'/>
+		<action class='ScoreAction' name='UpdateScore' />
+	</reaction>
+	
+	
 </entity>

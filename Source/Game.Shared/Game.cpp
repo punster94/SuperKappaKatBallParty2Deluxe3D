@@ -3,10 +3,9 @@
 
 #include "InputSubscriber.h"
 
-// JUSTIN
 #include "HUD.h"
 #include "ScoreAction.h"
-// JUSTIN
+#include "ReactionAttributed.h"
 
 using namespace FieaGameEngine;
 
@@ -53,11 +52,10 @@ namespace KatBall
 		EntityFactory ef;
 		RigidBodyFactory rbf;
 		KatMusicFactory kmf;
-		// JUSTIN
-		HUDFactory hudFactory;
-		ScoreActionFactory scoreactionFactory;
-		// JUSTIN
 		MeshEntityFactory mef;
+		HUDFactory hudf;
+		ScoreActionFactory saf;
+		ReactionAttributedFactory raf;
 
 		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
 

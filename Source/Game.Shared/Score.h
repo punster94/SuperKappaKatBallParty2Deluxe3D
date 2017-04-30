@@ -15,15 +15,12 @@ namespace KatBall
 		virtual ~Score();
 
 		void Initialize(FieaGameEngine::WorldState& worldState);
-		void Update(FieaGameEngine::WorldState& worldState);
 		void Render(FieaGameEngine::Renderer* renderer);
+
+		void Update();
 
 	private:
 
-		//
-
-	public:
-
-		//
+		std::uint32_t mScore;
 	};
 }

@@ -11,10 +11,7 @@ RTTI_DEFINITIONS(HUD)
 const string HUD::sScoreLocationsKey = "score_locations";
 const string HUD::sQuadDimensionsKey = "quad_dimensions";
 
-const string HUD::sPlayerIDKey = "playerID";
 const string HUD::sScoresKey = "scores";
-
-const string HUD::sScoreEventSubtype = "score";
 
 HUD::HUD(const string& name) :
 	Entity(name)
@@ -68,11 +65,7 @@ void HUD::Update(WorldState& worldState)
 
 	// TODO
 
-	// update scores
-	for(uint32_t i = 0; i < NUM_HUD_SLOTS; ++i)
-	{
-		static_cast<Score*>(mScores[i])->Update(worldState);
-	}
+	// NOTE -- not updating scores here (update increments score)
 }
 
 void HUD::Render(Renderer* renderer)
