@@ -31,22 +31,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="..\..\Contents\entities\BGM.xml">
-      <Filter>Entities</Filter>
-    </Xml>
     <Xml Include="..\..\Contents\entities\floor.xml">
-      <Filter>Entities</Filter>
-    </Xml>
-    <Xml Include="..\..\Contents\entities\HUD.xml">
-      <Filter>Entities</Filter>
-    </Xml>
-    <Xml Include="..\..\Contents\entities\quad.xml">
       <Filter>Entities</Filter>
     </Xml>
     <Xml Include="..\..\Contents\entities\tubbs.xml">
       <Filter>Entities</Filter>
     </Xml>
     <Xml Include="..\..\Contents\entities\baby.xml">
+      <Filter>Entities</Filter>
+    </Xml>
+    <Xml Include="..\..\Contents\entities\BGM.xml">
       <Filter>Entities</Filter>
     </Xml>
   </ItemGroup>
