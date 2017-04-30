@@ -25,5 +25,5 @@ namespace KatBall
 		//
 	};
 
-	// TODO -- fix this -- ConcreteActionFactory(ScoreAction);
+	ConcreteFactory(FieaGameEngine::Action, ScoreAction);
 }

@@ -31,7 +31,7 @@ void HUD::InitializeSignatures()
 
 	AddExternalAttribute(sScoresKey, mScores, NUM_HUD_SLOTS);
 	AddExternalAttribute(sLocationsKey, mLocations, NUM_HUD_SLOTS);
-	AddExternalAttribute(sDimensionsKey, mDimensions, NUM_HUD_SLOTS);
+	AddExternalAttribute(sDimensionsKey, &mDimensions, 1);
 
 	// TODO -- attributes for textures and stuff?
 }

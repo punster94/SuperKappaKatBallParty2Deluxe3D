@@ -26,7 +26,7 @@ namespace KatBall
 
 		std::int32_t mScores[NUM_HUD_SLOTS];
 		glm::vec4 mLocations[NUM_HUD_SLOTS];
-		float mDimensions[NUM_HUD_SLOTS];
+		float mDimensions;
 
 	public:
 
@@ -37,4 +37,6 @@ namespace KatBall
 
 		static const std::string sScoreEventSubtype;
 	};
+
+	ConcreteFactory(FieaGameEngine::Entity, HUD);
 }
