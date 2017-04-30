@@ -39,16 +39,16 @@ void Score::Initialize(const string& playerIcon, const vec4& color, float x, flo
 	mRenderables[1]->SetRect(x + w, y, w, h);
 	mRenderables[1]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	mRenderables[2]->SetTexture(Asset::Get(playerIcon)->As<Texture>());
-	mRenderables[2]->SetRect(x, y, w, h);
+	mRenderables[2]->SetTexture(Asset::Get(HUD::sPlayerWinsIcons[mNumWins])->As<Texture>());
+	mRenderables[2]->SetRect(x + w, y + h, 2 * w, h / 2);
+	mRenderables[2]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	mRenderables[3]->SetTexture(Asset::Get(TEXTURE_CROWN)->As<Texture>());
-	mRenderables[3]->SetRect(x + w * 0.25f, y + h * 0.75f, w * 0.5f, h * 0.5f);
-	mRenderables[3]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+	mRenderables[3]->SetTexture(Asset::Get(playerIcon)->As<Texture>());
+	mRenderables[3]->SetRect(x, y, w, h);
 
-	mRenderables[3]->SetTexture(Asset::Get(HUD::sPlayerWinsIcons[mNumWins])->As<Texture>());
-	mRenderables[3]->SetRect(x + w, y + h, 2*w, h/2);
-	mRenderables[3]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+	mRenderables[4]->SetTexture(Asset::Get(TEXTURE_CROWN)->As<Texture>());
+	mRenderables[4]->SetRect(x + w * 0.25f, y + h * 0.75f, w * 0.5f, h * 0.5f);
+	mRenderables[4]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	// set shaders
 	VertexShader* vertShader = Asset::Get(SHADER_QUAD_VERTEX)->As<VertexShader>();
@@ -61,7 +61,7 @@ void Score::Initialize(const string& playerIcon, const vec4& color, float x, flo
 	// init score and set digits
 	mScore = 0;
 	SetDigitTextures();
-	mIsWinning = false;
+	mIsWinning = true;
 }
 
 void Score::Update(WorldState& worldState)
