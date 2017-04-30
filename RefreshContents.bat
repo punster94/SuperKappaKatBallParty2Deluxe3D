@@ -1,0 +1,1 @@
+xcopy "Contents" "Source\Game.Desktop.DirectX\bin\x64\Debug\" /E /Y
