@@ -40,7 +40,11 @@ namespace KatBall
 		mRenderer->Init();
 		LoadAssets();
 
-		Sector* sector = mWorld.CreateSector("");
+		mMenuSector = new Sector("Menu");
+		//mMenuSector->SetWorld(mWorld);
+
+		mGameSector = new Sector("Game");
+		mGameSector->SetWorld(mWorld);
 
 		ScopeParseHelper::ScopeSharedData sharedData;
 		XmlParseMaster master(&sharedData);
@@ -58,16 +62,28 @@ namespace KatBall
 		QuadEntityFactory qef;
 		PlayerFactory pf;
 
-		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
+		std::experimental::filesystem::directory_iterator menuEntities(ASSET_DIRECTORY_MENU_ENTITIES);
 
-		for(std::experimental::filesystem::directory_entry path : directoryIt)
+		for (std::experimental::filesystem::directory_entry path : menuEntities)
 		{
 			master.ParseFromFile(path.path().string());
 
 			Entity* entity = sharedData.mScope->As<Entity>();
 			sharedData.mScope = nullptr;
 
-			entity->SetSector(*sector);
+			entity->SetSector(*mMenuSector);
+		}
+
+		std::experimental::filesystem::directory_iterator gameEntities(ASSET_DIRECTORY_GAME_ENTITIES);
+
+		for(std::experimental::filesystem::directory_entry path : gameEntities)
+		{
+			master.ParseFromFile(path.path().string());
+
+			Entity* entity = sharedData.mScope->As<Entity>();
+			sharedData.mScope = nullptr;
+
+			entity->SetSector(*mGameSector);
 		}
 
 		mWorld.Initialize(mWorldState);

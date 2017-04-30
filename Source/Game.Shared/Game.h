@@ -28,6 +28,8 @@ namespace KatBall
 
 		FieaGameEngine::Renderer* mRenderer;
 		FieaGameEngine::World mWorld;
+		FieaGameEngine::Sector* mMenuSector;
+		FieaGameEngine::Sector* mGameSector;
 		FieaGameEngine::WorldState mWorldState;
 		FieaGameEngine::GameTime mGameTime;
 		FieaGameEngine::GameClock mGameClock;
