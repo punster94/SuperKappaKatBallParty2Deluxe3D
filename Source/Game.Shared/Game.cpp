@@ -56,6 +56,7 @@ namespace KatBall
 		HUDFactory hudf;
 		ScoreActionFactory saf;
 		ReactionAttributedFactory raf;
+		QuadEntityFactory qef;
 
 		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
 
