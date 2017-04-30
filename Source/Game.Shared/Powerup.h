@@ -21,9 +21,9 @@ namespace KatBall
 
 		/** Powerup collection
 		 *	Applies the powerup type effect on the provided kat.
-		 *	@param katBoi the kat that has collected this powerup.
+		 *	@param katBoi the player that has collected this powerup.
 		 */
-		void OnCollect(Kat& katBoi);
+		void OnCollect(Player& katBoi);
 
 		void SetScaleIncrease(std::float_t scaleIncrease);
 		void SetLengthIncrease(std::float_t lengthIncrease);
