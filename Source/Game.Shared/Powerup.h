@@ -18,6 +18,8 @@ namespace KatBall
 		};
 
 		Powerup(PowerupType type, std::float_t stat, glm::vec4 location);
+		void InitializeSignatures() override;
+		virtual void Initialize(FieaGameEngine::WorldState& worldState) override;
 
 		/** Powerup collection
 		 *	Applies the powerup type effect on the provided kat.
@@ -28,24 +30,32 @@ namespace KatBall
 		void SetScaleIncrease(std::float_t scaleIncrease);
 		void SetLengthIncrease(std::float_t lengthIncrease);
 		void SetRotationSpeed(std::float_t rotationSpeed);
+		void SetSpawnLocation(glm::vec4 spawnLocation);
 
 		std::float_t GetScaleIncrease() const;
 		std::float_t GetLengthIncrease() const;
 		std::float_t GetRotationSpeed() const;
+		glm::vec4 GetSpawnLocation() const;
 
 	private:
-		void InitializeSignatures();
-
-		const std::string mName = "powerup";
-		const std::string mScaleIncreaseKey = "scaleIncrease";
-		const std::string mLengthIncreaseKey = "lengthIncrease";
-		const std::string mRotationSpeedKey = "rotationSpeed";
+		RigidBody* mRigidBody;
+		MeshEntity* mMeshEntity;
+		glm::vec4 mSpawnLocation;
 
 		std::float_t mScaleIncrease;
 		std::float_t mLengthIncrease;
 		std::float_t mRotationSpeed;
-		glm::vec4 mLocation;
 
 		PowerupType mType;
+
+		const std::string mName = "powerup";
+		const std::string mScaleIncreaseKey = "scale increase";
+		const std::string mLengthIncreaseKey = "length increase";
+		const std::string mRotationSpeedKey = "rotation speed";
+		const std::string mSpawnLocationKey = "spawn location";
+
+		static const std::string sRigidBodyKey;
+		static const std::string sBallColliderKey;
+		static const std::string sBallMeshKey;
 	};
 }

@@ -4,7 +4,7 @@
 namespace KatBall
 {
 	Powerup::Powerup(PowerupType type, std::float_t stat, glm::vec4 location) :
-		Entity(mName), mType(type), mLocation(location), mScaleIncrease(0), mLengthIncrease(0), mRotationSpeed(0)
+		Entity(mName), mType(type), mSpawnLocation(location), mScaleIncrease(0), mLengthIncrease(0), mRotationSpeed(0)
 	{
 		switch (type)
 		{
@@ -20,6 +20,24 @@ namespace KatBall
 		}
 
 		InitializeSignatures();
+	}
+
+	void Powerup::InitializeSignatures()
+	{
+		Entity::InitializeSignatures();
+
+		AddExternalAttribute(mScaleIncreaseKey, &mScaleIncrease, 1);
+		AddExternalAttribute(mLengthIncreaseKey, &mLengthIncrease, 1);
+		AddExternalAttribute(mRotationSpeedKey, &mRotationSpeed, 1);
+		AddExternalAttribute(mSpawnLocationKey, &mSpawnLocation, 1);
+	}
+
+	void Powerup::Initialize(FieaGameEngine::WorldState& worldState)
+	{
+		Entity::Initialize(worldState);
+
+		mMeshEntity = FindChildEntityByName(sBallMeshKey)->As<MeshEntity>();
+		mRigidBody = FindChildEntityByName(sRigidBodyKey)->As<RigidBody>();
 	}
 
 	void Powerup::OnCollect(Player& katBoi)
@@ -53,6 +71,11 @@ namespace KatBall
 		mRotationSpeed = rotationSpeed;
 	}
 
+	void Powerup::SetSpawnLocation(glm::vec4 spawnLocation)
+	{
+		mSpawnLocation = spawnLocation;
+	}
+
 	std::float_t Powerup::GetScaleIncrease() const
 	{
 		return mScaleIncrease;
@@ -68,10 +91,12 @@ namespace KatBall
 		return mRotationSpeed;
 	}
 
-	void Powerup::InitializeSignatures()
+	glm::vec4 Powerup::GetSpawnLocation() const
 	{
-		AddExternalAttribute(mScaleIncreaseKey, &mScaleIncrease, 1);
-		AddExternalAttribute(mLengthIncreaseKey, &mLengthIncrease, 1);
-		AddExternalAttribute(mRotationSpeedKey, &mRotationSpeed, 1);
+		return mSpawnLocation;
 	}
+
+	const std::string Powerup::sRigidBodyKey = "rigidbody";
+	const std::string Powerup::sBallColliderKey = "ball collider";
+	const std::string Powerup::sBallMeshKey = "ball mesh";
 }
