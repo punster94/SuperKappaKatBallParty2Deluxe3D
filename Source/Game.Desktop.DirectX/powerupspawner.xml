@@ -1,17 +1,59 @@
 <?xml version='1.0' encoding='utf-8'?>
-<entity class='PowerupSpawner' name='Spawner'>
-  <vector name='position' value='0.0,0.0,0.0,0.0'/>
-  <entity class='Entity' name='ball'>
-    <vector name='scale' value='0.5,0.5,0.5,0.0'/>
-    <entity class='RigidBody' name='ball collider'>
-      <string name='shape' value='sphere'/>
-      <float name='mass' value='50.0'/>
-    </entity>
+<entity class='Entity' name='SpawnerContainer'>
+
+  <entity class='PowerupSpawner' name='CenterSpawner'>
+    <vector name='position' value='0.0, -1.25, 0.0, 0.0'/>
+    <vector name='scale' value='0.5, 0.5, 0.5, 0.5'/>
     <entity class='MeshEntity' name='ball mesh'>
       <string name='mesh filename' value='smooth_sphere.obj'/>
       <string name='texture filename' value='ball.png'/>
       <integer name='render pass' value='1'/>
-      <vector name='color' value='1.0,0.0,0.0,1.0'/>
+      <vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
     </entity>
   </entity>
+
+  <entity class='PowerupSpawner' name='BottomLeftSpawner'>
+    <vector name='position' value='-4.0, -1.25, -4.0, 0.0'/>
+    <vector name='scale' value='0.5, 0.5, 0.5, 0.5'/>
+    <entity class='MeshEntity' name='ball mesh'>
+      <string name='mesh filename' value='smooth_sphere.obj'/>
+      <string name='texture filename' value='ball.png'/>
+      <integer name='render pass' value='1'/>
+      <vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+    </entity>
+  </entity>
+
+  <entity class='PowerupSpawner' name='BottomRightSpawner'>
+    <vector name='position' value='4.0, -1.25, -4.0, 0.0'/>
+    <vector name='scale' value='0.5, 0.5, 0.5, 0.5'/>
+    <entity class='MeshEntity' name='ball mesh'>
+      <string name='mesh filename' value='smooth_sphere.obj'/>
+      <string name='texture filename' value='ball.png'/>
+      <integer name='render pass' value='1'/>
+      <vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+    </entity>
+  </entity>
+
+  <entity class='PowerupSpawner' name='TopLeftSpawner'>
+    <vector name='position' value='-4.0, -1.25, 4.0, 0.0'/>
+    <vector name='scale' value='0.5, 0.5, 0.5, 0.5'/>
+    <entity class='MeshEntity' name='ball mesh'>
+      <string name='mesh filename' value='smooth_sphere.obj'/>
+      <string name='texture filename' value='ball.png'/>
+      <integer name='render pass' value='1'/>
+      <vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+    </entity>
+  </entity>
+
+  <entity class='PowerupSpawner' name='TopRightSpawner'>
+    <vector name='position' value='4.0, -1.25, 4.0, 0.0'/>
+    <vector name='scale' value='0.5, 0.5, 0.5, 0.5'/>
+    <entity class='MeshEntity' name='ball mesh'>
+      <string name='mesh filename' value='smooth_sphere.obj'/>
+      <string name='texture filename' value='ball.png'/>
+      <integer name='render pass' value='1'/>
+      <vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+    </entity>
+  </entity>
+
 </entity>
