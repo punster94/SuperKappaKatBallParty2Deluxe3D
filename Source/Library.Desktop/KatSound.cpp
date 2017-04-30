@@ -28,6 +28,7 @@ namespace FieaGameEngine
 
 	void KatSound::Initialize(WorldState& worldState)
 	{
+		Entity::Initialize(worldState);
 	}
 
 	const string& KatSound::GetSoundFile() const

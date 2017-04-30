@@ -7,6 +7,9 @@
 #include <cassert>
 #include <vector>
 
+// External libraries
+#include <SFML/Audio.hpp>
+
 //Local libraries
 #include "Kat.h"
 #include "Constants.h"

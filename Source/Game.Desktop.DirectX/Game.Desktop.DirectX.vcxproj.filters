@@ -7,6 +7,9 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{1403c3ac-264c-49d6-ba7d-55f5d1f4d4b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{a3501ebe-6312-4388-82d1-f4955ffc2255}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="MeshVertex.hlsl">
@@ -26,5 +29,25 @@
     <None Include="Globals.hlsli">
       <Filter>Shaders</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\..\Contents\entities\BGM.xml">
+      <Filter>Entities</Filter>
+    </Xml>
+    <Xml Include="..\..\Contents\entities\floor.xml">
+      <Filter>Entities</Filter>
+    </Xml>
+    <Xml Include="..\..\Contents\entities\HUD.xml">
+      <Filter>Entities</Filter>
+    </Xml>
+    <Xml Include="..\..\Contents\entities\quad.xml">
+      <Filter>Entities</Filter>
+    </Xml>
+    <Xml Include="..\..\Contents\entities\tubbs.xml">
+      <Filter>Entities</Filter>
+    </Xml>
+    <Xml Include="..\..\Contents\entities\baby.xml">
+      <Filter>Entities</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

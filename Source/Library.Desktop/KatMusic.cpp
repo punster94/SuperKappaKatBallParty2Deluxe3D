@@ -32,6 +32,8 @@ namespace FieaGameEngine
 
 	void KatMusic::Initialize(WorldState& worldState)
 	{
+		Entity::Initialize(worldState);
+
 		if (mPlayOnAwake)
 		{
 			Play();
