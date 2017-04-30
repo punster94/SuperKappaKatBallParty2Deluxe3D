@@ -4,11 +4,16 @@
 #include "WorldState.h"
 #include "HUD.h"
 
+#include "EventMessageAttributed.h"
+#include "Event.h"
+
 using namespace FieaGameEngine;
 
 namespace KatBall
 {
 	RTTI_DEFINITIONS(Timer)
+
+	const std::string Timer::sTimeUpEventSubtype = "timeup";
 
 	Timer::Timer()
 	{
@@ -51,15 +56,30 @@ namespace KatBall
 			it->SetShaders(vs, ps);
 		}
 		
-		// init time and set digits
-		mTimeRemaining = time;
+		// init time, run, and set digits
+		mTimeRemaining = mDefaultTimeRemaining = time;
 		SetTimerRenderables();
+
+		mIsRunning = true;
 	}
 
 	void Timer::Update(WorldState& state)
 	{
-		mTimeRemaining -= state.DeltaTime();
-		SetTimerRenderables();
+		if(mIsRunning)
+		{
+			mTimeRemaining -= state.DeltaTime();
+			SetTimerRenderables();
+
+			// post timeup event and stop running timer
+			if(mTimeRemaining <= 0.0f)
+			{
+				Event<EventMessageAttributed>* e = new Event<EventMessageAttributed>(EventMessageAttributed(sTimeUpEventSubtype, &state));
+				state.mWorld->Enqueue(*e, state, 0);
+
+				mTimeRemaining = mDefaultTimeRemaining;
+				mIsRunning = false;
+			}
+		}
 	}
 	
 	void Timer::Render(Renderer* renderer)

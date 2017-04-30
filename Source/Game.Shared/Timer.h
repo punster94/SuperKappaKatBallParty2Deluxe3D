@@ -22,8 +22,15 @@ namespace KatBall
 
 		void SetTimerRenderables();
 
+		float mDefaultTimeRemaining;
 		float mTimeRemaining;
 
+		bool mIsRunning;
+
 		FieaGameEngine::Vector<FieaGameEngine::Quad*> mTimerRenderables;
+
+	public:
+
+		static const std::string sTimeUpEventSubtype;
 	};
 }
