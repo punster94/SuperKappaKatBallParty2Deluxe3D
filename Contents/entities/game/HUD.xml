@@ -6,6 +6,13 @@
 		<action class='ScoreAction' name='UpdateScore' />
 	</reaction>
 	
+	<reaction class='ReactionAttributed' name='RoundOver'>
+		<string name='subtypes' value='round_over' />
+		<action class='ActionRoundWinner' name='RoundWinner' />
+	</reaction>
+	
+	
+	
 	<float name='score_dimensions_x' value='0.1' />
 	<float name='score_dimensions_y' value='0.17' />
 	
@@ -21,13 +28,15 @@
 	<vector name='score_colors' value='1.0,0.0,0.0,1.0' index='2' />
 	<vector name='score_colors' value='1.0,1.0,0.0,1.0' index='3' />
 
-  <float name='timer_dimensions_x' value='0.5' />
-  <float name='timer_dimensions_y' value='0.25' />
+	
+	
+	<float name='timer_dimensions_x' value='0.5' />
+	<float name='timer_dimensions_y' value='0.25' />
 
-  <float name='timer_location_x' value='-0.9' />
+	<float name='timer_location_x' value='-0.9' />
 	<float name='timer_location_y' value='0.73' />
 	
-	<float name='time_remaining' value='250.0' />
+	<float name='time_remaining' value='10.0' />
 	
 	<vector name='timer_color' value='0.83,0.686,0.215,1.0' />
 	

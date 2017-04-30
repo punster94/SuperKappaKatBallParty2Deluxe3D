@@ -22,8 +22,8 @@ namespace KatBall
 
 	public:
 
-		static const std::string sMatchWinnerEventSubtype;
-		static const std::string sPlayerIDKey;
+		static const std::string sMatchWonEventSubtype;
+		static const std::string sMatchWinnerKey;
 	};
 
 	ConcreteFactory(FieaGameEngine::Action, ActionRoundWinner);

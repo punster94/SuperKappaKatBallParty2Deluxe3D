@@ -31,7 +31,7 @@ namespace KatBall
 
 	public:
 
-		static const std::string sTimeUpEventSubtype;
+		static const std::string sRoundOverEventSubtype;
 		static const float sNumberOffsetLeft;
 		static const float sNumberOffsetBottom;
 		static const float sNumberScaleFactor;

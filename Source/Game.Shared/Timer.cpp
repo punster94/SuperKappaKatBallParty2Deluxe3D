@@ -13,7 +13,7 @@ namespace KatBall
 {
 	RTTI_DEFINITIONS(Timer)
 
-	const std::string Timer::sTimeUpEventSubtype = "timeup";
+	const std::string Timer::sRoundOverEventSubtype = "round_over";
 	const float Timer::sNumberOffsetLeft = .05f;
 	const float Timer::sNumberOffsetBottom = .1f;
 	const float Timer::sNumberScaleFactor = .1f;
@@ -77,7 +77,7 @@ namespace KatBall
 			// post timeup event and stop running timer
 			if(mTimeRemaining <= 0.0f)
 			{
-				Event<EventMessageAttributed>* e = new Event<EventMessageAttributed>(EventMessageAttributed(sTimeUpEventSubtype, &state));
+				Event<EventMessageAttributed>* e = new Event<EventMessageAttributed>(EventMessageAttributed(sRoundOverEventSubtype, &state));
 				state.mWorld->Enqueue(*e, state, 0);
 
 				mTimeRemaining = mDefaultTimeRemaining;
