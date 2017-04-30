@@ -59,14 +59,6 @@ namespace KatBall
 
 		mWorld.Initialize(mWorldState);
 
-		for (uint32_t i = 0; i < sector->Entities().Size(); ++i)
-		{
-			if (sector->Entities().Get<Scope&>(i).Is(KatMusic::TypeIdClass()))
-			{
-				static_cast<KatMusic&>(sector->Entities().Get<Scope&>(i)).Play();
-			}
-		}
-
 		// DEBUG
 		sQuad = new Quad();
 		sQuad->SetShaders(Asset::Get(SHADER_QUAD_VERTEX)->As<VertexShader>(),
