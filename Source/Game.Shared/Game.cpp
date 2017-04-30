@@ -106,8 +106,6 @@ namespace KatBall
 		
 		// DEBUG
 		sDummy->Render(mRenderer);
-		mRenderer->SetDepthTesting(false);
-		mRenderer->SetDepthTesting(true);
 		// END
 
 		mRenderer->EndRenderFrame();
@@ -151,6 +149,16 @@ namespace KatBall
 		if (GetAsyncKeyState('S'))
 		{
 			deltaPos += glm::vec3(0.0f, 0.0f, -cameraSpeed);
+		}
+
+		if (GetAsyncKeyState('E'))
+		{
+			deltaPos += glm::vec3(0.0f, cameraSpeed, 0.0f);
+		}
+
+		if (GetAsyncKeyState('Q'))
+		{
+			deltaPos += glm::vec3(0.0f, -cameraSpeed, 0.0f);
 		}
 
 		if (GetAsyncKeyState('W'))

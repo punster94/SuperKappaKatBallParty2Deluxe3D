@@ -11,7 +11,8 @@
 	<entity class='MeshEntity' name='BabyBall'>
 		<vector name='position' value='-3.0,0.0,0.0,0.0'/>
 		<vector name='scale' value='0.5,0.5,0.5,0.0'/>
-		<string name='mesh filename' value='flat_sphere.obj'/>
-		<string name='texture filename' value='mankey_ball.bmp'/>
+		<string name='mesh filename' value='smooth_sphere.obj'/>
+		<string name='texture filename' value='ball.png'/>
+		<integer name='render pass' value='1'/>
 	</entity>
 </entity>

@@ -27,17 +27,32 @@ namespace FieaGameEngine
 	Renderer::Renderer(RenderConfiguration& config)
 		: mConfig(&config),
 		mLightDirection(sDefaultLightDirection),
-		mAmbientLight(sDefaultAmbientLight)
+		mAmbientLight(sDefaultAmbientLight),
+		mCurrentRenderPass(RENDER_PASS_1)
 	{
 	}
 
 	void Renderer::Render(World& world)
 	{
 		Datum& sectors = world.Sectors();
+
+		mCurrentRenderPass = RENDER_PASS_1;
+
 		for (std::uint32_t i = 0; i < sectors.Size(); ++i)
 		{
 			Render(static_cast<Sector&>(sectors.Get<Scope&>(i)));
 		}
+
+		mCurrentRenderPass = RENDER_PASS_2;
+
+		SetDepthMode(DepthMode::MODE_TRANSLUCENT);
+
+		for (std::uint32_t i = 0; i < sectors.Size(); ++i)
+		{
+			Render(static_cast<Sector&>(sectors.Get<Scope&>(i)));
+		}
+
+		SetDepthMode(DepthMode::MODE_OPAQUE);
 	}
 
 	void Renderer::Render(Sector& sector)
@@ -49,9 +64,9 @@ namespace FieaGameEngine
 		}
 	}
 
-	void Renderer::SetDepthTesting(bool enabled)
+	void Renderer::SetDepthMode(DepthMode mode)
 	{
-		enabled;
+		mode;
 	}
 
 	void Renderer::SetCamera(Camera* camera)
@@ -67,5 +82,10 @@ namespace FieaGameEngine
 	void Renderer::RemoveViewRenderable(Renderable& renderable)
 	{
 		renderable;
+	}
+
+	std::int32_t Renderer::GetCurrentRenderPass()
+	{
+		return mCurrentRenderPass;
 	}
 }

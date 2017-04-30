@@ -8,8 +8,8 @@
 	</entity>
 	<entity class='MeshEntity' name='floor mesh'>
 		<vector name='position' value='0.0,-2.0,0.0,0.0'/>
-		<string name='mesh filename' value='cube.obj'/>
-		<string name='texture filename' value='mankey_ball.bmp'/>
+		<string name='mesh filename' value='cube_tiled_top.obj'/>
+		<string name='texture filename' value='floor_tex.png'/>
 		<vector name='scale' value='5.0,0.1,5.0,0.0'/>
 	</entity>
 	<entity class='RigidBody' name='left wall'>

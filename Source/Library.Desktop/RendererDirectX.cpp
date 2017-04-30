@@ -134,6 +134,10 @@ namespace FieaGameEngine
 		dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
 		mDevice->CreateDepthStencilState(&dsDesc, &mDepthStencilStateNoDepthTest);
 
+		dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
+		dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+		mDevice->CreateDepthStencilState(&dsDesc, &mDepthStencilStateDepthTestNoWrite);
+
 		D3D11_TEXTURE2D_DESC dsBufferDesc = { 0 };
 		dsBufferDesc.Width = config->windowWidth;
 		dsBufferDesc.Height = config->windowHeight;
@@ -226,15 +230,21 @@ namespace FieaGameEngine
 		return (mMessage.message != WM_QUIT);
 	}
 
-	void RendererDirectX::SetDepthTesting(bool enabled)
+	void RendererDirectX::SetDepthMode(DepthMode mode)
 	{
-		if (enabled)
+		switch (mode)
 		{
+		case DepthMode::MODE_OPAQUE:
 			mDeviceContext->OMSetDepthStencilState(mDepthStencilStateDepthTest, 1);
-		}
-		else
-		{
+			break;
+
+		case DepthMode::MODE_UI:
 			mDeviceContext->OMSetDepthStencilState(mDepthStencilStateNoDepthTest, 1);
+			break;
+
+		case DepthMode::MODE_TRANSLUCENT:
+			mDeviceContext->OMSetDepthStencilState(mDepthStencilStateDepthTestNoWrite, 1);
+			break;
 		}
 	}
 

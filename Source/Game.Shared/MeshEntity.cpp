@@ -8,7 +8,8 @@ namespace KatBall
 
 	MeshEntity::MeshEntity(const std::string& name) :
 		Entity(name), mMeshFileName(MESH_KAT), mTextureFileName(TEXTURE_KAT),
-		mVertexShaderFileName(SHADER_MESH_VERTEX), mPixelShaderFileName(SHADER_MESH_PIXEL)
+		mVertexShaderFileName(SHADER_MESH_VERTEX), mPixelShaderFileName(SHADER_MESH_PIXEL),
+		mRenderPass(RENDER_PASS_1)
 	{
 		InitializeSignatures();
 	}
@@ -34,23 +35,25 @@ namespace KatBall
 
 		if (Asset::Get(mTextureFileName) == nullptr)
 		{
-			Asset::Load(mTextureFileName, mTextureFileName, Asset::TYPE_TEXTURE);
+			Asset::Load(ASSET_DIRECTORY_TEXTURES + mTextureFileName, mTextureFileName, Asset::TYPE_TEXTURE);
 		}
 
 		mMesh.SetTexture(Asset::Get(mTextureFileName)->As<Texture>());
 
 		if (Asset::Get(mVertexShaderFileName) == nullptr)
 		{
-			Asset::Load(mVertexShaderFileName, mVertexShaderFileName, Asset::TYPE_VERTEX_SHADER);
+			Asset::Load(ASSET_DIRECTORY_SHADERS + mVertexShaderFileName, mVertexShaderFileName, Asset::TYPE_VERTEX_SHADER);
 		}
 
 		if (Asset::Get(mPixelShaderFileName) == nullptr)
 		{
-			Asset::Load(mPixelShaderFileName, mPixelShaderFileName, Asset::TYPE_PIXEL_SHADER);
+			Asset::Load(ASSET_DIRECTORY_SHADERS + mPixelShaderFileName, mPixelShaderFileName, Asset::TYPE_PIXEL_SHADER);
 		}
 
 		mMesh.SetShaders(Asset::Get(mVertexShaderFileName)->As<VertexShader>(),
 			Asset::Get(mPixelShaderFileName)->As<PixelShader>());
+
+		mMesh.SetRenderPass(mRenderPass);
 
 		AddRenderable(mMesh);
 	}
@@ -68,6 +71,7 @@ namespace KatBall
 		AddExternalAttribute(sTextureFileNameKey, &mTextureFileName, 1);
 		AddExternalAttribute(sVertexShaderFileNameKey, &mVertexShaderFileName, 1);
 		AddExternalAttribute(sPixelShaderFileNameKey, &mPixelShaderFileName, 1);
+		AddExternalAttribute(sRenderPassKey, &mRenderPass, 1);
 	}
 
 	void MeshEntity::CopyPrivateDataMembers(const MeshEntity& otherMeshEntity)
@@ -77,6 +81,7 @@ namespace KatBall
 		mTextureFileName = otherMeshEntity.mTextureFileName;
 		mVertexShaderFileName = otherMeshEntity.mVertexShaderFileName;
 		mPixelShaderFileName = otherMeshEntity.mPixelShaderFileName;
+		mRenderPass = otherMeshEntity.mRenderPass;
 	}
 
 	void MeshEntity::FixExternalAttributes()
@@ -85,6 +90,7 @@ namespace KatBall
 		Append(sTextureFileNameKey).SetStorage(&mTextureFileName, 1);
 		Append(sVertexShaderFileNameKey).SetStorage(&mVertexShaderFileName, 1);
 		Append(sPixelShaderFileNameKey).SetStorage(&mPixelShaderFileName, 1);
+		Append(sRenderPassKey).SetStorage(&mRenderPass, 1);
 	}
 
 	const std::string MeshEntity::sMeshFileNameKey = "mesh filename";
@@ -94,4 +100,6 @@ namespace KatBall
 	const std::string MeshEntity::sVertexShaderFileNameKey = "vertex shader filename";
 
 	const std::string MeshEntity::sPixelShaderFileNameKey = "pixel shader filename";
+
+	const std::string MeshEntity::sRenderPassKey = "render pass";
 }

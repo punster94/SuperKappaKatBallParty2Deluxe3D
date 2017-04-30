@@ -66,13 +66,13 @@ namespace FieaGameEngine
 
 	void ViewTarget::Render(Renderer* renderer) const
 	{
-		renderer->SetDepthTesting(false);
+		renderer->SetDepthMode(DepthMode::MODE_UI);
 
 		for (Renderable* renderable : mRenderables)
 		{
 			renderable->Render(renderer);
 		}
 
-		renderer->SetDepthTesting(true);
+		renderer->SetDepthMode(DepthMode::MODE_OPAQUE);
 	}
 }

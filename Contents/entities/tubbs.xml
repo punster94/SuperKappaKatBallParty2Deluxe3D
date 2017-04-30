@@ -13,5 +13,6 @@
 		<vector name='scale' value='0.5,0.5,0.5,0.0'/>
 		<string name='mesh filename' value='flat_sphere.obj'/>
 		<string name='texture filename' value='mankey_ball.bmp'/>
+		<integer name='render pass' value='1'/>
 	</entity>
 </entity>
