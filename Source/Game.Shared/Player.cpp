@@ -23,20 +23,8 @@ namespace KatBall
 	{
 		Entity::Initialize(worldState);
 
-		Datum& entities = Entities();
-
-		for (uint32_t i = 0; i < entities.Size(); ++i)
-		{
-			if (entities.Get<Scope&>(i).Is(RigidBody::TypeIdClass()))
-			{
-				mRigidBody = entities.Get<Scope&>(i).As<RigidBody>();
-			}
-
-			if (entities.Get<Scope&>(i).Is(MeshEntity::TypeIdClass()))
-			{
-				mMeshEntity = entities.Get<Scope&>(i).As<MeshEntity>();
-			}
-		}
+		mRigidBody = FindChildEntityByName(sBallColliderKey)->As<RigidBody>();
+		mMeshEntity = FindChildEntityByName(sBallMeshKey)->As<MeshEntity>();
 
 		mGamepad = new Gamepad(sPlayerId++);
 	}
@@ -62,7 +50,7 @@ namespace KatBall
 		mPosition.y = trans.getOrigin().getY();
 		mPosition.z = trans.getOrigin().getZ();
 
-		mMeshEntity->SetPosition(mPosition);
+		SetRelativePosition(mPosition);
 	}
 
 	void Player::CopyPrivateDataMembers(const Player& otherPlayer)
@@ -90,5 +78,7 @@ namespace KatBall
 
 	const string Player::sMoveSpeedKey = "movespeed";
 
+	const string Player::sBallMeshKey = "ball mesh";
 
+	const string Player::sBallColliderKey = "ball collider";
 }

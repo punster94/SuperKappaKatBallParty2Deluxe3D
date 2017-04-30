@@ -147,32 +147,83 @@ namespace FieaGameEngine
 		}
 	}
 
-	void Entity::SetPosition(glm::vec3 position)
+	void Entity::SetRelativePosition(glm::vec3 position)
 	{
 		mPosition = position;
 	}
 
-	void Entity::SetRotation(glm::vec3 rotation)
+	void Entity::SetRelativeRotation(glm::vec3 rotation)
 	{
 		mRotation = rotation;
 	}
 
-	void Entity::SetScale(glm::vec3 scale)
+	void Entity::SetRelativeScale(glm::vec3 scale)
 	{
 		mScale = scale;
 	}
 
-	glm::vec3 Entity::GetPosition() const
+	glm::vec3 Entity::GetWorldPosition() const
+	{
+		if (GetParent() == nullptr)
+		{
+			return mPosition;
+		}
+
+		Entity* parent = GetParent()->As<Entity>();
+
+		if (parent != nullptr)
+		{
+			return parent->GetWorldPosition() + mPosition;
+		}
+
+		return mPosition;
+	}
+
+	glm::vec3 Entity::GetWorldRotation() const
+	{
+		if (GetParent() == nullptr)
+		{
+			return mRotation;
+		}
+
+		Entity* parent = GetParent()->As<Entity>();
+
+		if (parent != nullptr)
+		{
+			return parent->GetWorldRotation() + mRotation;
+		}
+
+		return mRotation;
+	}
+
+	glm::vec3 Entity::GetWorldScale() const
+	{
+		if (GetParent() == nullptr)
+		{
+			return mScale;
+		}
+
+		Entity* parent = GetParent()->As<Entity>();
+
+		if (parent != nullptr)
+		{
+			return parent->GetWorldScale() * mScale;
+		}
+
+		return mScale;
+	}
+
+	glm::vec3 Entity::GetRelativePosition() const
 	{
 		return mPosition;
 	}
 
-	glm::vec3 Entity::GetRotation() const
+	glm::vec3 Entity::GetRelativeRotation() const
 	{
 		return mRotation;
 	}
 
-	glm::vec3 Entity::GetScale() const
+	glm::vec3 Entity::GetRelativeScale() const
 	{
 		return mScale;
 	}
@@ -240,6 +291,35 @@ namespace FieaGameEngine
 	void Entity::RemoveAllRenderables()
 	{
 		mRenderables.Clear();
+	}
+
+	Entity* Entity::FindChildEntityByName(const std::string& name)
+	{
+		Datum& entities = Entities();
+
+		if (entities.Size() == 0)
+		{
+			return nullptr;
+		}
+
+		for (std::uint32_t i = 0; i < entities.Size(); ++i)
+		{
+			Entity* entity = entities.Get<Scope&>(i).As<Entity>();
+
+			if (entity->mName == name)
+			{
+				return entity;
+			}
+
+			Entity* childFind = entity->FindChildEntityByName(name);
+
+			if (childFind != nullptr)
+			{
+				return childFind;
+			}
+		}
+
+		return nullptr;
 	}
 
 	void Entity::CopyPrivateDataMembers(const Entity& otherEntity)

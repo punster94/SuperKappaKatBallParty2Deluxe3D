@@ -29,8 +29,8 @@ namespace FieaGameEngine
 			// Update view matrix based on camera position + rotation.
 			XMMATRIX viewMatrix;
 
-			glm::vec3 rotation = mCamera->GetRotation();
-			glm::vec3 translation = mCamera->GetPosition();
+			glm::vec3 rotation = mCamera->GetWorldRotation();
+			glm::vec3 translation = mCamera->GetWorldPosition();
 
 			viewMatrix = XMMatrixTranslation(-translation.x, -translation.y, -translation.z);
 

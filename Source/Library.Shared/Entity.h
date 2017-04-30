@@ -159,16 +159,20 @@ namespace FieaGameEngine
 		/** Transform properties set methods
 		 *	Change position, rotation, or scale.
 		 */
-		void SetPosition(glm::vec3 position);
-		void SetRotation(glm::vec3 rotation);
-		void SetScale(glm::vec3 scale);
+		void SetRelativePosition(glm::vec3 position);
+		void SetRelativeRotation(glm::vec3 rotation);
+		void SetRelativeScale(glm::vec3 scale);
 
 		/** Transform properties get methods
 		 *	Get position, rotation, or scale.
 		 */
-		glm::vec3 GetPosition() const;
-		glm::vec3 GetRotation() const;
-		glm::vec3 GetScale() const;
+		glm::vec3 GetWorldPosition() const;
+		glm::vec3 GetWorldRotation() const;
+		glm::vec3 GetWorldScale() const;
+
+		glm::vec3 GetRelativePosition() const;
+		glm::vec3 GetRelativeRotation() const;
+		glm::vec3 GetRelativeScale() const;
 
 		/** Adjust transform properties
 		 *	Adjust position, rotation, or scale.
@@ -191,6 +195,8 @@ namespace FieaGameEngine
 		void RemoveRenderable(Renderable& renderable);
 
 		void RemoveAllRenderables();
+
+		Entity* FindChildEntityByName(const std::string& name);
 
 		/** Entity mRenderables
 		*	List of renderable objects for this Entity.

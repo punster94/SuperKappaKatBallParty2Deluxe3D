@@ -1,6 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<entity class='QuadEntity' name='logo'>
-	<vector name='color' value='0.0,0.0,1.0,1.0'/>
-	<vector name='rect' value='-0.7,0.2,0.2,0.5'/>
-	<string name='texture filename' value='mankey_ball.bmp'/>
-</entity>

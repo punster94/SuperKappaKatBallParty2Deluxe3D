@@ -7,6 +7,8 @@
 #include "ScoreAction.h"
 #include "ReactionAttributed.h"
 #include "Timer.h"
+#include "KatMusic.h"
+#include "KatSound.h"
 
 using namespace FieaGameEngine;
 
@@ -51,6 +53,7 @@ namespace KatBall
 		EntityFactory ef;
 		RigidBodyFactory rbf;
 		KatMusicFactory kmf;
+		KatSoundFactory ksf;
 		MeshEntityFactory mef;
 		HUDFactory hudf;
 		ScoreActionFactory saf;
@@ -86,8 +89,8 @@ namespace KatBall
 
 		sCamera = new Camera();
 		sInputSubscriber = new InputSubscriber();
-		sCamera->SetPosition(glm::vec3(0.0f, 10.0f, -12.0f));
-		sCamera->SetRotation(glm::vec3(0.71f, 0.0f, 0.0f));
+		sCamera->SetRelativePosition(glm::vec3(0.0f, 10.0f, -12.0f));
+		sCamera->SetRelativeRotation(glm::vec3(0.71f, 0.0f, 0.0f));
 		mRenderer->SetCamera(sCamera);
 	}
 
@@ -113,14 +116,6 @@ namespace KatBall
 		// DEBUG
 		DebugUpdate();
 		// END
-
-		// DEBUG
-		float lAnalogY;
-		float rAnalogY;
-		float lAnalogX;
-		float rAnalogX;
-		
-		// END
 	}
 
 	void Game::DebugUpdate()
@@ -133,8 +128,8 @@ namespace KatBall
 		const float cameraAngSpeed = 2.0f * deltaTime;
 		glm::vec3 deltaPos;
 		glm::vec3 deltaRot;
-		glm::vec3 cameraPos = sCamera->GetPosition();
-		glm::vec3 cameraRot = sCamera->GetRotation();
+		glm::vec3 cameraPos = sCamera->GetWorldPosition();
+		glm::vec3 cameraRot = sCamera->GetWorldRotation();
 
 		if (GetAsyncKeyState('A'))
 		{
@@ -186,8 +181,8 @@ namespace KatBall
 			deltaRot += glm::vec3(-cameraAngSpeed, 0.0f, 0.0f);
 		}
 
-		sCamera->SetPosition(cameraPos + deltaPos);
-		sCamera->SetRotation(cameraRot + deltaRot);
+		sCamera->SetRelativePosition(cameraPos + deltaPos);
+		sCamera->SetRelativeRotation(cameraRot + deltaRot);
 	}
 
 	void Game::Shutdown()

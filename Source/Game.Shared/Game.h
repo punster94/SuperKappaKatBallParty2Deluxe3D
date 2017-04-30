@@ -5,7 +5,6 @@
 #include "GameClock.h"
 #include "WorldState.h"
 #include "Renderer.h"
-#include "KatMusic.h"
 
 namespace KatBall
 {
