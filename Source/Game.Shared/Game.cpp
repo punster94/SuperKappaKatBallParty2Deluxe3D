@@ -14,11 +14,8 @@ using namespace FieaGameEngine;
 
 namespace KatBall
 {
-	static TestDummy* sDummy;
 	static Camera* sCamera;
 	static InputSubscriber* sInputSubscriber;
-
-	static Quad* sQuad;
 
 	Game::Game(FieaGameEngine::Renderer& renderer)
 		: mRenderer(&renderer)
@@ -75,18 +72,6 @@ namespace KatBall
 
 		mWorld.Initialize(mWorldState);
 
-		// DEBUG
-		sQuad = new Quad();
-		sQuad->SetShaders(Asset::Get(SHADER_QUAD_VERTEX)->As<VertexShader>(),
-						  Asset::Get(SHADER_QUAD_PIXEL)->As<PixelShader>());
-		sQuad->SetRect(0.5f, 0.8f, 0.2f, 0.18f);
-		sQuad->SetTexture(Asset::Get(TEXTURE_MANKEY_BALL_PNG)->As<Texture>());
-		sQuad->SetColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
-		mRenderer->AddViewRenderable(*sQuad);
-		
-		sDummy = new TestDummy();
-		// END
-
 		sCamera = new Camera();
 		sInputSubscriber = new InputSubscriber();
 		sCamera->SetRelativePosition(glm::vec3(0.0f, 10.0f, -12.0f));
@@ -100,16 +85,8 @@ namespace KatBall
 
 		mWorld.Update(mWorldState);
 
-		 // DEBUG
-		sDummy->Update(mWorldState);
-		// END
-
 		mRenderer->InitRenderFrame();
 		mRenderer->Render(mWorld);
-		
-		// DEBUG
-		sDummy->Render(mRenderer);
-		// END
 
 		mRenderer->EndRenderFrame();
 

@@ -9,7 +9,7 @@ namespace KatBall
 	MeshEntity::MeshEntity(const std::string& name) :
 		Entity(name), mMeshFileName(MESH_KAT), mTextureFileName(TEXTURE_KAT),
 		mVertexShaderFileName(SHADER_MESH_VERTEX), mPixelShaderFileName(SHADER_MESH_PIXEL),
-		mRenderPass(RENDER_PASS_1)
+		mRenderPass(RENDER_PASS_1), mColor(1.0f, 1.0f, 1.0f, 1.0f)
 	{
 		InitializeSignatures();
 	}
@@ -54,6 +54,7 @@ namespace KatBall
 			Asset::Get(mPixelShaderFileName)->As<PixelShader>());
 
 		mMesh.SetRenderPass(mRenderPass);
+		mMesh.SetColor(mColor);
 
 		AddRenderable(mMesh);
 	}
@@ -72,6 +73,7 @@ namespace KatBall
 		AddExternalAttribute(sVertexShaderFileNameKey, &mVertexShaderFileName, 1);
 		AddExternalAttribute(sPixelShaderFileNameKey, &mPixelShaderFileName, 1);
 		AddExternalAttribute(sRenderPassKey, &mRenderPass, 1);
+		AddExternalAttribute(sColorKey, &mColor, 1);
 	}
 
 	void MeshEntity::CopyPrivateDataMembers(const MeshEntity& otherMeshEntity)
@@ -82,6 +84,7 @@ namespace KatBall
 		mVertexShaderFileName = otherMeshEntity.mVertexShaderFileName;
 		mPixelShaderFileName = otherMeshEntity.mPixelShaderFileName;
 		mRenderPass = otherMeshEntity.mRenderPass;
+		mColor = otherMeshEntity.mColor;
 	}
 
 	void MeshEntity::FixExternalAttributes()
@@ -91,6 +94,7 @@ namespace KatBall
 		Append(sVertexShaderFileNameKey).SetStorage(&mVertexShaderFileName, 1);
 		Append(sPixelShaderFileNameKey).SetStorage(&mPixelShaderFileName, 1);
 		Append(sRenderPassKey).SetStorage(&mRenderPass, 1);
+		Append(sColorKey).SetStorage(&mColor, 1);
 	}
 
 	const std::string MeshEntity::sMeshFileNameKey = "mesh filename";
@@ -102,4 +106,6 @@ namespace KatBall
 	const std::string MeshEntity::sPixelShaderFileNameKey = "pixel shader filename";
 
 	const std::string MeshEntity::sRenderPassKey = "render pass";
+
+	const std::string MeshEntity::sColorKey = "color";
 }

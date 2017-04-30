@@ -12,6 +12,7 @@
             <string name='mesh filename' value='smooth_sphere.obj'/>
             <string name='texture filename' value='ball.png'/>
             <integer name='render pass' value='1'/>
+            <vector name='color' value='1.0,0.0,0.0,1.0'/>
 		</entity>
 	</entity>
 </entity>

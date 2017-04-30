@@ -7,7 +7,8 @@ namespace FieaGameEngine
 
 	Mesh::Mesh() :
 		mOwner(nullptr),
-		mRenderPass(RENDER_PASS_1)
+		mRenderPass(RENDER_PASS_1),
+		mColor(1.0f, 1.0f, 1.0f, 1.0f)
 	{
 
 	}
@@ -21,6 +22,11 @@ namespace FieaGameEngine
 	void Mesh::SetOwner(Entity& owner)
 	{
 		mOwner = &owner;
+	}
+
+	void Mesh::SetColor(const glm::vec4& color)
+	{
+		mColor = color;
 	}
 
 	void Mesh::SetRelativePosition(glm::vec3 position)
