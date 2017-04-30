@@ -19,18 +19,21 @@ namespace KatBall
 		void Update(FieaGameEngine::WorldState& worldState);
 		void Render(FieaGameEngine::Renderer* renderer);
 
+		void UpdateNumWins();
 		void UpdateScore();
 
 		void SetIsWinning(bool isWinning);
+		std::uint32_t GetNumWins() const;
 		std::uint32_t GetScore() const;
 
 	private:
 
 		void SetDigitTextures();
 
-		std::uint32_t mScore;
 		std::uint32_t mNumWins;
+		std::uint32_t mScore;
 		bool mIsWinning;
+
 		FieaGameEngine::Vector<FieaGameEngine::Quad*> mRenderables;
 	};
 }

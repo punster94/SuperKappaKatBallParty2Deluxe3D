@@ -3,8 +3,12 @@
 
 #include "InputSubscriber.h"
 
+#include "EventMessageAttributed.h"
+#include "Event.h"
+
 #include "HUD.h"
 #include "ScoreAction.h"
+#include "ActionRoundWinner.h"
 #include "ReactionAttributed.h"
 #include "Timer.h"
 
@@ -54,6 +58,7 @@ namespace KatBall
 		MeshEntityFactory mef;
 		HUDFactory hudf;
 		ScoreActionFactory saf;
+		ActionRoundWinnerFactory arwf;
 		ReactionAttributedFactory raf;
 		QuadEntityFactory qef;
 		PlayerFactory pf;

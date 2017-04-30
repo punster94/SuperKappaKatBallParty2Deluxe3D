@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionPunch.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionRoundWinner.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Game.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Gamepad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HUD.cpp" />
@@ -36,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionPunch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionRoundWinner.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Constants.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Game.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Gamepad.h" />

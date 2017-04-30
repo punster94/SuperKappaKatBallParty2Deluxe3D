@@ -11,7 +11,9 @@ using namespace glm;
 
 RTTI_DEFINITIONS(Score)
 
-Score::Score()
+Score::Score() :
+	mScore(0),
+	mNumWins(0)
 {
 	// populate renderables vector -- doing so here prevents a double add
 	mRenderables.PushBack(new Quad());		// ones place
@@ -40,7 +42,7 @@ void Score::Initialize(const string& playerIcon, const vec4& color, float x, flo
 	mRenderables[1]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	mRenderables[2]->SetTexture(Asset::Get(HUD::sPlayerWinsIcons[mNumWins])->As<Texture>());
-	mRenderables[2]->SetRect(x + w, y + h, 2 * w, h / 2);
+	mRenderables[2]->SetRect(x + w, y + h, w * 2.0f, h * 0.5f);
 	mRenderables[2]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	mRenderables[3]->SetTexture(Asset::Get(playerIcon)->As<Texture>());
@@ -61,7 +63,8 @@ void Score::Initialize(const string& playerIcon, const vec4& color, float x, flo
 	// init score and set digits
 	mScore = 0;
 	SetDigitTextures();
-	mIsWinning = true;
+
+	mIsWinning = false;
 }
 
 void Score::Update(WorldState& worldState)
@@ -91,6 +94,11 @@ void Score::SetDigitTextures()
 	}
 }
 
+void Score::UpdateNumWins()
+{
+	++mNumWins;
+}
+
 void Score::UpdateScore()
 {
 	++mScore;
@@ -99,6 +107,11 @@ void Score::UpdateScore()
 void Score::SetIsWinning(bool isWinning)
 {
 	mIsWinning = isWinning;
+}
+
+uint32_t Score::GetNumWins() const
+{
+	return mNumWins;
 }
 
 uint32_t Score::GetScore() const
