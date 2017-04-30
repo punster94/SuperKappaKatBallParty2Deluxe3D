@@ -15,6 +15,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MeshEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Score.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionPunch.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HUD.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ScoreAction.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Constants.h" />
@@ -32,5 +36,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MeshEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Score.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionPunch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HUD.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ScoreAction.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h" />
   </ItemGroup>
 </Project>
