@@ -12,9 +12,17 @@ namespace KatBall
 		PowerupSpawner::InitializeSignatures();
 	}
 
+	void PowerupSpawner::Initialize(FieaGameEngine::WorldState& worldState)
+	{
+		Entity::Initialize(worldState);
+		//mRigidBody = FindChildEntityByName(sBallColliderKey)->As<RigidBody>();
+		mMeshEntity = FindChildEntityByName(sBallMeshKey)->As<MeshEntity>();
+	}
+
 	void PowerupSpawner::InitializeSignatures()
 	{
 		Entity::InitializeSignatures();
+
 		AddExternalAttribute("Spawn Location", &mSpawnLocation, 1);
 		AddExternalAttribute("Spawn Chance", &mSpawnChance, 1);
 
@@ -121,16 +129,20 @@ namespace KatBall
 
 			if (weightedRoll <= mLongBoiSpawnWeight)
 			{
-				(*this)["Entities"].PushBack(new Powerup(Powerup::PowerupType::LongBoi, mLongBoiLengthIncrease, mSpawnLocation));
+				(*this)[Sector::sSectorEntitiesKey].PushBack(new Powerup(Powerup::PowerupType::LongBoi, mLongBoiLengthIncrease, mSpawnLocation));
 			}
 			else if (weightedRoll <= mLongBoiSpawnWeight + mBigBoiSpawnWeight)
 			{
-				(*this)["Entities"].PushBack(new Powerup(Powerup::PowerupType::BigBoi, mBigBoiScaleIncrease, mSpawnLocation));
+				(*this)[Sector::sSectorEntitiesKey].PushBack(new Powerup(Powerup::PowerupType::BigBoi, mBigBoiScaleIncrease, mSpawnLocation));
 			}
 			else if (weightedRoll <= mLongBoiSpawnWeight + mBigBoiSpawnWeight + mVortexBoiSpawnWeight)
 			{
-				(*this)["Entities"].PushBack(new Powerup(Powerup::PowerupType::VortexBoi, mVortexBoiRotationSpeed, mSpawnLocation));
+				(*this)[Sector::sSectorEntitiesKey].PushBack(new Powerup(Powerup::PowerupType::VortexBoi, mVortexBoiRotationSpeed, mSpawnLocation));
 			}
 		}
 	}
+
+	const std::string PowerupSpawner::sRigidBodyKey = "rigidbody";
+	const std::string PowerupSpawner::sBallColliderKey = "ball collider";
+	const std::string PowerupSpawner::sBallMeshKey = "ball mesh";
 }

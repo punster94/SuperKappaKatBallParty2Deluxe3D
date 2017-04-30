@@ -269,6 +269,7 @@
     <Xml Include="..\..\Contents\entities\BGM.xml" />
     <Xml Include="..\..\Contents\entities\floor.xml" />
     <Xml Include="..\..\Contents\entities\tubbs.xml" />
+    <Xml Include="powerupspawner.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
