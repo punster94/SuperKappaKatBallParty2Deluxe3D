@@ -13,23 +13,23 @@
 		<vector name='scale' value='5.0,0.1,5.0,0.0'/>
 	</entity>
 	<entity class='RigidBody' name='left wall'>
-		<vector name='position' value='-5.0,0.0,0.0,0.0'/>
+		<vector name='position' value='-5.0,-2.0,0.0,0.0'/>
 		<string name='shape' value='box'/>
 		<vector name='dimensions' value='0.1,0.5,5.0,0.0'/>
 	</entity>
 	<entity class='MeshEntity' name='left wall mesh'>
-		<vector name='position' value='-5.0,0.0,0.0,0.0'/>
+		<vector name='position' value='-5.0,-2.0,0.0,0.0'/>
 		<string name='mesh filename' value='cube.obj'/>
 		<string name='texture filename' value='mankey_ball.bmp'/>
 		<vector name='scale' value='0.1,0.5,5.0,0.0'/>
 	</entity>
 	<entity class='RigidBody' name='right wall'>
-		<vector name='position' value='5.0,0.0,0.0,0.0'/>
+		<vector name='position' value='5.0,-2.0,0.0,0.0'/>
 		<string name='shape' value='box'/>
 		<vector name='dimensions' value='0.1,0.5,5.0,0.0'/>
 	</entity>
 	<entity class='MeshEntity' name='right wall mesh'>
-		<vector name='position' value='5.0,0.0,0.0,0.0'/>
+		<vector name='position' value='5.0,-2.0,0.0,0.0'/>
 		<string name='mesh filename' value='cube.obj'/>
 		<string name='texture filename' value='mankey_ball.bmp'/>
 		<vector name='scale' value='0.1,0.5,5.0,0.0'/>
