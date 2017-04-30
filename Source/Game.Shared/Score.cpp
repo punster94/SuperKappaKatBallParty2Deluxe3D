@@ -5,6 +5,7 @@
 using namespace FieaGameEngine;
 using namespace KatBall;
 using namespace std;
+using namespace glm;
 
 RTTI_DEFINITIONS(Score)
 
@@ -16,9 +17,14 @@ Score::~Score()
 {
 }
 
-void Score::Initialize(WorldState& worldState)
+void Score::Initialize(const std::string& numbersFilePath, const std::string& imageFilePath, const vec4& color, float x, float y, float dimension)
 {
-	UNREFERENCED_PARAMETER(worldState);
+	UNREFERENCED_PARAMETER(numbersFilePath);
+	UNREFERENCED_PARAMETER(imageFilePath);
+	UNREFERENCED_PARAMETER(color);
+	UNREFERENCED_PARAMETER(x);
+	UNREFERENCED_PARAMETER(y);
+	UNREFERENCED_PARAMETER(dimension);
 
 	mScore = 0;
 

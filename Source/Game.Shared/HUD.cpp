@@ -5,11 +5,17 @@
 using namespace FieaGameEngine;
 using namespace KatBall;
 using namespace std;
+using namespace glm;
 
 RTTI_DEFINITIONS(HUD)
 
-const string HUD::sScoreLocationsKey = "score_locations";
 const string HUD::sQuadDimensionsKey = "quad_dimensions";
+const string HUD::sNumbersFileKey = "numbers_file";
+
+const string HUD::sScoreColorsKey = "score_colors";
+const string HUD::sScoreImageFileKey = "score_image_file";
+const string HUD::sScoreLocationsXKey = "score_x_locations";
+const string HUD::sScoreLocationsYKey = "score_y_locations";
 
 const string HUD::sScoresKey = "scores";
 
@@ -39,7 +45,12 @@ void HUD::InitializeSignatures()
 	Entity::InitializeSignatures();
 
 	AddExternalAttribute(sQuadDimensionsKey, &mQuadDimensions, 1);
-	AddExternalAttribute(sScoreLocationsKey, mScoreLocations, NUM_HUD_SLOTS);
+	AddExternalAttribute(sNumbersFileKey, &mNumbersFile, 1);
+
+	AddExternalAttribute(sScoreImageFileKey, &mScoreImageFile, 1);
+	AddExternalAttribute(sScoreColorsKey, mScoreColors, NUM_HUD_SLOTS);
+	AddExternalAttribute(sScoreLocationsXKey, mScoreLocationsX, NUM_HUD_SLOTS);
+	AddExternalAttribute(sScoreLocationsYKey, mScoreLocationsY, NUM_HUD_SLOTS);
 
 	AddExternalAttribute(sScoresKey, mScores, NUM_HUD_SLOTS);
 
@@ -55,7 +66,14 @@ void HUD::Initialize(WorldState& worldState)
 	// initialize scores
 	for(uint32_t i = 0; i < NUM_HUD_SLOTS; ++i)
 	{
-		static_cast<Score*>(mScores[i])->Initialize(worldState);
+		static_cast<Score*>(mScores[i])->Initialize(
+			mNumbersFile,				// file for numbers texture
+			mScoreImageFile,			// file for score image texture
+			mScoreColors[i],			// color for this score
+			mScoreLocationsX[i],		// origin x for this score
+			mScoreLocationsY[i],		// origin y for this score
+			mQuadDimensions				// quad dimensions
+		);
 	}
 }
 

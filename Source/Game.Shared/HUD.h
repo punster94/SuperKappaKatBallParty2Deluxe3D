@@ -27,15 +27,25 @@ namespace KatBall
 
 	private:
 
-		glm::vec4 mScoreLocations[NUM_HUD_SLOTS];
 		float mQuadDimensions;
+		std::string mNumbersFile;
+
+		std::string mScoreImageFile;
+		glm::vec4 mScoreColors[NUM_HUD_SLOTS];
+		float mScoreLocationsX[NUM_HUD_SLOTS];
+		float mScoreLocationsY[NUM_HUD_SLOTS];
 
 		RTTI* mScores[NUM_HUD_SLOTS];
 
 	public:
 
-		static const std::string sScoreLocationsKey;
 		static const std::string sQuadDimensionsKey;
+		static const std::string sNumbersFileKey;
+		
+		static const std::string sScoreColorsKey;
+		static const std::string sScoreImageFileKey;
+		static const std::string sScoreLocationsXKey;
+		static const std::string sScoreLocationsYKey;
 
 		static const std::string sScoresKey;
 	};

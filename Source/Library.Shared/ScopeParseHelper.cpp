@@ -166,7 +166,18 @@ namespace FieaGameEngine
 
 		if (datum.IsExternal())
 		{
-			datum.SetFromString(attributes[sValueAttribute]);
+			if(attributes.ContainsKey(sIndexAttribute))
+			{
+				// external with index attribute -- set from string at non-0 index
+				int index;
+				sscanf_s(attributes[sIndexAttribute].c_str(), "%d", &index);
+				datum.SetFromString(attributes[sValueAttribute], index);
+			}
+			else
+			{
+				// external with no index attribute -- assumed set at 0
+				datum.SetFromString(attributes[sValueAttribute]);
+			}
 		}
 		else
 		{
@@ -516,6 +527,8 @@ namespace FieaGameEngine
 	const std::string ScopeParseHelper::sClassAttribute = "class";
 
 	const std::string ScopeParseHelper::sInstanceAttribute = "instance";
+
+	const std::string ScopeParseHelper::sIndexAttribute = "index";
 
 #pragma endregion ScopeParseHelper Static Data
 }

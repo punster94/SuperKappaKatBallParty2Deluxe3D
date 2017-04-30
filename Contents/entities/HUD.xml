@@ -5,5 +5,23 @@
 		<action class='ScoreAction' name='UpdateScore' />
 	</reaction>
 	
+	<float name='quad_dimensions' value='0.1' />
+	<string name='numbers_file' value='mankey_ball.bmp' />
 	
+	<string name='score_image_file' value='mankey_ball.bmp' />
+	
+	<vector name='score_colors' value='0.0,0.0,1.0,1.0' index='0' />
+	<vector name='score_colors' value='0.0,1.0,0.0,1.0' index='1' />
+	<vector name='score_colors' value='1.0,0.0,0.0,1.0' index='2' />
+	<vector name='score_colors' value='1.0,0.0,1.0,1.0' index='3' />
+	
+	<float name='score_x_locations' value='0.0' index='0' />
+	<float name='score_x_locations' value='1.0' index='1' />
+	<float name='score_x_locations' value='2.0' index='2' />
+	<float name='score_x_locations' value='3.0' index='3' />
+	
+	<float name='score_y_locations' value='0.0' index='0' />
+	<float name='score_y_locations' value='0.0' index='1' />
+	<float name='score_y_locations' value='0.0' index='2' />
+	<float name='score_y_locations' value='0.0' index='3' />
 </entity>

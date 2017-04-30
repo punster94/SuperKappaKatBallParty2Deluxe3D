@@ -14,6 +14,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HUD.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ScoreAction.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Score.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)QuadEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Constants.h" />
@@ -30,5 +31,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HUD.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ScoreAction.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Score.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)QuadEntity.h" />
   </ItemGroup>
 </Project>

@@ -367,5 +367,10 @@ namespace FieaGameEngine
 		 *	A static constant string representing the value expected for instance attributes.
 		 */
 		static const std::string sInstanceAttribute;
+
+		/** ScopeParseHelper sIndexAttribute
+		 * A static constant string representing the value expected for index attributes.
+		 */
+		static const std::string sIndexAttribute;
 	};
 }
