@@ -71,7 +71,7 @@ namespace FieaGameEngine
 
 	void KatSound::Play()
 	{
-		mSound.setBuffer(LoadSoundBuffer(mSoundFileName));
+		mSound.setBuffer(LoadSoundBuffer(SoundFolder + mSoundFileName));
 		mSound.play();
 	}
 
