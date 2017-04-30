@@ -19,10 +19,11 @@ namespace KatBall
 		void Update(FieaGameEngine::WorldState& worldState);
 		void Render(FieaGameEngine::Renderer* renderer);
 
-		void SetDigitTextures();
 		void UpdateScore();
 
 	private:
+
+		void SetDigitTextures();
 
 		std::uint32_t mScore;
 

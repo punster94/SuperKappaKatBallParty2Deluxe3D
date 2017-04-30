@@ -21,4 +21,12 @@
 	<vector name='score_colors' value='1.0,0.0,0.0,1.0' index='2' />
 	<vector name='score_colors' value='1.0,1.0,0.0,1.0' index='3' />
 	
+	
+	<float name='timer_location_x' value='-0.9' />
+	<float name='timer_location_y' value='0.73' />
+	
+	<float name='time_remaining' value='250.0' />
+	
+	<vector name='timer_color' value='0.83,0.686,0.215,1.0' />
+	
 </entity>

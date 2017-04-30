@@ -17,7 +17,6 @@ namespace KatBall
 	static Gamepad* sGamepad1;
 	static Gamepad* sGamepad2;
 	static InputSubscriber* sInputSubscriber;
-	static Timer* sTimer;
 
 	static Quad* sQuad;
 
@@ -82,9 +81,6 @@ namespace KatBall
 		sQuad->SetTexture(Asset::Get(TEXTURE_MANKEY_BALL_PNG)->As<Texture>());
 		sQuad->SetColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 		mRenderer->AddViewRenderable(*sQuad);
-
-		sTimer = new Timer();
-		sTimer->Initialize(200.0f, -.9f, .7f, .5f, .25f);
 		
 		sDummy = new TestDummy();
 		// END
@@ -103,7 +99,6 @@ namespace KatBall
 		mGameClock.UpdateGameTime(mWorldState.mGameTime);
 
 		mWorld.Update(mWorldState);
-		sTimer->Update(mWorldState);
 
 		 // DEBUG
 		sDummy->Update(mWorldState);
@@ -115,7 +110,6 @@ namespace KatBall
 		// DEBUG
 		sDummy->Render(mRenderer);
 		mRenderer->SetDepthTesting(false);
-		sTimer->Render(mRenderer);
 		mRenderer->SetDepthTesting(true);
 		// END
 

@@ -11,19 +11,24 @@ namespace KatBall
 		RTTI_DECLARATIONS(Timer, FieaGameEngine::RTTI)
 
 	public:
-		void Initialize(float time, float posX, float posY, float width, float height);
+		Timer();
+		virtual ~Timer();
+
+		void Initialize(const glm::vec4& color, float time, float posX, float posY, float width, float height);
 		void Update(class FieaGameEngine::WorldState& state);
 		void Render(FieaGameEngine::Renderer* renderer);
 
 	private:
-		void SetTimerPosition();
+
 		void SetTimerRenderables();
 
 		float mTimeRemaining;
-		float mPosX;
-		float mPosY;
-		float mWidth;
-		float mHeight;
+
+		FieaGameEngine::Quad mBackground;
+		FieaGameEngine::Quad mDigitHuns;
+		FieaGameEngine::Quad mDigitTens;
+		FieaGameEngine::Quad mDigitOnes;
+
 		FieaGameEngine::Vector<FieaGameEngine::Quad> mTimerRenderables;
 	};
 }

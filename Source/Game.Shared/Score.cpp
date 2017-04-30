@@ -13,6 +13,10 @@ RTTI_DEFINITIONS(Score)
 
 Score::Score()
 {
+	// populate renderables vector -- doing so here prevents a double add
+	mRenderables.PushBack(mImageQuad);
+	mRenderables.PushBack(mDigitOnes);
+	mRenderables.PushBack(mDigitTens);
 }
 
 Score::~Score()
@@ -21,25 +25,18 @@ Score::~Score()
 
 void Score::Initialize(const vec4& color, float x, float y, float w, float h)
 {
-	// init image quad
-	mImageQuad.SetTexture(Asset::Get(TEXTURE_KAT_SCORE_IMAGE)->As<Texture>());
-	mImageQuad.SetRect(x, y, w, h);
-	mImageQuad.SetColor(color);
+	// init quads
+	mRenderables[0].SetTexture(Asset::Get(TEXTURE_KAT_SCORE_IMAGE)->As<Texture>());
+	mRenderables[0].SetRect(x, y, w, h);
+	mRenderables[0].SetColor(color);
 
-	// init tens quad
-	mDigitTens.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
-	mDigitTens.SetRect(x + w, y, w, h);
+	mRenderables[1].SetRect(x + w + w, y, w, h);
+	mRenderables[1].SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	// init ones quad
-	mDigitOnes.SetColor(1.0f, 1.0f, 1.0f, 1.0f);
-	mDigitOnes.SetRect(x + w + w, y, w, h);
+	mRenderables[2].SetRect(x + w, y, w, h);
+	mRenderables[2].SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	// populate renderables vector
-	mRenderables.PushBack(mImageQuad);
-	mRenderables.PushBack(mDigitOnes);
-	mRenderables.PushBack(mDigitTens);
-
-	// set quad shaders
+	// set shaders
 	VertexShader* vertShader = Asset::Get(SHADER_QUAD_VERTEX)->As<VertexShader>();
 	PixelShader* pixShader = Asset::Get(SHADER_QUAD_PIXEL)->As<PixelShader>();
 	for(auto& renderable : mRenderables)
@@ -47,8 +44,8 @@ void Score::Initialize(const vec4& color, float x, float y, float w, float h)
 		renderable.SetShaders(vertShader, pixShader);
 	}
 
-	// init score and set digit textures
-	mScore = 0;
+	// init score and set digits
+	mScore = 12;
 	SetDigitTextures();
 }
 

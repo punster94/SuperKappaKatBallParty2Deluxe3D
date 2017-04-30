@@ -18,6 +18,11 @@ const string HUD::sScoreLocationYKey = "score_location_y";
 
 const string HUD::sScoresKey = "scores";
 
+const string HUD::sTimerLocationXKey = "timer_location_x";
+const string HUD::sTimerLocationYKey = "timer_location_y";
+const string HUD::sTimeRemainingKey = "time_remaining";
+const string HUD::sTimerColorKey = "timer_color";
+
 const std::string HUD::sNumbersVector[] =
 {
 	TEXTURE_NUMBER_ZERO,
@@ -33,9 +38,12 @@ const std::string HUD::sNumbersVector[] =
 };
 
 HUD::HUD(const string& name) :
-	Entity(name)
+	Entity(name),
+	mTimer(nullptr)
 {
 	InitializeSignatures();
+
+	mTimer = new Timer();
 
 	// create score objects -- stored as rtti's so we can get them via scope search
 	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
@@ -46,7 +54,8 @@ HUD::HUD(const string& name) :
 
 HUD::~HUD()
 {
-	// delete score objects
+	delete mTimer;
+
 	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
 	{
 		delete mScores[i];
@@ -57,6 +66,7 @@ void HUD::InitializeSignatures()
 {
 	Entity::InitializeSignatures();
 
+	// init score attributes
 	AddExternalAttribute(sQuadDimensionsXKey, &mQuadDimensionsX, 1);
 	AddExternalAttribute(sQuadDimensionsYKey, &mQuadDimensionsY, 1);
 
@@ -66,16 +76,26 @@ void HUD::InitializeSignatures()
 
 	AddExternalAttribute(sScoresKey, mScores, NUM_PLAYERS);
 
-	// TODO
+	// init timer attributes
+	AddExternalAttribute(sTimerLocationXKey, &mTimerLocationX, 1);
+	AddExternalAttribute(sTimerLocationYKey, &mTimerLocationY, 1);
+	AddExternalAttribute(sTimeRemainingKey, &mTimeRemaining, 1);
+	AddExternalAttribute(sTimerColorKey, &mTimerColor, 1);
 }
 
 void HUD::Initialize(WorldState& worldState)
 {
 	Entity::Initialize(worldState);
 
-	// TODO
+	mTimer->Initialize(
+		mTimerColor,			// timer color
+		mTimeRemaining,			// time remaining
+		mTimerLocationX,		// origin point
+		mTimerLocationY,
+		mQuadDimensionsX,		// quad dimensions
+		mQuadDimensionsY
+	);
 
-	// initialize scores
 	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
 	{
 		static_cast<Score*>(mScores[i])->Initialize(
@@ -92,9 +112,8 @@ void HUD::Update(WorldState& worldState)
 {
 	Entity::Update(worldState);
 
-	// TODO
-
-	// update scores
+	mTimer->Update(worldState);
+	
 	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
 	{
 		static_cast<Score*>(mScores[i])->Update(worldState);
@@ -105,9 +124,8 @@ void HUD::Render(Renderer* renderer)
 {
 	Entity::Render(renderer);
 
-	// TODO
+	mTimer->Render(renderer);
 
-	// render scores
 	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
 	{
 		static_cast<Score*>(mScores[i])->Render(renderer);

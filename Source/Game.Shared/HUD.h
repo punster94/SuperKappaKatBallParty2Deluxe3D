@@ -2,6 +2,7 @@
 #pragma once
 
 #include "Entity.h"
+#include "Timer.h"
 #include "Score.h"
 
 namespace KatBall
@@ -32,7 +33,13 @@ namespace KatBall
 		float mScoreLocationsX[NUM_PLAYERS];
 		float mScoreLocationY;
 
+		float mTimerLocationX;
+		float mTimerLocationY;
+		float mTimeRemaining;
+		glm::vec4 mTimerColor;
+
 		RTTI* mScores[NUM_PLAYERS];
+		Timer* mTimer;
 
 	public:
 
@@ -44,6 +51,11 @@ namespace KatBall
 		static const std::string sScoreLocationYKey;
 
 		static const std::string sScoresKey;
+
+		static const std::string sTimerLocationXKey;
+		static const std::string sTimerLocationYKey;
+		static const std::string sTimeRemainingKey;
+		static const std::string sTimerColorKey;
 
 		const static std::string sNumbersVector[];
 	};
