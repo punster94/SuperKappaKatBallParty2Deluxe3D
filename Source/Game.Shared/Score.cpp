@@ -33,16 +33,14 @@ void Score::Initialize(const string& playerIcon, const vec4& color, float x, flo
 {
 	// init quads
 	mRenderables[0]->SetTexture(Asset::Get(playerIcon)->As<Texture>());
-	mRenderables[0]->SetRect(x, y, w, h);
-	//mRenderables[0]->SetRect(x + w + w, y, w, h);
+	mRenderables[0]->SetRect(x + w + w, y, w, h);
 	mRenderables[0]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	mRenderables[1]->SetRect(x + w, y, w, h);
 	mRenderables[1]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	mRenderables[2]->SetTexture(Asset::Get(TEXTURE_KAT_SCORE_IMAGE)->As<Texture>());
+	mRenderables[2]->SetTexture(Asset::Get(playerIcon)->As<Texture>());
 	mRenderables[2]->SetRect(x, y, w, h);
-	mRenderables[2]->SetColor(color);
 
 	mRenderables[3]->SetTexture(Asset::Get(TEXTURE_CROWN)->As<Texture>());
 	mRenderables[3]->SetRect(x + w * 0.25f, y + h * 0.75f, w * 0.5f, h * 0.5f);
