@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<entity class='Entity' name='floor'>
+	<vector name='position' value='0.0,-2.0,0.0,0.0'/>
+	<entity class='Entity' name='bottom of floor'>
+		<vector name='scale' value='5.0,0.1,5.0,0.0'/>
+		<entity class='RigidBody' name='bottom of floor collider'>
+			<string name='shape' value='box'/>
+		</entity>
+		<entity class='MeshEntity' name='bottom of floor mesh'>
+			<string name='mesh filename' value='cube.obj'/>
+			<string name='texture filename' value='mankey_ball.bmp'/>
+		</entity>
+	</entity>
+	<entity class='Entity' name='left wall'>
+		<vector name='position' value='-5.0,0.75,0.0,0.0'/>
+		<vector name='scale' value='0.1,0.5,5.0,0.0'/>
+		<entity class='RigidBody' name='left wall collider'>
+			<string name='shape' value='box'/>
+		</entity>
+		<entity class='MeshEntity' name='left wall mesh'>
+			<string name='mesh filename' value='cube.obj'/>
+			<string name='texture filename' value='mankey_ball.bmp'/>
+		</entity>
+	</entity>
+	<entity class='Entity' name='right wall'>
+		<vector name='position' value='5.0,0.75,0.0,0.0'/>
+		<vector name='scale' value='0.1,0.5,5.0,0.0'/>
+		<entity class='RigidBody' name='right wall collider'>
+			<string name='shape' value='box'/>
+		</entity>
+		<entity class='MeshEntity' name='right wall mesh'>
+			<string name='mesh filename' value='cube.obj'/>
+			<string name='texture filename' value='mankey_ball.bmp'/>
+		</entity>
+	</entity>
+</entity>

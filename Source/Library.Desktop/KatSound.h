@@ -11,8 +11,11 @@ namespace FieaGameEngine
 
 	public:
 		KatSound();
+		KatSound(const KatSound& other);
 		~KatSound();
 
+		void Initialize(WorldState& worldState) override;
+		Scope* Copy() const override;
 		const std::string& GetSoundFile() const;
 		void SetSoundFile(const std::string& file);
 
@@ -30,11 +33,13 @@ namespace FieaGameEngine
 		static void UnloadAllSoundBuffers();
 
 	protected:
-		void InitializeSignatures();
+		void InitializeSignatures() override;
 
 	private:
 		std::string mSoundFileName;
 		sf::Sound mSound;
+
+		void CopyPrivateDataMembers(const KatSound& other);
 
 		static HashMap<std::string, std::shared_ptr<sf::SoundBuffer>> sBufferMap;
 

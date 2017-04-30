@@ -129,9 +129,9 @@ namespace FieaGameEngine
 		XMMATRIX worldMatrix;
 		XMMATRIX normalMatrix;
 
-		glm::vec3 position = mOwner->GetPosition();
-		glm::vec3 rotation = mOwner->GetRotation();
-		glm::vec3 scale = mOwner->GetScale();
+		glm::vec3 position = mOwner->GetWorldPosition();
+		glm::vec3 rotation = mOwner->GetWorldRotation();
+		glm::vec3 scale = mOwner->GetWorldScale();
 
 		position += mRelativePosition;
 

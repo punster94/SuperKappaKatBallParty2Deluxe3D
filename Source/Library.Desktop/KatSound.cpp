@@ -17,8 +17,18 @@ namespace FieaGameEngine
 		InitializeSignatures();
 	}
 
+	KatSound::KatSound(const KatSound& other)
+	{
+		CopyPrivateDataMembers(other);
+	}
+
 	KatSound::~KatSound()
 	{
+	}
+
+	void KatSound::Initialize(WorldState& worldState)
+	{
+		Entity::Initialize(worldState);
 	}
 
 	const string& KatSound::GetSoundFile() const
@@ -95,5 +105,15 @@ namespace FieaGameEngine
 		Attributed::InitializeSignatures();
 
 		AddExternalAttribute(SoundFileKey, &mSoundFileName);
+	}
+
+	void KatSound::CopyPrivateDataMembers(const KatSound& other)
+	{
+		mSoundFileName = other.mSoundFileName;
+	}
+
+	Scope* KatSound::Copy() const
+	{
+		return new KatSound(*this);
 	}
 }

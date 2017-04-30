@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<entity class='KatMusic' name='BGM'>
+	<string name='MusicFile' value='Hello Kitty.ogg' />
+	<integer name='PlayOnAwake' value='1' />
+</entity>
