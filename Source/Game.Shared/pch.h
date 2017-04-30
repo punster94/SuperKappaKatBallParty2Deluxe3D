@@ -22,5 +22,6 @@
 #include "WorldState.h"
 #include "Quad.h"
 #include "MeshEntity.h"
+#include "QuadEntity.h"
 
 #define GLM_FORCE_CXX98

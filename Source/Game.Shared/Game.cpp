@@ -60,6 +60,7 @@ namespace KatBall
 		ScoreActionFactory scoreactionFactory;
 		// JUSTIN
 		MeshEntityFactory mef;
+		QuadEntityFactory qef;
 
 		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
 

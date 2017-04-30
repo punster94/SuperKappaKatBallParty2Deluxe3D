@@ -6,7 +6,7 @@
 		<vector name='dimensions' value='1.0,1.0,1.0,0.0'/>
 	</entity>
 	<entity class='MeshEntity' name='floor mesh'>
-		<vector name='position' value='2.0,2.0,2.0,2.0'/>
+		<vector name='position' value='2.0,2.0,2.0,0.0'/>
 		<string name='mesh filename' value='flat_sphere.obj'/>
 		<string name='texture filename' value='mankey_ball.bmp'/>
 	</entity>

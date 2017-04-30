@@ -148,10 +148,7 @@ namespace FieaGameEngine
 		UpdateCBuffer();
 	}
 
-	void Quad::SetRect(float x,
-					   float y,
-					   float width,
-					   float height)
+	void Quad::SetRect(float x, float y, float width, float height)
 	{
 		mX = x;
 		mY = y;
