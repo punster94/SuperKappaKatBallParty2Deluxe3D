@@ -2,14 +2,20 @@
 #include <experimental/filesystem>
 #include "KatMusic.h"
 
+#include "InputSubscriber.h"
+
+#include "HUD.h"
+#include "ScoreAction.h"
+#include "ReactionAttributed.h"
+#include "Timer.h"
+
 using namespace FieaGameEngine;
 
 namespace KatBall
 {
 	static TestDummy* sDummy;
 	static Camera* sCamera;
-	static Gamepad* sGamepad1;
-	static Gamepad* sGamepad2;
+	static InputSubscriber* sInputSubscriber;
 
 	static Quad* sQuad;
 
@@ -44,7 +50,14 @@ namespace KatBall
 		master.AddHelper(&helper);
 
 		EntityFactory ef;
+		RigidBodyFactory rbf;
 		KatMusicFactory kmf;
+		MeshEntityFactory mef;
+		HUDFactory hudf;
+		ScoreActionFactory saf;
+		ReactionAttributedFactory raf;
+		QuadEntityFactory qef;
+		PlayerFactory pf;
 
 		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
 
@@ -52,8 +65,9 @@ namespace KatBall
 		{
 			master.ParseFromFile(path.path().string());
 
-			Entity* entity = sharedData.mScope->Copy()->As<Entity>();
-			sector->Entities().PushBack(*entity);
+			Entity* entity = sharedData.mScope->As<Entity>();
+			sharedData.mScope = nullptr;
+
 			entity->SetSector(*sector);
 		}
 
@@ -62,22 +76,19 @@ namespace KatBall
 		// DEBUG
 		sQuad = new Quad();
 		sQuad->SetShaders(Asset::Get(SHADER_QUAD_VERTEX)->As<VertexShader>(),
-			Asset::Get(SHADER_QUAD_PIXEL)->As<PixelShader>());
+						  Asset::Get(SHADER_QUAD_PIXEL)->As<PixelShader>());
 		sQuad->SetRect(0.5f, 0.8f, 0.2f, 0.18f);
-		sQuad->SetTexture(Asset::Get(TEXTURE_MANKEY_BALL)->As<Texture>());
+		sQuad->SetTexture(Asset::Get(TEXTURE_MANKEY_BALL_PNG)->As<Texture>());
 		sQuad->SetColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 		mRenderer->AddViewRenderable(*sQuad);
 		
 		sDummy = new TestDummy();
 		// END
 
-		mWorld.Initialize(mWorldState);
-
 		sCamera = new Camera();
-
-		sGamepad1 = new Gamepad(0);
-		sGamepad2 = new Gamepad(1);
-		sCamera->SetPosition(glm::vec3(0.0f, 0.0f, -12.0f));
+		sInputSubscriber = new InputSubscriber();
+		sCamera->SetPosition(glm::vec3(0.0f, 10.0f, -12.0f));
+		sCamera->SetRotation(glm::vec3(0.71f, 0.0f, 0.0f));
 		mRenderer->SetCamera(sCamera);
 	}
 
@@ -96,6 +107,8 @@ namespace KatBall
 		
 		// DEBUG
 		sDummy->Render(mRenderer);
+		mRenderer->SetDepthTesting(false);
+		mRenderer->SetDepthTesting(true);
 		// END
 
 		mRenderer->EndRenderFrame();
@@ -109,27 +122,7 @@ namespace KatBall
 		float rAnalogY;
 		float lAnalogX;
 		float rAnalogX;
-		if (sGamepad1->Refresh())
-		{
-			if (sGamepad1->IsPressed(XINPUT_GAMEPAD_A))
-			{
-				lAnalogY = sGamepad1->leftStickY;
-				rAnalogY = sGamepad1->rightStickY;
-				lAnalogX = sGamepad1->leftStickX;
-				rAnalogX = sGamepad1->rightStickX;
-			}
-		}
-
-		if (sGamepad2->Refresh())
-		{
-			if (sGamepad2->IsPressed(XINPUT_GAMEPAD_A))
-			{
-				lAnalogY = sGamepad2->leftStickY;
-				rAnalogY = sGamepad2->rightStickY;
-				lAnalogX = sGamepad2->leftStickX;
-				rAnalogX = sGamepad2->rightStickX;
-			}
-		}
+		
 		// END
 	}
 
@@ -201,10 +194,23 @@ namespace KatBall
 		Asset::Load(ASSET_DIRECTORY_MESHES MESH_KAT, MESH_KAT, Asset::TYPE_MESH);
 		Asset::Load(ASSET_DIRECTORY_MESHES MESH_FLAT_SPHERE, MESH_FLAT_SPHERE, Asset::TYPE_MESH);
 		Asset::Load(ASSET_DIRECTORY_MESHES MESH_CUBE, MESH_CUBE, Asset::TYPE_MESH);
+		Asset::Load(ASSET_DIRECTORY_MESHES MESH_SMOOTH_SPHERE, MESH_SMOOTH_SPHERE, Asset::TYPE_MESH);
 
 		// Textures
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_KAT, TEXTURE_KAT, Asset::TYPE_TEXTURE);
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_MANKEY_BALL, TEXTURE_MANKEY_BALL, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_MANKEY_BALL_PNG, TEXTURE_MANKEY_BALL_PNG, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_ZERO, TEXTURE_NUMBER_ZERO, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_ONE, TEXTURE_NUMBER_ONE, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_TWO, TEXTURE_NUMBER_TWO, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_THREE, TEXTURE_NUMBER_THREE, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_FOUR, TEXTURE_NUMBER_FOUR, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_FIVE, TEXTURE_NUMBER_FIVE, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_SIX, TEXTURE_NUMBER_SIX, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_SEVEN, TEXTURE_NUMBER_SEVEN, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_EIGHT, TEXTURE_NUMBER_EIGHT, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_NUMBER_NINE, TEXTURE_NUMBER_NINE, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_KAT_SCORE_IMAGE, TEXTURE_KAT_SCORE_IMAGE, Asset::TYPE_TEXTURE);
 
 		// Vertex Shaders
 		Asset::Load(ASSET_DIRECTORY_SHADERS SHADER_MESH_VERTEX, SHADER_MESH_VERTEX, Asset::TYPE_VERTEX_SHADER);
