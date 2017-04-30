@@ -44,3 +44,5 @@
 #define TEXTURE_SCORE_BAR_TWO_WINS "scorebar_two_wins.png"
 
 #define TEXTURE_TIMER_BACKGROUND "Timer_Background.png"
+#define TEXTURE_KAT_SCORE_IMAGE "kat_score.png"
+#define TEXTURE_CROWN "crown.png"

@@ -14,10 +14,11 @@ RTTI_DEFINITIONS(Score)
 Score::Score()
 {
 	// populate renderables vector -- doing so here prevents a double add
-	mRenderables.PushBack(new Quad());		// image
 	mRenderables.PushBack(new Quad());		// ones place
 	mRenderables.PushBack(new Quad());		// tens place
 	mRenderables.PushBack(new Quad());		// score bar
+	mRenderables.PushBack(new Quad());		// image
+	mRenderables.PushBack(new Quad());		// crown
 }
 
 Score::~Score()
@@ -33,13 +34,19 @@ void Score::Initialize(const string& playerIcon, const vec4& color, float x, flo
 	// init quads
 	mRenderables[0]->SetTexture(Asset::Get(playerIcon)->As<Texture>());
 	mRenderables[0]->SetRect(x, y, w, h);
-	//mRenderables[0]->SetColor(color);
+	//mRenderables[0]->SetRect(x + w + w, y, w, h);
+	mRenderables[0]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	mRenderables[1]->SetRect(x + w + w, y, w, h);
+	mRenderables[1]->SetRect(x + w, y, w, h);
 	mRenderables[1]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	mRenderables[2]->SetRect(x + w, y, w, h);
-	mRenderables[2]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+	mRenderables[2]->SetTexture(Asset::Get(TEXTURE_KAT_SCORE_IMAGE)->As<Texture>());
+	mRenderables[2]->SetRect(x, y, w, h);
+	mRenderables[2]->SetColor(color);
+
+	mRenderables[3]->SetTexture(Asset::Get(TEXTURE_CROWN)->As<Texture>());
+	mRenderables[3]->SetRect(x + w * 0.25f, y + h * 0.75f, w * 0.5f, h * 0.5f);
+	mRenderables[3]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	mRenderables[3]->SetTexture(Asset::Get(HUD::sPlayerWinsIcons[mNumWins])->As<Texture>());
 	mRenderables[3]->SetRect(x + w, y + h, 2*w, h/2);
@@ -56,6 +63,7 @@ void Score::Initialize(const string& playerIcon, const vec4& color, float x, flo
 	// init score and set digits
 	mScore = 0;
 	SetDigitTextures();
+	mIsWinning = false;
 }
 
 void Score::Update(WorldState& worldState)
@@ -66,16 +74,19 @@ void Score::Update(WorldState& worldState)
 
 void Score::Render(Renderer* renderer)
 {
-	for(auto& renderable : mRenderables)
+	// we only draw the last quad (crown) if we're flagged as winning
+	uint32_t lastQuad = mIsWinning ? mRenderables.Size() : mRenderables.Size() - 1;
+	for(uint32_t i = 0; i < lastQuad; ++i)
 	{
-		renderable->Render(renderer);
+		mRenderables[i]->Render(renderer);
 	}
 }
 
 void Score::SetDigitTextures()
 {
 	uint32_t tempScore = mScore;
-	for(uint32_t i = 1; i < mRenderables.Size()-1; ++i)
+
+	for(uint32_t i = 0; i < 2; ++i)
 	{
 		mRenderables[i]->SetTexture(Asset::Get(HUD::sNumbersIcons[tempScore % 10])->As<Texture>());
 		tempScore /= 10;
@@ -85,4 +96,14 @@ void Score::SetDigitTextures()
 void Score::UpdateScore()
 {
 	++mScore;
+}
+
+void Score::SetIsWinning(bool isWinning)
+{
+	mIsWinning = isWinning;
+}
+
+uint32_t Score::GetScore() const
+{
+	return mScore;
 }
