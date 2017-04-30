@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <entity class='KatMusic' name='BGM'>
+	<!--MINNA SAIKO ARIGATO. K-K-K-KAWAII-->
 	<string name='MusicFile' value='Hello Kitty.ogg' />
 	<integer name='PlayOnAwake' value='1' />
 </entity>
