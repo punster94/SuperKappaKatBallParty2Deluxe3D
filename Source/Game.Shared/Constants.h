@@ -9,6 +9,7 @@
 #define MESH_KAT "monkey.obj"
 #define MESH_FLAT_SPHERE "flat_sphere.obj"
 #define MESH_CUBE "cube.obj"
+#define MESH_SMOOTH_SPHERE "smooth_sphere.obj"
 
 #define TEXTURE_KAT "grid.bmp"
 #define TEXTURE_MANKEY_BALL "mankey_ball.bmp"

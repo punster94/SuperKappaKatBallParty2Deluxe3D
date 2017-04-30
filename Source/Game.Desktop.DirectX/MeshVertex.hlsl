@@ -3,15 +3,10 @@
 //
 // Copyright (c) Microsoft Corporation. All rights reserved.
 //--------------------------------------------------------------------------------------
-
+#include "Globals.hlsli"
 //--------------------------------------------------------------------------------------
 // Constant Buffer Variables
 //--------------------------------------------------------------------------------------
-cbuffer cbPerFrame : register( b0 )
-{
-	matrix View;
-	matrix Projection;
-};
 
 cbuffer cbPerMesh : register(b1)
 {
@@ -43,7 +38,8 @@ PS_INPUT main( VS_INPUT input )
     output.Position = mul( output.Position, View );
     output.Position = mul( output.Position, Projection );
     output.Texcoord = input.Texcoord;
-	output.Normal = input.Normal;
+	matrix normalMat = transpose(World);
+	output.Normal = normalize(mul(normalMat, float4(input.Normal, 0.0f)));
     
     return output;
 }
