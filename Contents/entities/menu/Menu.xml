@@ -1,0 +1,4 @@
+<entity class='QuadEntity' name='menu'>
+  <vector name='rect' value='0,0,1,1'/>
+  <string name='texture filename' value='mankey_ball.bmp'/>
+</entity>

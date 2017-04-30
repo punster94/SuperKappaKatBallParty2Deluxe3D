@@ -22,6 +22,7 @@ namespace KatBall
 		void Shutdown();
 
 		void DebugUpdate();
+		void LoadGame();
 
 		void LoadAssets();
 

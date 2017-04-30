@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "Event.h"
 
 using namespace FieaGameEngine;
 using namespace std;
@@ -40,6 +41,12 @@ namespace KatBall
 
 		if (mGamepad->Refresh())
 		{
+			if (mGamepad->GetState()->wButtons != 0)
+			{
+				FieaGameEngine::Event<Gamepad>* event = new FieaGameEngine::Event<Gamepad>(*mGamepad);
+				worldState.mWorld->Enqueue(*event, worldState, 0);
+			}
+
 			mRigidBody->mBody->applyCentralImpulse(btVector3(mMovementForce * mGamepad->leftStickX, 0, mMovementForce * mGamepad->leftStickY));
 		}
 

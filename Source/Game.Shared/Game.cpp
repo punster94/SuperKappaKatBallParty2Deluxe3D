@@ -21,7 +21,6 @@ namespace KatBall
 	static TestDummy* sDummy;
 	static Camera* sCamera;
 	static InputSubscriber* sInputSubscriber;
-
 	static Quad* sQuad;
 
 	Game::Game(FieaGameEngine::Renderer& renderer)
@@ -47,10 +46,9 @@ namespace KatBall
 		LoadAssets();
 
 		mMenuSector = new Sector("Menu");
-		//mMenuSector->SetWorld(mWorld);
+		mMenuSector->SetWorld(mWorld);
 
 		mGameSector = new Sector("Game");
-		mGameSector->SetWorld(mWorld);
 
 		ScopeParseHelper::ScopeSharedData sharedData;
 		XmlParseMaster master(&sharedData);
@@ -116,7 +114,29 @@ namespace KatBall
 
 		// DEBUG
 		DebugUpdate();
+
+		if (GetAsyncKeyState(VK_RETURN))
+		{
+			LoadGame();
+		}
 		// END
+	}
+
+	void Game::LoadGame()
+	{
+		Datum& entities = mMenuSector->Entities();
+		for (uint32_t i = 0; i < entities.Size(); ++i)
+		{
+			if (entities.Get<Scope&>(i).Is(KatMusic::TypeIdClass()))
+			{
+				static_cast<KatMusic&>(entities.Get<Scope&>(i)).Stop();
+				break;
+			}
+		}
+
+		mMenuSector->Orphan();
+		mGameSector->SetWorld(mWorld);
+		mWorld.Initialize(mWorldState);
 	}
 
 	void Game::DebugUpdate()
