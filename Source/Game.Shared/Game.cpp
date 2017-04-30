@@ -1,6 +1,5 @@
 #include "pch.h"
 #include <experimental/filesystem>
-#include "KatMusic.h"
 
 #include "InputSubscriber.h"
 
@@ -8,6 +7,8 @@
 #include "ScoreAction.h"
 #include "ReactionAttributed.h"
 #include "Timer.h"
+#include "KatMusic.h"
+#include "KatSound.h"
 
 using namespace FieaGameEngine;
 
@@ -52,6 +53,7 @@ namespace KatBall
 		EntityFactory ef;
 		RigidBodyFactory rbf;
 		KatMusicFactory kmf;
+		KatSoundFactory ksf;
 		MeshEntityFactory mef;
 		HUDFactory hudf;
 		ScoreActionFactory saf;
@@ -115,14 +117,6 @@ namespace KatBall
 
 		// DEBUG
 		DebugUpdate();
-		// END
-
-		// DEBUG
-		float lAnalogY;
-		float rAnalogY;
-		float lAnalogX;
-		float rAnalogX;
-		
 		// END
 	}
 
