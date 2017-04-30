@@ -1,6 +1,7 @@
 #pragma once
 
-# define NUM_PLAYERS 4
+#define NUM_PLAYERS 4
+#define ROUNDS_TO_WIN 3
 
 #define ASSET_DIRECTORY_MESHES "meshes/"
 #define ASSET_DIRECTORY_MUSIC "music/"

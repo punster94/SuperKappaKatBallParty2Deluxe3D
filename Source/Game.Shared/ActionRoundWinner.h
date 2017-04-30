@@ -22,6 +22,7 @@ namespace KatBall
 
 	public:
 
+		static const std::string sMatchWinnerEventSubtype;
 		static const std::string sPlayerIDKey;
 	};
 

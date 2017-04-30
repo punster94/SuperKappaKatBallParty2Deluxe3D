@@ -2,6 +2,9 @@
 #include "pch.h"
 #include "ActionRoundWinner.h"
 
+#include "EventMessageAttributed.h"
+#include "Event.h"
+
 #include "HUD.h"
 
 using namespace FieaGameEngine;
@@ -10,6 +13,7 @@ using namespace std;
 
 RTTI_DEFINITIONS(ActionRoundWinner)
 
+const string ActionRoundWinner::sMatchWinnerEventSubtype = "match_won";
 const string ActionRoundWinner::sPlayerIDKey = "playerID";
 
 ActionRoundWinner::ActionRoundWinner(const string& name) :
@@ -42,6 +46,13 @@ void ActionRoundWinner::Update(class WorldState& worldState)
 		assert(highScore != nullptr);
 		highScore->UpdateNumWins();
 
-		// TODO -- post event if 3 rounds won
+		// round winner has enough victories for match win
+		if(highScore->GetNumWins() == ROUNDS_TO_WIN)
+		{
+			EventMessageAttributed args(sMatchWinnerEventSubtype, &worldState);
+			Event<EventMessageAttributed>* e = new Event<EventMessageAttributed>(args);
+
+			worldState.mWorld->Enqueue(*e, worldState, 0);
+		}
 	}
 }
