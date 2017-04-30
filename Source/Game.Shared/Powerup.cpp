@@ -22,7 +22,7 @@ namespace KatBall
 		InitializeSignatures();
 	}
 
-	void Powerup::OnCollect(Kat& katBoi)
+	void Powerup::OnCollect(Player& katBoi)
 	{
 		switch (mType)
 		{
