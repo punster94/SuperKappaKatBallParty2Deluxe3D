@@ -3,6 +3,25 @@
 
 namespace KatBall
 {
+	//Powerup::Powerup(PowerupType type, std::float_t stat, glm::vec4 location) :
+	//	Entity("powerup"), mType(type), mSpawnLocation(location), mScaleIncrease(0), mLengthIncrease(0), mRotationSpeed(0), mMeshEntity(nullptr), mRigidBody(nullptr)
+	//{
+	//	switch (type)
+	//	{
+	//	case BigBoi:
+	//		mScaleIncrease = stat;
+	//		break;
+	//	case LongBoi:
+	//		mLengthIncrease = stat;
+	//		break;
+	//	case VortexBoi:
+	//		mRotationSpeed = stat;
+	//		break;
+	//	}
+
+	//	InitializeSignatures();
+	//}
+
 	Powerup::Powerup():
 		Entity("powerup"), mType(PowerupType::Default), mScaleIncrease(), mLengthIncrease(), mRotationSpeed(), mMeshEntity(nullptr), mRigidBody(nullptr)
 	{
