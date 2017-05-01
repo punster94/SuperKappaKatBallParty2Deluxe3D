@@ -2,7 +2,11 @@
 #include "pch.h"
 #include "GameStateManager.h"
 #include "MenuGamepad.h"
+<<<<<<< HEAD
 #include "Menu.h"
+=======
+#include "HUD.h"
+>>>>>>> origin/HUD
 
 #include "Event.h"
 #include "EventMessageAttributed.h"
@@ -17,8 +21,8 @@ using namespace FieaGameEngine;
 using namespace KatBall;
 using namespace std;
 
-const string GameStateManager::sRoundResetEventSubtype = "round_reset";
 const string GameStateManager::sMatchWonEventSubtype = "match_won";
+const string GameStateManager::sRoundResetEventSubtype = "round_reset";
 const string GameStateManager::sStartGameEventSubtype = "start_game";
 
 const GameStateManager::Handlers GameStateManager::sHandlers =
@@ -74,10 +78,13 @@ void GameStateManager::TransitionToMenu()
 {
 	StopSectorMusic(mGameSector);
 
+	// some special operations for the state transition
 	Datum& entities = mGameSector->Entities();
 	for (uint32_t i = 0; i < entities.Size(); ++i)
 	{
 		Scope& current = entities.Get<Scope&>(i);
+
+		// delete player gamepads
 		if (current.Is(Player::TypeIdClass()))
 		{
 			static_cast<Player&>(current).DeleteGamepad();
@@ -92,6 +99,19 @@ void GameStateManager::TransitionToMenu()
 void GameStateManager::TransitionToGame()
 {
 	StopSectorMusic(mMenuSector);
+
+	// some special operations for the state transition
+	Datum& entities = mGameSector->Entities();
+	for(uint32_t i = 0; i < entities.Size(); ++i)
+	{
+		Scope& current = entities.Get<Scope&>(i);
+
+		// reset rounds won
+		if(current.Is(HUD::TypeIdClass()))
+		{
+			static_cast<HUD&>(current).ResetRoundsWon();
+		}
+	}
 
 	mMenuSector->Orphan();
 	mGameSector->SetWorld(*mWorld);

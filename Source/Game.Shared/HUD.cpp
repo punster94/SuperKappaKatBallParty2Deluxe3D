@@ -176,3 +176,11 @@ void HUD::Render(Renderer* renderer)
 
 	renderer->SetDepthMode(DepthMode::MODE_OPAQUE);
 }
+
+void HUD::ResetRoundsWon()
+{
+	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
+	{
+		static_cast<Score*>(mScores[i])->ResetRoundsWon();
+	}
+}

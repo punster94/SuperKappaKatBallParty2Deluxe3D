@@ -66,7 +66,7 @@ void Score::Initialize(const string& playerIcon, const vec4& color, float x, flo
 	}
 
 	// init score and set digits
-	mNumWins = 0;
+	ResetRoundsWon();
 	Reset();
 }
 
@@ -92,6 +92,12 @@ void Score::Render(Renderer* renderer)
 	{
 		mRenderables[i]->Render(renderer);
 	}
+}
+
+void Score::ResetRoundsWon()
+{
+	mNumWins = 0;
+	SetBarTexture();
 }
 
 void Score::UpdateNumWins()
