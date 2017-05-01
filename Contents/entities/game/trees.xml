@@ -1,0 +1,38 @@
+<entity class='Entity' name='trees'>
+    <entity class='MeshEntity' name='tree1'>
+        <vector name='position' value='-10.0,-10.0,-10.0,0.0'/>
+        <vector name='scale' value='1.0,1.0,1.0,0.0'/>
+        <string name='mesh filename' value='tree.obj'/>
+        <string name='texture filename' value='tree_tex.png'/>
+    </entity>
+    <entity class='MeshEntity' name='tree2'>
+        <vector name='position' value='-10.0,-10.0,0.0,0.0'/>
+        <vector name='scale' value='1.0,1.0,1.0,0.0'/>
+        <string name='mesh filename' value='tree.obj'/>
+        <string name='texture filename' value='tree_tex.png'/>
+    </entity>
+   <entity class='MeshEntity' name='tree3'>
+        <vector name='position' value='-10.0,-10.0,10.0,0.0'/>
+        <vector name='scale' value='1.0,1.0,1.0,0.0'/>
+        <string name='mesh filename' value='tree.obj'/>
+        <string name='texture filename' value='tree_tex.png'/>
+    </entity>    
+    <entity class='MeshEntity' name='tree4'>
+        <vector name='position' value='10.0,-10.0,-10.0,0.0'/>
+        <vector name='scale' value='1.0,1.0,1.0,0.0'/>
+        <string name='mesh filename' value='tree.obj'/>
+        <string name='texture filename' value='tree_tex.png'/>
+    </entity>
+    <entity class='MeshEntity' name='tree5'>
+        <vector name='position' value='10.0,-10.0,0.0,0.0'/>
+        <vector name='scale' value='1.0,1.0,1.0,0.0'/>
+        <string name='mesh filename' value='tree.obj'/>
+        <string name='texture filename' value='tree_tex.png'/>
+    </entity>
+   <entity class='MeshEntity' name='tree6'>
+        <vector name='position' value='10.0,-10.0,10.0,0.0'/>
+        <vector name='scale' value='1.0,1.0,1.0,0.0'/>
+        <string name='mesh filename' value='tree.obj'/>
+        <string name='texture filename' value='tree_tex.png'/>
+    </entity>   
+</entity>
