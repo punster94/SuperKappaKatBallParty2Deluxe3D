@@ -10,7 +10,7 @@ namespace KatBall
 
 	PowerupSpawner::PowerupSpawner() :
 		mSpawnChance(0.0f), mElapsedTime(0.0f), mLongBoiLengthIncrease(0.0f), mBigBoiScaleIncrease(0.0f), mVortexBoiRotationSpeed(0.0f),
-		mLongBoi(nullptr), mBigBoi(nullptr), mVortexBoi(nullptr)
+		mLongBoi(nullptr), mBigBoi(nullptr), mVortexBoi(nullptr), mIsInitialized(false)
 	{
 		PowerupSpawner::InitializeSignatures();
 		unsigned randomSeed = std::chrono::system_clock::now().time_since_epoch().count();
@@ -27,15 +27,20 @@ namespace KatBall
 	{
 		mWorldState = &worldState;
 
-		mLongBoi = FindChildEntityByName(sLongBoiKey)->As<Powerup>();
-		mBigBoi = FindChildEntityByName(sBigBoiKey)->As<Powerup>();
-		mVortexBoi = FindChildEntityByName(sVortexBoiKey)->As<Powerup>();
+		if (!mIsInitialized)
+		{
+			mLongBoi = FindChildEntityByName(sLongBoiKey)->As<Powerup>();
+			mBigBoi = FindChildEntityByName(sBigBoiKey)->As<Powerup>();
+			mVortexBoi = FindChildEntityByName(sVortexBoiKey)->As<Powerup>();
 
-		InitializePowerups();
+			InitializePowerups();
 
-		Adopt(*(FindChildEntityByName(sLongBoiKey)->As<Powerup>()), sPowerupKey);
-		Adopt(*(FindChildEntityByName(sBigBoiKey)->As<Powerup>()), sPowerupKey);
-		Adopt(*(FindChildEntityByName(sVortexBoiKey)->As<Powerup>()), sPowerupKey);
+			Adopt(*(FindChildEntityByName(sLongBoiKey)->As<Powerup>()), sPowerupKey);
+			Adopt(*(FindChildEntityByName(sBigBoiKey)->As<Powerup>()), sPowerupKey);
+			Adopt(*(FindChildEntityByName(sVortexBoiKey)->As<Powerup>()), sPowerupKey);
+
+			mIsInitialized = true;
+		}
 
 		Entity::Initialize(worldState);
 
