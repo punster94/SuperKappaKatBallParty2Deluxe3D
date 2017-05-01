@@ -25,12 +25,13 @@ namespace KatBall
 		void TransitionToGame();
 
 		void StopSectorMusic(FieaGameEngine::Sector* sector);
+		void StartSectorMusic(FieaGameEngine::Sector* sector);
 
 		FieaGameEngine::World* mWorld;
 		FieaGameEngine::Sector* mMenuSector;
 		FieaGameEngine::Sector* mGameSector;
 		FieaGameEngine::WorldState* mWorldState;
-
+		bool mWorldInitialized;
 
 		typedef std::function<void(GameStateManager&)> HandlerFunc;
 		typedef FieaGameEngine::HashMap<std::string, HandlerFunc> Handlers;

@@ -25,6 +25,7 @@ namespace KatBall
 		virtual void Initialize(FieaGameEngine::WorldState& worldState) override;
 		virtual Scope* Copy() const override;
 		void Notify(const FieaGameEngine::EventPublisher& eventPublisher) override;
+		void Reset(FieaGameEngine::WorldState& worldState) override;
 
 	protected:
 

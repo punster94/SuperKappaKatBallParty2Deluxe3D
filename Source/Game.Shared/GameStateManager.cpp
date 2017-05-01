@@ -29,7 +29,8 @@ const GameStateManager::Handlers GameStateManager::sHandlers =
 	{ sStartGameEventSubtype, &GameStateManager::TransitionToGame }
 };
 
-GameStateManager::GameStateManager()
+GameStateManager::GameStateManager() :
+	mWorldInitialized(false)
 {
 	Event<EventMessageAttributed>::Subscribe(*this);
 }
@@ -90,7 +91,8 @@ void GameStateManager::TransitionToMenu()
 
 	mGameSector->Orphan();
 	mMenuSector->SetWorld(*mWorld);
-	mWorld->Initialize(*mWorldState);
+	mWorld->Reset(*mWorldState);
+	StartSectorMusic(mMenuSector);
 }
 
 void GameStateManager::TransitionToGame()
@@ -104,15 +106,25 @@ void GameStateManager::TransitionToGame()
 		Scope& current = entities.Get<Scope&>(i);
 
 		// reset rounds won
-		if(current.Is(HUD::TypeIdClass()))
+		if (current.Is(HUD::TypeIdClass()))
 		{
 			static_cast<HUD&>(current).ResetRoundsWon();
+		}
+		else if (current.Is(Player::TypeIdClass()))
+		{
+			static_cast<Player&>(current).CreateGamePad();
 		}
 	}
 
 	mMenuSector->Orphan();
 	mGameSector->SetWorld(*mWorld);
-	mWorld->Initialize(*mWorldState);
+	if (!mWorldInitialized)
+	{
+		mWorld->Initialize(*mWorldState);
+		mWorldInitialized = true;
+	}
+	mWorld->Reset(*mWorldState);
+	StartSectorMusic(mGameSector);
 
 	Datum& entites = mGameSector->Entities();
 	Menu* pauseMenu = nullptr;
@@ -147,6 +159,18 @@ void GameStateManager::StopSectorMusic(Sector* sector)
 		if(entities.Get<Scope&>(i).Is(KatMusic::TypeIdClass()))
 		{
 			static_cast<KatMusic&>(entities.Get<Scope&>(i)).Stop();
+		}
+	}
+}
+
+void GameStateManager::StartSectorMusic(Sector* sector)
+{
+	Datum& entities = sector->Entities();
+	for (uint32_t i = 0; i < entities.Size(); ++i)
+	{
+		if (entities.Get<Scope&>(i).Is(KatMusic::TypeIdClass()))
+		{
+			static_cast<KatMusic&>(entities.Get<Scope&>(i)).Play();
 		}
 	}
 }

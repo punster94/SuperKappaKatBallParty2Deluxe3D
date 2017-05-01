@@ -30,8 +30,6 @@ namespace KatBall
 		void Update();
 		void Shutdown();
 
-		void DebugUpdate();
-
 		void LoadAssets();
 
 		void RegisterRigidBody(btCollisionShape& shape, btRigidBody& body);
