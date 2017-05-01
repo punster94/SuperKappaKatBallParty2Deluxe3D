@@ -6,6 +6,8 @@
 
 namespace KatBall
 {
+	RTTI_DEFINITIONS(PowerupSpawner)
+
 	PowerupSpawner::PowerupSpawner() :
 		mSpawnLocation(glm::vec4(mPosition.x, mPosition.y, mPosition.z, 0)), mSpawnChance(0.0f), mElapsedTime(0.0f), mLongBoiLengthIncrease(0.0f), mBigBoiScaleIncrease(0.0f), mVortexBoiRotationSpeed(0.0f)
 	{
@@ -17,7 +19,16 @@ namespace KatBall
 	void PowerupSpawner::Initialize(FieaGameEngine::WorldState& worldState)
 	{
 		Entity::Initialize(worldState);
-		mMeshEntity = FindChildEntityByName(sBallMeshKey)->As<MeshEntity>();
+
+		Entity* entity;
+		if ((entity = FindChildEntityByName(sBallMeshKey)) != nullptr)
+		{
+			mMeshEntity = entity->As<MeshEntity>();
+		}
+		if ((entity = FindChildEntityByName(sSpawnSoundKey)) != nullptr)
+		{
+			mSpawnSound = entity->As<FieaGameEngine::KatSound>();
+		}
 	}
 
 	void PowerupSpawner::Update(FieaGameEngine::WorldState& worldState)
@@ -155,10 +166,16 @@ namespace KatBall
 				(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(
 					*new Powerup(Powerup::PowerupType::VortexBoi, mVortexBoiRotationSpeed, glm::vec4(mPosition.x, mPosition.y, mPosition.z, 0)));
 			}
+
+			if (mSpawnSound != nullptr)
+			{
+				mSpawnSound->Play();
+			}
 		}
 	}
 
 	const std::string PowerupSpawner::sRigidBodyKey = "rigidbody";
 	const std::string PowerupSpawner::sBallColliderKey = "ball collider";
 	const std::string PowerupSpawner::sBallMeshKey = "ball mesh";
+	const std::string PowerupSpawner::sSpawnSoundKey = "spawn sound";
 }
