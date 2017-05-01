@@ -10,9 +10,10 @@ namespace FieaGameEngine
 	const string KatMusic::MusicFolder = "music/";
 	const string KatMusic::MusicFileKey = "MusicFile";
 	const string KatMusic::PlayOnAwakeKey = "PlayOnAwake";
+	const string KatMusic::VolumeKey = "Volume";
 
 	KatMusic::KatMusic() :
-		mPlayOnAwake(0)
+		mPlayOnAwake(0), mVolume(100.0f)
 	{
 		InitializeSignatures();
 
@@ -53,6 +54,7 @@ namespace FieaGameEngine
 	void KatMusic::Play()
 	{
 		mMusic.openFromFile(MusicFolder + mMusicFileName);
+		mMusic.setVolume(mVolume);
 		mMusic.play();
 	}
 
@@ -73,12 +75,12 @@ namespace FieaGameEngine
 
 	float KatMusic::GetVolume() const
 	{
-		return mMusic.getVolume();
+		return mVolume;
 	}
 
 	void KatMusic::SetVolume(float volume)
 	{
-		mMusic.setVolume(volume);
+		mVolume = volume;
 	}
 
 	void KatMusic::InitializeSignatures()
@@ -87,6 +89,7 @@ namespace FieaGameEngine
 
 		AddExternalAttribute(MusicFileKey, &mMusicFileName);
 		AddExternalAttribute(PlayOnAwakeKey, &mPlayOnAwake);
+		AddExternalAttribute(VolumeKey, &mVolume);
 	}
 
 	void KatMusic::CopyPrivateDataMembers(const KatMusic& other)

@@ -7,6 +7,8 @@ namespace KatBall
 {
 	class Powerup final : public FieaGameEngine::Entity
 	{
+		RTTI_DECLARATIONS(Powerup, FieaGameEngine::Entity)
+
 	public:
 		enum PowerupType
 		{

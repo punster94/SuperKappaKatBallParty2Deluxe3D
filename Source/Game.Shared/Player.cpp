@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "Event.h"
 
 using namespace FieaGameEngine;
 using namespace std;
@@ -8,7 +9,7 @@ namespace KatBall
 	RTTI_DEFINITIONS(Player)
 
 	Player::Player(const std::string& name) :
-		Entity(name), mRigidBody(nullptr), mMeshEntity(nullptr), mGamepad(nullptr)
+		Entity(name), mRigidBody(nullptr), mMeshEntity(nullptr), mGamepad(nullptr), mPunchSound(nullptr), mHitSound(nullptr)
 	{
 		InitializeSignatures();
 	}
@@ -23,8 +24,23 @@ namespace KatBall
 	{
 		Entity::Initialize(worldState);
 
-		mRigidBody = FindChildEntityByName(sBallColliderKey)->As<RigidBody>();
-		mMeshEntity = FindChildEntityByName(sBallMeshKey)->As<MeshEntity>();
+		Entity* entity;
+		if ((entity = FindChildEntityByName(sBallColliderKey)))
+		{
+			mRigidBody = entity->As<RigidBody>();
+		}
+		if ((entity = FindChildEntityByName(sBallMeshKey)))
+		{
+			mMeshEntity = entity->As<MeshEntity>();
+		}
+		if ((entity = FindChildEntityByName(sPunchSoundKey)))
+		{
+			mPunchSound = entity->As<KatSound>();
+		}
+		if ((entity = FindChildEntityByName(sHitSoundKey)))
+		{
+			mHitSound = entity->As<KatSound>();
+		}
 
 		mGamepad = new Gamepad(sPlayerId++);
 	}
@@ -41,6 +57,21 @@ namespace KatBall
 		if (mGamepad->Refresh())
 		{
 			mRigidBody->mBody->applyCentralImpulse(btVector3(mMovementForce * mGamepad->leftStickX, 0, mMovementForce * mGamepad->leftStickY));
+		
+			//if ((mGamepad->GetState()->wButtons & XINPUT_GAMEPAD_A) != 0)
+			//{
+			//	if (mPunchSound->GetStatus() != sf::Sound::Playing)
+			//	{
+			//		mPunchSound->Play();
+			//	}
+			//}
+			//if ((mGamepad->GetState()->wButtons & XINPUT_GAMEPAD_B) != 0)
+			//{
+			//	if (mHitSound->GetStatus() != sf::Sound::Playing)
+			//	{
+			//		mHitSound->Play();
+			//	}
+			//}
 		}
 
 		btTransform trans;
@@ -73,12 +104,10 @@ namespace KatBall
 	int32_t Player::sPlayerId = 0;
 
 	const string Player::sMeshKey = "mesh";
-
 	const string Player::sRigidBodyKey = "rigidbody";
-
 	const string Player::sMoveSpeedKey = "movespeed";
-
 	const string Player::sBallMeshKey = "ball mesh";
-
 	const string Player::sBallColliderKey = "ball collider";
+	const string Player::sPunchSoundKey = "punch sound";
+	const string Player::sHitSoundKey = "hit sound";
 }

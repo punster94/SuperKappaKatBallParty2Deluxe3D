@@ -3,6 +3,8 @@
 
 namespace KatBall
 {
+	RTTI_DEFINITIONS(Powerup)
+
 	Powerup::Powerup():
 		Entity("powerup"), mType(PowerupType::Default), mScaleIncrease(), mLengthIncrease(), mRotationSpeed(), mMeshEntity(nullptr), mRigidBody(nullptr)
 	{
