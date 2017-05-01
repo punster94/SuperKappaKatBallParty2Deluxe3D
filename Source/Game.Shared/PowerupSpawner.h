@@ -1,14 +1,16 @@
 #pragma once
 #include "Entity.h"
 #include <random>
+#include "KatSound.h"
 #include "Powerup.h"
 
 namespace KatBall
 {
 	class PowerupSpawner : public FieaGameEngine::Entity
 	{
-	public:
+		RTTI_DECLARATIONS(PowerupSpawner, FieaGameEngine::Entity)
 
+	public:
 		/// Constructor
 		PowerupSpawner();
 
@@ -75,7 +77,7 @@ namespace KatBall
 		/// Accessor method for vortex Boi spawn weight
 		/// @Return: Spawn weight for vortex Boi
 		std::int32_t GetVortexBoiSpawnWeight() const;
-		
+
 		/// Mutator method for vortex Boi spawn weight
 		/// @Param spawnWeight: Spawn weight for vortex Boi
 		void SetVortexBoiSpawnWeight(const std::int32_t& spawnWeight);
@@ -91,6 +93,7 @@ namespace KatBall
 		void CopyPrivateDataMembers(const PowerupSpawner& rhs);
 		void FixExternalAttributes();
 
+		FieaGameEngine::KatSound* mSpawnSound;
 		MeshEntity* mLongBoiMesh;
 		Powerup* mLongBoi;
 		Powerup* mBigBoi;
@@ -127,9 +130,9 @@ namespace KatBall
 		static const std::string sBigBoiKey;
 		static const std::string sVortexBoiKey;
 
+		static const std::string sSpawnSoundKey;
 		std::default_random_engine mGenerator;
 	};
 
 	ConcreteEntityFactory(PowerupSpawner);
 }
-

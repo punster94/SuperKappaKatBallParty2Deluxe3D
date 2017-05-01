@@ -6,6 +6,8 @@
 
 namespace KatBall
 {
+	RTTI_DEFINITIONS(PowerupSpawner)
+
 	PowerupSpawner::PowerupSpawner() :
 		mSpawnChance(0.0f), mElapsedTime(0.0f), mLongBoiLengthIncrease(0.0f), mBigBoiScaleIncrease(0.0f), mVortexBoiRotationSpeed(0.0f),
 		mLongBoi(nullptr), mBigBoi(nullptr), mVortexBoi(nullptr)
@@ -36,6 +38,16 @@ namespace KatBall
 		Adopt(*(FindChildEntityByName(sVortexBoiKey)->As<Powerup>()), sPowerupKey);
 
 		Entity::Initialize(worldState);
+
+		Entity* entity;
+		if ((entity = FindChildEntityByName(sBallMeshKey)) != nullptr)
+		{
+			mLongBoiMesh = entity->As<MeshEntity>();
+		}
+		if ((entity = FindChildEntityByName(sSpawnSoundKey)) != nullptr)
+		{
+			mSpawnSound = entity->As<FieaGameEngine::KatSound>();
+		}
 	}
 
 	void PowerupSpawner::InitializePowerups()
@@ -186,6 +198,11 @@ namespace KatBall
 				Adopt(*newVortexBoi, FieaGameEngine::Sector::sSectorEntitiesKey);
 				newVortexBoi->Initialize(*mWorldState);
 			}
+
+			if (mSpawnSound != nullptr)
+			{
+				mSpawnSound->Play();
+			}
 		}
 	}
 
@@ -236,6 +253,7 @@ namespace KatBall
 	const std::string PowerupSpawner::sRigidBodyKey = "rigidbody";
 	const std::string PowerupSpawner::sBallColliderKey = "ball collider";
 	const std::string PowerupSpawner::sBallMeshKey = "ball mesh";
+	const std::string PowerupSpawner::sSpawnSoundKey = "spawn sound";
 
 	const std::string PowerupSpawner::sLongBoiKey = "long boi";
 	const std::string PowerupSpawner::sBigBoiKey = "big boi";

@@ -1,4 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
+
 <entity class='Entity' name='SpawnerContainer'>
 
   <entity class='PowerupSpawner' name='CenterSpawner'>
@@ -50,6 +51,9 @@
 	<float name='mass' value='50.0'/>
       </entity>
     </entity>
+		<entity class='KatSound' name='spawn sound'>
+			<string name='SoundFile' value='PowerupSpawn01.ogg' />
+		</entity>
   </entity>
 
   <entity class='PowerupSpawner' name='BottomLeftSpawner'>
@@ -101,6 +105,9 @@
 	<float name='mass' value='50.0'/>
       </entity>
     </entity>
+		<entity class='KatSound' name='spawn sound'>
+			<string name='SoundFile' value='PowerupSpawn01.ogg' />
+		</entity>
   </entity>
 
   <entity class='PowerupSpawner' name='BottomRightSpawner'>
@@ -152,6 +159,9 @@
 	<float name='mass' value='50.0'/>
       </entity>
     </entity>
+		<entity class='KatSound' name='spawn sound'>
+			<string name='SoundFile' value='PowerupSpawn01.ogg' />
+		</entity>
   </entity>
 
   <entity class='PowerupSpawner' name='TopLeftSpawner'>
@@ -203,6 +213,9 @@
 	<float name='mass' value='50.0'/>
       </entity>
     </entity>
+		<entity class='KatSound' name='spawn sound'>
+			<string name='SoundFile' value='PowerupSpawn01.ogg' />
+		</entity>
   </entity>
 
   <entity class='PowerupSpawner' name='TopRightSpawner'>
@@ -254,5 +267,8 @@
 	<float name='mass' value='50.0'/>
       </entity>
     </entity>
+		<entity class='KatSound' name='spawn sound'>
+			<string name='SoundFile' value='PowerupSpawn01.ogg' />
+		</entity>
   </entity>
 </entity>
