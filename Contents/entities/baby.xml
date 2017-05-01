@@ -2,6 +2,10 @@
 <entity class='Player' name='Baby'>
 	<vector name='position' value='-3.0,0.0,0.0,0.0'/>
 	<float name='movespeed' value='20.0'/>
+    <string name='idle meshes' value='kat_idle.obj'/>
+    <string name='run meshes' value='kat_run_1.obj'/>
+    <string name='run meshes' value='kat_run_2.obj'/>
+    <string name='victory meshes' value='kat_victory.obj'/>
 	<entity class='Entity' name='ball'>
 		<vector name='scale' value='0.5,0.5,0.5,0.0'/>
 		<entity class='RigidBody' name='ball collider'>
@@ -13,6 +17,11 @@
             <string name='texture filename' value='ball.png'/>
             <integer name='render pass' value='1'/>
             <vector name='color' value='1.0,0.0,0.0,1.0'/>
+		</entity>
+        <entity class='MeshEntity' name='kat mesh'>
+            <string name='mesh filename' value='kat_idle.obj'/>
+            <string name='texture filename' value='kat_tex_red.png'/>
+            <vector name='scale' value='0.25,0.25,0.25,0.0'/>
 		</entity>
 	</entity>
 	<entity class='KatSound' name='punch sound'>

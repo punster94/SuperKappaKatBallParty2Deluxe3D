@@ -11,6 +11,15 @@ namespace KatBall
 	{
 		RTTI_DECLARATIONS(Player, FieaGameEngine::Entity)
 
+	private:
+
+		enum class AnimState
+		{
+			IDLE,
+			RUN,
+			VICTORY
+		};
+
 	public:
 
 		explicit Player(const std::string& name = "");
@@ -25,6 +34,8 @@ namespace KatBall
 
 		virtual void Update(FieaGameEngine::WorldState& worldState) override;
 
+		void SetAnimState(AnimState state);
+
 	protected:
 
 		void InitializeSignatures();
@@ -35,9 +46,23 @@ namespace KatBall
 
 		void FixExternalAttributes();
 
+		void UpdateAnimation(FieaGameEngine::WorldState& worldState);
+
+		void UpdateFrame(FieaGameEngine::Vector<FieaGameEngine::MeshGeometry*>& meshes, float frameTime);
+
+		void UpdateIdleAnimation();
+
+		void UpdateRunAnimation();
+
+		void UpdateVictoryAnimation();
+
+		void LoadRequiredMeshGeometries();
+
 		RigidBody* mRigidBody;
 
 		MeshEntity* mMeshEntity;
+
+		MeshEntity* mKatMeshEntity;
 
 		Gamepad* mGamepad;
 
@@ -47,13 +72,25 @@ namespace KatBall
 
 		float mMovementForce;
 
+		float mAnimTime;
+		AnimState mAnimState;
+		std::uint32_t mAnimFrame;
+
+		FieaGameEngine::Vector<FieaGameEngine::MeshGeometry*> mIdleMeshGeometries;
+		FieaGameEngine::Vector<FieaGameEngine::MeshGeometry*> mRunMeshGeometries;
+		FieaGameEngine::Vector<FieaGameEngine::MeshGeometry*> mVictoryMeshGeometries;
+
 		static const std::string sRigidBodyKey;
 		static const std::string sMeshKey;
 		static const std::string sMoveSpeedKey;
 		static const std::string sBallMeshKey;
+		static const std::string sKatMeshKey;
 		static const std::string sBallColliderKey;
 		static const std::string sPunchSoundKey;
 		static const std::string sHitSoundKey;
+		static const std::string sIdleAnimationsKey;
+		static const std::string sRunAnimationsKey;
+		static const std::string sVictoryAnimationsKey;
 
 		static std::int32_t sPlayerId;
 	};

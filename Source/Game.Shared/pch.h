@@ -27,5 +27,6 @@
 #include "MeshEntity.h"
 #include "QuadEntity.h"
 #include "Player.h"
+#include "MeshGeometry.h"
 
 #define GLM_FORCE_CXX98
