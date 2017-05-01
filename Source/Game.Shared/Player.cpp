@@ -27,7 +27,7 @@ namespace KatBall
 		mRigidBody = FindChildEntityByName(sBallColliderKey)->As<RigidBody>();
 		mMeshEntity = FindChildEntityByName(sBallMeshKey)->As<MeshEntity>();
 
-		mGamepad = new Gamepad(sPlayerId++);
+		mGamepad = new Gamepad();
 	}
 
 	Scope* Player::Copy() const
@@ -43,7 +43,7 @@ namespace KatBall
 		{
 			if (mGamepad->GetState()->wButtons != 0)
 			{
-				FieaGameEngine::Event<Gamepad>* event = new FieaGameEngine::Event<Gamepad>(*mGamepad);
+				FieaGameEngine::Event<Gamepad>* event = new FieaGameEngine::Event<Gamepad>(*mGamepad, false);
 				worldState.mWorld->Enqueue(*event, worldState, 0);
 			}
 

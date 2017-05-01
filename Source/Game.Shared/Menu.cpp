@@ -2,6 +2,7 @@
 
 #include "Menu.h"
 #include "RendererDirectX.h"
+#include "MenuGamepad.h"
 
 using namespace FieaGameEngine;
 
@@ -42,9 +43,25 @@ namespace KatBall
 	void Menu::Notify(const FieaGameEngine::EventPublisher& eventPublisher)
 	{
 		assert(eventPublisher.Is(Event<Gamepad>::TypeIdClass()));
-		Gamepad gamepad = (static_cast<const Event<Gamepad>&>(eventPublisher)).Message();
 		std::string texture = (*this)[sAlternateTextureFilenameKey].Get<std::string&>();
 		FindChildEntityByName("start")->As<QuadEntity>()->SetTexture(texture);
+
+		RemoveQuadFromView();
+		Datum& entities = Entities();
+		for (uint32_t i = 0; i < entities.Size(); ++i)
+		{
+			Scope& current = entities.Get<Scope&>(i);
+			if (current.Is(QuadEntity::TypeIdClass()))
+			{
+				static_cast<QuadEntity&>(current).RemoveQuadFromView();
+			}
+		}
+
+		MenuGamepad* gamepad = FindChildEntityByName("menu gamepad")->As<MenuGamepad>();
+		if (gamepad != nullptr)
+		{
+			gamepad->DeleteGamepad();
+		}
 	}
 
 	void Menu::InitializeSignatures()

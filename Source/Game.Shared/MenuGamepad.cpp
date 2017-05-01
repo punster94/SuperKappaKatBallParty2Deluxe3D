@@ -2,12 +2,15 @@
 
 #include "MenuGamepad.h"
 #include "Menu.h"
+#include "EventMessageAttributed.h"
 
 using namespace FieaGameEngine;
 
 namespace KatBall
 {
 	RTTI_DEFINITIONS(MenuGamepad)
+
+	const std::string MenuGamepad::sStartGameEventSubtype = "start_game";
 
 	MenuGamepad::MenuGamepad(const std::string& name) :
 		Entity(name), mGamepad(nullptr)
@@ -17,7 +20,7 @@ namespace KatBall
 
 	MenuGamepad::~MenuGamepad()
 	{
-		delete mGamepad;
+		DeleteGamepad();
 	}
 
 	MenuGamepad::MenuGamepad(const MenuGamepad& other) :
@@ -30,7 +33,7 @@ namespace KatBall
 	{
 		Entity::Initialize(worldState);
 
-		mGamepad = new Gamepad(0);
+		mGamepad = new Gamepad();
 	}
 
 	Scope* MenuGamepad::Copy() const
@@ -46,8 +49,12 @@ namespace KatBall
 		{
 			if (mGamepad->GetState()->wButtons != 0)
 			{
-				FieaGameEngine::Event<Gamepad>* event = new FieaGameEngine::Event<Gamepad>(*mGamepad);
+				FieaGameEngine::Event<Gamepad>* event = new FieaGameEngine::Event<Gamepad>(*mGamepad, false);
 				worldState.mWorld->Enqueue(*event, worldState, 0);
+
+				EventMessageAttributed args(sStartGameEventSubtype, &worldState);
+				Event<EventMessageAttributed>* e = new Event<EventMessageAttributed>(args);
+				worldState.mWorld->Enqueue(*e, worldState, 0);
 			}
 		}
 	}

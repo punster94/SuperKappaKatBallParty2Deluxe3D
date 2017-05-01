@@ -24,6 +24,8 @@ namespace KatBall
 
 		virtual void Update(FieaGameEngine::WorldState& worldState) override;
 
+		void DeleteGamepad() { delete mGamepad; }
+
 	protected:
 
 		void InitializeSignatures();

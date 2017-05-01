@@ -1,6 +1,6 @@
 
 #include "pch.h"
-#include "ScoreAction.h"
+#include "ActionUpdateScore.h"
 
 #include "HUD.h"
 
@@ -8,22 +8,22 @@ using namespace FieaGameEngine;
 using namespace KatBall;
 using namespace std;
 
-RTTI_DEFINITIONS(ScoreAction)
+RTTI_DEFINITIONS(ActionUpdateScore)
 
-const string ScoreAction::sScoreEventSubtype = "score";
-const string ScoreAction::sPlayerIDKey = "playerID";
+const string ActionUpdateScore::sScoreEventSubtype = "score";
+const string ActionUpdateScore::sPlayerIDKey = "playerID";
 
-ScoreAction::ScoreAction(const string& name) :
+ActionUpdateScore::ActionUpdateScore(const string& name) :
 	Action(name)
 {
 	InitializeSignatures();
 }
 
-ScoreAction::~ScoreAction()
+ActionUpdateScore::~ActionUpdateScore()
 {
 }
 
-void ScoreAction::Update(WorldState& worldState)
+void ActionUpdateScore::Update(WorldState& worldState)
 {
 	UNREFERENCED_PARAMETER(worldState);
 

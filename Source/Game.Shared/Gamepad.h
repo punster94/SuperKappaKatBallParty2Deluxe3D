@@ -42,8 +42,9 @@ namespace KatBall
 	class Gamepad
 	{
 	public:
-		Gamepad(int controllerId) : mControllerId(controllerId), mDeadzoneX(0.2f), mDeadzoneY(0.2f) {}
-		Gamepad(int controllerId, float dzX, float dzY) : mControllerId(controllerId), mDeadzoneX(dzX), mDeadzoneY(dzY) {}
+		Gamepad();
+		Gamepad(float dzX, float dzY);
+		~Gamepad();
 
 		float leftStickX;
 		float leftStickY;
@@ -52,11 +53,11 @@ namespace KatBall
 		float leftTrigger;
 		float rightTrigger;
 
-		XINPUT_GAMEPAD *GetState();
+		const XINPUT_GAMEPAD *GetState() const;
 		bool CheckConnection();
 		bool Refresh();
 		bool IsPressed(WORD button);
-		int GetPort();
+		int GetPort() const;
 
 	private:
 		int mControllerId;
@@ -65,5 +66,7 @@ namespace KatBall
 
 		float mDeadzoneX;
 		float mDeadzoneY;
+
+		static std::uint32_t sControllerId;
 	};
 }

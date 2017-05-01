@@ -370,6 +370,29 @@ namespace FieaGameEngine
 		}
 	}
 
+	void Entity::Reset(WorldState& worldState)
+	{
+		worldState.mEntity = this;
+
+		mPosition.x = mPositionVec4.x;
+		mPosition.y = mPositionVec4.y;
+		mPosition.z = mPositionVec4.z;
+
+		mRotation.x = mRotationVec4.x;
+		mRotation.y = mRotationVec4.y;
+		mRotation.z = mRotationVec4.z;
+
+		mScale.x = mScaleVec4.x;
+		mScale.y = mScaleVec4.y;
+		mScale.z = mScaleVec4.z;
+
+		Datum& entities = Entities();
+		for(std::uint32_t i = 0; i < entities.Size(); ++i)
+		{
+			entities.Get<Scope&>(i).As<Entity>()->Reset(worldState);
+		}
+	}
+
 	const std::string Entity::sEntityNameKey = "name";
 
 	const std::string Entity::sTransformPositionKey = "position";

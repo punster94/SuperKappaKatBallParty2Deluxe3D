@@ -1,8 +1,35 @@
 #include "pch.h"
 
+using namespace std;
+
 namespace KatBall
 {
-	XINPUT_GAMEPAD* Gamepad::GetState()
+	uint32_t Gamepad::sControllerId = 0;
+
+	Gamepad::Gamepad() : 
+		mDeadzoneX(0.2f), mDeadzoneY(0.2f)
+	{
+		if (sControllerId < XUSER_MAX_COUNT)
+		{
+			mControllerId = sControllerId++;
+		}
+	}
+
+	Gamepad::Gamepad(float dzX, float dzY) :
+		mDeadzoneX(dzX), mDeadzoneY(dzY)
+	{
+		if (sControllerId < XUSER_MAX_COUNT)
+		{
+			mControllerId = sControllerId++;
+		}
+	}
+
+	Gamepad::~Gamepad()
+	{
+		sControllerId--;
+	}
+
+	const XINPUT_GAMEPAD* Gamepad::GetState() const
 	{
 		return &mState.Gamepad;
 	}
@@ -63,7 +90,7 @@ namespace KatBall
 		return pressed;
 	}
 
-	int Gamepad::GetPort()
+	int Gamepad::GetPort() const
 	{
 		return mControllerId;
 	}

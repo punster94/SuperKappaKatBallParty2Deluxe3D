@@ -6,6 +6,8 @@
 #include "WorldState.h"
 #include "Renderer.h"
 
+#include "GameStateManager.h"
+
 namespace KatBall
 {
 	class Game final
@@ -22,7 +24,6 @@ namespace KatBall
 		void Shutdown();
 
 		void DebugUpdate();
-		void LoadGame();
 
 		void LoadAssets();
 
@@ -33,5 +34,12 @@ namespace KatBall
 		FieaGameEngine::WorldState mWorldState;
 		FieaGameEngine::GameTime mGameTime;
 		FieaGameEngine::GameClock mGameClock;
+
+		GameStateManager mStateManager;
+
+	public:
+
+		// TODO -- move this to menu object???
+		static const std::string sStartGameEventSubtype;
 	};
 }

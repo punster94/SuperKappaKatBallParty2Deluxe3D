@@ -7,8 +7,9 @@
 #include "Event.h"
 
 #include "HUD.h"
-#include "ScoreAction.h"
-#include "ActionRoundWinner.h"
+#include "ActionResetRound.h"
+#include "ActionUpdateScore.h"
+#include "ActionUpdateNumWins.h"
 #include "ReactionAttributed.h"
 #include "Timer.h"
 #include "KatMusic.h"
@@ -24,6 +25,8 @@ namespace KatBall
 	static Camera* sCamera;
 	static InputSubscriber* sInputSubscriber;
 	static Quad* sQuad;
+
+	const std::string Game::sStartGameEventSubtype = "start_game";
 
 	Game::Game(FieaGameEngine::Renderer& renderer)
 		: mRenderer(&renderer)
@@ -47,10 +50,11 @@ namespace KatBall
 		mRenderer->Init();
 		LoadAssets();
 
+		mGameSector = new Sector("Game");
 		mMenuSector = new Sector("Menu");
 		mMenuSector->SetWorld(mWorld);
 
-		mGameSector = new Sector("Game");
+		mStateManager.Initialize(mWorld, *mMenuSector, *mGameSector, mWorldState);
 
 		ScopeParseHelper::ScopeSharedData sharedData;
 		XmlParseMaster master(&sharedData);
@@ -64,8 +68,9 @@ namespace KatBall
 		KatSoundFactory ksf;
 		MeshEntityFactory mef;
 		HUDFactory hudf;
-		ScoreActionFactory saf;
-		ActionRoundWinnerFactory arwf;
+		ActionResetRoundFactory arrf;
+		ActionUpdateScoreFactory ausf;
+		ActionUpdateNumWinsFactory aunwf;
 		ReactionAttributedFactory raf;
 		QuadEntityFactory qef;
 		PlayerFactory pf;
@@ -119,30 +124,14 @@ namespace KatBall
 		// DEBUG
 		DebugUpdate();
 
-
-		// END
-	}
-
-	void Game::LoadGame()
-	{
-		Datum& entities = mMenuSector->Entities();
-		for (uint32_t i = 0; i < entities.Size(); ++i)
+		if (GetAsyncKeyState(VK_RETURN))
 		{
-			Scope& current = entities.Get<Scope&>(i);
-			if (current.Is(KatMusic::TypeIdClass()))
-			{
-				static_cast<KatMusic&>(current).Stop();
-			}
-
-			if (current.Is(QuadEntity::TypeIdClass()))
-			{
-				static_cast<QuadEntity&>(current).RemoveQuadFromView();
-			}
+			// TODO -- do this via menu object???
+			EventMessageAttributed args(sStartGameEventSubtype, &mWorldState);
+			Event<EventMessageAttributed>* e = new Event<EventMessageAttributed>(args);
+			mWorld.Enqueue(*e, mWorldState, 0);
 		}
-
-		mMenuSector->Orphan();
-		mGameSector->SetWorld(mWorld);
-		mWorld.Initialize(mWorldState);
+		// END
 	}
 
 	void Game::DebugUpdate()

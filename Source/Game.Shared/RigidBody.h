@@ -22,6 +22,7 @@ namespace KatBall
 		RigidBody(const RigidBody& otherRigidBody);
 
 		virtual void Initialize(FieaGameEngine::WorldState& worldState) override;
+		virtual void Reset(FieaGameEngine::WorldState& worldState) override;
 
 		virtual Scope* Copy() const override;
 

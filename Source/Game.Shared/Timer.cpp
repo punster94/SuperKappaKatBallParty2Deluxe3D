@@ -61,10 +61,16 @@ namespace KatBall
 		}
 		
 		// init time, run, and set digits
-		mTimeRemaining = mDefaultTimeRemaining = time;
-		SetTimerRenderables();
+		mDefaultTimeRemaining = time;
+		Reset();
+	}
 
+	void Timer::Reset()
+	{
+		mTimeRemaining = mDefaultTimeRemaining;
 		mIsRunning = true;
+
+		SetTimerRenderables();
 	}
 
 	void Timer::Update(WorldState& state)
@@ -92,12 +98,6 @@ namespace KatBall
 		{
 			it->Render(renderer);
 		}
-	}
-
-	void Timer::Reset()
-	{
-		mTimeRemaining = mDefaultTimeRemaining;
-		mIsRunning = true;
 	}
 
 	void Timer::SetTimerRenderables()

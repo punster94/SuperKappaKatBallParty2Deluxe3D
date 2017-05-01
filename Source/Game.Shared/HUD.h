@@ -17,6 +17,8 @@ namespace KatBall
 		virtual ~HUD();
 
 		virtual void Initialize(FieaGameEngine::WorldState& worldState) override;
+		virtual void Reset(FieaGameEngine::WorldState& worldState) override;
+
 		virtual void Update(FieaGameEngine::WorldState& worldState) override;
 		virtual void Render(FieaGameEngine::Renderer* renderer) override;
 

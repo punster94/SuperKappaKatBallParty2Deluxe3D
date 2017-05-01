@@ -67,6 +67,36 @@ namespace KatBall
 		worldState.mWorld->RegisterRigidBody(*mCollider, *mBody);
 	}
 
+	void RigidBody::Reset(WorldState& worldState)
+	{
+		Entity::Reset(worldState);
+
+		// TODO -- leaks memory
+		(const_cast<RigidBody*>(this)->*sCreateColliders[mColliderType])(mColliderDimensions.x, mColliderDimensions.y, mColliderDimensions.z);
+
+		glm::vec3 pos = GetWorldPosition();
+		mTransform.setIdentity();
+		mTransform.setOrigin(btVector3(pos.x, pos.y, pos.z));
+
+		bool isDynamic = (mMass != 0.0f);
+
+		mLocalIntertia = btVector3(mTransformLocalIntertia.x, mTransformLocalIntertia.y, mTransformLocalIntertia.z);
+
+		if(isDynamic)
+		{
+			mCollider->calculateLocalInertia(mMass, mLocalIntertia);
+		}
+
+		mMotionState = new btDefaultMotionState(mTransform);
+		mConstructionInfo = new btRigidBody::btRigidBodyConstructionInfo(mMass, mMotionState, mCollider, mLocalIntertia);
+		mBody = new btRigidBody(*mConstructionInfo);
+
+		mBody->activate(true);
+
+		worldState.mWorld->RegisterRigidBody(*mCollider, *mBody);
+		// TODO -- leaks memory
+	}
+
 	Scope* RigidBody::Copy() const
 	{
 		return new RigidBody(*this);

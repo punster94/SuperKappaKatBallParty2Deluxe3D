@@ -20,7 +20,7 @@ namespace KatBall
 	void InputSubscriber::Notify(const EventPublisher& eventPublisher)
 	{
 		assert(eventPublisher.Is(Event<Gamepad>::TypeIdClass()));
-		Gamepad received = static_cast<const Event<Gamepad>&>(eventPublisher).Message();
+		const Gamepad& received = static_cast<const Event<Gamepad>&>(eventPublisher).Message();
 
 		int port = received.GetPort();
 		//NOTE: wButtons can contain multiple button presses at a time.

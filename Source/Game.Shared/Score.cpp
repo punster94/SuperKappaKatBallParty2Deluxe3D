@@ -11,6 +11,12 @@ using namespace glm;
 
 RTTI_DEFINITIONS(Score)
 
+const uint32_t Score::sOnesIndex = 0;
+const uint32_t Score::sTensIndex = 1;
+const uint32_t Score::sBarIndex = 2;
+const uint32_t Score::sImageIndex = 3;
+const uint32_t Score::sCrownIndex = 4;
+
 Score::Score() :
 	mScore(0),
 	mNumWins(0)
@@ -34,23 +40,22 @@ Score::~Score()
 void Score::Initialize(const string& playerIcon, const vec4& color, float x, float y, float w, float h)
 {
 	// init quads
-	mRenderables[0]->SetTexture(Asset::Get(playerIcon)->As<Texture>());
-	mRenderables[0]->SetRect(x + w + w, y, w, h);
-	mRenderables[0]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+	mRenderables[sOnesIndex]->SetTexture(Asset::Get(playerIcon)->As<Texture>());
+	mRenderables[sOnesIndex]->SetRect(x + w + w, y, w, h);
+	mRenderables[sOnesIndex]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	mRenderables[1]->SetRect(x + w, y, w, h);
-	mRenderables[1]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+	mRenderables[sTensIndex]->SetRect(x + w, y, w, h);
+	mRenderables[sTensIndex]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	mRenderables[2]->SetTexture(Asset::Get(HUD::sPlayerWinsIcons[mNumWins])->As<Texture>());
-	mRenderables[2]->SetRect(x + w, y + h, w * 2.0f, h * 0.5f);
-	mRenderables[2]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+	mRenderables[sBarIndex]->SetRect(x + w, y + h, w * 2.0f, h * 0.5f);
+	mRenderables[sBarIndex]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	mRenderables[3]->SetTexture(Asset::Get(playerIcon)->As<Texture>());
-	mRenderables[3]->SetRect(x, y, w, h);
+	mRenderables[sImageIndex]->SetTexture(Asset::Get(playerIcon)->As<Texture>());
+	mRenderables[sImageIndex]->SetRect(x, y, w, h);
 
-	mRenderables[4]->SetTexture(Asset::Get(TEXTURE_CROWN)->As<Texture>());
-	mRenderables[4]->SetRect(x + w * 0.25f, y + h * 0.75f, w * 0.5f, h * 0.5f);
-	mRenderables[4]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
+	mRenderables[sCrownIndex]->SetTexture(Asset::Get(TEXTURE_CROWN)->As<Texture>());
+	mRenderables[sCrownIndex]->SetRect(x + w * 0.25f, y + h * 0.75f, w * 0.5f, h * 0.5f);
+	mRenderables[sCrownIndex]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	// set shaders
 	VertexShader* vertShader = Asset::Get(SHADER_QUAD_VERTEX)->As<VertexShader>();
@@ -61,16 +66,22 @@ void Score::Initialize(const string& playerIcon, const vec4& color, float x, flo
 	}
 
 	// init score and set digits
-	mScore = 10;
-	SetDigitTextures();
+	mNumWins = 0;
+	Reset();
+}
 
+void KatBall::Score::Reset()
+{
 	mIsWinning = false;
+	mScore = 0;
+
+	SetDigitsTexture();
+	SetBarTexture();
 }
 
 void Score::Update(WorldState& worldState)
 {
 	UNREFERENCED_PARAMETER(worldState);
-	SetDigitTextures();
 }
 
 void Score::Render(Renderer* renderer)
@@ -83,34 +94,16 @@ void Score::Render(Renderer* renderer)
 	}
 }
 
-void Score::SetDigitTextures()
-{
-	uint32_t tempScore = mScore;
-
-	for(uint32_t i = 0; i < 2; ++i)
-	{
-		mRenderables[i]->SetTexture(Asset::Get(HUD::sNumbersIcons[tempScore % 10])->As<Texture>());
-		tempScore /= 10;
-	}
-}
-
 void Score::UpdateNumWins()
 {
 	++mNumWins;
-	if (mNumWins < ROUNDS_TO_WIN)
-	{
-		mRenderables[2]->SetTexture(Asset::Get(HUD::sPlayerWinsIcons[mNumWins])->As<Texture>());
-	}
+	SetBarTexture();
 }
 
 void Score::UpdateScore()
 {
 	++mScore;
-}
-
-void KatBall::Score::Reset()
-{
-	mScore = 0;
+	SetDigitsTexture();
 }
 
 void Score::SetIsWinning(bool isWinning)
@@ -126,4 +119,22 @@ uint32_t Score::GetNumWins() const
 uint32_t Score::GetScore() const
 {
 	return mScore;
+}
+
+void Score::SetDigitsTexture()
+{
+	uint32_t tempScore = mScore;
+	for(uint32_t i = 0; i < 2; ++i)
+	{
+		mRenderables[i]->SetTexture(Asset::Get(HUD::sNumbersIcons[tempScore % 10])->As<Texture>());
+		tempScore /= 10;
+	}
+}
+
+void Score::SetBarTexture()
+{
+	if(mNumWins < ROUNDS_TO_WIN)
+	{
+		mRenderables[sBarIndex]->SetTexture(Asset::Get(HUD::sPlayerWinsIcons[mNumWins])->As<Texture>());
+	}
 }

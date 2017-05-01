@@ -16,7 +16,8 @@ namespace KatBall
 		virtual void Initialize(FieaGameEngine::WorldState& worldState) override;
 		virtual Scope* Copy() const override;
 		virtual void Update(FieaGameEngine::WorldState& worldState) override;
-		//void Notify(const FieaGameEngine::EventPublisher& eventPublisher) override;
+		
+		void DeleteGamepad() { delete mGamepad; mGamepad = nullptr; }
 
 	protected:
 		void InitializeSignatures();
@@ -27,6 +28,8 @@ namespace KatBall
 		void FixExternalAttributes();
 
 		Gamepad* mGamepad;
+
+		const static std::string sStartGameEventSubtype;
 	};
 
 	ConcreteEntityFactory(MenuGamepad);

@@ -182,6 +182,7 @@ namespace FieaGameEngine
 		void Scale(glm::vec3 delta);
 
 		virtual void Initialize(WorldState& worldState);
+		virtual void Reset(WorldState& worldState);
 
 	protected:
 
