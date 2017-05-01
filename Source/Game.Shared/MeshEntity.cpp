@@ -64,6 +64,11 @@ namespace KatBall
 		return new MeshEntity(*this);
 	}
 
+	void MeshEntity::SetMeshGeometry(MeshGeometry* geometry)
+	{
+		mMesh.SetMeshGeometry(geometry);
+	}
+
 	void MeshEntity::InitializeSignatures()
 	{
 		Entity::InitializeSignatures();

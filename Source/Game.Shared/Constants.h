@@ -12,6 +12,10 @@
 #define MESH_FLAT_SPHERE "flat_sphere.obj"
 #define MESH_CUBE "cube.obj"
 #define MESH_SMOOTH_SPHERE "smooth_sphere.obj"
+#define MESH_KAT_IDLE "kat_idle.obj"
+#define MESH_KAT_RUN_1 "kat_run_1.obj"
+#define MESH_KAT_RUN_2 "kat_run_2.obj"
+#define MESH_KAT_VICTORY "kat_victory.obj"
 
 #define TEXTURE_KAT "grid.bmp"
 #define TEXTURE_MANKEY_BALL "mankey_ball.bmp"
