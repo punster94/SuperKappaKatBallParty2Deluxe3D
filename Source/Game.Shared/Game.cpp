@@ -133,7 +133,11 @@ namespace KatBall
 
 	void Game::Update()
 	{
-		mDynamicsWorld->stepSimulation(1.f / 60.f, 10);
+		if (!mWorldState.mIsPaused)
+		{
+			mDynamicsWorld->stepSimulation(1.f / 60.f, 10);
+
+		}
 
 		mGameClock.UpdateGameTime(mWorldState.mGameTime);
 
