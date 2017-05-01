@@ -20,6 +20,7 @@
 #include "MenuCrowns.h"
 #include "ActionCrownWinners.h"
 #include "ActionFocus.h"
+#include "ActionRemoveCrowns.h"
 
 using namespace FieaGameEngine;
 
@@ -99,6 +100,7 @@ namespace KatBall
 		PowerupFactory pwf;
 		MenuCrownsFactory mcf;
 		ActionCrownWinnersFactory acwf;
+		ActionRemoveCrownsFactory arcf;
 
 		std::experimental::filesystem::directory_iterator menuEntities(ASSET_DIRECTORY_MENU_ENTITIES);
 

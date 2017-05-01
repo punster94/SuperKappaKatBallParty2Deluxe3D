@@ -5,6 +5,11 @@
 		<action class='ActionCrownWinners' name='CrownWinners' />
 	</reaction>
 	
+	<reaction class='ReactionAttributed' name='RemoveCrowns'>
+		<string name='subtypes' value='start_game'/>
+		<action class='ActionRemoveCrowns' name='RemoveCrowns' />
+	</reaction>
+	
 	
 	<entity class='QuadEntity' name='Crown_1'>
 		<vector name='color' value='1.0,1.0,1.0,1.0'/>

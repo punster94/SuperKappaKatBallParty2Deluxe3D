@@ -31,5 +31,9 @@ void MenuCrowns::Initialize(WorldState& worldState)
 
 void MenuCrowns::Reset(WorldState& worldState)
 {
-	//
+	Datum& entities = Entities();
+	for(uint32_t i = 0; i < entities.Size(); ++i)
+	{
+		static_cast<QuadEntity*>(&entities.Get<Scope&>(i))->RemoveQuadFromView();
+	}
 }
