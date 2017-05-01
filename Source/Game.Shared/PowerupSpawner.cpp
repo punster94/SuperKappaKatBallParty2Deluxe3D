@@ -13,7 +13,6 @@ namespace KatBall
 		PowerupSpawner::InitializeSignatures();
 		unsigned randomSeed = std::chrono::system_clock::now().time_since_epoch().count();
 		mGenerator.seed(randomSeed);
-		//(*this)[sPowerupKey].SetType(FieaGameEngine::Datum::DatumType::Table);
 	}
 
 	PowerupSpawner::PowerupSpawner(const PowerupSpawner& rhs) :
@@ -24,7 +23,7 @@ namespace KatBall
 
 	void PowerupSpawner::Initialize(FieaGameEngine::WorldState& worldState)
 	{
-		Entity::Initialize(worldState);
+		mWorldState = &worldState;
 
 		mLongBoi = FindChildEntityByName(sLongBoiKey)->As<Powerup>();
 		mBigBoi = FindChildEntityByName(sBigBoiKey)->As<Powerup>();
@@ -36,9 +35,7 @@ namespace KatBall
 		Adopt(*(FindChildEntityByName(sBigBoiKey)->As<Powerup>()), sPowerupKey);
 		Adopt(*(FindChildEntityByName(sVortexBoiKey)->As<Powerup>()), sPowerupKey);
 
-		//Entity::Initialize(worldState);
-
-		//mLongBoiMesh = FindChildEntityByName(sBallMeshKey)->As<MeshEntity>();
+		Entity::Initialize(worldState);
 	}
 
 	void PowerupSpawner::InitializePowerups()
@@ -173,18 +170,21 @@ namespace KatBall
 
 			if (weightedRoll <= mLongBoiSpawnWeight)
 			{
-				//(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(*new Powerup(*mLongBoi));
-				Adopt(*new Powerup(*mLongBoi), FieaGameEngine::Sector::sSectorEntitiesKey);
+				Powerup* newLongBoi = new Powerup(*mLongBoi);
+				Adopt(*newLongBoi, FieaGameEngine::Sector::sSectorEntitiesKey);
+				newLongBoi->Initialize(*mWorldState);
 			}
 			else if (weightedRoll <= mLongBoiSpawnWeight + mBigBoiSpawnWeight)
 			{
-				//(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(*new Powerup(*mBigBoi));
-				Adopt(*new Powerup(*mBigBoi), FieaGameEngine::Sector::sSectorEntitiesKey);
+				Powerup* newBigBoi = new Powerup(*mBigBoi);
+				Adopt(*newBigBoi, FieaGameEngine::Sector::sSectorEntitiesKey);
+				newBigBoi->Initialize(*mWorldState);
 			}
 			else if (weightedRoll <= mLongBoiSpawnWeight + mBigBoiSpawnWeight + mVortexBoiSpawnWeight)
 			{
-				//(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(*new Powerup(*mVortexBoi));
-				Adopt(*new Powerup(*mVortexBoi), FieaGameEngine::Sector::sSectorEntitiesKey);
+				Powerup* newVortexBoi = new Powerup(*mVortexBoi);
+				Adopt(*newVortexBoi, FieaGameEngine::Sector::sSectorEntitiesKey);
+				newVortexBoi->Initialize(*mWorldState);
 			}
 		}
 	}

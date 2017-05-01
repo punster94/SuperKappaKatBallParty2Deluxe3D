@@ -16,7 +16,6 @@ namespace KatBall
 			Default
 		};
 
-		//Powerup(PowerupType type, std::float_t stat, glm::vec4 location);
 		Powerup();
 		Powerup(const Powerup& otherPowerup);
 
