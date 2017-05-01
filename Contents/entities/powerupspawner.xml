@@ -5,7 +5,7 @@
   <entity class='PowerupSpawner' name='CenterSpawner'>
     <vector name='position' value='0.0, -1.25, 0.0, 0.0'/>
     <vector name='scale' value='0.5, 0.5, 0.5, 0.5'/>
-    <float name='Spawn Chance' value='50'/>
+    <float name='Spawn Chance' value='10'/>
     <integer name='Long Boi Spawn Weight' value='100'/>
     <integer name='Big Boi Spawn Weight' value='100'/>
     <integer name='Vortex Boi Spawn Weight' value='100'/>
@@ -59,7 +59,7 @@
   <entity class='PowerupSpawner' name='BottomLeftSpawner'>
     <vector name='position' value='-4.0, -1.25, -4.0, 0.0'/>
     <vector name='scale' value='0.5, 0.5, 0.5, 0.5'/>
-    <float name='Spawn Chance' value='50'/>
+    <float name='Spawn Chance' value='10'/>
     <integer name='Long Boi Spawn Weight' value='100'/>
     <integer name='Big Boi Spawn Weight' value='100'/>
     <integer name='Vortex Boi Spawn Weight' value='100'/>
@@ -113,7 +113,7 @@
   <entity class='PowerupSpawner' name='BottomRightSpawner'>
     <vector name='position' value='4.0, -1.25, -4.0, 0.0'/>
     <vector name='scale' value='0.5, 0.5, 0.5, 0.5'/>
-    <float name='Spawn Chance' value='50'/>
+    <float name='Spawn Chance' value='10'/>
     <integer name='Long Boi Spawn Weight' value='100'/>
     <integer name='Big Boi Spawn Weight' value='100'/>
     <integer name='Vortex Boi Spawn Weight' value='100'/>
@@ -167,7 +167,7 @@
   <entity class='PowerupSpawner' name='TopLeftSpawner'>
     <vector name='position' value='-4.0, -1.25, 4.0, 0.0'/>
     <vector name='scale' value='0.5, 0.5, 0.5, 0.5'/>
-    <float name='Spawn Chance' value='50'/>
+    <float name='Spawn Chance' value='10'/>
     <integer name='Long Boi Spawn Weight' value='100'/>
     <integer name='Big Boi Spawn Weight' value='100'/>
     <integer name='Vortex Boi Spawn Weight' value='100'/>
@@ -221,7 +221,7 @@
   <entity class='PowerupSpawner' name='TopRightSpawner'>
     <vector name='position' value='4.0, -1.25, 4.0, 0.0'/>
     <vector name='scale' value='0.5, 0.5, 0.5, 0.5'/>
-    <float name='Spawn Chance' value='50'/>
+    <float name='Spawn Chance' value='10'/>
     <integer name='Long Boi Spawn Weight' value='100'/>
     <integer name='Big Boi Spawn Weight' value='100'/>
     <integer name='Vortex Boi Spawn Weight' value='100'/>
