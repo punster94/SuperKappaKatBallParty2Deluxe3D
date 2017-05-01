@@ -178,6 +178,7 @@ namespace KatBall
 				player2 = rigidbody->GetParent()->As<Player>();
 				player->SetLastPlayerTouching(player2->GetPlayerID());
 				player2->SetLastPlayerTouching(player->GetPlayerID());
+				player->OnHit();
 			}
 		}
 
