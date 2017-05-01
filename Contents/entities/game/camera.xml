@@ -1,5 +1,6 @@
 <entity class='Camera' name='Camera'>
 	<vector name='rotation' value='0.9,0.0,0.0,0.0'/>
+    <vector name='position' value='0.0,0.0,-3.0,0.0'/>
     <action class='ActionFocus'>
         <string name='target' value='Baby'/>
         <string name='target' value='Tubbs'/>

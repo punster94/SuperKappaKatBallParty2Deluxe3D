@@ -32,6 +32,7 @@ namespace KatBall
 		float mMaxDistance;
 		float mFocusScale;
 		glm::vec4 mBounds;
+		glm::vec3 mPositionOffset;
 
 		bool mInitialized;
 		FieaGameEngine::Vector<FieaGameEngine::Entity*> mTargets;

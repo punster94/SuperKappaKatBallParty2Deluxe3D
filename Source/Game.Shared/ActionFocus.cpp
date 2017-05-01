@@ -59,6 +59,7 @@ namespace KatBall
 		glm::vec3 midpoint = (minPosition + maxPosition) / 2.0f;
 		midpoint.x = glm::clamp(midpoint.x, mBounds.x, mBounds.y);
 		midpoint.z = glm::clamp(midpoint.z, mBounds.z, mBounds.w);
+		midpoint += mPositionOffset;
 
 		float distance = glm::distance(minPosition, maxPosition) * mFocusScale;
 		distance = glm::clamp(distance, mMinDistance, mMaxDistance);
@@ -81,6 +82,14 @@ namespace KatBall
 
 	void ActionFocus::Initialize(WorldState& worldState)
 	{
+		// Save initial position as an offset
+		Entity* parent = GetParent()->As<Entity>();
+
+		if (parent != nullptr)
+		{
+			mPositionOffset = parent->GetRelativePosition();
+		}
+
 		// Find all entities matching target names;
 		Datum targetStrings = (*this)[sTargetsKey];
 
