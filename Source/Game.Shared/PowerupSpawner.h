@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include <random>
 #include "KatSound.h"
+#include "Powerup.h"
 
 namespace KatBall
 {
@@ -16,20 +17,14 @@ namespace KatBall
 		/// Destructor (defaulted)
 		~PowerupSpawner() = default;
 
+		PowerupSpawner(const PowerupSpawner& rhs);
+
 		virtual void Initialize(FieaGameEngine::WorldState& worldState) override;
 
 		virtual void Update(FieaGameEngine::WorldState& worldState) override;
 
 		/// Initializes prescribed attributes for this class
 		void InitializeSignatures() override;
-
-		/// Accessor method for the powerup spawner's spawn location
-		/// @Return: The location that the powerups from this object will spawn
-		glm::vec4 GetSpawnLocation() const;
-
-		/// Mutator method for the powerup spawner's spawn location
-		/// @Param spawnLocation: The new location from which powerups will spawn from this object
-		void SetSpawnLocation(const glm::vec4& spawnLocation);
 
 		/// Accessor method for the powerup spawner's spawn chance
 		/// @Return: The chance that this object will spawn a powerup
@@ -92,10 +87,15 @@ namespace KatBall
 		void AttemptSpawn();
 
 	private:
-		RigidBody* mRigidBody;
-		MeshEntity* mMeshEntity;
+		void CopyPrivateDataMembers(const PowerupSpawner& rhs);
+		void FixExternalAttributes();
+
+		MeshEntity* mLongBoyMesh;
 		FieaGameEngine::KatSound* mSpawnSound;
-		glm::vec4 mSpawnLocation;	// Location that powerups will be spawned from this object
+		Powerup* mLongBoi;
+		Powerup* mBigBoi;
+		Powerup* mVortexBoi;
+
 		float mSpawnChance;			// Chance between 0.0 and 100.0 that this spawner will generate an item
 		float mElapsedTime;
 
@@ -108,6 +108,15 @@ namespace KatBall
 		float mVortexBoiRotationSpeed;	// How fast the vortex Boi goes whoosh
 
 		const float mSpawnAttemptInterval = 5.0f;
+
+		static const std::string sSpawnChance;
+		static const std::string sLongBoiSpawnWeight;
+		static const std::string sBigBoiSpawnWeight;
+		static const std::string sVortexBoiSpawnWeight;
+
+		static const std::string sLongBoiStat;
+		static const std::string sBigBoiStat;
+		static const std::string sVortexBoiStat;
 
 		static const std::string sRigidBodyKey;
 		static const std::string sBallColliderKey;
