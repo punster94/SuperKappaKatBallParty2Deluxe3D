@@ -206,6 +206,28 @@ namespace FieaGameEngine
 		}
 	}
 
+	Entity* Sector::FindEntityByName(const std::string& name)
+	{
+		Datum& entities = Entities();
+
+		if (entities.Size() == 0)
+		{
+			return nullptr;
+		}
+
+		for (std::uint32_t i = 0; i < entities.Size(); ++i)
+		{
+			Entity* entity = entities.Get<Scope&>(i).As<Entity>();
+
+			if (entity->Name() == name)
+			{
+				return entity;
+			}
+		}
+
+		return nullptr;
+	}
+
 	const std::string Sector::sSectorNameKey = "name";
 
 	const std::string Sector::sSectorEntitiesKey = "entities";

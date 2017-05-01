@@ -17,12 +17,12 @@
 #include "Menu.h"
 #include "MenuGamepad.h"
 #include "PowerupSpawner.h"
+#include "ActionFocus.h"
 
 using namespace FieaGameEngine;
 
 namespace KatBall
 {
-	static Camera* sCamera;
 	static InputSubscriber* sInputSubscriber;
 	static Quad* sQuad;
 
@@ -73,6 +73,7 @@ namespace KatBall
 		master.AddHelper(&helper);
 
 		EntityFactory ef;
+		CameraFactory cf;
 		RigidBodyFactory rbf;
 		KatMusicFactory kmf;
 		KatSoundFactory ksf;
@@ -81,6 +82,7 @@ namespace KatBall
 		ActionResetRoundFactory arrf;
 		ActionUpdateScoreFactory ausf;
 		ActionUpdateNumWinsFactory aunwf;
+		ActionFocusFactory aff;
 		ReactionAttributedFactory raf;
 		QuadEntityFactory qef;
 		PlayerFactory pf;
@@ -115,11 +117,7 @@ namespace KatBall
 
 		mWorld.Initialize(mWorldState);
 
-		sCamera = new Camera();
 		sInputSubscriber = new InputSubscriber();
-		sCamera->SetRelativePosition(glm::vec3(0.0f, 10.0f, -12.0f));
-		sCamera->SetRelativeRotation(glm::vec3(0.71f, 0.0f, 0.0f));
-		mRenderer->SetCamera(sCamera);
 	}
 
 	void Game::Update()
@@ -134,9 +132,6 @@ namespace KatBall
 		mRenderer->Render(mWorld);
 
 		mRenderer->EndRenderFrame();
-
-		// DEBUG
-		DebugUpdate();
 
 		Entity* objectA;
 		Entity* objectB;
@@ -176,73 +171,6 @@ namespace KatBall
 	void Game::RegisterRigidBody(btCollisionShape& shape, btRigidBody& body)
 	{
 		mDynamicsWorld->addRigidBody(&body);
-	}
-
-	void Game::DebugUpdate()
-	{
-		mWorldState.GetGameTime();
-
-		float deltaTime = mWorldState.DeltaTime();
-
-		const float cameraSpeed = 2.0f * deltaTime;
-		const float cameraAngSpeed = 2.0f * deltaTime;
-		glm::vec3 deltaPos;
-		glm::vec3 deltaRot;
-		glm::vec3 cameraPos = sCamera->GetWorldPosition();
-		glm::vec3 cameraRot = sCamera->GetWorldRotation();
-
-		if (GetAsyncKeyState('A'))
-		{
-			deltaPos += glm::vec3(-cameraSpeed, 0.0f, 0.0f);
-		}
-
-		if (GetAsyncKeyState('D'))
-		{
-			deltaPos += glm::vec3(cameraSpeed, 0.0f, 0.0f);
-		}
-
-		if (GetAsyncKeyState('S'))
-		{
-			deltaPos += glm::vec3(0.0f, 0.0f, -cameraSpeed);
-		}
-
-		if (GetAsyncKeyState('E'))
-		{
-			deltaPos += glm::vec3(0.0f, cameraSpeed, 0.0f);
-		}
-
-		if (GetAsyncKeyState('Q'))
-		{
-			deltaPos += glm::vec3(0.0f, -cameraSpeed, 0.0f);
-		}
-
-		if (GetAsyncKeyState('W'))
-		{
-			deltaPos += glm::vec3(0.0f, 0.0f, cameraSpeed);
-		}
-
-		if (GetAsyncKeyState(VK_LEFT))
-		{
-			deltaRot += glm::vec3(0.0f, -cameraAngSpeed, 0.0f);
-		}
-
-		if (GetAsyncKeyState(VK_RIGHT))
-		{
-			deltaRot += glm::vec3(0.0f, cameraAngSpeed, 0.0f);
-		}
-
-		if (GetAsyncKeyState(VK_DOWN))
-		{
-			deltaRot += glm::vec3(cameraAngSpeed, 0.0f, 0.0f);
-		}
-
-		if (GetAsyncKeyState(VK_UP))
-		{
-			deltaRot += glm::vec3(-cameraAngSpeed, 0.0f, 0.0f);
-		}
-
-		sCamera->SetRelativePosition(cameraPos + deltaPos);
-		sCamera->SetRelativeRotation(cameraRot + deltaRot);
 	}
 
 	void Game::Shutdown()

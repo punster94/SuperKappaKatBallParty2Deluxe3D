@@ -150,6 +150,10 @@ namespace KatBall
 			{
 				Respawn(worldState);
 			}
+
+			SetWorldPosition(mBallRigidBody->GetWorldPosition());
+			mBallRigidBody->SetRelativePosition(glm::vec3(0.0f));
+
 		}
 
 		Entity::Update(worldState);
