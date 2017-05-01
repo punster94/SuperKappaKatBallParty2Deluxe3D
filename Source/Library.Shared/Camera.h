@@ -22,6 +22,8 @@ namespace FieaGameEngine
 
 	class Camera : public Entity
 	{
+		RTTI_DECLARATIONS(Camera, Entity)
+
 	public:
 
 		Camera();
@@ -35,6 +37,8 @@ namespace FieaGameEngine
 
 		ProjectionMode GetProjectionMode() const;
 
+		virtual void Initialize(WorldState& worldState) override;
+
 	protected:
 
 		void InitializeSignatures();
@@ -44,4 +48,6 @@ namespace FieaGameEngine
 		CameraSettings mSettings;
 
 	};
+
+	ConcreteEntityFactory(Camera);
 }

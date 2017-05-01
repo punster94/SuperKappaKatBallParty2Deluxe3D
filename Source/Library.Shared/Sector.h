@@ -160,6 +160,8 @@ namespace FieaGameEngine
 		void Initialize(WorldState& worldState);
 		void Reset(WorldState& worldState);
 
+		Entity* FindEntityByName(const std::string& name);
+
 	private:
 
 		/** Sector InitializeSignatures
