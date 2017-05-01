@@ -45,7 +45,7 @@ namespace KatBall
 			katBoi.ActivateLongBoi(mLengthIncrease);
 			break;
 		case VortexBoi:
-			// katBoi.IncreaseRotationSpeed(mRotationSpeed);
+			katBoi.ActivateVortexBoi(10);
 			break;
 		}
 	}

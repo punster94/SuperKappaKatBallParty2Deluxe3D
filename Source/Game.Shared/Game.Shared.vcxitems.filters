@@ -26,6 +26,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MenuGamepad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MenuCrowns.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionCrownWinners.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionFocus.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Constants.h" />
@@ -54,5 +55,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MenuGamepad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MenuCrowns.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionCrownWinners.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionFocus.h" />
   </ItemGroup>
 </Project>

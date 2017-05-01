@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionCrownWinners.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionFocus.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionPunch.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionResetRound.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionUpdateNumWins.cpp" />
@@ -43,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionCrownWinners.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionFocus.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionPunch.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionResetRound.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionUpdateNumWins.h" />

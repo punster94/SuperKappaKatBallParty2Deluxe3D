@@ -57,6 +57,22 @@ namespace KatBall
 		}
 	}
 
+	void Menu::Reset(FieaGameEngine::WorldState& worldState)
+	{
+		Entity::Reset(worldState);
+
+		if (Game::GetInstance()->GetWorldState().mSector->Name() != "Game")
+		{
+			AddQuadToView();
+
+			Entity* entity = FindChildEntityByName("menu gamepad");
+			if (entity != nullptr)
+			{
+				entity->As<MenuGamepad>()->Initialize(worldState);
+			}
+		}
+	}
+
 	void Menu::InitializeSignatures()
 	{
 		QuadEntity::InitializeSignatures();

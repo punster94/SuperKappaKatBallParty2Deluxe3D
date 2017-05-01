@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Camera.h"
+#include "Renderer.h"
 
 #define DEFAULT_WIDTH 0.05f
 #define DEFAULT_HEIGHT 0.035f
@@ -8,6 +9,8 @@
 
 namespace FieaGameEngine
 {
+	RTTI_DEFINITIONS(Camera)
+
 	Camera::Camera() :
 		mProjectionMode(ProjectionMode::PERSPECTIVE)
 	{
@@ -47,5 +50,12 @@ namespace FieaGameEngine
 	void Camera::InitializeSignatures()
 	{
 		Entity::InitializeSignatures();
+	}
+
+	void Camera::Initialize(WorldState& worldState)
+	{
+		Entity::Initialize(worldState);
+
+		Renderer::Get()->SetCamera(this);
 	}
 }

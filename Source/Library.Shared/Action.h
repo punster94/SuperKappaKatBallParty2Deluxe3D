@@ -127,5 +127,5 @@ namespace FieaGameEngine
 	/** ConcreteActionFactory Macro Definition
 	 *	Defines the macro that creates the classes for Action Factories.
 	 */
-#define ConcreteActionFactory(ConcreteProductT) ConcreteFactory(Action, ConcreteProductT)
+#define ConcreteActionFactory(ConcreteProductT) ConcreteFactory(FieaGameEngine::Action, ConcreteProductT)
 }
