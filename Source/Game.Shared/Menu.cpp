@@ -44,7 +44,7 @@ namespace KatBall
 	{
 		assert(eventPublisher.Is(Event<Gamepad>::TypeIdClass()));
 
-		if (Game::GetWorldState().mSector->Name() != "Game")
+		if (Game::GetInstance()->GetWorldState().mSector->Name() != "Game")
 		{
 			RemoveQuadFromView();
 

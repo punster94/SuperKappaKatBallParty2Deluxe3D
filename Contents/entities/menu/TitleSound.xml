@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<entity class='KatSound' name='TitleSound'>
+	<string name='SoundFile' value='TitleScreenAud.ogg' />
+	<integer name='PlayOnAwake' value='1' />
+</entity>

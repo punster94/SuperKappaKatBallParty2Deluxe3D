@@ -159,8 +159,6 @@ namespace FieaGameEngine
 		void Initialize(WorldState& worldState);
 		void Reset(WorldState& worldState);
 
-		void RegisterRigidBody(btCollisionShape& shape, btRigidBody& body);
-
 	private:
 
 		/** World InitializeSignatures
@@ -190,20 +188,6 @@ namespace FieaGameEngine
 		EventQueue mEventQueue;
 
 		///collision configuration contains default setup for memory, collision setup. Advanced users can create their own configuration.
-		btDefaultCollisionConfiguration* mCollisionConfiguration;
-
-		///use the default collision dispatcher. For parallel processing you can use a different dispatcher (see Extras/BulletMultiThreaded)
-		btCollisionDispatcher* mDispatcher;
-
-		///btDbvtBroadphase is a good general purpose broadphase. You can also try out btAxis3Sweep.
-		btBroadphaseInterface* mOverlappingPairCache;
-
-		///the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
-		btSequentialImpulseConstraintSolver* mSolver;
-
-		btDiscreteDynamicsWorld* mDynamicsWorld;
-
-		btAlignedObjectArray<btCollisionShape*> mCollisionShapes;
 
 
 	public:

@@ -147,7 +147,6 @@ void GameStateManager::StopSectorMusic(Sector* sector)
 		if(entities.Get<Scope&>(i).Is(KatMusic::TypeIdClass()))
 		{
 			static_cast<KatMusic&>(entities.Get<Scope&>(i)).Stop();
-			break;
 		}
 	}
 }

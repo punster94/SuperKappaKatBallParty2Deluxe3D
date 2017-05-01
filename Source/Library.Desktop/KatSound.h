@@ -37,6 +37,7 @@ namespace FieaGameEngine
 
 	private:
 		std::string mSoundFileName;
+		std::int32_t mPlayOnAwake;
 		std::float_t mVolume;
 		sf::Sound mSound;
 
@@ -47,6 +48,7 @@ namespace FieaGameEngine
 	public:
 		static const std::string SoundFolder;
 		static const std::string SoundFileKey;
+		static const std::string PlayOnAwakeKey;
 		static const std::string VolumeKey;
 	};
 

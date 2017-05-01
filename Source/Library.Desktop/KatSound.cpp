@@ -10,11 +10,12 @@ namespace FieaGameEngine
 
 	const string KatSound::SoundFolder = "sfx/";
 	const string KatSound::SoundFileKey = "SoundFile";
+	const string KatSound::PlayOnAwakeKey = "PlayOnAwake";
 	const string KatSound::VolumeKey = "Volume";
 	HashMap<string, shared_ptr<SoundBuffer>> KatSound::sBufferMap;
 
 	KatSound::KatSound() :
-		mVolume(100.0f)
+		mPlayOnAwake(0), mVolume(100.0f)
 	{
 		InitializeSignatures();
 	}
@@ -31,6 +32,11 @@ namespace FieaGameEngine
 	void KatSound::Initialize(WorldState& worldState)
 	{
 		Entity::Initialize(worldState);
+
+		if (mPlayOnAwake)
+		{
+			Play();
+		}
 	}
 
 	const string& KatSound::GetSoundFile() const
@@ -108,12 +114,15 @@ namespace FieaGameEngine
 		Attributed::InitializeSignatures();
 
 		AddExternalAttribute(SoundFileKey, &mSoundFileName);
+		AddExternalAttribute(PlayOnAwakeKey, &mPlayOnAwake);
 		AddExternalAttribute(VolumeKey, &mVolume);
 	}
 
 	void KatSound::CopyPrivateDataMembers(const KatSound& other)
 	{
 		mSoundFileName = other.mSoundFileName;
+		mPlayOnAwake = other.mPlayOnAwake;
+		mVolume = other.mVolume;
 	}
 
 	Scope* KatSound::Copy() const

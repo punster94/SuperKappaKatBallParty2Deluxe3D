@@ -22,8 +22,6 @@ using namespace FieaGameEngine;
 
 namespace KatBall
 {
-	WorldState Game::mWorldState;
-
 	static Camera* sCamera;
 	static InputSubscriber* sInputSubscriber;
 	static Quad* sQuad;
@@ -31,6 +29,7 @@ namespace KatBall
 	Game::Game(FieaGameEngine::Renderer& renderer)
 		: mRenderer(&renderer)
 	{
+		sInstance = this;
 	}
 
 	void Game::Run()
@@ -52,6 +51,17 @@ namespace KatBall
 
 	void Game::Init()
 	{
+		mCollisionConfiguration = new btDefaultCollisionConfiguration();
+
+		mDispatcher = new btCollisionDispatcher(mCollisionConfiguration);
+
+		mOverlappingPairCache = new btDbvtBroadphase();
+
+		mSolver = new btSequentialImpulseConstraintSolver;
+
+		mDynamicsWorld = new btDiscreteDynamicsWorld(mDispatcher, mOverlappingPairCache, mSolver, mCollisionConfiguration);
+		mDynamicsWorld->setGravity(btVector3(0.0f, -10.0f, 0.0f));
+
 		mRenderer->Init();
 		LoadAssets();
 
@@ -119,6 +129,8 @@ namespace KatBall
 
 	void Game::Update()
 	{
+		mDynamicsWorld->stepSimulation(1.f / 60.f, 10);
+
 		mGameClock.UpdateGameTime(mWorldState.mGameTime);
 
 		mWorld.Update(mWorldState);
@@ -130,7 +142,45 @@ namespace KatBall
 
 		// DEBUG
 		DebugUpdate();
+
+		Entity* objectA;
+		Entity* objectB;
+
+		Player* player = nullptr;
+		Powerup* powerUp = nullptr;
+
+		bool shouldDeletePowerUp = false;
+
+		int numManifolds = mDynamicsWorld->getDispatcher()->getNumManifolds();
+		for (int i = 0; i < numManifolds; i++)
+		{
+			btPersistentManifold* contactManifold = mDynamicsWorld->getDispatcher()->getManifoldByIndexInternal(i);
+			const btCollisionObject* obA = contactManifold->getBody0();
+			const btCollisionObject* obB = contactManifold->getBody1();
+
+			objectA = static_cast<Entity*>(obA->getUserPointer());
+			objectB = static_cast<Entity*>(obB->getUserPointer());
+
+			player = objectA->As<Player>();
+			powerUp = objectB->As <Powerup>();
+
+			if (player != nullptr && powerUp != nullptr)
+			{
+				powerUp->OnCollect(*player);
+				shouldDeletePowerUp = true;
+			}
+		}
+
+		if (shouldDeletePowerUp)
+		{
+			delete powerUp;
+		}
 		// END
+	}
+
+	void Game::RegisterRigidBody(btCollisionShape& shape, btRigidBody& body)
+	{
+		mDynamicsWorld->addRigidBody(&body);
 	}
 
 	void Game::DebugUpdate()
@@ -196,19 +246,6 @@ namespace KatBall
 			deltaRot += glm::vec3(-cameraAngSpeed, 0.0f, 0.0f);
 		}
 
-		if (GetAsyncKeyState(VK_SPACE))
-		{
-			Datum& entities = mWorld.Sectors().Get<Scope&>(0).As<Sector>()->Entities();
-			for (uint32_t i = 0; i < entities.Size(); ++i)
-			{
-				if (entities.Get<Scope&>(i).Is(KatSound::TypeIdClass()))
-				{
-					static_cast<KatSound&>(entities.Get<Scope&>(i)).Play();
-					break;
-				}
-			}
-		}
-
 		sCamera->SetRelativePosition(cameraPos + deltaPos);
 		sCamera->SetRelativeRotation(cameraRot + deltaRot);
 	}
@@ -216,6 +253,17 @@ namespace KatBall
 	void Game::Shutdown()
 	{
 		mRenderer->Shutdown();
+
+		delete mDynamicsWorld;
+		delete mSolver;
+		delete mOverlappingPairCache;
+		delete mDispatcher;
+		delete mCollisionConfiguration;
+	}
+
+	Game* Game::GetInstance()
+	{
+		return sInstance;
 	}
 
 	void Game::LoadAssets()
@@ -254,6 +302,9 @@ namespace KatBall
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_START_BUTTON, TEXTURE_START_BUTTON, Asset::TYPE_TEXTURE);
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_START_BUTTON_HIGHLIGHT, TEXTURE_START_BUTTON_HIGHLIGHT, Asset::TYPE_TEXTURE);
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_PAUSE_BUTTON, TEXTURE_PAUSE_BUTTON, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_TIMER, TEXTURE_TIMER, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_TIMER_BURN_LINE, TEXTURE_TIMER_BURN_LINE, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_TIMER_BURN, TEXTURE_TIMER_BURN, Asset::TYPE_TEXTURE);
 
 		// Vertex Shaders
 		Asset::Load(ASSET_DIRECTORY_SHADERS SHADER_MESH_VERTEX, SHADER_MESH_VERTEX, Asset::TYPE_VERTEX_SHADER);
@@ -263,4 +314,6 @@ namespace KatBall
 		Asset::Load(ASSET_DIRECTORY_SHADERS SHADER_MESH_PIXEL, SHADER_MESH_PIXEL, Asset::TYPE_PIXEL_SHADER);
 		Asset::Load(ASSET_DIRECTORY_SHADERS SHADER_QUAD_PIXEL, SHADER_QUAD_PIXEL, Asset::TYPE_PIXEL_SHADER);
 	}
+
+	Game* Game::sInstance = nullptr;
 }

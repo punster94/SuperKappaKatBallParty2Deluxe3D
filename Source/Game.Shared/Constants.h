@@ -3,6 +3,8 @@
 #define NUM_PLAYERS 4
 #define ROUNDS_TO_WIN 3
 
+#define RESPAWN_THRESHOLD -15.0f
+
 #define ASSET_DIRECTORY_MESHES "meshes/"
 #define ASSET_DIRECTORY_MUSIC "music/"
 #define ASSET_DIRECTORY_SHADERS "shaders/"
@@ -50,6 +52,10 @@
 #define TEXTURE_SCORE_BAR_TWO_WINS "scorebar_two_wins.png"
 
 #define TEXTURE_TIMER_BACKGROUND "Timer_Background.png"
+#define TEXTURE_TIMER "Timer.png"
+#define TEXTURE_TIMER_BURN_LINE "Timer_Burn_Line.png"
+#define TEXTURE_TIMER_BURN "Timer_Burn.png"
+
 #define TEXTURE_KAT_SCORE_IMAGE "kat_score.png"
 #define TEXTURE_CROWN "crown.png"
 

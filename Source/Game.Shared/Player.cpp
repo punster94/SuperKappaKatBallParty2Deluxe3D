@@ -1,6 +1,9 @@
 #include "pch.h"
+
 #include "Event.h"
 #include "Menu.h"
+#include "ActionUpdateScore.h"
+#include "EventMessageAttributed.h"
 
 using namespace FieaGameEngine;
 using namespace std;
@@ -51,6 +54,19 @@ namespace KatBall
 
 		mMass = mPunchRigidBody->mBody->getInvMass();
 		mCurrentMass = mMass;
+
+		mLastTouchingPlayerID = NUM_PLAYERS;
+	}
+
+	void Player::Reset(WorldState& worldState)
+	{
+		Entity::Reset(worldState);
+
+		mInitialPunchScale = mPunchRigidBody->GetRelativeScale();
+		mCurrentLength = mLength;
+		mCurrentMass = mMass;
+
+		mLastTouchingPlayerID = NUM_PLAYERS;
 	}
 
 	void Player::LoadRequiredMeshGeometries()
@@ -156,6 +172,12 @@ namespace KatBall
 				mPunchRigidBody->mBody->setLinearVelocity(btVector3(0, 0, 0));
 				mPunchRigidBody->mBody->clearForces();
 				mPunchRigidBody->SetRelativePosition(mInitialPunchPos);
+			}
+
+			// are we below the respawn threshold???
+			if(pos.getY() < RESPAWN_THRESHOLD)
+			{
+				Respawn(worldState);
 			}
 		}
 
@@ -279,6 +301,8 @@ namespace KatBall
 	void Player::ActivateLongBoi(float length)
 	{
 		mCurrentLength += length;
+
+		OutputDebugString(L"Hi");
 	}
 
 	void Player::ActivateBigBoi(float scaleFactor)
@@ -292,6 +316,15 @@ namespace KatBall
 		mPunchRigidBody->mBody->setMassProps(mCurrentMass, btVector3(0, 0, 0));
 
 		mPunchRigidBody->ResizeCollider();
+
+		OutputDebugString(L"Howdy");
+	}
+
+	bool Player::CollisionCallback(btManifoldPoint& collisionPoint, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2)
+	{
+		OutputDebugString(L"Blah");
+
+		return false;
 	}
 
 	void Player::OnHit()
@@ -300,6 +333,19 @@ namespace KatBall
 		{
 			mHitSound->Play();
 		}
+	}
+
+	void Player::Respawn(WorldState& worldState)
+	{
+		// post score event -- last cool dood to touch us gets the glory of our points
+		EventMessageAttributed args(ActionUpdateScore::sScoreEventSubtype, &worldState);
+		args.AppendAuxiliaryAttribute(ActionUpdateScore::sPlayerIDKey) = static_cast<int32_t>(mLastTouchingPlayerID);
+
+		Event<EventMessageAttributed>* e = new Event<EventMessageAttributed>(args);
+		worldState.mWorld->Enqueue(*e, worldState, 0);
+
+		// reset position and stuff
+		Reset(worldState);
 	}
 
 	const string Player::sMeshKey = "mesh";

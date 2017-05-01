@@ -110,6 +110,11 @@ namespace KatBall
 		Append(sRotationSpeedKey).SetStorage(&mRotationSpeed, 1);
 	}
 
+	Powerup::~Powerup()
+	{
+
+	}
+
 	const std::string Powerup::sRigidBodyKey = "rigidbody";
 	const std::string Powerup::sBallColliderKey = "ball collider";
 	const std::string Powerup::sBallMeshKey = "ball mesh";
