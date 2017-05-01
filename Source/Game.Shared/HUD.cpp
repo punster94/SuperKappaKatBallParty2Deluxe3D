@@ -148,13 +148,16 @@ void HUD::Reset(WorldState& worldState)
 
 void HUD::Update(WorldState& worldState)
 {
-	Entity::Update(worldState);
-
-	static_cast<Timer*>(mTimer)->Update(worldState);
-	
-	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
+	if (!worldState.mIsPaused)
 	{
-		static_cast<Score*>(mScores[i])->Update(worldState);
+		Entity::Update(worldState);
+
+		static_cast<Timer*>(mTimer)->Update(worldState);
+
+		for (uint32_t i = 0; i < NUM_PLAYERS; ++i)
+		{
+			static_cast<Score*>(mScores[i])->Update(worldState);
+		}
 	}
 }
 
@@ -172,4 +175,12 @@ void HUD::Render(Renderer* renderer)
 	}
 
 	renderer->SetDepthMode(DepthMode::MODE_OPAQUE);
+}
+
+void HUD::ResetRoundsWon()
+{
+	for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
+	{
+		static_cast<Score*>(mScores[i])->ResetRoundsWon();
+	}
 }

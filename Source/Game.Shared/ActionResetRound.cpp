@@ -1,6 +1,7 @@
 
 #include "pch.h"
 #include "ActionResetRound.h"
+#include "GameStateManager.h"
 
 #include "HUD.h"
 #include "Score.h"
@@ -14,9 +15,7 @@ using namespace std;
 
 RTTI_DEFINITIONS(ActionResetRound)
 
-const string ActionResetRound::sRoundResetEventSubtype = "round_reset";
-const string ActionResetRound::sMatchWonEventSubtype = "match_won";
-const string ActionResetRound::sMatchWinnerIDKey = "match_winner";
+const string ActionResetRound::sMatchWinnersKey = "match_winners";
 
 const uint32_t ActionResetRound::sNoMatchWinnerFlag = -1;
 const uint32_t ActionResetRound::sTieGameFlag = NUM_PLAYERS;
@@ -36,27 +35,20 @@ void ActionResetRound::Update(class WorldState& worldState)
 	if(Datum* scoresDatum = Search(HUD::sScoresKey))
 	{
 		// find match winners, if any
-		int32_t matchWinnerID = sNoMatchWinnerFlag;
+		Datum matchWinners;
 		for(uint32_t i = 0; i < NUM_PLAYERS; ++i)
 		{
 			Score* score = static_cast<Score*>(scoresDatum->Get<RTTI*&>(i));
 			if(score->GetNumWins() == ROUNDS_TO_WIN)
 			{
-				// tie game if the match winner ID has already been set
-				if(matchWinnerID != sNoMatchWinnerFlag)
-				{
-					matchWinnerID = sTieGameFlag;
-					break;
-				}
-
-				matchWinnerID = i;
+				matchWinners.PushBack(static_cast<int32_t>(i));
 			}
 		}
 
 		// no match winner -- reset round
-		if(matchWinnerID == sNoMatchWinnerFlag)
+		if(matchWinners.Size() == 0)
 		{
-			EventMessageAttributed args(sRoundResetEventSubtype, &worldState);
+			EventMessageAttributed args(GameStateManager::sRoundResetEventSubtype, &worldState);
 			Event<EventMessageAttributed>* e = new Event<EventMessageAttributed>(args);
 			worldState.mWorld->Enqueue(*e, worldState, 0);
 		}
@@ -64,8 +56,8 @@ void ActionResetRound::Update(class WorldState& worldState)
 		// match winner(s) -- load menu
 		else
 		{
-			EventMessageAttributed args(sMatchWonEventSubtype, &worldState);
-			args.AppendAuxiliaryAttribute(sMatchWinnerIDKey) = matchWinnerID;
+			EventMessageAttributed args(GameStateManager::sMatchWonEventSubtype, &worldState);
+			args.AppendAuxiliaryAttribute(sMatchWinnersKey) = matchWinners;
 
 			Event<EventMessageAttributed>* e = new Event<EventMessageAttributed>(args);
 			worldState.mWorld->Enqueue(*e, worldState, 0);

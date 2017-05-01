@@ -2,6 +2,8 @@
 #include "pch.h"
 #include "GameStateManager.h"
 #include "MenuGamepad.h"
+#include "Menu.h"
+#include "HUD.h"
 
 #include "Event.h"
 #include "EventMessageAttributed.h"
@@ -16,8 +18,8 @@ using namespace FieaGameEngine;
 using namespace KatBall;
 using namespace std;
 
-const string GameStateManager::sRoundResetEventSubtype = "round_reset";
 const string GameStateManager::sMatchWonEventSubtype = "match_won";
+const string GameStateManager::sRoundResetEventSubtype = "round_reset";
 const string GameStateManager::sStartGameEventSubtype = "start_game";
 
 const GameStateManager::Handlers GameStateManager::sHandlers =
@@ -27,7 +29,8 @@ const GameStateManager::Handlers GameStateManager::sHandlers =
 	{ sStartGameEventSubtype, &GameStateManager::TransitionToGame }
 };
 
-GameStateManager::GameStateManager()
+GameStateManager::GameStateManager() :
+	mWorldInitialized(false)
 {
 	Event<EventMessageAttributed>::Subscribe(*this);
 }
@@ -73,10 +76,13 @@ void GameStateManager::TransitionToMenu()
 {
 	StopSectorMusic(mGameSector);
 
+	// some special operations for the state transition
 	Datum& entities = mGameSector->Entities();
 	for (uint32_t i = 0; i < entities.Size(); ++i)
 	{
 		Scope& current = entities.Get<Scope&>(i);
+
+		// delete player gamepads
 		if (current.Is(Player::TypeIdClass()))
 		{
 			static_cast<Player&>(current).DeleteGamepad();
@@ -86,17 +92,25 @@ void GameStateManager::TransitionToMenu()
 	mGameSector->Orphan();
 	mMenuSector->SetWorld(*mWorld);
 	mWorld->Reset(*mWorldState);
+	StartSectorMusic(mMenuSector);
 }
 
 void GameStateManager::TransitionToGame()
 {
 	StopSectorMusic(mMenuSector);
 
+	// some special operations for the state transition
 	Datum& entities = mGameSector->Entities();
-	for (uint32_t i = 0; i < entities.Size(); ++i)
+	for(uint32_t i = 0; i < entities.Size(); ++i)
 	{
 		Scope& current = entities.Get<Scope&>(i);
-		if (current.Is(Player::TypeIdClass()))
+
+		// reset rounds won
+		if (current.Is(HUD::TypeIdClass()))
+		{
+			static_cast<HUD&>(current).ResetRoundsWon();
+		}
+		else if (current.Is(Player::TypeIdClass()))
 		{
 			static_cast<Player&>(current).CreateGamePad();
 		}
@@ -104,7 +118,29 @@ void GameStateManager::TransitionToGame()
 
 	mMenuSector->Orphan();
 	mGameSector->SetWorld(*mWorld);
+	if (!mWorldInitialized)
+	{
+		mWorld->Initialize(*mWorldState);
+		mWorldInitialized = true;
+	}
 	mWorld->Reset(*mWorldState);
+	StartSectorMusic(mGameSector);
+
+	Datum& entites = mGameSector->Entities();
+	Menu* pauseMenu = nullptr;
+	for (uint32_t i = 0; i < entites.Size(); ++i)
+	{
+		Scope& current = entites.Get<Scope&>(i);
+		if (current.Is(Menu::TypeIdClass()))
+		{
+			pauseMenu = static_cast<Menu*>(&current);
+			break;
+		}
+	}
+	if (pauseMenu != nullptr)
+	{
+		pauseMenu->RemoveQuadFromView();
+	}
 
 	// JUSTIN
 	EventMessageAttributed args(ActionUpdateScore::sScoreEventSubtype, mWorldState);
@@ -123,7 +159,18 @@ void GameStateManager::StopSectorMusic(Sector* sector)
 		if(entities.Get<Scope&>(i).Is(KatMusic::TypeIdClass()))
 		{
 			static_cast<KatMusic&>(entities.Get<Scope&>(i)).Stop();
-			break;
+		}
+	}
+}
+
+void GameStateManager::StartSectorMusic(Sector* sector)
+{
+	Datum& entities = sector->Entities();
+	for (uint32_t i = 0; i < entities.Size(); ++i)
+	{
+		if (entities.Get<Scope&>(i).Is(KatMusic::TypeIdClass()))
+		{
+			static_cast<KatMusic&>(entities.Get<Scope&>(i)).Play();
 		}
 	}
 }

@@ -138,7 +138,6 @@ namespace KatBall
 		if (Game::GetInstance()->mDynamicsWorld != nullptr)
 		{
 			Game::GetInstance()->mDynamicsWorld->removeRigidBody(mBody);
-
 		}
 
 		delete mCollider;

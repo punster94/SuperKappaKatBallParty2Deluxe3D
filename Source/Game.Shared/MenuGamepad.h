@@ -28,10 +28,6 @@ namespace KatBall
 		void FixExternalAttributes();
 
 		Gamepad* mGamepad;
-
-	public:
-
-		const static std::string sStartGameEventSubtype;
 	};
 
 	ConcreteEntityFactory(MenuGamepad);
