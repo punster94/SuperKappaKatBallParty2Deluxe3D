@@ -71,6 +71,9 @@ namespace KatBall
 
 		void RotatePlayer(float x, float y);
 
+		bool CollisionCallback(btManifoldPoint& collisionPoint, const btCollisionObjectWrapper* obj1, int id1, int index1,
+			const btCollisionObjectWrapper* obj2, int id2, int index2);
+
 		RigidBody* mBallRigidBody;
 
 		RigidBody* mPunchRigidBody;
