@@ -1,6 +1,7 @@
 #include "pch.h"
 
 #include "Event.h"
+#include "Menu.h"
 #include "ActionUpdateScore.h"
 #include "EventMessageAttributed.h"
 
@@ -46,26 +47,25 @@ namespace KatBall
 		mPunchRigidBody->mSimulatePhysics = false;
 		mBallRigidBody->mBody->setFriction(30);
 
-		mGamepad = new Gamepad();
-
 		mInitialPunchScale = mPunchRigidBody->GetRelativeScale();
 		mCurrentLength = mLength;
 
 		mMass = mPunchRigidBody->mBody->getInvMass();
 		mCurrentMass = mMass;
 
+		mCurrentPunchImpulse = mPunchImpulse;
+
 		mLastTouchingPlayerID = NUM_PLAYERS;
 	}
 
 	void Player::Reset(WorldState& worldState)
 	{
-		Entity::Reset(worldState);
-
-		mInitialPunchScale = mPunchRigidBody->GetRelativeScale();
 		mCurrentLength = mLength;
 		mCurrentMass = mMass;
 
 		mLastTouchingPlayerID = NUM_PLAYERS;
+
+		Entity::Reset(worldState);
 	}
 
 	void Player::LoadRequiredMeshGeometries()
@@ -117,6 +117,34 @@ namespace KatBall
 			mBallRigidBody->mBody->applyCentralImpulse(btVector3(mMovementForce * mGamepad->leftStickX, 0, mMovementForce * mGamepad->leftStickY));
 			RotatePlayer(mGamepad->leftStickX, mGamepad->leftStickY, worldState);
 
+			if (mGamepad->IsPressed(XINPUT_GAMEPAD_START))
+			{
+				Datum& entites = GetParent()->Append("entities");
+				Menu* pauseMenu = nullptr;
+				for (uint32_t i = 0; i < entites.Size(); ++i)
+				{
+					Scope& current = entites.Get<Scope&>(i);
+					if (current.Is(Menu::TypeIdClass()))
+					{
+						pauseMenu = static_cast<Menu*>(&current);
+						break;
+					}
+				}
+				worldState.mIsPaused = !worldState.mIsPaused;
+
+				if (pauseMenu != nullptr)
+				{
+					if (worldState.mIsPaused)
+					{
+						pauseMenu->AddQuadToView();
+					}
+					else
+					{
+						pauseMenu->RemoveQuadFromView();
+					}
+				}
+			}
+
 			if(!mPunchRigidBody->mSimulatePhysics && mGamepad->IsPressed(XINPUT_GAMEPAD_A))
 			{
 				mPunchRigidBody->mSimulatePhysics = true;
@@ -164,6 +192,7 @@ namespace KatBall
 		mMovementForce = otherPlayer.mMovementForce;
 		mPunched = otherPlayer.mPunched;
 		mLength = otherPlayer.mLength;
+		mPunchImpulse = otherPlayer.mPunchImpulse;
 
 		FixExternalAttributes();
 	}
@@ -172,6 +201,7 @@ namespace KatBall
 	{
 		Append(sMoveSpeedKey).SetStorage(&mMovementForce, 1);
 		Append(sLengthKey).SetStorage(&mLength, 1);
+		Append(sPunchImpulseKey).SetStorage(&mPunchImpulse, 1);
 	}
 
 	void Player::UpdateAnimation(FieaGameEngine::WorldState& worldState)
@@ -261,6 +291,7 @@ namespace KatBall
 	{
 		AddExternalAttribute(sMoveSpeedKey, &mMovementForce, 1);
 		AddExternalAttribute(sLengthKey, &mLength, 1);
+		AddExternalAttribute(sPunchImpulseKey, &mPunchImpulse, 1);
 	}
 
 	void Player::RotatePlayer(float x, float y, WorldState& worldState)
@@ -341,17 +372,24 @@ namespace KatBall
 		OutputDebugString(L"Hi");
 	}
 
+	void Player::ActivateVortexBoi(float rotationSpeed)
+	{
+		OutputDebugString(L"Hello");
+	}
+
 	void Player::ActivateBigBoi(float scaleFactor)
 	{
 		glm::vec3 scale = mPunchRigidBody->GetRelativeScale();
 		scale *= scaleFactor;
 		mPunchRigidBody->SetRelativeScale(scale);
 
-		mCurrentMass *= scaleFactor;
+	//	mCurrentMass *= scaleFactor;
 
-		mPunchRigidBody->mBody->setMassProps(mCurrentMass, btVector3(0, 0, 0));
+	//	mPunchRigidBody->mBody->setMassProps(mCurrentMass, btVector3(0, 0, 0));
 
 		mPunchRigidBody->ResizeCollider();
+
+		mCurrentPunchImpulse = mPunchImpulse* scaleFactor;
 
 		OutputDebugString(L"Howdy");
 	}
@@ -384,6 +422,16 @@ namespace KatBall
 		Reset(worldState);
 	}
 
+	int32_t Player::GetPlayerID()
+	{
+		return mGamepad->GetPort();
+	}
+
+	void Player::SetLastPlayerTouching(std::int32_t id)
+	{
+		mLastTouchingPlayerID = id;
+	}
+
 	const string Player::sMeshKey = "mesh";
 	const string Player::sRigidBodyKey = "rigidbody";
 	const string Player::sMoveSpeedKey = "movespeed";
@@ -408,4 +456,6 @@ namespace KatBall
 	const string Player::sPunchEntityKey = "punch";
 
 	const string Player::sLengthKey = "punch length";
+
+	const string Player::sPunchImpulseKey = "punch impulse";
 }

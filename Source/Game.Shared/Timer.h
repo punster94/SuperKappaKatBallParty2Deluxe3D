@@ -27,6 +27,10 @@ namespace KatBall
 		float mDefaultTimeRemaining;
 		float mTimeRemaining;
 
+		float mBurnPosX;
+		float mBurnPosY;
+		float mHeight;
+
 		bool mIsRunning;
 
 		FieaGameEngine::Vector<FieaGameEngine::Quad*> mTimerRenderables;
@@ -37,5 +41,7 @@ namespace KatBall
 		static const float sNumberOffsetLeft;
 		static const float sNumberOffsetBottom;
 		static const float sNumberScaleFactor;
+		static const float sTimerWidth;
+		static const std::uint32_t sNumberDigits = 3;
 	};
 }

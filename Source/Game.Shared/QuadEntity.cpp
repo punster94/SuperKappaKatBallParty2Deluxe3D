@@ -65,6 +65,31 @@ namespace KatBall
 	void QuadEntity::RemoveQuadFromView()
 	{
 		reinterpret_cast<RendererDirectX*>(Renderer::Get())->RemoveViewRenderable(mQuad);
+
+		Datum& entities = Entities();
+		for (uint32_t i = 0; i < entities.Size(); ++i)
+		{
+			Scope& current = entities.Get<Scope&>(i);
+			if (current.Is(QuadEntity::TypeIdClass()))
+			{
+				static_cast<QuadEntity&>(current).RemoveQuadFromView();
+			}
+		}
+	}
+
+	void QuadEntity::AddQuadToView()
+	{
+		reinterpret_cast<RendererDirectX*>(Renderer::Get())->AddViewRenderable(mQuad);
+
+		Datum& entities = Entities();
+		for (uint32_t i = 0; i < entities.Size(); ++i)
+		{
+			Scope& current = entities.Get<Scope&>(i);
+			if (current.Is(QuadEntity::TypeIdClass()))
+			{
+				static_cast<QuadEntity&>(current).AddQuadToView();
+			}
+		}
 	}
 
 	Scope* QuadEntity::Copy() const

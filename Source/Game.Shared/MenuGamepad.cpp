@@ -3,14 +3,13 @@
 #include "MenuGamepad.h"
 #include "Menu.h"
 #include "EventMessageAttributed.h"
+#include "GameStateManager.h"
 
 using namespace FieaGameEngine;
 
 namespace KatBall
 {
 	RTTI_DEFINITIONS(MenuGamepad)
-
-	const std::string MenuGamepad::sStartGameEventSubtype = "start_game";
 
 	MenuGamepad::MenuGamepad(const std::string& name) :
 		Entity(name), mGamepad(nullptr)
@@ -52,7 +51,7 @@ namespace KatBall
 				FieaGameEngine::Event<Gamepad>* event = new FieaGameEngine::Event<Gamepad>(*mGamepad, false);
 				worldState.mWorld->Enqueue(*event, worldState, 0);
 
-				EventMessageAttributed args(sStartGameEventSubtype, &worldState);
+				EventMessageAttributed args(GameStateManager::sStartGameEventSubtype, &worldState);
 				Event<EventMessageAttributed>* e = new Event<EventMessageAttributed>(args);
 				worldState.mWorld->Enqueue(*e, worldState, 0);
 			}

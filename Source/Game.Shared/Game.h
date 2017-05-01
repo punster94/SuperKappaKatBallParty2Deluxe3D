@@ -19,6 +19,7 @@ namespace KatBall
 		explicit Game(FieaGameEngine::Renderer& renderer);
 
 		void Run();
+		FieaGameEngine::WorldState& GetWorldState();
 
 		static Game* GetInstance();
 

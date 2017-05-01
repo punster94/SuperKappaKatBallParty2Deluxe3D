@@ -22,6 +22,8 @@ namespace KatBall
 		virtual void Update(FieaGameEngine::WorldState& worldState) override;
 		virtual void Render(FieaGameEngine::Renderer* renderer) override;
 
+		void ResetRoundsWon();
+
 	protected:
 
 		void InitializeSignatures();

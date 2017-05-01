@@ -64,5 +64,7 @@ namespace FieaGameEngine
 		 *	A GameTime instance that handles the time of the game.
 		 */
 		GameTime mGameTime;
+
+		bool mIsPaused;
 	};
 }

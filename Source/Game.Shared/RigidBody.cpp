@@ -82,30 +82,25 @@ namespace KatBall
 
 	void RigidBody::Reset(WorldState& worldState)
 	{
+		// TODO -- leaks memory
+
+		glm::vec3 pos = GetParent()->As<Entity>()->GetWorldPosition();
+		btTransform trans;
+
+		mBody->getMotionState()->getWorldTransform(trans);
+
+		trans.setOrigin(btVector3(pos.x, pos.y, pos.z));
+
+		mBody->getMotionState()->setWorldTransform(trans);
+		mBody->setCenterOfMassTransform(trans);
+
+		mBody->setLinearVelocity(btVector3(0, 0, 0));
+
+		mBody->clearForces();
+
+		mBody->applyCentralImpulse(btVector3(50, 0, 50));
+
 		Entity::Reset(worldState);
-
-		// TODO -- leaks memory
-		(const_cast<RigidBody*>(this)->*sCreateColliders[mColliderType])(mColliderDimensions.x, mColliderDimensions.y, mColliderDimensions.z);
-
-		glm::vec3 pos = GetWorldPosition();
-		mTransform.setIdentity();
-		mTransform.setOrigin(btVector3(pos.x, pos.y, pos.z));
-
-		bool isDynamic = (mMass != 0.0f);
-
-		mLocalIntertia = btVector3(mTransformLocalIntertia.x, mTransformLocalIntertia.y, mTransformLocalIntertia.z);
-
-		if(isDynamic)
-		{
-			mCollider->calculateLocalInertia(mMass, mLocalIntertia);
-		}
-
-		mMotionState = new btDefaultMotionState(mTransform);
-		mConstructionInfo = new btRigidBody::btRigidBodyConstructionInfo(mMass, mMotionState, mCollider, mLocalIntertia);
-		mBody = new btRigidBody(*mConstructionInfo);
-
-		mBody->activate(true);
-		// TODO -- leaks memory
 	}
 
 	glm::vec3 RigidBody::GetLinearVelocity() const

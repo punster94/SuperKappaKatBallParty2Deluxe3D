@@ -44,6 +44,11 @@ namespace KatBall
 		Shutdown();
 	}
 
+	WorldState& Game::GetWorldState()
+	{
+		return mWorldState;
+	}
+
 	void Game::Init()
 	{
 		mCollisionConfiguration = new btDefaultCollisionConfiguration();
@@ -116,7 +121,7 @@ namespace KatBall
 		}
 
 		mWorld.Initialize(mWorldState);
-
+	
 		sInputSubscriber = new InputSubscriber();
 	}
 
@@ -137,7 +142,10 @@ namespace KatBall
 		Entity* objectB;
 
 		Player* player = nullptr;
+		Player* player2 = nullptr;
 		Powerup* powerUp = nullptr;
+
+		RigidBody* rigidbody = nullptr;
 
 		bool shouldDeletePowerUp = false;
 
@@ -153,11 +161,27 @@ namespace KatBall
 
 			player = objectA->As<Player>();
 			powerUp = objectB->As<Powerup>();
+			player2 = objectB->As<Player>();
+			rigidbody = objectB->As<RigidBody>();
 
 			if (player != nullptr && powerUp != nullptr)
 			{
 				powerUp->OnCollect(*player);
 				shouldDeletePowerUp = true;
+			}
+
+			if (player != nullptr && player2!= nullptr)
+			{
+				player->SetLastPlayerTouching(player2->GetPlayerID());
+				player2->SetLastPlayerTouching(player->GetPlayerID());
+			}
+
+			if (player != nullptr && rigidbody != nullptr)
+			{
+				player2 = rigidbody->GetParent()->As<Player>();
+				player->SetLastPlayerTouching(player2->GetPlayerID());
+				player2->SetLastPlayerTouching(player->GetPlayerID());
+				player->OnHit();
 			}
 		}
 
@@ -223,6 +247,10 @@ namespace KatBall
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_START_SCREEN, TEXTURE_START_SCREEN, Asset::TYPE_TEXTURE);
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_START_BUTTON, TEXTURE_START_BUTTON, Asset::TYPE_TEXTURE);
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_START_BUTTON_HIGHLIGHT, TEXTURE_START_BUTTON_HIGHLIGHT, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_PAUSE_BUTTON, TEXTURE_PAUSE_BUTTON, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_TIMER, TEXTURE_TIMER, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_TIMER_BURN_LINE, TEXTURE_TIMER_BURN_LINE, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_TIMER_BURN, TEXTURE_TIMER_BURN, Asset::TYPE_TEXTURE);
 
 		// Vertex Shaders
 		Asset::Load(ASSET_DIRECTORY_SHADERS SHADER_MESH_VERTEX, SHADER_MESH_VERTEX, Asset::TYPE_VERTEX_SHADER);

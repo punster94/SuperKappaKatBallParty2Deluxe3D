@@ -4,7 +4,7 @@
 namespace FieaGameEngine
 {
 	WorldState::WorldState() :
-		mWorld(nullptr), mSector(nullptr), mEntity(nullptr), mAction(nullptr)
+		mWorld(nullptr), mSector(nullptr), mEntity(nullptr), mAction(nullptr), mIsPaused(false)
 	{
 
 	}

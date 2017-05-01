@@ -37,15 +37,23 @@ namespace KatBall
 
 		void DeleteGamepad() { delete mGamepad; mGamepad = nullptr; }
 
+		void CreateGamePad() { mGamepad = new Gamepad(); }
+
 		void SetAnimState(AnimState state);
 
 		void Player::ActivateLongBoi(float length);
 
 		void Player::ActivateBigBoi(float scaleFactor);
 
+		void Player::ActivateVortexBoi(float rotationSpeed);
+
 		void OnHit();
 
 		void Respawn(FieaGameEngine::WorldState& worldState);
+
+		std::int32_t GetPlayerID();
+
+		void SetLastPlayerTouching(std::int32_t id);
 
 	protected:
 
@@ -110,6 +118,10 @@ namespace KatBall
 
 		float mCurrentMass;
 
+		float mPunchImpulse;
+
+		float mCurrentPunchImpulse;
+
 		glm::vec3 mInitialPunchScale;
 
 		std::uint32_t mLastTouchingPlayerID;
@@ -137,6 +149,8 @@ namespace KatBall
 		static const std::string sPunchEntityKey;
 
 		static const std::string sLengthKey;
+
+		static const std::string sPunchImpulseKey;
 	};
 
 	ConcreteEntityFactory(Player);

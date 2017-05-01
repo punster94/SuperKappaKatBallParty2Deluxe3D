@@ -31,13 +31,13 @@
 
 	
 	
-	<float name='timer_dimensions_x' value='0.5' />
+	<float name='timer_dimensions_x' value='1' />
 	<float name='timer_dimensions_y' value='0.25' />
 
 	<float name='timer_location_x' value='-0.9' />
 	<float name='timer_location_y' value='0.73' />
 	
-	<float name='time_remaining' value='45.0' />
+	<float name='time_remaining' value='5.0' />
 	
 	<vector name='timer_color' value='0.83,0.686,0.215,1.0' />
 	
