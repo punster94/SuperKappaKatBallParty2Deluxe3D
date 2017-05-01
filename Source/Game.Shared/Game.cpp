@@ -7,8 +7,8 @@
 #include "Event.h"
 
 #include "HUD.h"
-#include "ScoreAction.h"
 #include "ActionResetRound.h"
+#include "ActionUpdateScore.h"
 #include "ActionUpdateNumWins.h"
 #include "ReactionAttributed.h"
 #include "Timer.h"
@@ -66,8 +66,8 @@ namespace KatBall
 		KatSoundFactory ksf;
 		MeshEntityFactory mef;
 		HUDFactory hudf;
-		ScoreActionFactory saf;
 		ActionResetRoundFactory arrf;
+		ActionUpdateScoreFactory ausf;
 		ActionUpdateNumWinsFactory aunwf;
 		ReactionAttributedFactory raf;
 		QuadEntityFactory qef;

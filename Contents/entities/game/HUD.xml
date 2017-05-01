@@ -3,7 +3,7 @@
 
 	<reaction class='ReactionAttributed' name='UpdateScore'>
 		<string name='subtypes' value='score'/>
-		<action class='ScoreAction' name='UpdateScore' />
+		<action class='ActionUpdateScore' name='UpdateScore' />
 	</reaction>
 	
 	<reaction class='ReactionAttributed' name='RoundOver'>
