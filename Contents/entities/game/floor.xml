@@ -11,26 +11,30 @@
 			<string name='texture filename' value='floor_tex.png'/>
 		</entity>
 	</entity>
-	<entity class='Entity' name='left wall'>
+	<entity class='Entity' name='left wall_1'>
 		<vector name='position' value='-5.0,0.75,0.0,0.0'/>
 		<vector name='scale' value='0.1,0.5,5.0,0.0'/>
 		<entity class='RigidBody' name='left wall collider'>
 			<string name='shape' value='box'/>
 		</entity>
-		<entity class='MeshEntity' name='left wall mesh'>
-			<string name='mesh filename' value='cube.obj'/>
-			<string name='texture filename' value='mankey_ball.bmp'/>
-		</entity>
 	</entity>
+    <entity class='MeshEntity' name='left wall mesh'>
+        <vector name='position' value='-5.0,0.0,-5.0,0.0'/>
+        <vector name='scale' value='1.0,1.0,1.0,0.0'/>
+        <string name='mesh filename' value='fence.obj'/>
+        <string name='texture filename' value='fence_tex.png'/>
+    </entity>    
 	<entity class='Entity' name='right wall'>
 		<vector name='position' value='5.0,0.75,0.0,0.0'/>
 		<vector name='scale' value='0.1,0.5,5.0,0.0'/>
 		<entity class='RigidBody' name='right wall collider'>
 			<string name='shape' value='box'/>
 		</entity>
-		<entity class='MeshEntity' name='right wall mesh'>
-			<string name='mesh filename' value='cube.obj'/>
-			<string name='texture filename' value='mankey_ball.bmp'/>
-		</entity>
 	</entity>
+    <entity class='MeshEntity' name='right wall mesh'>
+        <vector name='position' value='5.0,0.0,-5.0,0.0'/>
+        <vector name='scale' value='1.0,1.0,1.0,0.0'/>
+        <string name='mesh filename' value='fence.obj'/>
+        <string name='texture filename' value='fence_tex.png'/>
+    </entity>    
 </entity>

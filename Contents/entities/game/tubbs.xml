@@ -38,8 +38,8 @@
 			<float name='mass' value='50.0'/>
 			<integer name='gravity enable' value ='0'/>
 			<entity class='MeshEntity' name='punch mesh'>
-				<string name='mesh filename' value='cube.obj'/>
-				<string name='texture filename' value='grid.bmp'/>
+				<string name='mesh filename' value='claw.obj'/>
+				<string name='texture filename' value='claw_tex_blue.png'/>
 			</entity>
 		</entity>
 	</entity>

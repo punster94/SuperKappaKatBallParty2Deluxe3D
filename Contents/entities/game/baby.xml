@@ -20,10 +20,10 @@
 		<float name='mass' value='50.0'/>
 		<float name='friction' value ='3' />
 		<entity class='MeshEntity' name='ball mesh'>
-      <string name='mesh filename' value='smooth_sphere.obj'/>
-      <string name='texture filename' value='ball.png'/>
-      <integer name='render pass' value='1'/>
-      <vector name='color' value='1.0,0.0,0.0,1.0'/>
+            <string name='mesh filename' value='smooth_sphere.obj'/>
+            <string name='texture filename' value='ball.png'/>
+            <integer name='render pass' value='1'/>
+            <vector name='color' value='1.0,0.0,0.0,1.0'/>
 		</entity>
     <entity class='MeshEntity' name='kat mesh'>
       <string name='mesh filename' value='kat_idle.obj'/>
@@ -37,8 +37,8 @@
 			<float name='mass' value='50.0'/>
 			<integer name='gravity enable' value ='0'/>
 			<entity class='MeshEntity' name='punch mesh'>
-				<string name='mesh filename' value='cube.obj'/>
-				<string name='texture filename' value='grid.bmp'/>
+				<string name='mesh filename' value='claw.obj'/>
+				<string name='texture filename' value='claw_tex_red.png'/>
 			</entity>
 		</entity>
 	</entity>
