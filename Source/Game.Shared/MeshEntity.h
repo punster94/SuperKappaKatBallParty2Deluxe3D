@@ -23,6 +23,7 @@ namespace KatBall
 
 		virtual Scope* Copy() const override;
 
+
 	protected:
 
 		void InitializeSignatures();

@@ -7,17 +7,24 @@
 namespace KatBall
 {
 	PowerupSpawner::PowerupSpawner() :
-		mSpawnLocation(glm::vec4(mPosition.x, mPosition.y, mPosition.z, 0)), mSpawnChance(0.0f), mElapsedTime(0.0f), mLongBoiLengthIncrease(0.0f), mBigBoiScaleIncrease(0.0f), mVortexBoiRotationSpeed(0.0f)
+		mSpawnChance(0.0f), mElapsedTime(0.0f), mLongBoiLengthIncrease(0.0f), mBigBoiScaleIncrease(0.0f), mVortexBoiRotationSpeed(0.0f),
+		mLongBoi(nullptr), mBigBoi(nullptr), mVortexBoi(nullptr)
 	{
 		PowerupSpawner::InitializeSignatures();
 		unsigned randomSeed = std::chrono::system_clock::now().time_since_epoch().count();
 		mGenerator.seed(randomSeed);
 	}
 
+	PowerupSpawner::PowerupSpawner(const PowerupSpawner& rhs) :
+		mSpawnChance(rhs.mSpawnChance), mElapsedTime(rhs.mElapsedTime), mLongBoiLengthIncrease(rhs.mLongBoiLengthIncrease), mBigBoiScaleIncrease(rhs.mBigBoiScaleIncrease), mVortexBoiRotationSpeed(rhs.mVortexBoiRotationSpeed)
+	{
+
+	}
+
 	void PowerupSpawner::Initialize(FieaGameEngine::WorldState& worldState)
 	{
 		Entity::Initialize(worldState);
-		mMeshEntity = FindChildEntityByName(sBallMeshKey)->As<MeshEntity>();
+		mLongBoyMesh = FindChildEntityByName(sBallMeshKey)->As<MeshEntity>();
 	}
 
 	void PowerupSpawner::Update(FieaGameEngine::WorldState& worldState)
@@ -34,7 +41,6 @@ namespace KatBall
 	{
 		Entity::InitializeSignatures();
 
-		AddExternalAttribute("Spawn Location", &mSpawnLocation, 1);
 		AddExternalAttribute("Spawn Chance", &mSpawnChance, 1);
 
 		AddExternalAttribute("Long Boi Spawn Weight", &mLongBoiSpawnWeight, 1);
@@ -44,16 +50,6 @@ namespace KatBall
 		AddExternalAttribute("Long Boi Length Increase", &mLongBoiLengthIncrease, 1);
 		AddExternalAttribute("Big Boi Scale Increase", &mBigBoiScaleIncrease, 1);
 		AddExternalAttribute("Vortex Boi Rotation Speed", &mVortexBoiRotationSpeed, 1);
-	}
-
-	glm::vec4 PowerupSpawner::GetSpawnLocation() const
-	{
-		return mSpawnLocation;
-	}
-
-	void PowerupSpawner::SetSpawnLocation(const glm::vec4& spawnLocation)
-	{
-		mSpawnLocation = spawnLocation;
 	}
 
 	float PowerupSpawner::GetSpawnChance() const
@@ -133,9 +129,9 @@ namespace KatBall
 
 		if (roll <= mSpawnChance)
 		{
-			mScale.x = (mScale.x == 2) ? 0.5 : 2;
-			mScale.y = (mScale.y == 2) ? 0.5 : 2;
-			mScale.z = (mScale.z == 2) ? 0.5 : 2;
+			mScale.x = (mScale.x == 2) ? 0.5 : 1;
+			mScale.y = (mScale.y == 2) ? 0.5 : 1;
+			mScale.z = (mScale.z == 2) ? 0.5 : 1;
 			std::uint32_t totalSpawnWeight = mLongBoiSpawnWeight + mBigBoiSpawnWeight + mVortexBoiSpawnWeight;
 			std::uniform_int_distribution<std::uint32_t> weightedDistribution(0, totalSpawnWeight);
 			std::uint32_t weightedRoll = distribution(mGenerator);
