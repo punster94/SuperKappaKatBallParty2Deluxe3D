@@ -1,0 +1,33 @@
+<entity class='MenuCrowns' name='Crowns'>
+
+	<reaction class='ReactionAttributed' name='CrownWinners'>
+		<string name='subtypes' value='match_won'/>
+		<action class='ActionCrownWinners' name='CrownWinners' />
+	</reaction>
+	
+	
+	<entity class='QuadEntity' name='Crown_1'>
+		<vector name='color' value='1.0,1.0,1.0,1.0'/>
+		<vector name='rect' value='-.63,-.4,.2,.27'/>
+		<string name='texture filename' value='crown.png'/>
+	</entity>
+	
+	<entity class='QuadEntity' name='Crown_2'>
+		<vector name='color' value='1.0,1.0,1.0,1.0'/>
+		<vector name='rect' value='-.27,-.3,.2,.27'/>
+		<string name='texture filename' value='crown.png'/>
+	</entity>
+	
+	<entity class='QuadEntity' name='Crown_3'>
+		<vector name='color' value='1.0,1.0,1.0,1.0'/>
+		<vector name='rect' value='0,-.4,.2,.27'/>
+		<string name='texture filename' value='crown.png'/>
+	</entity>
+	
+	<entity class='QuadEntity' name='Crown_4'>
+		<vector name='color' value='1.0,1.0,1.0,1.0'/>
+		<vector name='rect' value='.35,-.55,.2,.27'/>
+		<string name='texture filename' value='crown.png'/>
+	</entity>
+	
+</entity>

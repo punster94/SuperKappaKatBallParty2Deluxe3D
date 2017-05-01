@@ -17,6 +17,8 @@
 #include "Menu.h"
 #include "MenuGamepad.h"
 #include "PowerupSpawner.h"
+#include "MenuCrowns.h"
+#include "ActionCrownWinners.h"
 
 using namespace FieaGameEngine;
 
@@ -93,6 +95,8 @@ namespace KatBall
 		MenuGamepadFactory mgf;
 		PowerupSpawnerFactory psf;
 		PowerupFactory pwf;
+		MenuCrownsFactory mcf;
+		ActionCrownWinnersFactory acwf;
 
 		std::experimental::filesystem::directory_iterator menuEntities(ASSET_DIRECTORY_MENU_ENTITIES);
 
