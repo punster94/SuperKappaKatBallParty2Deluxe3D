@@ -16,9 +16,9 @@ namespace KatBall
 	}
 
 	PowerupSpawner::PowerupSpawner(const PowerupSpawner& rhs) :
-		mSpawnChance(rhs.mSpawnChance), mElapsedTime(rhs.mElapsedTime), mLongBoiLengthIncrease(rhs.mLongBoiLengthIncrease), mBigBoiScaleIncrease(rhs.mBigBoiScaleIncrease), mVortexBoiRotationSpeed(rhs.mVortexBoiRotationSpeed)
+		Entity(rhs)
 	{
-
+		CopyPrivateDataMembers(rhs);
 	}
 
 	void PowerupSpawner::Initialize(FieaGameEngine::WorldState& worldState)
@@ -43,13 +43,13 @@ namespace KatBall
 
 		AddExternalAttribute("Spawn Chance", &mSpawnChance, 1);
 
-		AddExternalAttribute("Long Boi Spawn Weight", &mLongBoiSpawnWeight, 1);
-		AddExternalAttribute("Big Boi Spawn Weight", &mBigBoiSpawnWeight, 1);
-		AddExternalAttribute("Vortex Boi Spawn Weight", &mVortexBoiSpawnWeight, 1);
+		AddExternalAttribute(sLongBoiSpawnWeight, &mLongBoiSpawnWeight, 1);
+		AddExternalAttribute(sBigBoiSpawnWeight, &mBigBoiSpawnWeight, 1);
+		AddExternalAttribute(sVortexBoiSpawnWeight, &mVortexBoiSpawnWeight, 1);
 
-		AddExternalAttribute("Long Boi Length Increase", &mLongBoiLengthIncrease, 1);
-		AddExternalAttribute("Big Boi Scale Increase", &mBigBoiScaleIncrease, 1);
-		AddExternalAttribute("Vortex Boi Rotation Speed", &mVortexBoiRotationSpeed, 1);
+		AddExternalAttribute(sLongBoiStat, &mLongBoiLengthIncrease, 1);
+		AddExternalAttribute(sBigBoiStat, &mBigBoiScaleIncrease, 1);
+		AddExternalAttribute(sVortexBoiStat, &mVortexBoiRotationSpeed, 1);
 	}
 
 	float PowerupSpawner::GetSpawnChance() const
@@ -153,6 +153,49 @@ namespace KatBall
 			}
 		}
 	}
+
+	void PowerupSpawner::CopyPrivateDataMembers(const PowerupSpawner& rhs)
+	{
+		mLongBoyMesh = rhs.mLongBoyMesh;
+		mLongBoi = rhs.mLongBoi;
+		mBigBoi = rhs.mBigBoi;
+		mVortexBoi = rhs.mVortexBoi;
+
+		mSpawnChance = rhs.mSpawnChance;	
+		mElapsedTime = rhs.mElapsedTime;
+
+		mLongBoiSpawnWeight = rhs.mLongBoiSpawnWeight;	
+		mBigBoiSpawnWeight = rhs.mBigBoiSpawnWeight;	
+		mVortexBoiSpawnWeight = mVortexBoiSpawnWeight;	
+
+		mLongBoiLengthIncrease = rhs.mLongBoiLengthIncrease;	
+		mBigBoiScaleIncrease = rhs.mBigBoiScaleIncrease;		
+		mVortexBoiRotationSpeed = rhs.mVortexBoiRotationSpeed;	
+
+		FixExternalAttributes();
+	}
+
+	void PowerupSpawner::FixExternalAttributes()
+	{
+		(*this)[sSpawnChance].SetStorage(&mSpawnChance, 1);
+
+		(*this)[sLongBoiSpawnWeight].SetStorage(&mLongBoiSpawnWeight, 1);
+		(*this)[sBigBoiSpawnWeight].SetStorage(&mBigBoiSpawnWeight, 1);
+		(*this)[sVortexBoiSpawnWeight].SetStorage(&mVortexBoiSpawnWeight, 1);
+
+		(*this)[sLongBoiStat].SetStorage(&mLongBoiLengthIncrease, 1);
+		(*this)[sBigBoiStat].SetStorage(&mBigBoiScaleIncrease, 1);
+		(*this)[sLongBoiStat].SetStorage(&mLongBoiLengthIncrease, 1);
+	}
+
+	const std::string PowerupSpawner::sSpawnChance = "Spawn Chance";
+	const std::string PowerupSpawner::sLongBoiSpawnWeight = "Long Boi Spawn Weight";
+	const std::string PowerupSpawner::sBigBoiSpawnWeight = "Big Boi Spawn Weight";
+	const std::string PowerupSpawner::sVortexBoiSpawnWeight = "Vortex Boi Spawn Weight";
+
+	const std::string PowerupSpawner::sLongBoiStat = "Long Boi Length Increase";
+	const std::string PowerupSpawner::sBigBoiStat = "Big Boi Scale Increase";
+	const std::string PowerupSpawner::sVortexBoiStat = "Vortex Boi Rotation Speed";
 
 	const std::string PowerupSpawner::sRigidBodyKey = "rigidbody";
 	const std::string PowerupSpawner::sBallColliderKey = "ball collider";

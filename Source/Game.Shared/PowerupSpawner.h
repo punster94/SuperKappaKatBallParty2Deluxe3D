@@ -85,6 +85,9 @@ namespace KatBall
 		void AttemptSpawn();
 
 	private:
+		void CopyPrivateDataMembers(const PowerupSpawner& rhs);
+		void FixExternalAttributes();
+
 		MeshEntity* mLongBoyMesh;
 		Powerup* mLongBoi;
 		Powerup* mBigBoi;
@@ -102,6 +105,15 @@ namespace KatBall
 		float mVortexBoiRotationSpeed;	// How fast the vortex Boi goes whoosh
 
 		const float mSpawnAttemptInterval = 5.0f;
+
+		static const std::string sSpawnChance;
+		static const std::string sLongBoiSpawnWeight;
+		static const std::string sBigBoiSpawnWeight;
+		static const std::string sVortexBoiSpawnWeight;
+
+		static const std::string sLongBoiStat;
+		static const std::string sBigBoiStat;
+		static const std::string sVortexBoiStat;
 
 		static const std::string sRigidBodyKey;
 		static const std::string sBallColliderKey;
