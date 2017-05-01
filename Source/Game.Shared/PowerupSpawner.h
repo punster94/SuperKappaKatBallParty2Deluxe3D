@@ -1,28 +1,30 @@
 #pragma once
 #include "Entity.h"
+#include <random>
+#include "KatSound.h"
+#include "Powerup.h"
 
 namespace KatBall
 {
 	class PowerupSpawner : public FieaGameEngine::Entity
 	{
-	public:
+		RTTI_DECLARATIONS(PowerupSpawner, FieaGameEngine::Entity)
 
+	public:
 		/// Constructor
 		PowerupSpawner();
 
 		/// Destructor (defaulted)
 		~PowerupSpawner() = default;
 
+		PowerupSpawner(const PowerupSpawner& rhs);
+
+		virtual void Initialize(FieaGameEngine::WorldState& worldState) override;
+
+		virtual void Update(FieaGameEngine::WorldState& worldState) override;
+
 		/// Initializes prescribed attributes for this class
 		void InitializeSignatures() override;
-
-		/// Accessor method for the powerup spawner's spawn location
-		/// @Return: The location that the powerups from this object will spawn
-		glm::vec4 GetSpawnLocation() const;
-
-		/// Mutator method for the powerup spawner's spawn location
-		/// @Param spawnLocation: The new location from which powerups will spawn from this object
-		void SetSpawnLocation(const glm::vec4& spawnLocation);
 
 		/// Accessor method for the powerup spawner's spawn chance
 		/// @Return: The chance that this object will spawn a powerup
@@ -75,7 +77,7 @@ namespace KatBall
 		/// Accessor method for vortex Boi spawn weight
 		/// @Return: Spawn weight for vortex Boi
 		std::int32_t GetVortexBoiSpawnWeight() const;
-		
+
 		/// Mutator method for vortex Boi spawn weight
 		/// @Param spawnWeight: Spawn weight for vortex Boi
 		void SetVortexBoiSpawnWeight(const std::int32_t& spawnWeight);
@@ -85,16 +87,52 @@ namespace KatBall
 		void AttemptSpawn();
 
 	private:
-		glm::vec4 mSpawnLocation;	// Location that powerups will be spawned from this object
+		class FieaGameEngine::WorldState* mWorldState;
+
+		void InitializePowerups();
+		void CopyPrivateDataMembers(const PowerupSpawner& rhs);
+		void FixExternalAttributes();
+
+		FieaGameEngine::KatSound* mSpawnSound;
+		MeshEntity* mLongBoiMesh;
+		Powerup* mLongBoi;
+		Powerup* mBigBoi;
+		Powerup* mVortexBoi;
+
 		float mSpawnChance;			// Chance between 0.0 and 100.0 that this spawner will generate an item
+		float mElapsedTime;
 
 		std::int32_t mLongBoiSpawnWeight;	// Relative chance for spawning long Bois
 		std::int32_t mBigBoiSpawnWeight;	// Relative chance for spawning big Bois
 		std::int32_t mVortexBoiSpawnWeight;	// Relative chance for spawning vortex Bois
 
 		float mLongBoiLengthIncrease;	// The length increase of longBoi on pickup
-		float mBigBoiScaleIncrease;		// The size scale incrrase of bigBoi on pickup
+		float mBigBoiScaleIncrease;		// The size scale increase of bigBoi on pickup
 		float mVortexBoiRotationSpeed;	// How fast the vortex Boi goes whoosh
-	};
-}
 
+		const float mSpawnAttemptInterval = 5.0f;
+
+		static const std::string sSpawnChance;
+		static const std::string sLongBoiSpawnWeight;
+		static const std::string sBigBoiSpawnWeight;
+		static const std::string sVortexBoiSpawnWeight;
+		static const std::string sPowerupKey;
+
+		static const std::string sLongBoiStat;
+		static const std::string sBigBoiStat;
+		static const std::string sVortexBoiStat;
+
+		static const std::string sRigidBodyKey;
+		static const std::string sBallColliderKey;
+		static const std::string sBallMeshKey;
+
+		static const std::string sLongBoiKey;
+		static const std::string sBigBoiKey;
+		static const std::string sVortexBoiKey;
+
+		static const std::string sSpawnSoundKey;
+		std::default_random_engine mGenerator;
+	};
+
+	ConcreteEntityFactory(PowerupSpawner);
+}

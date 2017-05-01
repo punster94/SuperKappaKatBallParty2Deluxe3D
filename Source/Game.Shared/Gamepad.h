@@ -62,6 +62,7 @@ namespace KatBall
 	private:
 		int mControllerId;
 		XINPUT_STATE mState;
+		XINPUT_STATE mPreviousState;
 		WORD mCurrentButton;
 
 		float mDeadzoneX;

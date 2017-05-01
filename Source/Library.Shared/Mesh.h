@@ -5,6 +5,12 @@
 
 namespace FieaGameEngine
 {
+	enum RenderPass
+	{
+		RENDER_PASS_1 = 0,
+		RENDER_PASS_2 = 1
+	};
+
 	class Mesh abstract : public Renderable
 	{
 		RTTI_DECLARATIONS(Mesh, Renderable)
@@ -19,6 +25,8 @@ namespace FieaGameEngine
 
 		virtual void Render(Renderer* renderer) override = 0;
 
+		void SetColor(const glm::vec4& color);
+
 		void SetRelativePosition(glm::vec3 position);
 		void SetRelativeRotation(glm::vec3 rotation);
 		void SetRelativeScale(glm::vec3 scale);
@@ -27,6 +35,9 @@ namespace FieaGameEngine
 		void AddRelativeRotation(glm::vec3 deltaRotation);
 		void AddRelativeScale(glm::vec3 deltaScale);
 
+		std::int32_t GetRenderPass();
+		void SetRenderPass(int32_t renderPass);
+
 	protected:
 
 		class Entity* mOwner;
@@ -34,5 +45,9 @@ namespace FieaGameEngine
 		glm::vec3 mRelativePosition;
 		glm::vec3 mRelativeRotation;
 		glm::vec3 mRelativeScale;
+
+		glm::vec4 mColor;
+
+		std::int32_t mRenderPass;
 	};
 }

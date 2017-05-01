@@ -45,7 +45,7 @@ namespace KatBall
 	{
 		worldState.mEntity = this;
 
-		if (mGamepad->Refresh())
+		if (mGamepad != nullptr && mGamepad->Refresh())
 		{
 			if (mGamepad->GetState()->wButtons != 0)
 			{

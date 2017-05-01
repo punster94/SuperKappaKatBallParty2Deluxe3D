@@ -6,7 +6,9 @@ namespace FieaGameEngine
 	RTTI_DEFINITIONS(Mesh)
 
 	Mesh::Mesh() :
-		mOwner(nullptr)
+		mOwner(nullptr),
+		mRenderPass(RENDER_PASS_1),
+		mColor(1.0f, 1.0f, 1.0f, 1.0f)
 	{
 
 	}
@@ -20,6 +22,11 @@ namespace FieaGameEngine
 	void Mesh::SetOwner(Entity& owner)
 	{
 		mOwner = &owner;
+	}
+
+	void Mesh::SetColor(const glm::vec4& color)
+	{
+		mColor = color;
 	}
 
 	void Mesh::SetRelativePosition(glm::vec3 position)
@@ -50,5 +57,20 @@ namespace FieaGameEngine
 	void Mesh::AddRelativeScale(glm::vec3 deltaScale)
 	{
 		mRelativeScale += deltaScale;
+	}
+
+	std::int32_t Mesh::GetRenderPass()
+	{
+		return mRenderPass;
+	}
+
+	void Mesh::SetRenderPass(int32_t renderPass)
+	{
+		if (renderPass > RENDER_PASS_2)
+			renderPass = RENDER_PASS_2;
+		if (renderPass < RENDER_PASS_1)
+			renderPass = RENDER_PASS_1;
+
+		mRenderPass = renderPass;
 	}
 }

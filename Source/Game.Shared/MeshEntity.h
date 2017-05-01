@@ -23,6 +23,8 @@ namespace KatBall
 
 		virtual Scope* Copy() const override;
 
+		void SetMeshGeometry(FieaGameEngine::MeshGeometry* geometry);
+
 	protected:
 
 		void InitializeSignatures();
@@ -43,6 +45,10 @@ namespace KatBall
 
 		std::string mPixelShaderFileName;
 
+		std::int32_t mRenderPass;
+
+		glm::vec4 mColor;
+
 		static const std::string sMeshFileNameKey;
 
 		static const std::string sTextureFileNameKey;
@@ -50,6 +56,10 @@ namespace KatBall
 		static const std::string sVertexShaderFileNameKey;
 
 		static const std::string sPixelShaderFileNameKey;
+
+		static const std::string sRenderPassKey;
+
+		static const std::string sColorKey;
 	};
 
 	ConcreteEntityFactory(MeshEntity);

@@ -29,6 +29,8 @@ namespace KatBall
 
 		Gamepad* mGamepad;
 
+	public:
+
 		const static std::string sStartGameEventSubtype;
 	};
 

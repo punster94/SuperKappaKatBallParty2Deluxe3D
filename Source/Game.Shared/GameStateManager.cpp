@@ -1,7 +1,7 @@
 
 #include "pch.h"
 #include "GameStateManager.h"
-#include "Game.h"
+#include "MenuGamepad.h"
 
 #include "Event.h"
 #include "EventMessageAttributed.h"
@@ -15,6 +15,17 @@
 using namespace FieaGameEngine;
 using namespace KatBall;
 using namespace std;
+
+const string GameStateManager::sRoundResetEventSubtype = "round_reset";
+const string GameStateManager::sMatchWonEventSubtype = "match_won";
+const string GameStateManager::sStartGameEventSubtype = "start_game";
+
+const GameStateManager::Handlers GameStateManager::sHandlers =
+{
+	{ sRoundResetEventSubtype, &GameStateManager::ResetWorld },
+	{ sMatchWonEventSubtype, &GameStateManager::TransitionToMenu },
+	{ sStartGameEventSubtype, &GameStateManager::TransitionToGame }
+};
 
 GameStateManager::GameStateManager()
 {
@@ -106,10 +117,3 @@ void GameStateManager::StopSectorMusic(Sector* sector)
 		}
 	}
 }
-
-const GameStateManager::Handlers GameStateManager::sHandlers =
-{
-	{ ActionResetRound::sRoundResetEventSubtype, &GameStateManager::ResetWorld },
-	{ ActionResetRound::sMatchWonEventSubtype, &GameStateManager::TransitionToMenu },
-	{ Game::sStartGameEventSubtype, &GameStateManager::TransitionToGame }
-};

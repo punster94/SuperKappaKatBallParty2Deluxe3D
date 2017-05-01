@@ -162,8 +162,7 @@ void HUD::Render(Renderer* renderer)
 {
 	Entity::Render(renderer);
 
-	// turning off depth testing to prevent z-fighting
-	renderer->SetDepthTesting(false);
+	renderer->SetDepthMode(DepthMode::MODE_UI);
 
 	static_cast<Timer*>(mTimer)->Render(renderer);
 
@@ -172,5 +171,5 @@ void HUD::Render(Renderer* renderer)
 		static_cast<Score*>(mScores[i])->Render(renderer);
 	}
 
-	renderer->SetDepthTesting(true);
+	renderer->SetDepthMode(DepthMode::MODE_OPAQUE);
 }

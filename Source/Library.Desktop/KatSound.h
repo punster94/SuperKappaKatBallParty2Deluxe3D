@@ -37,6 +37,7 @@ namespace FieaGameEngine
 
 	private:
 		std::string mSoundFileName;
+		std::float_t mVolume;
 		sf::Sound mSound;
 
 		void CopyPrivateDataMembers(const KatSound& other);
@@ -46,6 +47,7 @@ namespace FieaGameEngine
 	public:
 		static const std::string SoundFolder;
 		static const std::string SoundFileKey;
+		static const std::string VolumeKey;
 	};
 
 	ConcreteEntityFactory(KatSound);

@@ -16,17 +16,15 @@
 #include "KatSound.h"
 #include "Menu.h"
 #include "MenuGamepad.h"
+#include "PowerupSpawner.h"
 
 using namespace FieaGameEngine;
 
 namespace KatBall
 {
-	static TestDummy* sDummy;
 	static Camera* sCamera;
 	static InputSubscriber* sInputSubscriber;
 	static Quad* sQuad;
-
-	const std::string Game::sStartGameEventSubtype = "start_game";
 
 	Game::Game(FieaGameEngine::Renderer& renderer)
 		: mRenderer(&renderer)
@@ -76,6 +74,8 @@ namespace KatBall
 		PlayerFactory pf;
 		MenuFactory mf;
 		MenuGamepadFactory mgf;
+		PowerupSpawnerFactory psf;
+		PowerupFactory pwf;
 
 		std::experimental::filesystem::directory_iterator menuEntities(ASSET_DIRECTORY_MENU_ENTITIES);
 
@@ -123,14 +123,6 @@ namespace KatBall
 
 		// DEBUG
 		DebugUpdate();
-
-		if (GetAsyncKeyState(VK_RETURN))
-		{
-			// TODO -- do this via menu object???
-			EventMessageAttributed args(sStartGameEventSubtype, &mWorldState);
-			Event<EventMessageAttributed>* e = new Event<EventMessageAttributed>(args);
-			mWorld.Enqueue(*e, mWorldState, 0);
-		}
 		// END
 	}
 
@@ -162,6 +154,16 @@ namespace KatBall
 			deltaPos += glm::vec3(0.0f, 0.0f, -cameraSpeed);
 		}
 
+		if (GetAsyncKeyState('E'))
+		{
+			deltaPos += glm::vec3(0.0f, cameraSpeed, 0.0f);
+		}
+
+		if (GetAsyncKeyState('Q'))
+		{
+			deltaPos += glm::vec3(0.0f, -cameraSpeed, 0.0f);
+		}
+
 		if (GetAsyncKeyState('W'))
 		{
 			deltaPos += glm::vec3(0.0f, 0.0f, cameraSpeed);
@@ -185,6 +187,19 @@ namespace KatBall
 		if (GetAsyncKeyState(VK_UP))
 		{
 			deltaRot += glm::vec3(-cameraAngSpeed, 0.0f, 0.0f);
+		}
+
+		if (GetAsyncKeyState(VK_SPACE))
+		{
+			Datum& entities = mWorld.Sectors().Get<Scope&>(0).As<Sector>()->Entities();
+			for (uint32_t i = 0; i < entities.Size(); ++i)
+			{
+				if (entities.Get<Scope&>(i).Is(KatSound::TypeIdClass()))
+				{
+					static_cast<KatSound&>(entities.Get<Scope&>(i)).Play();
+					break;
+				}
+			}
 		}
 
 		sCamera->SetRelativePosition(cameraPos + deltaPos);

@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<entity class='KatSound' name='DummySound'>
+	<string name='SoundFile' value='Roar01.ogg' />
+</entity>

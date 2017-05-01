@@ -36,5 +36,8 @@ namespace KatBall
 		typedef FieaGameEngine::HashMap<std::string, HandlerFunc> Handlers;
 
 		static const Handlers sHandlers;
+		static const std::string sRoundResetEventSubtype;
+		static const std::string sMatchWonEventSubtype;
+		static const std::string sStartGameEventSubtype;
 	};
 }

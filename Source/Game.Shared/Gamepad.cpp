@@ -51,6 +51,8 @@ namespace KatBall
 	{
 		mCurrentButton = 0;
 
+		mPreviousState = mState;
+
 		if (CheckConnection())
 		{
 			float normLX = fmaxf(-1, (float)mState.Gamepad.sThumbLX / 32767);
@@ -81,7 +83,8 @@ namespace KatBall
 
 	bool Gamepad::IsPressed(WORD button)
 	{
-		bool pressed = (mState.Gamepad.wButtons & button) != 0;
+		bool pressed = (mState.Gamepad.wButtons & button) != 0 && 
+			(mPreviousState.Gamepad.wButtons & button) ==0;
 		if (pressed)
 		{
 			mCurrentButton = button;

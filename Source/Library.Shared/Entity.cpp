@@ -162,6 +162,42 @@ namespace FieaGameEngine
 		mScale = scale;
 	}
 
+	void Entity::SetWorldPosition(glm::vec3 position)
+	{
+		if (GetParent() == nullptr || !GetParent()->Is(Entity::TypeIdClass()))
+		{
+			mPosition = position;
+		}
+		else
+		{
+			mPosition = position - GetParent()->As<Entity>()->GetWorldPosition();
+		}
+	}
+
+	void Entity::SetWorldRotation(glm::vec3 rotation)
+	{
+		if (GetParent() == nullptr || !GetParent()->Is(Entity::TypeIdClass()))
+		{
+			mRotation = rotation;
+		}
+		else
+		{
+			mRotation = rotation - GetParent()->As<Entity>()->GetWorldRotation();
+		}
+	}
+
+	void Entity::SetWorldScale(glm::vec3 scale)
+	{
+		if (GetParent() == nullptr || !GetParent()->Is(Entity::TypeIdClass()))
+		{
+			mScale = scale;
+		}
+		else
+		{
+			mScale = scale / GetParent()->As<Entity>()->GetWorldScale();
+		}
+	}
+
 	glm::vec3 Entity::GetWorldPosition() const
 	{
 		if (GetParent() == nullptr)

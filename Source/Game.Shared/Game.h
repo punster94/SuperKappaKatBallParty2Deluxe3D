@@ -36,10 +36,5 @@ namespace KatBall
 		FieaGameEngine::GameClock mGameClock;
 
 		GameStateManager mStateManager;
-
-	public:
-
-		// TODO -- move this to menu object???
-		static const std::string sStartGameEventSubtype;
 	};
 }

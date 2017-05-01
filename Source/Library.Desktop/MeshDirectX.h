@@ -13,6 +13,7 @@ namespace FieaGameEngine
 	struct CBMesh
 	{
 		DirectX::XMMATRIX mWorld;
+		DirectX::XMFLOAT4 mColor;
 	};
 
 	class MeshDirectX : public Mesh
@@ -37,8 +38,6 @@ namespace FieaGameEngine
 						PixelShader* pixelShader);
 
 		void SetTexture(Texture* texture);
-
-		
 
 	private:
 

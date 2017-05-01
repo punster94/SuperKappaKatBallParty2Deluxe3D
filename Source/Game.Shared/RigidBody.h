@@ -24,9 +24,15 @@ namespace KatBall
 		virtual void Initialize(FieaGameEngine::WorldState& worldState) override;
 		virtual void Reset(FieaGameEngine::WorldState& worldState) override;
 
+		virtual void Update(FieaGameEngine::WorldState& worldState) override;
+
 		virtual Scope* Copy() const override;
 
+		void ResizeCollider();
+
 		btRigidBody* mBody;
+
+		bool mSimulatePhysics;
 
 	protected:
 
@@ -52,6 +58,10 @@ namespace KatBall
 
 		std::string mColliderType;
 
+		std::int32_t mGravityEnable;
+
+		float mFriction;
+
 		typedef void(RigidBody::*CreateCollider)(btScalar x, btScalar y, btScalar z);
 
 		static const FieaGameEngine::HashMap<std::string, CreateCollider> sCreateColliders;
@@ -71,6 +81,10 @@ namespace KatBall
 		static const std::string sMassKey;
 
 		static const std::string sColliderTypeKey;
+
+		static const std::string sGravityEnableTypeKey;
+
+		static const std::string sFrictionKey;
 	};
 
 	ConcreteEntityFactory(RigidBody);

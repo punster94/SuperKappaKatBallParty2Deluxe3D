@@ -38,7 +38,8 @@ namespace FieaGameEngine
 
 	void MeshDirectX::Render(Renderer* renderer)
 	{
-		if (mVisible)
+		if (mVisible &&
+			mRenderPass == renderer->GetCurrentRenderPass())
 		{
 			assert(mMeshGeometry != nullptr);
 			assert(mVertexShader != nullptr);
@@ -60,12 +61,13 @@ namespace FieaGameEngine
 
 			CBMesh meshConstants;
 			UpdateWorldMatrix(meshConstants);
+			memcpy(&meshConstants.mColor, &mColor, sizeof(mColor));
 
 			directX->Context()->UpdateSubresource(mConstantBuffer, 0, nullptr, &meshConstants, 0, 0);
 
 			ID3D11Buffer* cbuffers[2] = { directX->GetGlobalCBuffer(), mConstantBuffer };
 			directX->Context()->VSSetConstantBuffers(0, 2, cbuffers);
-			directX->Context()->PSSetConstantBuffers(0, 1, cbuffers);
+			directX->Context()->PSSetConstantBuffers(0, 2, cbuffers);
 
 			directX->Context()->Draw(mMeshGeometry->GetFaces() * 3, 0U);
 		}
@@ -137,17 +139,13 @@ namespace FieaGameEngine
 
 		worldMatrix = XMMatrixIdentity();
 
-		worldMatrix = worldMatrix * XMMatrixRotationY(mRelativeRotation.y);
-		worldMatrix = worldMatrix * XMMatrixRotationX(mRelativeRotation.x);
-		worldMatrix = worldMatrix * XMMatrixRotationZ(mRelativeRotation.z);
+		worldMatrix = worldMatrix * XMMatrixRotationY(rotation.y);
+		worldMatrix = worldMatrix * XMMatrixRotationX(rotation.x);
+		worldMatrix = worldMatrix * XMMatrixRotationZ(rotation.z);
 
 		worldMatrix = worldMatrix * XMMatrixScaling(scale.x, scale.y, scale.z);
 
 		worldMatrix = worldMatrix * XMMatrixTranslation(position.x, position.y, position.z);
-
-		worldMatrix = worldMatrix * XMMatrixRotationY(rotation.y);
-		worldMatrix = worldMatrix * XMMatrixRotationX(rotation.x);
-		worldMatrix = worldMatrix * XMMatrixRotationZ(rotation.z);
 
 		meshConstants.mWorld = XMMatrixTranspose(worldMatrix);
 	}

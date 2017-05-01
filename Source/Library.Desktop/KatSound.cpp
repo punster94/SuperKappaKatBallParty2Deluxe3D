@@ -10,9 +10,11 @@ namespace FieaGameEngine
 
 	const string KatSound::SoundFolder = "sfx/";
 	const string KatSound::SoundFileKey = "SoundFile";
+	const string KatSound::VolumeKey = "Volume";
 	HashMap<string, shared_ptr<SoundBuffer>> KatSound::sBufferMap;
 
-	KatSound::KatSound()
+	KatSound::KatSound() :
+		mVolume(100.0f)
 	{
 		InitializeSignatures();
 	}
@@ -71,7 +73,8 @@ namespace FieaGameEngine
 
 	void KatSound::Play()
 	{
-		mSound.setBuffer(LoadSoundBuffer(mSoundFileName));
+		mSound.setBuffer(LoadSoundBuffer(SoundFolder + mSoundFileName));
+		mSound.setVolume(mVolume);
 		mSound.play();
 	}
 
@@ -92,12 +95,12 @@ namespace FieaGameEngine
 
 	float KatSound::GetVolume() const
 	{
-		return mSound.getVolume();
+		return mVolume;
 	}
 
 	void KatSound::SetVolume(float volume)
 	{
-		mSound.setVolume(volume);
+		mVolume = volume;
 	}
 
 	void KatSound::InitializeSignatures()
@@ -105,6 +108,7 @@ namespace FieaGameEngine
 		Attributed::InitializeSignatures();
 
 		AddExternalAttribute(SoundFileKey, &mSoundFileName);
+		AddExternalAttribute(VolumeKey, &mVolume);
 	}
 
 	void KatSound::CopyPrivateDataMembers(const KatSound& other)

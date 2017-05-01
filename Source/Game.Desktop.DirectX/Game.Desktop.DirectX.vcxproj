@@ -114,6 +114,10 @@
     <FxCompile>
       <ObjectFileOutput>$(TargetDir)shaders/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
+    <PreBuildEvent />
+    <PreBuildEvent>
+      <Command>rd /s /q "$(TargetDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -139,6 +143,10 @@
     <FxCompile>
       <ObjectFileOutput>$(TargetDir)shaders/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
+    <PreBuildEvent />
+    <PreBuildEvent>
+      <Command>rd /s /q "$(TargetDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -168,6 +176,10 @@
     <FxCompile>
       <ObjectFileOutput>$(TargetDir)shaders/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
+    <PreBuildEvent />
+    <PreBuildEvent>
+      <Command>rd /s /q "$(TargetDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -197,6 +209,10 @@
     <FxCompile>
       <ObjectFileOutput>$(TargetDir)shaders/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
+    <PreBuildEvent />
+    <PreBuildEvent>
+      <Command>rd /s /q "$(TargetDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Program.cpp">
