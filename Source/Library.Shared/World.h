@@ -178,6 +178,9 @@ namespace FieaGameEngine
 		 */
 		void FixExternalAttributes();
 
+		void CollisionCallback(btManifoldPoint& collisionPoint, const btCollisionObjectWrapper* obj1, int id1, int index1,
+			const btCollisionObjectWrapper* obj2, int id2, int index2);
+
 		/** World mName
 		 *	A string representing the name of this World.
 		 */
@@ -189,20 +192,6 @@ namespace FieaGameEngine
 		EventQueue mEventQueue;
 
 		///collision configuration contains default setup for memory, collision setup. Advanced users can create their own configuration.
-		btDefaultCollisionConfiguration* mCollisionConfiguration;
-
-		///use the default collision dispatcher. For parallel processing you can use a different dispatcher (see Extras/BulletMultiThreaded)
-		btCollisionDispatcher* mDispatcher;
-
-		///btDbvtBroadphase is a good general purpose broadphase. You can also try out btAxis3Sweep.
-		btBroadphaseInterface* mOverlappingPairCache;
-
-		///the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
-		btSequentialImpulseConstraintSolver* mSolver;
-
-		btDiscreteDynamicsWorld* mDynamicsWorld;
-
-		btAlignedObjectArray<btCollisionShape*> mCollisionShapes;
 
 
 	public:

@@ -20,6 +20,7 @@ namespace KatBall
 
 		Powerup();
 		Powerup(const Powerup& otherPowerup);
+		~Powerup();
 
 		void InitializeSignatures() override;
 		virtual void Initialize(FieaGameEngine::WorldState& worldState) override;

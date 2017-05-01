@@ -75,7 +75,9 @@ namespace KatBall
 
 		mBody->activate(true);
 
-		worldState.mWorld->RegisterRigidBody(*mCollider, *mBody);
+		Game::GetInstance()->mDynamicsWorld->addRigidBody(mBody);
+
+		mBody->setUserPointer(GetParent());
 	}
 
 	void RigidBody::Update(FieaGameEngine::WorldState& worldState)
@@ -110,7 +112,19 @@ namespace KatBall
 
 	RigidBody::~RigidBody()
 	{
+		if (Game::GetInstance()->mDynamicsWorld != nullptr)
+		{
+			Game::GetInstance()->mDynamicsWorld->removeRigidBody(mBody);
 
+		}
+
+		delete mCollider;
+		
+		delete mConstructionInfo;
+
+		delete mBody;
+
+		delete mMotionState;
 	}
 
 	void RigidBody::CopyPrivateDataMembers(const RigidBody& otherRigidBody)

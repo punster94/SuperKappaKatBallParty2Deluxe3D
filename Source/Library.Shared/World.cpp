@@ -12,16 +12,9 @@ namespace FieaGameEngine
 	{
 		InitializeSignatures();
 
-		mCollisionConfiguration = new btDefaultCollisionConfiguration();
+		
 
-		mDispatcher = new btCollisionDispatcher(mCollisionConfiguration);
-
-		mOverlappingPairCache = new btDbvtBroadphase();
-
-		mSolver = new btSequentialImpulseConstraintSolver;
-
-		mDynamicsWorld = new btDiscreteDynamicsWorld(mDispatcher, mOverlappingPairCache, mSolver, mCollisionConfiguration);
-		mDynamicsWorld->setGravity(btVector3(0.0f, -10.0f, 0.0f));
+		//gContactAddedCallback = CollisionCallback;
 	}
 
 	World::World(const World& otherWorld) :
@@ -132,8 +125,6 @@ namespace FieaGameEngine
 	{
 		worldState.mWorld = this;
 
-		mDynamicsWorld->stepSimulation(1.f / 60.f, 10);
-
 		Datum& actions = Actions();
 
 		for (std::uint32_t i = 0; i < actions.Size(); ++i)
@@ -201,10 +192,9 @@ namespace FieaGameEngine
 		}
 	}
 
-	void World::RegisterRigidBody(btCollisionShape& shape, btRigidBody& body)
+	void World::CollisionCallback(btManifoldPoint& collisionPoint, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2)
 	{
-		mCollisionShapes.push_back(&shape);
-		mDynamicsWorld->addRigidBody(&body);
+		OutputDebugString(L"Blah");
 	}
 
 	const std::string World::sWorldNameKey = "name";
