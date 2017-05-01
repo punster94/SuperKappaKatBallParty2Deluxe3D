@@ -47,7 +47,6 @@ void Score::Initialize(const string& playerIcon, const vec4& color, float x, flo
 	mRenderables[sTensIndex]->SetRect(x + w, y, w, h);
 	mRenderables[sTensIndex]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	mRenderables[sBarIndex]->SetTexture(Asset::Get(HUD::sPlayerWinsIcons[mNumWins])->As<Texture>());
 	mRenderables[sBarIndex]->SetRect(x + w, y + h, w * 2.0f, h * 0.5f);
 	mRenderables[sBarIndex]->SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 

@@ -23,6 +23,8 @@ namespace KatBall
 	static InputSubscriber* sInputSubscriber;
 	static Quad* sQuad;
 
+	const std::string Game::sStartGameEventSubtype = "start_game";
+
 	Game::Game(FieaGameEngine::Renderer& renderer)
 		: mRenderer(&renderer)
 	{
@@ -45,10 +47,11 @@ namespace KatBall
 		mRenderer->Init();
 		LoadAssets();
 
+		mGameSector = new Sector("Game");
 		mMenuSector = new Sector("Menu");
 		mMenuSector->SetWorld(mWorld);
 
-		mGameSector = new Sector("Game");
+		mStateManager.Initialize(mWorld, *mMenuSector, *mGameSector, mWorldState);
 
 		ScopeParseHelper::ScopeSharedData sharedData;
 		XmlParseMaster master(&sharedData);
@@ -117,26 +120,12 @@ namespace KatBall
 
 		if (GetAsyncKeyState(VK_RETURN))
 		{
-			LoadGame();
+			// TODO -- do this via menu object???
+			EventMessageAttributed args(sStartGameEventSubtype, &mWorldState);
+			Event<EventMessageAttributed>* e = new Event<EventMessageAttributed>(args);
+			mWorld.Enqueue(*e, mWorldState, 0);
 		}
 		// END
-	}
-
-	void Game::LoadGame()
-	{
-		Datum& entities = mMenuSector->Entities();
-		for (uint32_t i = 0; i < entities.Size(); ++i)
-		{
-			if (entities.Get<Scope&>(i).Is(KatMusic::TypeIdClass()))
-			{
-				static_cast<KatMusic&>(entities.Get<Scope&>(i)).Stop();
-				break;
-			}
-		}
-
-		mMenuSector->Orphan();
-		mGameSector->SetWorld(mWorld);
-		mWorld.Initialize(mWorldState);
 	}
 
 	void Game::DebugUpdate()

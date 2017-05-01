@@ -20,6 +20,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HUD.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ScoreAction.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Constants.h" />
@@ -42,5 +43,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HUD.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ScoreAction.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStateManager.h" />
   </ItemGroup>
 </Project>

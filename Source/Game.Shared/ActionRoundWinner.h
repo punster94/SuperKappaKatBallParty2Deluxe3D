@@ -18,15 +18,13 @@ namespace KatBall
 
 	private:
 
-		//
+		static const std::uint32_t sNoMatchWinnerFlag;
+		static const std::uint32_t sTieGameFlag;
 
 	public:
 
 		static const std::string sMatchWonEventSubtype;
 		static const std::string sMatchWinnerIDKey;
-
-		static const std::uint32_t sNoMatchWinnerFlag;
-		static const std::uint32_t sTieGameFlag;
 	};
 
 	ConcreteFactory(FieaGameEngine::Action, ActionRoundWinner);
