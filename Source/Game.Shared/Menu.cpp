@@ -45,6 +45,7 @@ namespace KatBall
 		assert(eventPublisher.Is(Event<Gamepad>::TypeIdClass()));
 		std::string texture = (*this)[sAlternateTextureFilenameKey].Get<std::string&>();
 		FindChildEntityByName("start")->As<QuadEntity>()->SetTexture(texture);
+		FindChildEntityByName("StartClicked")->As<KatSound>()->Play();
 
 		RemoveQuadFromView();
 		Datum& entities = Entities();

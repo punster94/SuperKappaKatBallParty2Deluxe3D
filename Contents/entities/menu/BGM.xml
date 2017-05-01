@@ -2,4 +2,5 @@
 <entity class='KatMusic' name='BGM'>
 	<string name='MusicFile' value='No Control.ogg' />
 	<integer name='PlayOnAwake' value='1' />
+	<float name='Volume' value ='50' />
 </entity>
