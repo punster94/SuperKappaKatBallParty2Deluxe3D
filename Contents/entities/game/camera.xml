@@ -11,4 +11,8 @@
         <float name='focus scale' value='2.0'/>
         <vector name='bounds' value='-3.0,3.0,-3.0,3.0'/>
     </action>
+    <entity class='MeshEntity' name='skysphere'>
+        <string name='mesh filename' value='skysphere.obj'/>
+        <string name='texture filename' value='skysphere_tex.png'/>
+    </entity>
 </entity>

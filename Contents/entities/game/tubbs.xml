@@ -23,8 +23,8 @@
 		<entity class='MeshEntity' name='ball mesh'>
 			<string name='mesh filename' value='smooth_sphere.obj'/>
 			<string name='texture filename' value='ball.png'/>
-      <integer name='render pass' value='1'/>
-      <vector name='color' value='0.0,0.0,1.0,1.0'/>
+            <integer name='render pass' value='1'/>
+            <vector name='color' value='0.0,0.0,1.0,1.0'/>
 		</entity>
     <entity class='MeshEntity' name='kat mesh'>
       <string name='mesh filename' value='kat_idle.obj'/>
