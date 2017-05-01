@@ -85,6 +85,8 @@ namespace KatBall
 		void AttemptSpawn();
 
 	private:
+		class FieaGameEngine::WorldState* mWorldState;
+
 		void InitializePowerups();
 		void CopyPrivateDataMembers(const PowerupSpawner& rhs);
 		void FixExternalAttributes();
