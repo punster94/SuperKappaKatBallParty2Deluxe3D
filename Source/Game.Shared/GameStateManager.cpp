@@ -12,8 +12,6 @@
 
 #include "KatMusic.h"
 
-#include "ActionUpdateScore.h"	// JUSTIN
-
 using namespace FieaGameEngine;
 using namespace KatBall;
 using namespace std;
@@ -141,14 +139,6 @@ void GameStateManager::TransitionToGame()
 	{
 		pauseMenu->RemoveQuadFromView();
 	}
-
-	// JUSTIN
-	EventMessageAttributed args(ActionUpdateScore::sScoreEventSubtype, mWorldState);
-	args.AppendAuxiliaryAttribute(ActionUpdateScore::sPlayerIDKey) = 0;
-
-	Event<EventMessageAttributed>* e = new Event<EventMessageAttributed>(args);
-	mWorld->Enqueue(*e, *mWorldState, 0);
-	// JUSTIN
 }
 
 void GameStateManager::StopSectorMusic(Sector* sector)
