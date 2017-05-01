@@ -139,8 +139,8 @@ namespace FieaGameEngine
 
 		worldMatrix = XMMatrixIdentity();
 
-		worldMatrix = worldMatrix * XMMatrixRotationY(rotation.y);
 		worldMatrix = worldMatrix * XMMatrixRotationX(rotation.x);
+		worldMatrix = worldMatrix * XMMatrixRotationY(rotation.y);
 		worldMatrix = worldMatrix * XMMatrixRotationZ(rotation.z);
 
 		worldMatrix = worldMatrix * XMMatrixScaling(scale.x, scale.y, scale.z);

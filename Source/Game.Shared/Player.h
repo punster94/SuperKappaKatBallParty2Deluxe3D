@@ -51,6 +51,10 @@ namespace KatBall
 
 		void Respawn(FieaGameEngine::WorldState& worldState);
 
+		std::int32_t GetPlayerID();
+
+		void SetLastPlayerTouching(std::int32_t id);
+
 	protected:
 
 		void InitializeSignatures();
@@ -73,7 +77,7 @@ namespace KatBall
 
 		void LoadRequiredMeshGeometries();
 
-		void RotatePlayer(float x, float y);
+		void RotatePlayer(float x, float y, FieaGameEngine::WorldState& worldState);
 
 		bool CollisionCallback(btManifoldPoint& collisionPoint, const btCollisionObjectWrapper* obj1, int id1, int index1,
 			const btCollisionObjectWrapper* obj2, int id2, int index2);

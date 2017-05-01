@@ -115,7 +115,7 @@ namespace KatBall
 		if (mGamepad->Refresh())
 		{
 			mBallRigidBody->mBody->applyCentralImpulse(btVector3(mMovementForce * mGamepad->leftStickX, 0, mMovementForce * mGamepad->leftStickY));
-			// RotatePlayer(mGamepad->leftStickX, mGamepad->leftStickY);
+			RotatePlayer(mGamepad->leftStickX, mGamepad->leftStickY, worldState);
 
 			if (mGamepad->IsPressed(XINPUT_GAMEPAD_START))
 			{
@@ -294,13 +294,74 @@ namespace KatBall
 		AddExternalAttribute(sPunchImpulseKey, &mPunchImpulse, 1);
 	}
 
-	void Player::RotatePlayer(float x, float y)
+	void Player::RotatePlayer(float x, float y, WorldState& worldState)
 	{
-		glm::vec3 direction(x, y, 0);
+		const float velocityThreshold = 0.1f;
+		const float rollFactor = 2.5f;
 
-		if (direction.length() > 0.5f)
+		glm::vec3 velocity = mBallRigidBody->GetLinearVelocity();
+		float speed = glm::length(velocity);
+
+		if (speed >= velocityThreshold)
 		{
-			SetWorldRotation(glm::vec3(0, glm::atan(x / y), 0));
+			glm::vec3 velocityNormal = glm::normalize(velocity);
+			glm::vec3 forward(0.0f, 0.0f, -1.0f);
+
+			float dot = glm::dot(velocityNormal, forward);
+			float angle = glm::acos(dot);
+
+			if (velocityNormal.x > 0.0f)
+			{
+				angle *= -1.0f;
+			}
+
+			mKatMeshEntity->SetRelativeRotation(glm::vec3(0, angle, 0));
+
+			float xRotation = mBallMesh->GetRelativeRotation().x;
+			xRotation -= speed * rollFactor * worldState.DeltaTime();
+
+			if (xRotation < 0.0f)
+			{
+				xRotation += 2 * 3.14159265;
+			}
+
+			mBallMesh->SetRelativeRotation(glm::vec3(xRotation, angle, 0.0f));
+		}
+
+		glm::vec3 direction(x, 0.0f, y);
+
+		if (glm::length(direction) > velocityThreshold)
+		{
+			glm::vec3 normalDirection = glm::normalize(direction);
+
+			glm::vec3 forward(0.0f, 0.0f, -1.0f);
+
+			float dot = glm::dot(normalDirection, forward);
+			float angle = glm::acos(dot);
+
+			if (normalDirection.x > 0.0f)
+			{
+				angle *= -1.0f;
+			}
+
+			mPunchMesh->SetRelativeRotation(glm::vec3(0, angle, 0));
+
+			glm::vec3 normalCurrent = glm::normalize(mPunchRigidBody->GetRelativePosition());
+			float punchDistance = glm::length(mPunchRigidBody->GetRelativePosition());
+
+			float currentDot = glm::dot(normalCurrent, forward);
+			float currentAngle = glm::acos(currentDot);
+
+			if (normalCurrent.x > 0.0f)
+			{
+				currentAngle *= -1.0f;
+			}
+
+			//float mixedAngle = glm::mix(currentAngle, angle, 0.1f);
+
+			glm::vec3 punchTargetPosition(-glm::sin(angle), 0.0f, -glm::cos(angle));
+
+			mPunchRigidBody->SetRelativePosition(punchTargetPosition * punchDistance);
 		}
 	}
 
@@ -359,6 +420,16 @@ namespace KatBall
 
 		// reset position and stuff
 		Reset(worldState);
+	}
+
+	int32_t Player::GetPlayerID()
+	{
+		return mGamepad->GetPort();
+	}
+
+	void Player::SetLastPlayerTouching(std::int32_t id)
+	{
+		mLastTouchingPlayerID = id;
 	}
 
 	const string Player::sMeshKey = "mesh";
