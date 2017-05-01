@@ -108,6 +108,12 @@ namespace KatBall
 		// TODO -- leaks memory
 	}
 
+	glm::vec3 RigidBody::GetLinearVelocity() const
+	{
+		const btVector3& linVelocity = mBody->getLinearVelocity();
+		return glm::vec3(linVelocity.getX(), linVelocity.getY(), linVelocity.getZ());
+	}
+
 	void RigidBody::Update(FieaGameEngine::WorldState& worldState)
 	{
 		btTransform trans;
@@ -143,7 +149,6 @@ namespace KatBall
 		if (Game::GetInstance()->mDynamicsWorld != nullptr)
 		{
 			Game::GetInstance()->mDynamicsWorld->removeRigidBody(mBody);
-
 		}
 
 		delete mCollider;
