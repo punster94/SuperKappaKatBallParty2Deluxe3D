@@ -46,7 +46,7 @@ namespace KatBall
 
 		if (mGamepad != nullptr && mGamepad->Refresh())
 		{
-			if (mGamepad->GetState()->wButtons != 0)
+			if ((mGamepad->GetState()->wButtons & XINPUT_GAMEPAD_START) != 0)
 			{
 				FieaGameEngine::Event<Gamepad>* event = new FieaGameEngine::Event<Gamepad>(*mGamepad, false);
 				worldState.mWorld->Enqueue(*event, worldState, 0);

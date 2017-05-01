@@ -32,7 +32,7 @@
       <vector name='scale' value='0.25,0.25,0.25,0.0'/>
 		</entity>
 		<entity class='RigidBody' name='punch collider'>
-			<vector name='scale' value='0.4,0.4,0.4,0.0'/>
+			<vector name='scale' value='0.75,0.75,0.75,0.0'/>
 			<vector name='position' value='0.5,0.0,0.0,0.0'/>
 			<string name='shape' value='box'/>
 			<float name='mass' value='50.0'/>
