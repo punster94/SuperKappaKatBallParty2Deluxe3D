@@ -35,6 +35,8 @@ namespace FieaGameEngine
 
 		ProjectionMode GetProjectionMode() const;
 
+		virtual void Initialize(WorldState& worldState) override;
+
 	protected:
 
 		void InitializeSignatures();
@@ -44,4 +46,6 @@ namespace FieaGameEngine
 		CameraSettings mSettings;
 
 	};
+
+	ConcreteEntityFactory(Camera);
 }

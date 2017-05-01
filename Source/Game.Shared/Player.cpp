@@ -128,6 +128,9 @@ namespace KatBall
 				mPunchRigidBody->mBody->clearForces();
 				mPunchRigidBody->SetRelativePosition(mInitialPunchPos);
 			}
+
+			SetWorldPosition(mBallRigidBody->GetWorldPosition());
+			mBallRigidBody->SetRelativePosition(glm::vec3(0.0f));
 		}
 
 		Entity::Update(worldState);
