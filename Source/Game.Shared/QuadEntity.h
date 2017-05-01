@@ -24,15 +24,12 @@ namespace KatBall
 
 		virtual Scope* Copy() const override;
 
+		void SetTexture(const std::string& fileName);
+		void RemoveQuadFromView();
+
 	protected:
 
 		void InitializeSignatures();
-
-	private:
-
-		void CopyPrivateDataMembers(const QuadEntity& otherQuadEntity);
-
-		void FixExternalAttributes();
 
 		FieaGameEngine::Quad mQuad;
 
@@ -55,6 +52,11 @@ namespace KatBall
 		static const std::string sColorKey;
 
 		static const std::string sRectKey;
+	private:
+
+		void CopyPrivateDataMembers(const QuadEntity& otherQuadEntity);
+
+		void FixExternalAttributes();
 	};
 
 	ConcreteEntityFactory(QuadEntity);

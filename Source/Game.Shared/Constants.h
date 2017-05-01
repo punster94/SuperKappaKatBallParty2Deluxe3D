@@ -48,3 +48,7 @@
 #define TEXTURE_TIMER_BACKGROUND "Timer_Background.png"
 #define TEXTURE_KAT_SCORE_IMAGE "kat_score.png"
 #define TEXTURE_CROWN "crown.png"
+
+#define TEXTURE_START_SCREEN "StartScreen.png"
+#define TEXTURE_START_BUTTON "Start.png"
+#define TEXTURE_START_BUTTON_HIGHLIGHT "StartHighlight.png"

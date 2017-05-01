@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "RendererDirectX.h"
 
 using namespace FieaGameEngine;
 
@@ -6,7 +7,7 @@ namespace KatBall
 {
 	RTTI_DEFINITIONS(QuadEntity)
 
-	QuadEntity::QuadEntity(const std::string& name) :
+		QuadEntity::QuadEntity(const std::string& name) :
 		Entity(name), mTextureFileName(""),
 		mVertexShaderFileName(SHADER_QUAD_VERTEX), mPixelShaderFileName(SHADER_QUAD_PIXEL)
 	{
@@ -21,8 +22,6 @@ namespace KatBall
 
 	void QuadEntity::Initialize(FieaGameEngine::WorldState& worldState)
 	{
-		Entity::Initialize(worldState);
-
 		if (Asset::Get(mTextureFileName) == nullptr)
 		{
 			Asset::Load(mTextureFileName, mTextureFileName, Asset::TYPE_TEXTURE);
@@ -47,6 +46,25 @@ namespace KatBall
 		mQuad.SetColor(mColor);
 
 		Renderer::Get()->AddViewRenderable(mQuad);
+
+		Entity::Initialize(worldState);
+	}
+
+	void QuadEntity::SetTexture(const std::string& fileName)
+	{
+		mTextureFileName = fileName;
+
+		if (Asset::Get(mTextureFileName) == nullptr)
+		{
+			Asset::Load(mTextureFileName, mTextureFileName, Asset::TYPE_TEXTURE);
+		}
+
+		mQuad.SetTexture(Asset::Get(mTextureFileName)->As<Texture>());
+	}
+
+	void QuadEntity::RemoveQuadFromView()
+	{
+		reinterpret_cast<RendererDirectX*>(Renderer::Get())->RemoveViewRenderable(mQuad);
 	}
 
 	Scope* QuadEntity::Copy() const

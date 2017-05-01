@@ -1,4 +1,18 @@
-<entity class='QuadEntity' name='menu'>
-  <vector name='rect' value='0,0,1,1'/>
-  <string name='texture filename' value='mankey_ball.bmp'/>
+<entity class='Menu' name='menu'>
+  <vector name='color' value='1.0,1.0,1.0,1.0'/>
+  <vector name='rect' value='-1.0,-1.0,2.0,2.0'/>
+  <string name='texture filename' value='StartScreen.png'/>
+  <entity class='MenuGamepad' name='menu gamepad'/>
+  <string name='alternate texture filename' value='StartHighlight.png'/>
+  <!--string name='alternate texture filename' value='ExitHighlight.png'/-->
+  <entity class='QuadEntity' name='start'>
+    <vector name='color' value='1.0,1.0,1.0,1.0'/>
+    <vector name='rect' value='0,0,1.0,1.0'/>
+    <string name='texture filename' value='Start.png'/>
+  </entity>
+  <!--entity class='QuadEntity' name='exit'>
+    <vector name='color' value='1.0,1.0,1.0,1.0'/>
+    <vector name='rect' value='-1.0,-1.0,1.0,1.0'/>
+    <string name='texture filename' value='Exit.png'/>
+  </entity-->
 </entity>

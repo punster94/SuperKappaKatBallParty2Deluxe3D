@@ -21,6 +21,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)HUD.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)InputSubscriber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Kat.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Menu.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MenuGamepad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MeshEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -44,6 +46,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)HUD.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)InputSubscriber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Kat.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Menu.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MenuGamepad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MeshEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />

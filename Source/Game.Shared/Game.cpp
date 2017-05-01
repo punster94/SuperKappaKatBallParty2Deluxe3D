@@ -13,6 +13,8 @@
 #include "Timer.h"
 #include "KatMusic.h"
 #include "KatSound.h"
+#include "Menu.h"
+#include "MenuGamepad.h"
 
 using namespace FieaGameEngine;
 
@@ -67,6 +69,8 @@ namespace KatBall
 		ReactionAttributedFactory raf;
 		QuadEntityFactory qef;
 		PlayerFactory pf;
+		MenuFactory mf;
+		MenuGamepadFactory mgf;
 
 		std::experimental::filesystem::directory_iterator menuEntities(ASSET_DIRECTORY_MENU_ENTITIES);
 
@@ -115,10 +119,7 @@ namespace KatBall
 		// DEBUG
 		DebugUpdate();
 
-		if (GetAsyncKeyState(VK_RETURN))
-		{
-			LoadGame();
-		}
+
 		// END
 	}
 
@@ -127,10 +128,15 @@ namespace KatBall
 		Datum& entities = mMenuSector->Entities();
 		for (uint32_t i = 0; i < entities.Size(); ++i)
 		{
-			if (entities.Get<Scope&>(i).Is(KatMusic::TypeIdClass()))
+			Scope& current = entities.Get<Scope&>(i);
+			if (current.Is(KatMusic::TypeIdClass()))
 			{
-				static_cast<KatMusic&>(entities.Get<Scope&>(i)).Stop();
-				break;
+				static_cast<KatMusic&>(current).Stop();
+			}
+
+			if (current.Is(QuadEntity::TypeIdClass()))
+			{
+				static_cast<QuadEntity&>(current).RemoveQuadFromView();
 			}
 		}
 
@@ -233,6 +239,9 @@ namespace KatBall
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_TIMER_BACKGROUND, TEXTURE_TIMER_BACKGROUND, Asset::TYPE_TEXTURE);
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_KAT_SCORE_IMAGE, TEXTURE_KAT_SCORE_IMAGE, Asset::TYPE_TEXTURE);
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_CROWN, TEXTURE_CROWN, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_START_SCREEN, TEXTURE_START_SCREEN, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_START_BUTTON, TEXTURE_START_BUTTON, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_START_BUTTON_HIGHLIGHT, TEXTURE_START_BUTTON_HIGHLIGHT, Asset::TYPE_TEXTURE);
 
 		// Vertex Shaders
 		Asset::Load(ASSET_DIRECTORY_SHADERS SHADER_MESH_VERTEX, SHADER_MESH_VERTEX, Asset::TYPE_VERTEX_SHADER);
