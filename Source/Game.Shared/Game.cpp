@@ -142,6 +142,8 @@ namespace KatBall
 		Player* player2 = nullptr;
 		Powerup* powerUp = nullptr;
 
+		RigidBody* rigidbody = nullptr;
+
 		bool shouldDeletePowerUp = false;
 
 		int numManifolds = mDynamicsWorld->getDispatcher()->getNumManifolds();
@@ -157,6 +159,7 @@ namespace KatBall
 			player = objectA->As<Player>();
 			powerUp = objectB->As<Powerup>();
 			player2 = objectB->As<Player>();
+			rigidbody = objectB->As<RigidBody>();
 
 			if (player != nullptr && powerUp != nullptr)
 			{
@@ -166,6 +169,13 @@ namespace KatBall
 
 			if (player != nullptr && player2!= nullptr)
 			{
+				player->SetLastPlayerTouching(player2->GetPlayerID());
+				player2->SetLastPlayerTouching(player->GetPlayerID());
+			}
+
+			if (player != nullptr && rigidbody != nullptr)
+			{
+				player2 = rigidbody->GetParent()->As<Player>();
 				player->SetLastPlayerTouching(player2->GetPlayerID());
 				player2->SetLastPlayerTouching(player->GetPlayerID());
 			}
