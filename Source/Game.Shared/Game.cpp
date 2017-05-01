@@ -115,6 +115,8 @@ namespace KatBall
 
 		mWorld.Initialize(mWorldState);
 
+		mGameSector->Initialize(mWorldState);
+
 		sCamera = new Camera();
 		sInputSubscriber = new InputSubscriber();
 		sCamera->SetRelativePosition(glm::vec3(0.0f, 10.0f, -12.0f));

@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <entity class='Player' name='Tubbs'>
 	<vector name='position' value='3.0,0.0,0.0,0.0'/>
+	<float name ='length' value ='2.0'/>
 	<float name='movespeed' value='20.0'/>
+	<float name ='punch impulse' value = '300.0'/>
     <string name='idle meshes' value='kat_idle.obj'/>
     <string name='run meshes' value='kat_run_1.obj'/>
     <string name='run meshes' value='kat_run_2.obj'/>

@@ -46,26 +46,25 @@ namespace KatBall
 		mPunchRigidBody->mSimulatePhysics = false;
 		mBallRigidBody->mBody->setFriction(30);
 
-		mGamepad = new Gamepad();
-
 		mInitialPunchScale = mPunchRigidBody->GetRelativeScale();
 		mCurrentLength = mLength;
 
 		mMass = mPunchRigidBody->mBody->getInvMass();
 		mCurrentMass = mMass;
 
+		mCurrentPunchImpulse = mPunchImpulse;
+
 		mLastTouchingPlayerID = NUM_PLAYERS;
 	}
 
 	void Player::Reset(WorldState& worldState)
 	{
-		Entity::Reset(worldState);
-
-		mInitialPunchScale = mPunchRigidBody->GetRelativeScale();
 		mCurrentLength = mLength;
 		mCurrentMass = mMass;
 
 		mLastTouchingPlayerID = NUM_PLAYERS;
+
+		Entity::Reset(worldState);
 	}
 
 	void Player::LoadRequiredMeshGeometries()
@@ -160,6 +159,7 @@ namespace KatBall
 		mMovementForce = otherPlayer.mMovementForce;
 		mPunched = otherPlayer.mPunched;
 		mLength = otherPlayer.mLength;
+		mPunchImpulse = otherPlayer.mPunchImpulse;
 
 		FixExternalAttributes();
 	}
@@ -168,6 +168,7 @@ namespace KatBall
 	{
 		Append(sMoveSpeedKey).SetStorage(&mMovementForce, 1);
 		Append(sLengthKey).SetStorage(&mLength, 1);
+		Append(sPunchImpulseKey).SetStorage(&mPunchImpulse, 1);
 	}
 
 	void Player::UpdateAnimation(FieaGameEngine::WorldState& worldState)
@@ -257,6 +258,7 @@ namespace KatBall
 	{
 		AddExternalAttribute(sMoveSpeedKey, &mMovementForce, 1);
 		AddExternalAttribute(sLengthKey, &mLength, 1);
+		AddExternalAttribute(sPunchImpulseKey, &mPunchImpulse, 1);
 	}
 
 	void Player::RotatePlayer(float x, float y)
@@ -276,17 +278,24 @@ namespace KatBall
 		OutputDebugString(L"Hi");
 	}
 
+	void Player::ActivateVortexBoi(float rotationSpeed)
+	{
+		OutputDebugString(L"Hello");
+	}
+
 	void Player::ActivateBigBoi(float scaleFactor)
 	{
 		glm::vec3 scale = mPunchRigidBody->GetRelativeScale();
 		scale *= scaleFactor;
 		mPunchRigidBody->SetRelativeScale(scale);
 
-		mCurrentMass *= scaleFactor;
+	//	mCurrentMass *= scaleFactor;
 
-		mPunchRigidBody->mBody->setMassProps(mCurrentMass, btVector3(0, 0, 0));
+	//	mPunchRigidBody->mBody->setMassProps(mCurrentMass, btVector3(0, 0, 0));
 
 		mPunchRigidBody->ResizeCollider();
+
+		mCurrentPunchImpulse = mPunchImpulse* scaleFactor;
 
 		OutputDebugString(L"Howdy");
 	}
@@ -343,4 +352,6 @@ namespace KatBall
 	const string Player::sPunchEntityKey = "punch";
 
 	const string Player::sLengthKey = "punch length";
+
+	const string Player::sPunchImpulseKey = "punch impulse";
 }

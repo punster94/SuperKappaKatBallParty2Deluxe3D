@@ -85,16 +85,26 @@ void GameStateManager::TransitionToMenu()
 
 	mGameSector->Orphan();
 	mMenuSector->SetWorld(*mWorld);
-	mWorld->Initialize(*mWorldState);
+	mWorld->Reset(*mWorldState);
 }
 
 void GameStateManager::TransitionToGame()
 {
 	StopSectorMusic(mMenuSector);
 
+	Datum& entities = mGameSector->Entities();
+	for (uint32_t i = 0; i < entities.Size(); ++i)
+	{
+		Scope& current = entities.Get<Scope&>(i);
+		if (current.Is(Player::TypeIdClass()))
+		{
+			static_cast<Player&>(current).CreateGamePad();
+		}
+	}
+
 	mMenuSector->Orphan();
 	mGameSector->SetWorld(*mWorld);
-	mWorld->Initialize(*mWorldState);
+	mWorld->Reset(*mWorldState);
 
 	// JUSTIN
 	EventMessageAttributed args(ActionUpdateScore::sScoreEventSubtype, mWorldState);
