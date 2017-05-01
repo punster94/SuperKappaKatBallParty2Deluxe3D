@@ -16,9 +16,11 @@ namespace KatBall
 		};
 
 		Powerup(PowerupType type, std::float_t stat, glm::vec4 location);
+		Powerup(const Powerup& otherPowerup);
+
 		void InitializeSignatures() override;
 		virtual void Initialize(FieaGameEngine::WorldState& worldState) override;
-
+		
 		/** Powerup collection
 		 *	Applies the powerup type effect on the provided kat.
 		 *	@param katBoi the player that has collected this powerup.
@@ -36,6 +38,9 @@ namespace KatBall
 		glm::vec4 GetSpawnLocation() const;
 
 	private:
+		void CopyPrivateDataMembers(const Powerup& otherPowerup);
+		void FixExternalAttributes();
+
 		RigidBody* mRigidBody;
 		MeshEntity* mMeshEntity;
 		glm::vec4 mSpawnLocation;
@@ -46,14 +51,13 @@ namespace KatBall
 
 		PowerupType mType;
 
-		const std::string mName = "powerup";
-		const std::string mScaleIncreaseKey = "scale increase";
-		const std::string mLengthIncreaseKey = "length increase";
-		const std::string mRotationSpeedKey = "rotation speed";
-		const std::string mSpawnLocationKey = "spawn location";
-
 		static const std::string sRigidBodyKey;
 		static const std::string sBallColliderKey;
 		static const std::string sBallMeshKey;
+
+		static const std::string sScaleIncreaseKey;
+		static const std::string sLengthIncreaseKey;
+		static const std::string sRotationSpeedKey;
+		static const std::string sSpawnLocationKey;
 	};
 }

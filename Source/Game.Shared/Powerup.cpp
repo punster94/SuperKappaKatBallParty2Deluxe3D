@@ -4,7 +4,7 @@
 namespace KatBall
 {
 	Powerup::Powerup(PowerupType type, std::float_t stat, glm::vec4 location) :
-		FieaGameEngine::Entity(mName), mType(type), mSpawnLocation(location), mScaleIncrease(0), mLengthIncrease(0), mRotationSpeed(0)
+		Entity("powerup"), mType(type), mSpawnLocation(location), mScaleIncrease(0), mLengthIncrease(0), mRotationSpeed(0), mMeshEntity(nullptr), mRigidBody(nullptr)
 	{
 		switch (type)
 		{
@@ -22,14 +22,20 @@ namespace KatBall
 		InitializeSignatures();
 	}
 
+	Powerup::Powerup(const Powerup& otherPowerup):
+		Entity(otherPowerup)
+	{
+		CopyPrivateDataMembers(otherPowerup);
+	}
+
 	void Powerup::InitializeSignatures()
 	{
 		Entity::InitializeSignatures();
 
-		AddExternalAttribute(mScaleIncreaseKey, &mScaleIncrease, 1);
-		AddExternalAttribute(mLengthIncreaseKey, &mLengthIncrease, 1);
-		AddExternalAttribute(mRotationSpeedKey, &mRotationSpeed, 1);
-		AddExternalAttribute(mSpawnLocationKey, &mSpawnLocation, 1);
+		AddExternalAttribute(sScaleIncreaseKey, &mScaleIncrease, 1);
+		AddExternalAttribute(sLengthIncreaseKey, &mLengthIncrease, 1);
+		AddExternalAttribute(sRotationSpeedKey, &mRotationSpeed, 1);
+		AddExternalAttribute(sSpawnLocationKey, &mSpawnLocation, 1);
 	}
 
 	void Powerup::Initialize(FieaGameEngine::WorldState& worldState)
@@ -96,7 +102,35 @@ namespace KatBall
 		return mSpawnLocation;
 	}
 
+	void Powerup::CopyPrivateDataMembers(const Powerup& otherPowerup)
+	{
+		mRigidBody = otherPowerup.mRigidBody;
+		mMeshEntity = otherPowerup.mMeshEntity;
+		mSpawnLocation = otherPowerup.mSpawnLocation;
+
+		mType = otherPowerup.mType;
+		mScaleIncrease = otherPowerup.mScaleIncrease;
+		mLengthIncrease = otherPowerup.mLengthIncrease;
+		mRotationSpeed = otherPowerup.mRotationSpeed;
+
+
+		FixExternalAttributes();
+	}
+
+	void Powerup::FixExternalAttributes()
+	{
+		Append(sScaleIncreaseKey).SetStorage(&mScaleIncrease, 1);
+		Append(sLengthIncreaseKey).SetStorage(&mLengthIncrease, 1);
+		Append(sRotationSpeedKey).SetStorage(&mRotationSpeed, 1);
+		Append(sSpawnLocationKey).SetStorage(&mSpawnLocation, 1);
+	}
+
 	const std::string Powerup::sRigidBodyKey = "rigidbody";
 	const std::string Powerup::sBallColliderKey = "ball collider";
 	const std::string Powerup::sBallMeshKey = "ball mesh";
+
+	const std::string Powerup::sScaleIncreaseKey = "scale increase";
+	const std::string Powerup::sLengthIncreaseKey = "length increase";
+	const std::string Powerup::sRotationSpeedKey = "rotation speed";
+	const std::string Powerup::sSpawnLocationKey = "spawn location";
 }
