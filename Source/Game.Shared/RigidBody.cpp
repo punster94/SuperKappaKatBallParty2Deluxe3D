@@ -105,8 +105,6 @@ namespace KatBall
 		mBody = new btRigidBody(*mConstructionInfo);
 
 		mBody->activate(true);
-
-		worldState.mWorld->RegisterRigidBody(*mCollider, *mBody);
 		// TODO -- leaks memory
 	}
 
