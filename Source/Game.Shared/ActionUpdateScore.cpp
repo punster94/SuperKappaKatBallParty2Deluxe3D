@@ -27,13 +27,13 @@ void ActionUpdateScore::Update(WorldState& worldState)
 {
 	UNREFERENCED_PARAMETER(worldState);
 
-	if(Datum* playerIDDatum = Search(sPlayerIDKey))
+	Datum* playerIDDatum = Search(sPlayerIDKey);
+	Datum* scoresDatum = Search(HUD::sScoresKey);
+	if(playerIDDatum != nullptr && scoresDatum != nullptr)
 	{
-		// assert that playerID is valid
+		// check if playerID is valid
 		int32_t playerID = playerIDDatum->Get<int32_t&>();
-		assert(playerID >= 0 && playerID < NUM_PLAYERS);
-
-		if(Datum* scoresDatum = Search(HUD::sScoresKey))
+		if(playerID >= 0 && playerID < NUM_PLAYERS)
 		{
 			// get the scores from HUD and update using player ID
 			static_cast<Score*>(scoresDatum->Get<RTTI*&>(playerID))->UpdateScore();

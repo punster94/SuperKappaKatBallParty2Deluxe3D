@@ -29,6 +29,7 @@ namespace KatBall
 		Player(const Player& otherPlayer);
 
 		virtual void Initialize(FieaGameEngine::WorldState& worldState) override;
+		virtual void Reset(FieaGameEngine::WorldState& worldState) override;
 
 		virtual Scope* Copy() const override;
 
@@ -43,6 +44,8 @@ namespace KatBall
 		void Player::ActivateBigBoi(float scaleFactor);
 
 		void OnHit();
+
+		void Respawn(FieaGameEngine::WorldState& worldState);
 
 	protected:
 
@@ -105,6 +108,8 @@ namespace KatBall
 		float mCurrentMass;
 
 		glm::vec3 mInitialPunchScale;
+
+		std::uint32_t mLastTouchingPlayerID;
 
 		FieaGameEngine::Vector<FieaGameEngine::MeshGeometry*> mIdleMeshGeometries;
 		FieaGameEngine::Vector<FieaGameEngine::MeshGeometry*> mRunMeshGeometries;

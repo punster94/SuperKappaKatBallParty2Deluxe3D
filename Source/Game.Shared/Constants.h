@@ -3,6 +3,8 @@
 #define NUM_PLAYERS 4
 #define ROUNDS_TO_WIN 3
 
+#define RESPAWN_THRESHOLD -15.0f
+
 #define ASSET_DIRECTORY_MESHES "meshes/"
 #define ASSET_DIRECTORY_MUSIC "music/"
 #define ASSET_DIRECTORY_SHADERS "shaders/"
