@@ -62,6 +62,8 @@ namespace KatBall
 
 		MeshEntity* mMeshEntity;
 
+		MeshEntity* mKatMeshEntity;
+
 		Gamepad* mGamepad;
 
 		FieaGameEngine::KatSound* mPunchSound;
@@ -82,6 +84,7 @@ namespace KatBall
 		static const std::string sMeshKey;
 		static const std::string sMoveSpeedKey;
 		static const std::string sBallMeshKey;
+		static const std::string sKatMeshKey;
 		static const std::string sBallColliderKey;
 		static const std::string sPunchSoundKey;
 		static const std::string sHitSoundKey;

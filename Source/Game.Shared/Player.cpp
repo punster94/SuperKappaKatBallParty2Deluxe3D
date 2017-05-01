@@ -9,7 +9,7 @@ namespace KatBall
 	RTTI_DEFINITIONS(Player)
 
 	Player::Player(const std::string& name) :
-		Entity(name), mRigidBody(nullptr), mMeshEntity(nullptr), mGamepad(nullptr), mPunchSound(nullptr), mHitSound(nullptr), mAnimTime(0.0f), mAnimState(AnimState::IDLE), mAnimFrame(0)
+		Entity(name), mRigidBody(nullptr), mMeshEntity(nullptr), mKatMeshEntity(nullptr), mGamepad(nullptr), mPunchSound(nullptr), mHitSound(nullptr), mAnimTime(0.0f), mAnimState(AnimState::IDLE), mAnimFrame(0)
 	{
 		InitializeSignatures();
 	}
@@ -32,6 +32,10 @@ namespace KatBall
 		if ((entity = FindChildEntityByName(sBallMeshKey)))
 		{
 			mMeshEntity = entity->As<MeshEntity>();
+		}
+		if ((entity = FindChildEntityByName(sKatMeshKey)))
+		{
+			mKatMeshEntity = entity->As<MeshEntity>();
 		}
 		if ((entity = FindChildEntityByName(sPunchSoundKey)))
 		{
@@ -215,7 +219,7 @@ namespace KatBall
 			mAnimFrame = 0U;
 		}
 
-		mMeshEntity->SetMeshGeometry(meshes[mAnimFrame]);
+		mKatMeshEntity->SetMeshGeometry(meshes[mAnimFrame]);
 	}
 
 	void Player::InitializeSignatures()
@@ -229,6 +233,7 @@ namespace KatBall
 	const string Player::sRigidBodyKey = "rigidbody";
 	const string Player::sMoveSpeedKey = "movespeed";
 	const string Player::sBallMeshKey = "ball mesh";
+	const string Player::sKatMeshKey = "kat mesh";
 	const string Player::sBallColliderKey = "ball collider";
 	const string Player::sPunchSoundKey = "punch sound";
 	const string Player::sHitSoundKey = "hit sound";
