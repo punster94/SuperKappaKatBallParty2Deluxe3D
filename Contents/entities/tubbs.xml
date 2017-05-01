@@ -2,15 +2,26 @@
 <entity class='Player' name='Tubbs'>
 	<vector name='position' value='3.0,0.0,0.0,0.0'/>
 	<float name='movespeed' value='20.0'/>
-	<entity class='Entity' name='Ball'>
+	<float name ='length' value ='2.0f'/>
+	<entity class='RigidBody' name='ball collider'>
 		<vector name='scale' value='0.5,0.5,0.5,0.0'/>
-		<entity class='RigidBody' name='ball collider'>
-			<string name='shape' value='sphere'/>
-			<float name='mass' value='50.0'/>
-		</entity>
+		<string name='shape' value='sphere'/>
+		<float name='mass' value='50.0'/>
+		<float name='friction' value ='3' />
 		<entity class='MeshEntity' name='ball mesh'>
 			<string name='mesh filename' value='flat_sphere.obj'/>
 			<string name='texture filename' value='mankey_ball.bmp'/>
 		</entity>
-	</entity>
+		<entity class='RigidBody' name='punch collider'>
+			<vector name='scale' value='0.4,0.4,0.4,0.0'/>
+			<vector name='position' value='-1.0,0.0,0.0,0.0'/>
+			<string name='shape' value='box'/>
+			<float name='mass' value='50.0'/>
+			<integer name='gravity enable' value ='0'/>
+			<entity class='MeshEntity' name='punch mesh'>
+				<string name='mesh filename' value='cube.obj'/>
+				<string name='texture filename' value='grid.bmp'/>
+			</entity>
+		</entity>
+	</entity>	
 </entity>

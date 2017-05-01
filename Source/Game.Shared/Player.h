@@ -24,6 +24,10 @@ namespace KatBall
 
 		virtual void Update(FieaGameEngine::WorldState& worldState) override;
 
+		void Player::ActivateLongBoi(float length);
+
+		void Player::ActivateBigBoi(float scaleFactor);
+
 	protected:
 
 		void InitializeSignatures();
@@ -34,13 +38,33 @@ namespace KatBall
 
 		void FixExternalAttributes();
 
-		RigidBody* mRigidBody;
+		void RotatePlayer(float x, float y);
 
-		MeshEntity* mMeshEntity;
+		RigidBody* mBallRigidBody;
+
+		RigidBody* mPunchRigidBody;
+
+		MeshEntity* mBallMesh;
+
+		MeshEntity* mPunchMesh;
 
 		Gamepad* mGamepad;
 
 		float mMovementForce;
+
+		glm::vec3 mInitialPunchPos;
+
+		bool mPunched;
+
+		float mLength;
+
+		float mCurrentLength;
+
+		float mMass;
+
+		float mCurrentMass;
+
+		glm::vec3 mInitialPunchScale;
 
 		static const std::string sRigidBodyKey;
 
@@ -51,6 +75,14 @@ namespace KatBall
 		static const std::string sBallMeshKey;
 
 		static const std::string sBallColliderKey;
+
+		static const std::string sPunchMeshKey;
+
+		static const std::string sPunchColliderKey;
+
+		static const std::string sPunchEntityKey;
+
+		static const std::string sLengthKey;
 
 		static std::int32_t sPlayerId;
 	};

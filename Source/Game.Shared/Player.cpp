@@ -8,7 +8,8 @@ namespace KatBall
 	RTTI_DEFINITIONS(Player)
 
 	Player::Player(const std::string& name) :
-		Entity(name), mRigidBody(nullptr), mMeshEntity(nullptr), mGamepad(nullptr)
+		Entity(name), mBallRigidBody(nullptr), mBallMesh(nullptr), mGamepad(nullptr), mPunched(false),
+		mLength(2.0f)
 	{
 		InitializeSignatures();
 	}
@@ -23,10 +24,22 @@ namespace KatBall
 	{
 		Entity::Initialize(worldState);
 
-		mRigidBody = FindChildEntityByName(sBallColliderKey)->As<RigidBody>();
-		mMeshEntity = FindChildEntityByName(sBallMeshKey)->As<MeshEntity>();
+		mBallRigidBody = FindChildEntityByName(sBallColliderKey)->As<RigidBody>();
+		mBallMesh = FindChildEntityByName(sBallMeshKey)->As<MeshEntity>();
+
+		mPunchRigidBody = FindChildEntityByName(sPunchColliderKey)->As<RigidBody>();
+		mPunchMesh = FindChildEntityByName(sPunchMeshKey)->As<MeshEntity>();
+
+		mPunchRigidBody->mSimulatePhysics = false;
+		mBallRigidBody->mBody->setFriction(30);
 
 		mGamepad = new Gamepad(sPlayerId++);
+
+		mInitialPunchScale = mPunchRigidBody->GetRelativeScale();
+		mCurrentLength = mLength;
+
+		mMass = mPunchRigidBody->mBody->getInvMass();
+		mCurrentMass = mMass;
 	}
 
 	Scope* Player::Copy() const
@@ -36,26 +49,45 @@ namespace KatBall
 
 	void Player::Update(FieaGameEngine::WorldState& worldState)
 	{
-		worldState.mEntity = this;
+		btTransform trans;
+		btTransform trans1;
+		btTransform trans2;
 
 		if (mGamepad->Refresh())
 		{
-			mRigidBody->mBody->applyCentralImpulse(btVector3(mMovementForce * mGamepad->leftStickX, 0, mMovementForce * mGamepad->leftStickY));
+			mBallRigidBody->mBody->applyCentralImpulse(btVector3(mMovementForce * mGamepad->leftStickX, 0, mMovementForce * mGamepad->leftStickY));
+		//	RotatePlayer(mGamepad->leftStickX, mGamepad->leftStickY);
 		}
 
-		btTransform trans;
-		mRigidBody->mBody->getMotionState()->getWorldTransform(trans);
+		if (!mPunchRigidBody->mSimulatePhysics && mGamepad->IsPressed(XINPUT_GAMEPAD_A))
+		{
+			mPunchRigidBody->mSimulatePhysics = true;
+			mPunchRigidBody->mBody->applyCentralImpulse(btVector3(600, 0, 0));
+			mInitialPunchPos = mPunchRigidBody->GetRelativePosition();
+		}
 
-		mPosition.x = trans.getOrigin().getX();
-		mPosition.y = trans.getOrigin().getY();
-		mPosition.z = trans.getOrigin().getZ();
+		mBallRigidBody->mBody->getMotionState()->getWorldTransform(trans1);
+		btVector3 pos = trans1.getOrigin();
+		
+		mPunchRigidBody->mBody->getMotionState()->getWorldTransform(trans2);
+		btVector3 punchPos = trans2.getOrigin();
 
-		SetRelativePosition(mPosition);
+		if (pos.distance(punchPos) > mCurrentLength && !mGamepad->IsPressed(XINPUT_GAMEPAD_A))
+		{
+			mPunchRigidBody->mSimulatePhysics = false;
+			mPunchRigidBody->mBody->setLinearVelocity(btVector3(0, 0, 0));
+			mPunchRigidBody->mBody->clearForces();
+			mPunchRigidBody->SetRelativePosition(mInitialPunchPos);	
+		}
+
+		Entity::Update(worldState);
 	}
 
 	void Player::CopyPrivateDataMembers(const Player& otherPlayer)
 	{
 		mMovementForce = otherPlayer.mMovementForce;
+		mPunched = otherPlayer.mPunched;
+		mLength = otherPlayer.mLength;
 
 		FixExternalAttributes();
 	}
@@ -63,11 +95,42 @@ namespace KatBall
 	void Player::FixExternalAttributes()
 	{
 		Append(sMoveSpeedKey).SetStorage(&mMovementForce, 1);
+		Append(sLengthKey).SetStorage(&mLength, 1);
 	}
 
 	void Player::InitializeSignatures()
 	{
 		AddExternalAttribute(sMoveSpeedKey, &mMovementForce, 1);
+		AddExternalAttribute(sLengthKey, &mLength, 1);
+	}
+
+	void Player::RotatePlayer(float x, float y)
+	{
+		glm::vec3 direction(x, y, 0);
+
+		if (direction.length() > 0.5f)
+		{
+			
+			SetWorldRotation(glm::vec3(0, glm::atan(x / y), 0));
+		}
+	}
+
+	void Player::ActivateLongBoi(float length)
+	{
+		mCurrentLength += length;
+	}
+
+	void Player::ActivateBigBoi(float scaleFactor)
+	{
+		glm::vec3 scale = mPunchRigidBody->GetRelativeScale();
+		scale *= scaleFactor;
+		mPunchRigidBody->SetRelativeScale(scale);
+
+		mCurrentMass *= scaleFactor;
+
+		mPunchRigidBody->mBody->setMassProps(mCurrentMass, btVector3(0, 0, 0));
+		
+		mPunchRigidBody->ResizeCollider();
 	}
 
 	int32_t Player::sPlayerId = 0;
@@ -81,4 +144,14 @@ namespace KatBall
 	const string Player::sBallMeshKey = "ball mesh";
 
 	const string Player::sBallColliderKey = "ball collider";
+
+	const string Player::sPunchMeshKey = "punch mesh";
+
+	const string Player::sPunchColliderKey = "punch collider";
+
+	const string Player::sPunchEntityKey = "punch";
+
+	const string Player::sLengthKey = "punch length";
+
+
 }
