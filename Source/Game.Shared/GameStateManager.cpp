@@ -16,8 +16,8 @@ using namespace FieaGameEngine;
 using namespace KatBall;
 using namespace std;
 
-const string GameStateManager::sRoundResetEventSubtype = "round_reset";
 const string GameStateManager::sMatchWonEventSubtype = "match_won";
+const string GameStateManager::sRoundResetEventSubtype = "round_reset";
 const string GameStateManager::sStartGameEventSubtype = "start_game";
 
 const GameStateManager::Handlers GameStateManager::sHandlers =
