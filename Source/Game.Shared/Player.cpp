@@ -267,7 +267,6 @@ namespace KatBall
 	{
 		const float velocityThreshold = 0.1f;
 		const float rollFactor = 2.5f;
-		glm::vec3 direction(x, 0.0f, y);
 
 		glm::vec3 velocity = mBallRigidBody->GetLinearVelocity();
 		float speed = glm::length(velocity);
@@ -296,6 +295,42 @@ namespace KatBall
 			}
 
 			mBallMesh->SetRelativeRotation(glm::vec3(xRotation, angle, 0.0f));
+		}
+
+		glm::vec3 direction(x, 0.0f, y);
+
+		if (glm::length(direction) > velocityThreshold)
+		{
+			glm::vec3 normalDirection = glm::normalize(direction);
+
+			glm::vec3 forward(0.0f, 0.0f, -1.0f);
+
+			float dot = glm::dot(normalDirection, forward);
+			float angle = glm::acos(dot);
+
+			if (normalDirection.x > 0.0f)
+			{
+				angle *= -1.0f;
+			}
+
+			mPunchMesh->SetRelativeRotation(glm::vec3(0, angle, 0));
+
+			glm::vec3 normalCurrent = glm::normalize(mPunchRigidBody->GetRelativePosition());
+			float punchDistance = glm::length(mPunchRigidBody->GetRelativePosition());
+
+			float currentDot = glm::dot(normalCurrent, forward);
+			float currentAngle = glm::acos(currentDot);
+
+			if (normalCurrent.x > 0.0f)
+			{
+				currentAngle *= -1.0f;
+			}
+
+			//float mixedAngle = glm::mix(currentAngle, angle, 0.1f);
+
+			glm::vec3 punchTargetPosition(-glm::sin(angle), 0.0f, -glm::cos(angle));
+
+			mPunchRigidBody->SetRelativePosition(punchTargetPosition * punchDistance);
 		}
 	}
 
