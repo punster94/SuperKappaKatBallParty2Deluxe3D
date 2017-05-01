@@ -59,6 +59,7 @@ namespace KatBall
 		QuadEntityFactory qef;
 		PlayerFactory pf;
 		PowerupSpawnerFactory psf;
+		PowerupFactory pwf;
 
 		std::experimental::filesystem::directory_iterator directoryIt(ASSET_DIRECTORY_ENTITIES);
 

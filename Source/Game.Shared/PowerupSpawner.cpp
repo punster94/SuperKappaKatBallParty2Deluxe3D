@@ -13,6 +13,7 @@ namespace KatBall
 		PowerupSpawner::InitializeSignatures();
 		unsigned randomSeed = std::chrono::system_clock::now().time_since_epoch().count();
 		mGenerator.seed(randomSeed);
+		//(*this)[sPowerupKey].SetType(FieaGameEngine::Datum::DatumType::Table);
 	}
 
 	PowerupSpawner::PowerupSpawner(const PowerupSpawner& rhs) :
@@ -24,7 +25,35 @@ namespace KatBall
 	void PowerupSpawner::Initialize(FieaGameEngine::WorldState& worldState)
 	{
 		Entity::Initialize(worldState);
-		mLongBoyMesh = FindChildEntityByName(sBallMeshKey)->As<MeshEntity>();
+
+		mLongBoi = FindChildEntityByName(sLongBoiKey)->As<Powerup>();
+		mBigBoi = FindChildEntityByName(sBigBoiKey)->As<Powerup>();
+		mVortexBoi = FindChildEntityByName(sVortexBoiKey)->As<Powerup>();
+
+		InitializePowerups();
+
+		Adopt(*(FindChildEntityByName(sLongBoiKey)->As<Powerup>()), sPowerupKey);
+		Adopt(*(FindChildEntityByName(sBigBoiKey)->As<Powerup>()), sPowerupKey);
+		Adopt(*(FindChildEntityByName(sVortexBoiKey)->As<Powerup>()), sPowerupKey);
+
+		//Entity::Initialize(worldState);
+
+		//mLongBoiMesh = FindChildEntityByName(sBallMeshKey)->As<MeshEntity>();
+	}
+
+	void PowerupSpawner::InitializePowerups()
+	{
+		mLongBoi->SetType(Powerup::PowerupType::LongBoi);
+		mBigBoi->SetType(Powerup::PowerupType::BigBoi);
+		mVortexBoi->SetType(Powerup::PowerupType::VortexBoi);
+
+		mLongBoi->SetLengthIncrease(mLongBoiLengthIncrease);
+		mBigBoi->SetScaleIncrease(mBigBoiScaleIncrease);
+		mVortexBoi->SetRotationSpeed(mVortexBoiRotationSpeed);
+
+		mLongBoi->SetRelativePosition(mPosition);
+		mBigBoi->SetRelativePosition(mPosition);
+		mVortexBoi->SetRelativePosition(mPosition);
 	}
 
 	void PowerupSpawner::Update(FieaGameEngine::WorldState& worldState)
@@ -34,6 +63,12 @@ namespace KatBall
 		{	// Every 5 seconds, attempt to spawn this thing
 			mElapsedTime = 0.0f;
 			AttemptSpawn();
+		}
+
+		auto& datum = (*this)[FieaGameEngine::Sector::sSectorEntitiesKey];
+		for (std::uint32_t i = 0; i < datum.Size(); i++)
+		{
+			datum.Get<Scope&>(i).As<Entity>()->Update(worldState);
 		}
 	}
 
@@ -129,34 +164,34 @@ namespace KatBall
 
 		if (roll <= mSpawnChance)
 		{
-			mScale.x = (mScale.x == 2) ? 0.5 : 1;
-			mScale.y = (mScale.y == 2) ? 0.5 : 1;
-			mScale.z = (mScale.z == 2) ? 0.5 : 1;
+			//mScale.x = (mScale.x == 2) ? 0.5 : 1;
+			//mScale.y = (mScale.y == 2) ? 0.5 : 1;
+			//mScale.z = (mScale.z == 2) ? 0.5 : 1;
 			std::uint32_t totalSpawnWeight = mLongBoiSpawnWeight + mBigBoiSpawnWeight + mVortexBoiSpawnWeight;
 			std::uniform_int_distribution<std::uint32_t> weightedDistribution(0, totalSpawnWeight);
 			std::uint32_t weightedRoll = distribution(mGenerator);
 
 			if (weightedRoll <= mLongBoiSpawnWeight)
 			{
-				(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(
-					*new Powerup(Powerup::PowerupType::LongBoi, mLongBoiLengthIncrease, glm::vec4(mPosition.x, mPosition.y, mPosition.z, 0)));
+				//(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(*new Powerup(*mLongBoi));
+				Adopt(*new Powerup(*mLongBoi), FieaGameEngine::Sector::sSectorEntitiesKey);
 			}
 			else if (weightedRoll <= mLongBoiSpawnWeight + mBigBoiSpawnWeight)
 			{
-				(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(
-					*new Powerup(Powerup::PowerupType::BigBoi, mBigBoiScaleIncrease, glm::vec4(mPosition.x, mPosition.y, mPosition.z, 0)));
+				//(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(*new Powerup(*mBigBoi));
+				Adopt(*new Powerup(*mBigBoi), FieaGameEngine::Sector::sSectorEntitiesKey);
 			}
 			else if (weightedRoll <= mLongBoiSpawnWeight + mBigBoiSpawnWeight + mVortexBoiSpawnWeight)
 			{
-				(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(
-					*new Powerup(Powerup::PowerupType::VortexBoi, mVortexBoiRotationSpeed, glm::vec4(mPosition.x, mPosition.y, mPosition.z, 0)));
+				//(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(*new Powerup(*mVortexBoi));
+				Adopt(*new Powerup(*mVortexBoi), FieaGameEngine::Sector::sSectorEntitiesKey);
 			}
 		}
 	}
 
 	void PowerupSpawner::CopyPrivateDataMembers(const PowerupSpawner& rhs)
 	{
-		mLongBoyMesh = rhs.mLongBoyMesh;
+		mLongBoiMesh = rhs.mLongBoiMesh;
 		mLongBoi = rhs.mLongBoi;
 		mBigBoi = rhs.mBigBoi;
 		mVortexBoi = rhs.mVortexBoi;
@@ -192,6 +227,7 @@ namespace KatBall
 	const std::string PowerupSpawner::sLongBoiSpawnWeight = "Long Boi Spawn Weight";
 	const std::string PowerupSpawner::sBigBoiSpawnWeight = "Big Boi Spawn Weight";
 	const std::string PowerupSpawner::sVortexBoiSpawnWeight = "Vortex Boi Spawn Weight";
+	const std::string PowerupSpawner::sPowerupKey = "powerups";
 
 	const std::string PowerupSpawner::sLongBoiStat = "Long Boi Length Increase";
 	const std::string PowerupSpawner::sBigBoiStat = "Big Boi Scale Increase";
@@ -200,4 +236,8 @@ namespace KatBall
 	const std::string PowerupSpawner::sRigidBodyKey = "rigidbody";
 	const std::string PowerupSpawner::sBallColliderKey = "ball collider";
 	const std::string PowerupSpawner::sBallMeshKey = "ball mesh";
+
+	const std::string PowerupSpawner::sLongBoiKey = "long boi";
+	const std::string PowerupSpawner::sBigBoiKey = "big boi";
+	const std::string PowerupSpawner::sVortexBoiKey = "vortex boi";
 }

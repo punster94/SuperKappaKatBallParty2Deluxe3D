@@ -12,10 +12,12 @@ namespace KatBall
 		{
 			BigBoi,
 			LongBoi,
-			VortexBoi
+			VortexBoi,
+			Default
 		};
 
-		Powerup(PowerupType type, std::float_t stat, glm::vec4 location);
+		//Powerup(PowerupType type, std::float_t stat, glm::vec4 location);
+		Powerup();
 		Powerup(const Powerup& otherPowerup);
 
 		void InitializeSignatures() override;
@@ -30,12 +32,12 @@ namespace KatBall
 		void SetScaleIncrease(std::float_t scaleIncrease);
 		void SetLengthIncrease(std::float_t lengthIncrease);
 		void SetRotationSpeed(std::float_t rotationSpeed);
-		void SetSpawnLocation(glm::vec4 spawnLocation);
+		void SetType(PowerupType type);
 
 		std::float_t GetScaleIncrease() const;
 		std::float_t GetLengthIncrease() const;
 		std::float_t GetRotationSpeed() const;
-		glm::vec4 GetSpawnLocation() const;
+		PowerupType GetType() const;
 
 	private:
 		void CopyPrivateDataMembers(const Powerup& otherPowerup);
@@ -43,7 +45,6 @@ namespace KatBall
 
 		RigidBody* mRigidBody;
 		MeshEntity* mMeshEntity;
-		glm::vec4 mSpawnLocation;
 
 		std::float_t mScaleIncrease;
 		std::float_t mLengthIncrease;
@@ -60,4 +61,6 @@ namespace KatBall
 		static const std::string sRotationSpeedKey;
 		static const std::string sSpawnLocationKey;
 	};
+
+	ConcreteEntityFactory(Powerup);
 }

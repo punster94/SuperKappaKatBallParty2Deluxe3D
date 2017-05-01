@@ -3,22 +3,28 @@
 
 namespace KatBall
 {
-	Powerup::Powerup(PowerupType type, std::float_t stat, glm::vec4 location) :
-		Entity("powerup"), mType(type), mSpawnLocation(location), mScaleIncrease(0), mLengthIncrease(0), mRotationSpeed(0), mMeshEntity(nullptr), mRigidBody(nullptr)
-	{
-		switch (type)
-		{
-		case BigBoi:
-			mScaleIncrease = stat;
-			break;
-		case LongBoi:
-			mLengthIncrease = stat;
-			break;
-		case VortexBoi:
-			mRotationSpeed = stat;
-			break;
-		}
+	//Powerup::Powerup(PowerupType type, std::float_t stat, glm::vec4 location) :
+	//	Entity("powerup"), mType(type), mSpawnLocation(location), mScaleIncrease(0), mLengthIncrease(0), mRotationSpeed(0), mMeshEntity(nullptr), mRigidBody(nullptr)
+	//{
+	//	switch (type)
+	//	{
+	//	case BigBoi:
+	//		mScaleIncrease = stat;
+	//		break;
+	//	case LongBoi:
+	//		mLengthIncrease = stat;
+	//		break;
+	//	case VortexBoi:
+	//		mRotationSpeed = stat;
+	//		break;
+	//	}
 
+	//	InitializeSignatures();
+	//}
+
+	Powerup::Powerup():
+		Entity("powerup"), mType(PowerupType::Default), mScaleIncrease(), mLengthIncrease(), mRotationSpeed(), mMeshEntity(nullptr), mRigidBody(nullptr)
+	{
 		InitializeSignatures();
 	}
 
@@ -35,7 +41,6 @@ namespace KatBall
 		AddExternalAttribute(sScaleIncreaseKey, &mScaleIncrease, 1);
 		AddExternalAttribute(sLengthIncreaseKey, &mLengthIncrease, 1);
 		AddExternalAttribute(sRotationSpeedKey, &mRotationSpeed, 1);
-		AddExternalAttribute(sSpawnLocationKey, &mSpawnLocation, 1);
 	}
 
 	void Powerup::Initialize(FieaGameEngine::WorldState& worldState)
@@ -43,7 +48,7 @@ namespace KatBall
 		Entity::Initialize(worldState);
 
 		mMeshEntity = FindChildEntityByName(sBallMeshKey)->As<MeshEntity>();
-		mRigidBody = FindChildEntityByName(sRigidBodyKey)->As<RigidBody>();
+		mRigidBody = FindChildEntityByName(sBallColliderKey)->As<RigidBody>();
 	}
 
 	void Powerup::OnCollect(Player& katBoi)
@@ -77,9 +82,9 @@ namespace KatBall
 		mRotationSpeed = rotationSpeed;
 	}
 
-	void Powerup::SetSpawnLocation(glm::vec4 spawnLocation)
+	void Powerup::SetType(PowerupType type)
 	{
-		mSpawnLocation = spawnLocation;
+		mType = type;
 	}
 
 	std::float_t Powerup::GetScaleIncrease() const
@@ -97,22 +102,20 @@ namespace KatBall
 		return mRotationSpeed;
 	}
 
-	glm::vec4 Powerup::GetSpawnLocation() const
+	Powerup::PowerupType Powerup::GetType() const
 	{
-		return mSpawnLocation;
+		return mType;
 	}
 
 	void Powerup::CopyPrivateDataMembers(const Powerup& otherPowerup)
 	{
 		mRigidBody = otherPowerup.mRigidBody;
 		mMeshEntity = otherPowerup.mMeshEntity;
-		mSpawnLocation = otherPowerup.mSpawnLocation;
 
 		mType = otherPowerup.mType;
 		mScaleIncrease = otherPowerup.mScaleIncrease;
 		mLengthIncrease = otherPowerup.mLengthIncrease;
 		mRotationSpeed = otherPowerup.mRotationSpeed;
-
 
 		FixExternalAttributes();
 	}
@@ -122,7 +125,6 @@ namespace KatBall
 		Append(sScaleIncreaseKey).SetStorage(&mScaleIncrease, 1);
 		Append(sLengthIncreaseKey).SetStorage(&mLengthIncrease, 1);
 		Append(sRotationSpeedKey).SetStorage(&mRotationSpeed, 1);
-		Append(sSpawnLocationKey).SetStorage(&mSpawnLocation, 1);
 	}
 
 	const std::string Powerup::sRigidBodyKey = "rigidbody";
@@ -132,5 +134,4 @@ namespace KatBall
 	const std::string Powerup::sScaleIncreaseKey = "scale increase";
 	const std::string Powerup::sLengthIncreaseKey = "length increase";
 	const std::string Powerup::sRotationSpeedKey = "rotation speed";
-	const std::string Powerup::sSpawnLocationKey = "spawn location";
 }

@@ -11,11 +11,44 @@
     <float name='Long Boi Length Increase' value='1.0'/>
     <float name='Big Boi Scale Increase' value='1.0'/>
     <float name='Vortex Boi Rotation Speed' value='1.0'/>
-    <entity class='MeshEntity' name='ball mesh'>
-      <string name='mesh filename' value='smooth_sphere.obj'/>
-      <string name='texture filename' value='ball.png'/>
-      <integer name='render pass' value='1'/>
-      <vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+    <entity class='Powerup' name='long boi'>
+      <entity class='MeshEntity' name='ball mesh'>
+      	<string name='mesh filename' value='smooth_sphere.obj'/>
+	<vector name='scale' value='1, 1, 1, 1'/>
+      	<string name='texture filename' value='ball.png'/>
+      	<integer name='render pass' value='1'/>
+      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+      </entity>
+      <entity class='RigidBody' name='ball collider'>
+	<string name='shape' value='sphere'/>
+	<float name='mass' value='50.0'/>
+      </entity>
+    </entity>
+    <entity class='Powerup' name='big boi'>
+      <entity class='MeshEntity' name='ball mesh'>
+      	<string name='mesh filename' value='smooth_sphere.obj'/>
+	<vector name='scale' value='1, 1, 1, 1'/>
+      	<string name='texture filename' value='ball.png'/>
+      	<integer name='render pass' value='1'/>
+      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+      </entity>
+      <entity class='RigidBody' name='ball collider'>
+	<string name='shape' value='sphere'/>
+	<float name='mass' value='50.0'/>
+      </entity>
+    </entity>
+    <entity class='Powerup' name='vortex boi'>
+      <entity class='MeshEntity' name='ball mesh'>
+      	<string name='mesh filename' value='smooth_sphere.obj'/>
+	<vector name='scale' value='1, 1, 1, 1'/>
+      	<string name='texture filename' value='ball.png'/>
+      	<integer name='render pass' value='1'/>
+      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+      </entity>
+      <entity class='RigidBody' name='ball collider'>
+	<string name='shape' value='sphere'/>
+	<float name='mass' value='50.0'/>
+      </entity>
     </entity>
   </entity>
 
@@ -29,11 +62,44 @@
     <float name='Long Boi Length Increase' value='1.0'/>
     <float name='Big Boi Scale Increase' value='1.0'/>
     <float name='Vortex Boi Rotation Speed' value='1.0'/>
-    <entity class='MeshEntity' name='ball mesh'>
-      <string name='mesh filename' value='smooth_sphere.obj'/>
-      <string name='texture filename' value='ball.png'/>
-      <integer name='render pass' value='1'/>
-      <vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+    <entity class='Powerup' name='long boi'>
+      <entity class='MeshEntity' name='ball mesh'>
+      	<string name='mesh filename' value='smooth_sphere.obj'/>
+	<vector name='scale' value='1, 1, 1, 1'/>
+      	<string name='texture filename' value='ball.png'/>
+      	<integer name='render pass' value='1'/>
+      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+      </entity>
+      <entity class='RigidBody' name='ball collider'>
+	<string name='shape' value='sphere'/>
+	<float name='mass' value='50.0'/>
+      </entity>
+    </entity>
+    <entity class='Powerup' name='big boi'>
+      <entity class='MeshEntity' name='ball mesh'>
+      	<string name='mesh filename' value='smooth_sphere.obj'/>
+	<vector name='scale' value='1, 1, 1, 1'/>
+      	<string name='texture filename' value='ball.png'/>
+      	<integer name='render pass' value='1'/>
+      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+      </entity>
+      <entity class='RigidBody' name='ball collider'>
+	<string name='shape' value='sphere'/>
+	<float name='mass' value='50.0'/>
+      </entity>
+    </entity>
+    <entity class='Powerup' name='vortex boi'>
+      <entity class='MeshEntity' name='ball mesh'>
+      	<string name='mesh filename' value='smooth_sphere.obj'/>
+	<vector name='scale' value='1, 1, 1, 1'/>
+      	<string name='texture filename' value='ball.png'/>
+      	<integer name='render pass' value='1'/>
+      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+      </entity>
+      <entity class='RigidBody' name='ball collider'>
+	<string name='shape' value='sphere'/>
+	<float name='mass' value='50.0'/>
+      </entity>
     </entity>
   </entity>
 
@@ -47,11 +113,44 @@
     <float name='Long Boi Length Increase' value='1.0'/>
     <float name='Big Boi Scale Increase' value='1.0'/>
     <float name='Vortex Boi Rotation Speed' value='1.0'/>
-    <entity class='MeshEntity' name='ball mesh'>
-      <string name='mesh filename' value='smooth_sphere.obj'/>
-      <string name='texture filename' value='ball.png'/>
-      <integer name='render pass' value='1'/>
-      <vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+    <entity class='Powerup' name='long boi'>
+      <entity class='MeshEntity' name='ball mesh'>
+      	<string name='mesh filename' value='smooth_sphere.obj'/>
+	<vector name='scale' value='1, 1, 1, 1'/>
+      	<string name='texture filename' value='ball.png'/>
+      	<integer name='render pass' value='1'/>
+      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+      </entity>
+      <entity class='RigidBody' name='ball collider'>
+	<string name='shape' value='sphere'/>
+	<float name='mass' value='50.0'/>
+      </entity>
+    </entity>
+    <entity class='Powerup' name='big boi'>
+      <entity class='MeshEntity' name='ball mesh'>
+      	<string name='mesh filename' value='smooth_sphere.obj'/>
+	<vector name='scale' value='1, 1, 1, 1'/>
+      	<string name='texture filename' value='ball.png'/>
+      	<integer name='render pass' value='1'/>
+      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+      </entity>
+      <entity class='RigidBody' name='ball collider'>
+	<string name='shape' value='sphere'/>
+	<float name='mass' value='50.0'/>
+      </entity>
+    </entity>
+    <entity class='Powerup' name='vortex boi'>
+      <entity class='MeshEntity' name='ball mesh'>
+      	<string name='mesh filename' value='smooth_sphere.obj'/>
+	<vector name='scale' value='1, 1, 1, 1'/>
+      	<string name='texture filename' value='ball.png'/>
+      	<integer name='render pass' value='1'/>
+      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+      </entity>
+      <entity class='RigidBody' name='ball collider'>
+	<string name='shape' value='sphere'/>
+	<float name='mass' value='50.0'/>
+      </entity>
     </entity>
   </entity>
 
@@ -65,11 +164,44 @@
     <float name='Long Boi Length Increase' value='1.0'/>
     <float name='Big Boi Scale Increase' value='1.0'/>
     <float name='Vortex Boi Rotation Speed' value='1.0'/>
-    <entity class='MeshEntity' name='ball mesh'>
-      <string name='mesh filename' value='smooth_sphere.obj'/>
-      <string name='texture filename' value='ball.png'/>
-      <integer name='render pass' value='1'/>
-      <vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+    <entity class='Powerup' name='long boi'>
+      <entity class='MeshEntity' name='ball mesh'>
+      	<string name='mesh filename' value='smooth_sphere.obj'/>
+	<vector name='scale' value='1, 1, 1, 1'/>
+      	<string name='texture filename' value='ball.png'/>
+      	<integer name='render pass' value='1'/>
+      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+      </entity>
+      <entity class='RigidBody' name='ball collider'>
+	<string name='shape' value='sphere'/>
+	<float name='mass' value='50.0'/>
+      </entity>
+    </entity>
+    <entity class='Powerup' name='big boi'>
+      <entity class='MeshEntity' name='ball mesh'>
+      	<string name='mesh filename' value='smooth_sphere.obj'/>
+	<vector name='scale' value='1, 1, 1, 1'/>
+      	<string name='texture filename' value='ball.png'/>
+      	<integer name='render pass' value='1'/>
+      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+      </entity>
+      <entity class='RigidBody' name='ball collider'>
+	<string name='shape' value='sphere'/>
+	<float name='mass' value='50.0'/>
+      </entity>
+    </entity>
+    <entity class='Powerup' name='vortex boi'>
+      <entity class='MeshEntity' name='ball mesh'>
+      	<string name='mesh filename' value='smooth_sphere.obj'/>
+	<vector name='scale' value='1, 1, 1, 1'/>
+      	<string name='texture filename' value='ball.png'/>
+      	<integer name='render pass' value='1'/>
+      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+      </entity>
+      <entity class='RigidBody' name='ball collider'>
+	<string name='shape' value='sphere'/>
+	<float name='mass' value='50.0'/>
+      </entity>
     </entity>
   </entity>
 
@@ -83,12 +215,44 @@
     <float name='Long Boi Length Increase' value='1.0'/>
     <float name='Big Boi Scale Increase' value='1.0'/>
     <float name='Vortex Boi Rotation Speed' value='1.0'/>
-    <entity class='MeshEntity' name='ball mesh'>
-      <string name='mesh filename' value='smooth_sphere.obj'/>
-      <string name='texture filename' value='ball.png'/>
-      <integer name='render pass' value='1'/>
-      <vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+    <entity class='Powerup' name='long boi'>
+      <entity class='MeshEntity' name='ball mesh'>
+      	<string name='mesh filename' value='smooth_sphere.obj'/>
+	<vector name='scale' value='1, 1, 1, 1'/>
+      	<string name='texture filename' value='ball.png'/>
+      	<integer name='render pass' value='1'/>
+      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+      </entity>
+      <entity class='RigidBody' name='ball collider'>
+	<string name='shape' value='sphere'/>
+	<float name='mass' value='50.0'/>
+      </entity>
+    </entity>
+    <entity class='Powerup' name='big boi'>
+      <entity class='MeshEntity' name='ball mesh'>
+      	<string name='mesh filename' value='smooth_sphere.obj'/>
+	<vector name='scale' value='1, 1, 1, 1'/>
+      	<string name='texture filename' value='ball.png'/>
+      	<integer name='render pass' value='1'/>
+      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+      </entity>
+      <entity class='RigidBody' name='ball collider'>
+	<string name='shape' value='sphere'/>
+	<float name='mass' value='50.0'/>
+      </entity>
+    </entity>
+    <entity class='Powerup' name='vortex boi'>
+      <entity class='MeshEntity' name='ball mesh'>
+      	<string name='mesh filename' value='smooth_sphere.obj'/>
+	<vector name='scale' value='1, 1, 1, 1'/>
+      	<string name='texture filename' value='ball.png'/>
+      	<integer name='render pass' value='1'/>
+      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
+      </entity>
+      <entity class='RigidBody' name='ball collider'>
+	<string name='shape' value='sphere'/>
+	<float name='mass' value='50.0'/>
+      </entity>
     </entity>
   </entity>
-
 </entity>

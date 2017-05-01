@@ -85,10 +85,11 @@ namespace KatBall
 		void AttemptSpawn();
 
 	private:
+		void InitializePowerups();
 		void CopyPrivateDataMembers(const PowerupSpawner& rhs);
 		void FixExternalAttributes();
 
-		MeshEntity* mLongBoyMesh;
+		MeshEntity* mLongBoiMesh;
 		Powerup* mLongBoi;
 		Powerup* mBigBoi;
 		Powerup* mVortexBoi;
@@ -101,7 +102,7 @@ namespace KatBall
 		std::int32_t mVortexBoiSpawnWeight;	// Relative chance for spawning vortex Bois
 
 		float mLongBoiLengthIncrease;	// The length increase of longBoi on pickup
-		float mBigBoiScaleIncrease;		// The size scale incrrase of bigBoi on pickup
+		float mBigBoiScaleIncrease;		// The size scale increase of bigBoi on pickup
 		float mVortexBoiRotationSpeed;	// How fast the vortex Boi goes whoosh
 
 		const float mSpawnAttemptInterval = 5.0f;
@@ -110,6 +111,7 @@ namespace KatBall
 		static const std::string sLongBoiSpawnWeight;
 		static const std::string sBigBoiSpawnWeight;
 		static const std::string sVortexBoiSpawnWeight;
+		static const std::string sPowerupKey;
 
 		static const std::string sLongBoiStat;
 		static const std::string sBigBoiStat;
@@ -118,6 +120,11 @@ namespace KatBall
 		static const std::string sRigidBodyKey;
 		static const std::string sBallColliderKey;
 		static const std::string sBallMeshKey;
+
+		static const std::string sLongBoiKey;
+		static const std::string sBigBoiKey;
+		static const std::string sVortexBoiKey;
+
 		std::default_random_engine mGenerator;
 	};
 
