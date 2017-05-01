@@ -151,15 +151,6 @@ namespace KatBall
 			else if (weightedRoll <= mLongBoiSpawnWeight + mBigBoiSpawnWeight + mVortexBoiSpawnWeight)
 			{
 				(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(*new Powerup(Powerup::PowerupType::VortexBoi, mVortexBoiRotationSpeed, mSpawnLocation));
-				(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(new Powerup(Powerup::PowerupType::LongBoi, mLongBoiLengthIncrease, mSpawnLocation));
-			}
-			else if (weightedRoll <= mLongBoiSpawnWeight + mBigBoiSpawnWeight)
-			{
-				(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(new Powerup(Powerup::PowerupType::BigBoi, mBigBoiScaleIncrease, mSpawnLocation));
-			}
-			else if (weightedRoll <= mLongBoiSpawnWeight + mBigBoiSpawnWeight + mVortexBoiSpawnWeight)
-			{
-				(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(new Powerup(Powerup::PowerupType::VortexBoi, mVortexBoiRotationSpeed, mSpawnLocation));
 			}
 		}
 	}
