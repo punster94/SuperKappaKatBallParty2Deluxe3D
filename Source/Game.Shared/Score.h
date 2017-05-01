@@ -21,6 +21,8 @@ namespace KatBall
 		void Update(FieaGameEngine::WorldState& worldState);
 		void Render(FieaGameEngine::Renderer* renderer);
 
+		void ResetRoundsWon();
+
 		void UpdateNumWins();
 		void UpdateScore();
 
