@@ -40,6 +40,8 @@ namespace KatBall
 
 		void Player::ActivateBigBoi(float scaleFactor);
 
+		void OnHit();
+
 	protected:
 
 		void InitializeSignatures();

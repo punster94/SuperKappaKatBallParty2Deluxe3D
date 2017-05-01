@@ -36,7 +36,7 @@ namespace KatBall
 		mPunchMesh = FindChildEntityByName(sPunchMeshKey)->As<MeshEntity>();
 
 		mKatMeshEntity = FindChildEntityByName(sKatMeshKey)->As<MeshEntity>();
-		
+
 		mPunchSound = FindChildEntityByName(sPunchSoundKey)->As<KatSound>();
 		mHitSound = FindChildEntityByName(sHitSoundKey)->As<KatSound>();
 
@@ -93,14 +93,13 @@ namespace KatBall
 
 	void Player::Update(FieaGameEngine::WorldState& worldState)
 	{
-		btTransform trans;
 		btTransform trans1;
 		btTransform trans2;
 
 		if (mGamepad->Refresh())
 		{
 			mBallRigidBody->mBody->applyCentralImpulse(btVector3(mMovementForce * mGamepad->leftStickX, 0, mMovementForce * mGamepad->leftStickY));
-		//	RotatePlayer(mGamepad->leftStickX, mGamepad->leftStickY);
+			// RotatePlayer(mGamepad->leftStickX, mGamepad->leftStickY);
 		}
 
 		if (!mPunchRigidBody->mSimulatePhysics && mGamepad->IsPressed(XINPUT_GAMEPAD_A))
@@ -108,13 +107,18 @@ namespace KatBall
 			mPunchRigidBody->mSimulatePhysics = true;
 			mPunchRigidBody->mBody->applyCentralImpulse(btVector3(600, 0, 0));
 			mInitialPunchPos = mPunchRigidBody->GetRelativePosition();
+
+			if (mPunchSound != nullptr && mPunchSound->GetStatus() != sf::Sound::Playing)
+			{
+				mPunchSound->Play();
+			}
 		}
-		
+
 		UpdateAnimation(worldState);
 
 		mBallRigidBody->mBody->getMotionState()->getWorldTransform(trans1);
 		btVector3 pos = trans1.getOrigin();
-		
+
 		mPunchRigidBody->mBody->getMotionState()->getWorldTransform(trans2);
 		btVector3 punchPos = trans2.getOrigin();
 
@@ -123,7 +127,7 @@ namespace KatBall
 			mPunchRigidBody->mSimulatePhysics = false;
 			mPunchRigidBody->mBody->setLinearVelocity(btVector3(0, 0, 0));
 			mPunchRigidBody->mBody->clearForces();
-			mPunchRigidBody->SetRelativePosition(mInitialPunchPos);	
+			mPunchRigidBody->SetRelativePosition(mInitialPunchPos);
 		}
 
 		Entity::Update(worldState);
@@ -154,15 +158,15 @@ namespace KatBall
 
 		switch (mAnimState)
 		{
-		case AnimState::IDLE:
-			UpdateIdleAnimation();
-			break;
-		case AnimState::RUN:
-			UpdateRunAnimation();
-			break;
-		case AnimState::VICTORY:
-			UpdateVictoryAnimation();
-			break;
+			case AnimState::IDLE:
+				UpdateIdleAnimation();
+				break;
+			case AnimState::RUN:
+				UpdateRunAnimation();
+				break;
+			case AnimState::VICTORY:
+				UpdateVictoryAnimation();
+				break;
 		}
 	}
 
@@ -239,7 +243,6 @@ namespace KatBall
 
 		if (direction.length() > 0.5f)
 		{
-			
 			SetWorldRotation(glm::vec3(0, glm::atan(x / y), 0));
 		}
 	}
@@ -258,8 +261,16 @@ namespace KatBall
 		mCurrentMass *= scaleFactor;
 
 		mPunchRigidBody->mBody->setMassProps(mCurrentMass, btVector3(0, 0, 0));
-		
+
 		mPunchRigidBody->ResizeCollider();
+	}
+
+	void Player::OnHit()
+	{
+		if (mHitSound != nullptr)
+		{
+			mHitSound->Play();
+		}
 	}
 
 	int32_t Player::sPlayerId = 0;
