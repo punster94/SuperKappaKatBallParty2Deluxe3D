@@ -152,7 +152,7 @@ namespace KatBall
 			objectB = static_cast<Entity*>(obB->getUserPointer());
 
 			player = objectA->As<Player>();
-			powerUp = objectB->As <Powerup>();
+			powerUp = objectB->As<Powerup>();
 
 			if (player != nullptr && powerUp != nullptr)
 			{
@@ -165,7 +165,6 @@ namespace KatBall
 		{
 			delete powerUp;
 		}
-		// END
 	}
 
 	void Game::RegisterRigidBody(btCollisionShape& shape, btRigidBody& body)

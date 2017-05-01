@@ -147,7 +147,7 @@ namespace KatBall
 		}
 
 		delete mCollider;
-		
+
 		delete mConstructionInfo;
 
 		delete mBody;

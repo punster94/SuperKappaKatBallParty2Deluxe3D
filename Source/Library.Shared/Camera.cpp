@@ -9,6 +9,8 @@
 
 namespace FieaGameEngine
 {
+	RTTI_DEFINITIONS(Camera)
+
 	Camera::Camera() :
 		mProjectionMode(ProjectionMode::PERSPECTIVE)
 	{

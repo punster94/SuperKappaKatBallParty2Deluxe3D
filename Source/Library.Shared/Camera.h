@@ -22,6 +22,8 @@ namespace FieaGameEngine
 
 	class Camera : public Entity
 	{
+		RTTI_DECLARATIONS(Camera, Entity)
+
 	public:
 
 		Camera();
