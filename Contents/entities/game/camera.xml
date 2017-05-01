@@ -8,5 +8,6 @@
         <float name='min distance' value='10.0'/>
         <float name='max distance' value='18.0'/>
         <float name='focus scale' value='2.0'/>
+        <vector name='bounds' value='-3.0,3.0,-3.0,3.0'/>
     </action>
 </entity>

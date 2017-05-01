@@ -203,7 +203,7 @@ namespace FieaGameEngine
 
 	void RendererDirectX::InitRenderFrame()
 	{
-		mDeviceContext->ClearRenderTargetView(mRenderTargetView, DirectX::Colors::Lavender);
+		mDeviceContext->ClearRenderTargetView(mRenderTargetView, DirectX::Colors::DimGray);
 		mDeviceContext->ClearDepthStencilView(mDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
 		CBGlobal globals;

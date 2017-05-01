@@ -57,6 +57,9 @@ namespace KatBall
 		}
 
 		glm::vec3 midpoint = (minPosition + maxPosition) / 2.0f;
+		midpoint.x = glm::clamp(midpoint.x, mBounds.x, mBounds.y);
+		midpoint.z = glm::clamp(midpoint.z, mBounds.z, mBounds.w);
+
 		float distance = glm::distance(minPosition, maxPosition) * mFocusScale;
 		distance = glm::clamp(distance, mMinDistance, mMaxDistance);
 		
@@ -105,6 +108,7 @@ namespace KatBall
 		AddExternalAttribute(sMinDistanceKey, &mMinDistance, 1);
 		AddExternalAttribute(sMaxDistanceKey, &mMaxDistance, 1);
 		AddExternalAttribute(sFocusScaleKey, &mFocusScale, 1);
+		AddExternalAttribute(sBoundsKey, &mBounds, 1);
 		AddEmptyString(sTargetsKey);
 	}
 
@@ -113,12 +117,14 @@ namespace KatBall
 		Append(sMinDistanceKey).SetStorage(&mMinDistance, 1);
 		Append(sMaxDistanceKey).SetStorage(&mMaxDistance, 1);
 		Append(sFocusScaleKey).SetStorage(&mFocusScale, 1);
+		Append(sBoundsKey).SetStorage(&mBounds, 1);
 	}
 
 	const std::string ActionFocus::sTargetsKey = "target";
 	const std::string ActionFocus::sMinDistanceKey = "min distance";
 	const std::string ActionFocus::sMaxDistanceKey = "max distance";
 	const std::string ActionFocus::sFocusScaleKey = "focus scale";
+	const std::string ActionFocus::sBoundsKey = "bounds";
 
 	const float ActionFocus::sDefaultMinDistance = 6.0f;
 	const float ActionFocus::sDefaultMaxDistance = 20.0f;

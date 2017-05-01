@@ -31,6 +31,7 @@ namespace KatBall
 		float mMinDistance;
 		float mMaxDistance;
 		float mFocusScale;
+		glm::vec4 mBounds;
 
 		bool mInitialized;
 		FieaGameEngine::Vector<FieaGameEngine::Entity*> mTargets;
@@ -41,6 +42,7 @@ namespace KatBall
 		static const std::string sMinDistanceKey;
 		static const std::string sMaxDistanceKey;
 		static const std::string sFocusScaleKey;
+		static const std::string sBoundsKey;
 
 		static const float sDefaultMinDistance;
 		static const float sDefaultMaxDistance;
