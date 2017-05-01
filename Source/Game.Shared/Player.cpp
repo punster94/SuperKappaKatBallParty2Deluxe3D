@@ -148,7 +148,13 @@ namespace KatBall
 			if(!mPunchRigidBody->mSimulatePhysics && mGamepad->IsPressed(XINPUT_GAMEPAD_A))
 			{
 				mPunchRigidBody->mSimulatePhysics = true;
-				mPunchRigidBody->mBody->applyCentralImpulse(btVector3(600, 0, 0));
+
+				glm::vec3 direction = mPunchRigidBody->GetRelativePosition();
+				direction = glm::normalize(direction);
+				direction *= mCurrentPunchImpulse;
+
+				mPunchRigidBody->mBody->applyCentralImpulse(btVector3(direction.x, direction.y, direction.z));
+
 				mInitialPunchPos = mPunchRigidBody->GetRelativePosition();
 
 				if(mPunchSound != nullptr && mPunchSound->GetStatus() != sf::Sound::Playing)
@@ -172,17 +178,18 @@ namespace KatBall
 				mPunchRigidBody->mBody->clearForces();
 				mPunchRigidBody->SetRelativePosition(mInitialPunchPos);
 			}
-
-			// are we below the respawn threshold???
-			if(pos.getY() < RESPAWN_THRESHOLD)
-			{
-				Respawn(worldState);
-			}
-
-			SetWorldPosition(mBallRigidBody->GetWorldPosition());
-			mBallRigidBody->SetRelativePosition(glm::vec3(0.0f));
-
 		}
+
+		mBallRigidBody->mBody->getMotionState()->getWorldTransform(trans1);
+		btVector3 pos = trans1.getOrigin();
+
+		if (pos.getY() < RESPAWN_THRESHOLD)
+		{
+			Respawn(worldState);
+		}
+
+		SetWorldPosition(mBallRigidBody->GetWorldPosition());
+		mBallRigidBody->SetRelativePosition(glm::vec3(0.0f));
 
 		Entity::Update(worldState);
 	}
@@ -383,13 +390,9 @@ namespace KatBall
 		scale *= scaleFactor;
 		mPunchRigidBody->SetRelativeScale(scale);
 
-	//	mCurrentMass *= scaleFactor;
-
-	//	mPunchRigidBody->mBody->setMassProps(mCurrentMass, btVector3(0, 0, 0));
-
 		mPunchRigidBody->ResizeCollider();
 
-		mCurrentPunchImpulse = mPunchImpulse* scaleFactor;
+		mCurrentPunchImpulse = mPunchImpulse * scaleFactor;
 
 		OutputDebugString(L"Howdy");
 	}
