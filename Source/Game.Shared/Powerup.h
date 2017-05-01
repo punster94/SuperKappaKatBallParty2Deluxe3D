@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Entity.h"
-#include "Kat.h"
+#include "Player.h"
 
 namespace KatBall
 {
