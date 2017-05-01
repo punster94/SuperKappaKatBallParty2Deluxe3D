@@ -7,7 +7,8 @@ namespace KatBall
 	RTTI_DEFINITIONS(RigidBody)
 
 	RigidBody::RigidBody(const std::string& name) :
-		Entity(name), mMass(0.0f), mColliderDimensions(1.0f, 1.0f, 1.0f, 0.0f)
+		Entity(name), mMass(0.0f), mColliderDimensions(1.0f, 1.0f, 1.0f, 0.0f), mSimulatePhysics(true),
+		mGravityEnable(1), mFriction(2)
 	{
 		InitializeSignatures();
 	}
@@ -26,6 +27,8 @@ namespace KatBall
 		AddExternalAttribute(sLocalIntertiaKey, &mTransformLocalIntertia, 1);
 		AddExternalAttribute(sMassKey, &mMass, 1);
 		AddExternalAttribute(sColliderTypeKey, &mColliderType, 1);
+		AddExternalAttribute(sGravityEnableTypeKey, &mGravityEnable, 1);
+		AddExternalAttribute(sFrictionKey, &mFriction, 1);
 	}
 
 	void RigidBody::CreateBoxCollider(btScalar x, btScalar y, btScalar z)
@@ -37,6 +40,14 @@ namespace KatBall
 	void RigidBody::CreateSphereCollider(btScalar x, btScalar , btScalar )
 	{
 		mCollider = new btSphereShape(GetWorldScale().x * x);
+	}
+
+	void RigidBody::ResizeCollider()
+	{
+		delete mCollider;
+		(const_cast<RigidBody*>(this)->*sCreateColliders[mColliderType])(mColliderDimensions.x, mColliderDimensions.y, mColliderDimensions.z);
+
+		mBody->setCollisionShape(mCollider);
 	}
 
 	void RigidBody::Initialize(WorldState& worldState)
@@ -67,6 +78,31 @@ namespace KatBall
 		worldState.mWorld->RegisterRigidBody(*mCollider, *mBody);
 	}
 
+	void RigidBody::Update(FieaGameEngine::WorldState& worldState)
+	{
+		btTransform trans;
+		mBody->getMotionState()->getWorldTransform(trans);
+
+		if (mSimulatePhysics)
+		{			
+			btVector3 pos = trans.getOrigin();
+
+			glm::vec3 worldPos(pos.getX(), pos.getY(), pos.getZ());
+
+			SetWorldPosition(worldPos);
+		}
+		else
+		{
+			glm::vec3 worldPostion = GetWorldPosition();
+			btVector3 pos(worldPostion.x, worldPostion.y, worldPostion.z);
+			trans.setOrigin(pos);
+			mBody->getMotionState()->setWorldTransform(trans);
+			mBody->setCenterOfMassTransform(trans);
+		}
+
+		Entity::Update(worldState);
+	}
+
 	Scope* RigidBody::Copy() const
 	{
 		return new RigidBody(*this);
@@ -83,6 +119,9 @@ namespace KatBall
 		mTransformLocalIntertia = otherRigidBody.mTransformLocalIntertia;
 		mMass = otherRigidBody.mMass;
 		mColliderType = otherRigidBody.mColliderType;
+		mSimulatePhysics = otherRigidBody.mSimulatePhysics;
+		mGravityEnable = otherRigidBody.mGravityEnable;
+		mFriction = otherRigidBody.mFriction;
 
 		FixExternalAttributes();
 	}
@@ -93,6 +132,8 @@ namespace KatBall
 		Append(sLocalIntertiaKey).SetStorage(&mTransformLocalIntertia, 1);
 		Append(sMassKey).SetStorage(&mMass, 1);
 		Append(sColliderTypeKey).SetStorage(&mColliderType, 1);
+		Append(sGravityEnableTypeKey).SetStorage(&mGravityEnable, 1);
+		Append(sFrictionKey).SetStorage(&mFriction, 1);
 	}
 
 	const std::string RigidBody::sColliderDimensionsKey = "dimensions";
@@ -102,6 +143,10 @@ namespace KatBall
 	const std::string RigidBody::sMassKey = "mass";
 
 	const std::string RigidBody::sColliderTypeKey = "shape";
+
+	const std::string RigidBody::sGravityEnableTypeKey = "gravity enable";
+
+	const std::string RigidBody::sFrictionKey = "friction";
 
 	const HashMap<std::string, RigidBody::CreateCollider> RigidBody::sCreateColliders =
 	{

@@ -6,12 +6,18 @@
     <string name='run meshes' value='kat_run_1.obj'/>
     <string name='run meshes' value='kat_run_2.obj'/>
     <string name='victory meshes' value='kat_victory.obj'/>
-	<entity class='Entity' name='Ball'>
+	<float name ='length' value ='2.0f'/>
+	<entity class='KatSound' name='punch sound'>
+		<string name='SoundFile' value='Meow02.ogg' />
+	</entity>
+	<entity class='KatSound' name='hit sound'>
+		<string name='SoundFile' value='Wimper02.ogg' />
+	</entity>
+	<entity class='RigidBody' name='ball collider'>
 		<vector name='scale' value='0.5,0.5,0.5,0.0'/>
-		<entity class='RigidBody' name='ball collider'>
-			<string name='shape' value='sphere'/>
-			<float name='mass' value='50.0'/>
-		</entity>
+		<string name='shape' value='sphere'/>
+		<float name='mass' value='50.0'/>
+		<float name='friction' value ='3' />
 		<entity class='MeshEntity' name='ball mesh'>
 			<string name='mesh filename' value='smooth_sphere.obj'/>
 			<string name='texture filename' value='ball.png'/>
@@ -23,11 +29,16 @@
             <string name='texture filename' value='kat_tex_blue.png'/>
             <vector name='scale' value='0.25,0.25,0.25,0.0'/>
 		</entity>
-	</entity>
-	<entity class='KatSound' name='punch sound'>
-		<string name='SoundFile' value='Meow02.ogg' />
-	</entity>
-	<entity class='KatSound' name='hit sound'>
-		<string name='SoundFile' value='Wimper02.ogg' />
+		<entity class='RigidBody' name='punch collider'>
+			<vector name='scale' value='0.4,0.4,0.4,0.0'/>
+			<vector name='position' value='-1.0,0.0,0.0,0.0'/>
+			<string name='shape' value='box'/>
+			<float name='mass' value='50.0'/>
+			<integer name='gravity enable' value ='0'/>
+			<entity class='MeshEntity' name='punch mesh'>
+				<string name='mesh filename' value='cube.obj'/>
+				<string name='texture filename' value='grid.bmp'/>
+			</entity>
+		</entity>
 	</entity>
 </entity>

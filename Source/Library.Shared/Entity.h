@@ -163,6 +163,10 @@ namespace FieaGameEngine
 		void SetRelativeRotation(glm::vec3 rotation);
 		void SetRelativeScale(glm::vec3 scale);
 
+		void SetWorldPosition(glm::vec3 position);
+		void SetWorldRotation(glm::vec3 rotation);
+		void SetWorldScale(glm::vec3 scale);
+
 		/** Transform properties get methods
 		 *	Get position, rotation, or scale.
 		 */
