@@ -15,9 +15,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionPunch.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ActionRoundWinner.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionResetRound.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionUpdateNumWins.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionUpdateScore.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Game.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Gamepad.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStateManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HUD.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)InputSubscriber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Kat.cpp" />
@@ -32,17 +35,19 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)QuadEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)RigidBody.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PowerupSpawner.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ScoreAction.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Score.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestDummy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionPunch.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ActionRoundWinner.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionResetRound.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionUpdateNumWins.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionUpdateScore.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Constants.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Game.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Gamepad.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStateManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HUD.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)InputSubscriber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Kat.h" />
@@ -55,7 +60,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)QuadEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)RigidBody.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PowerupSpawner.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ScoreAction.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Score.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestDummy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h" />
