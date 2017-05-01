@@ -156,6 +156,7 @@ namespace KatBall
 		Powerup* powerUp = nullptr;
 
 		RigidBody* rigidbody = nullptr;
+		RigidBody* rigidbody2 = nullptr;
 
 		bool shouldDeletePowerUp = false;
 
@@ -170,6 +171,7 @@ namespace KatBall
 			objectB = static_cast<Entity*>(obB->getUserPointer());
 
 			player = objectA->As<Player>();
+			rigidbody2 = objectA->As<RigidBody>();
 			powerUp = objectB->As<Powerup>();
 			player2 = objectB->As<Player>();
 			rigidbody = objectB->As<RigidBody>();
@@ -192,6 +194,17 @@ namespace KatBall
 				player->SetLastPlayerTouching(player2->GetPlayerID());
 				player2->SetLastPlayerTouching(player->GetPlayerID());
 				player->OnHit();
+				OutputDebugString(L"Kill mez");
+			}
+
+			if (rigidbody != nullptr && rigidbody2 != nullptr)
+			{
+				player = rigidbody->GetParent()->As<Player>();
+				player2 = rigidbody2->GetParent()->As<Player>();
+				player->SetLastPlayerTouching(player2->GetPlayerID());
+				player2->SetLastPlayerTouching(player->GetPlayerID());
+				player->OnHit();
+				OutputDebugString(L"Kill mez");
 			}
 		}
 
