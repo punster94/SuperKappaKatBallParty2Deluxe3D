@@ -14,8 +14,10 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionCrownWinners.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionFocus.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionPunch.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionRemoveCrowns.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionResetRound.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionUpdateNumWins.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ActionUpdateScore.cpp" />
@@ -26,6 +28,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)InputSubscriber.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Kat.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Menu.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MenuCrowns.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MenuGamepad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MeshEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)pch.cpp">
@@ -41,8 +44,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionCrownWinners.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionFocus.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionPunch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionRemoveCrowns.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionResetRound.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionUpdateNumWins.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionUpdateScore.h" />
@@ -54,6 +59,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)InputSubscriber.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Kat.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Menu.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MenuCrowns.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MenuGamepad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MeshEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />

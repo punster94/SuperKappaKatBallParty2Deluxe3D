@@ -103,6 +103,12 @@ namespace KatBall
 		Entity::Reset(worldState);
 	}
 
+	glm::vec3 RigidBody::GetLinearVelocity() const
+	{
+		const btVector3& linVelocity = mBody->getLinearVelocity();
+		return glm::vec3(linVelocity.getX(), linVelocity.getY(), linVelocity.getZ());
+	}
+
 	void RigidBody::Update(FieaGameEngine::WorldState& worldState)
 	{
 		btTransform trans;

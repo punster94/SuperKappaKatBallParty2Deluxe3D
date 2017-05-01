@@ -30,6 +30,8 @@ namespace KatBall
 
 		void ResizeCollider();
 
+		glm::vec3 GetLinearVelocity() const;
+
 		btRigidBody* mBody;
 
 		bool mSimulatePhysics;
