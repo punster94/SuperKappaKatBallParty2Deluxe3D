@@ -15,4 +15,10 @@
             <vector name='color' value='1.0,0.0,0.0,1.0'/>
 		</entity>
 	</entity>
+	<entity class='KatSound' name='punch sound'>
+		<string name='SoundFile' value='Meow01.ogg' />
+	</entity>
+	<entity class='KatSound' name='hit sound'>
+		<string name='SoundFile' value='Wimper01.ogg' />
+	</entity>
 </entity>

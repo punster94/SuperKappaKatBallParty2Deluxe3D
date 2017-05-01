@@ -32,6 +32,7 @@ namespace FieaGameEngine
 	private:
 		std::string mMusicFileName;
 		std::int32_t mPlayOnAwake;
+		std::float_t mVolume;
 		sf::Music mMusic;
 
 		void CopyPrivateDataMembers(const KatMusic& other);
@@ -40,6 +41,7 @@ namespace FieaGameEngine
 		static const std::string MusicFolder;
 		static const std::string MusicFileKey;
 		static const std::string PlayOnAwakeKey;
+		static const std::string VolumeKey;
 	};
 
 	ConcreteEntityFactory(KatMusic);
