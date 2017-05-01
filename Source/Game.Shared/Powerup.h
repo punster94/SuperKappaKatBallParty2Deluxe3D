@@ -46,6 +46,7 @@ namespace KatBall
 
 		RigidBody* mRigidBody;
 		MeshEntity* mMeshEntity;
+		FieaGameEngine::KatSound* mPickupSound;
 
 		std::float_t mScaleIncrease;
 		std::float_t mLengthIncrease;
@@ -55,6 +56,7 @@ namespace KatBall
 
 		static const std::string sRigidBodyKey;
 		static const std::string sBallColliderKey;
+		static const std::string sPickupSoundKey;
 		static const std::string sBallMeshKey;
 
 		static const std::string sScaleIncreaseKey;

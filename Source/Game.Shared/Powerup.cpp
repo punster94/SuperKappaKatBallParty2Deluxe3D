@@ -5,8 +5,8 @@ namespace KatBall
 {
 	RTTI_DEFINITIONS(Powerup)
 
-	Powerup::Powerup():
-		Entity("powerup"), mType(PowerupType::Default), mScaleIncrease(), mLengthIncrease(), mRotationSpeed(), mMeshEntity(nullptr), mRigidBody(nullptr)
+	Powerup::Powerup() :
+		Entity("powerup"), mRigidBody(nullptr), mMeshEntity(nullptr), mPickupSound(nullptr), mScaleIncrease(), mLengthIncrease(), mRotationSpeed(), mType(Default)
 	{
 		InitializeSignatures();
 	}
@@ -32,6 +32,7 @@ namespace KatBall
 
 		mMeshEntity = FindChildEntityByName(sBallMeshKey)->As<MeshEntity>();
 		mRigidBody = FindChildEntityByName(sBallColliderKey)->As<RigidBody>();
+		mPickupSound = FindChildEntityByName(sPickupSoundKey)->As<FieaGameEngine::KatSound>();
 	}
 
 	void Powerup::OnCollect(Player& katBoi)
@@ -112,6 +113,7 @@ namespace KatBall
 
 	const std::string Powerup::sRigidBodyKey = "rigidbody";
 	const std::string Powerup::sBallColliderKey = "ball collider";
+	const std::string Powerup::sPickupSoundKey = "pickup sound";
 	const std::string Powerup::sBallMeshKey = "ball mesh";
 
 	const std::string Powerup::sScaleIncreaseKey = "scale increase";

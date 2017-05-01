@@ -2,273 +2,318 @@
 
 <entity class='Entity' name='SpawnerContainer'>
 
-  <entity class='PowerupSpawner' name='CenterSpawner'>
-    <vector name='position' value='0.0, -1.25, 0.0, 0.0'/>
-    <vector name='scale' value='0.5, 0.5, 0.5, 0.5'/>
-    <float name='Spawn Chance' value='10'/>
-    <integer name='Long Boi Spawn Weight' value='100'/>
-    <integer name='Big Boi Spawn Weight' value='100'/>
-    <integer name='Vortex Boi Spawn Weight' value='100'/>
-    <float name='Long Boi Length Increase' value='1.0'/>
-    <float name='Big Boi Scale Increase' value='1.0'/>
-    <float name='Vortex Boi Rotation Speed' value='1.0'/>
-    <entity class='Powerup' name='long boi'>
-      <entity class='MeshEntity' name='ball mesh'>
-      	<string name='mesh filename' value='smooth_sphere.obj'/>
-	<vector name='scale' value='1, 1, 1, 1'/>
-      	<string name='texture filename' value='ball.png'/>
-      	<integer name='render pass' value='1'/>
-      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
-      </entity>
-      <entity class='RigidBody' name='ball collider'>
-	<string name='shape' value='sphere'/>
-	<float name='mass' value='50.0'/>
-      </entity>
-    </entity>
-    <entity class='Powerup' name='big boi'>
-      <entity class='MeshEntity' name='ball mesh'>
-      	<string name='mesh filename' value='smooth_sphere.obj'/>
-	<vector name='scale' value='1, 1, 1, 1'/>
-      	<string name='texture filename' value='ball.png'/>
-      	<integer name='render pass' value='1'/>
-      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
-      </entity>
-      <entity class='RigidBody' name='ball collider'>
-	<string name='shape' value='sphere'/>
-	<float name='mass' value='50.0'/>
-      </entity>
-    </entity>
-    <entity class='Powerup' name='vortex boi'>
-      <entity class='MeshEntity' name='ball mesh'>
-      	<string name='mesh filename' value='smooth_sphere.obj'/>
-	<vector name='scale' value='1, 1, 1, 1'/>
-      	<string name='texture filename' value='ball.png'/>
-      	<integer name='render pass' value='1'/>
-      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
-      </entity>
-      <entity class='RigidBody' name='ball collider'>
-	<string name='shape' value='sphere'/>
-	<float name='mass' value='50.0'/>
-      </entity>
-    </entity>
+	<entity class='PowerupSpawner' name='CenterSpawner'>
+		<vector name='position' value='0.0, -1.25, 0.0, 0.0' />
+		<vector name='scale' value='0.5, 0.5, 0.5, 0.5' />
+		<float name='Spawn Chance' value='10' />
+		<integer name='Long Boi Spawn Weight' value='100' />
+		<integer name='Big Boi Spawn Weight' value='100' />
+		<integer name='Vortex Boi Spawn Weight' value='100' />
+		<float name='Long Boi Length Increase' value='1.0' />
+		<float name='Big Boi Scale Increase' value='1.0' />
+		<float name='Vortex Boi Rotation Speed' value='1.0' />
+		<entity class='Powerup' name='long boi'>
+			<entity class='MeshEntity' name='ball mesh'>
+				<string name='mesh filename' value='smooth_sphere.obj' />
+				<vector name='scale' value='1, 1, 1, 1' />
+				<string name='texture filename' value='ball.png' />
+				<integer name='render pass' value='1' />
+				<vector name='color' value='0.0, 1.0, 1.0, 1.0' />
+			</entity>
+			<entity class='RigidBody' name='ball collider'>
+				<string name='shape' value='sphere' />
+				<float name='mass' value='50.0' />
+			</entity>
+			<entity class='KatSound' name='pickup sound'>
+				<string name='SoundFile' value='LongBoiAud.ogg' />
+			</entity>
+		</entity>
+		<entity class='Powerup' name='big boi'>
+			<entity class='MeshEntity' name='ball mesh'>
+				<string name='mesh filename' value='smooth_sphere.obj' />
+				<vector name='scale' value='1, 1, 1, 1' />
+				<string name='texture filename' value='ball.png' />
+				<integer name='render pass' value='1' />
+				<vector name='color' value='0.0, 1.0, 1.0, 1.0' />
+			</entity>
+			<entity class='RigidBody' name='ball collider'>
+				<string name='shape' value='sphere' />
+				<float name='mass' value='50.0' />
+			</entity>
+			<entity class='KatSound' name='pickup sound'>
+				<string name='SoundFile' value='BigBoiAud.ogg' />
+			</entity>
+		</entity>
+		<entity class='Powerup' name='vortex boi'>
+			<entity class='MeshEntity' name='ball mesh'>
+				<string name='mesh filename' value='smooth_sphere.obj' />
+				<vector name='scale' value='1, 1, 1, 1' />
+				<string name='texture filename' value='ball.png' />
+				<integer name='render pass' value='1' />
+				<vector name='color' value='0.0, 1.0, 1.0, 1.0' />
+			</entity>
+			<entity class='RigidBody' name='ball collider'>
+				<string name='shape' value='sphere' />
+				<float name='mass' value='50.0' />
+			</entity>
+			<entity class='KatSound' name='pickup sound'>
+				<string name='SoundFile' value='VortexBoiAud.ogg' />
+			</entity>
+		</entity>
 		<entity class='KatSound' name='spawn sound'>
 			<string name='SoundFile' value='PowerupSpawn01.ogg' />
 		</entity>
-  </entity>
+	</entity>
 
-  <entity class='PowerupSpawner' name='BottomLeftSpawner'>
-    <vector name='position' value='-4.0, -1.25, -4.0, 0.0'/>
-    <vector name='scale' value='0.5, 0.5, 0.5, 0.5'/>
-    <float name='Spawn Chance' value='10'/>
-    <integer name='Long Boi Spawn Weight' value='100'/>
-    <integer name='Big Boi Spawn Weight' value='100'/>
-    <integer name='Vortex Boi Spawn Weight' value='100'/>
-    <float name='Long Boi Length Increase' value='1.0'/>
-    <float name='Big Boi Scale Increase' value='1.0'/>
-    <float name='Vortex Boi Rotation Speed' value='1.0'/>
-    <entity class='Powerup' name='long boi'>
-      <entity class='MeshEntity' name='ball mesh'>
-      	<string name='mesh filename' value='smooth_sphere.obj'/>
-	<vector name='scale' value='1, 1, 1, 1'/>
-      	<string name='texture filename' value='ball.png'/>
-      	<integer name='render pass' value='1'/>
-      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
-      </entity>
-      <entity class='RigidBody' name='ball collider'>
-	<string name='shape' value='sphere'/>
-	<float name='mass' value='50.0'/>
-      </entity>
-    </entity>
-    <entity class='Powerup' name='big boi'>
-      <entity class='MeshEntity' name='ball mesh'>
-      	<string name='mesh filename' value='smooth_sphere.obj'/>
-	<vector name='scale' value='1, 1, 1, 1'/>
-      	<string name='texture filename' value='ball.png'/>
-      	<integer name='render pass' value='1'/>
-      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
-      </entity>
-      <entity class='RigidBody' name='ball collider'>
-	<string name='shape' value='sphere'/>
-	<float name='mass' value='50.0'/>
-      </entity>
-    </entity>
-    <entity class='Powerup' name='vortex boi'>
-      <entity class='MeshEntity' name='ball mesh'>
-      	<string name='mesh filename' value='smooth_sphere.obj'/>
-	<vector name='scale' value='1, 1, 1, 1'/>
-      	<string name='texture filename' value='ball.png'/>
-      	<integer name='render pass' value='1'/>
-      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
-      </entity>
-      <entity class='RigidBody' name='ball collider'>
-	<string name='shape' value='sphere'/>
-	<float name='mass' value='50.0'/>
-      </entity>
-    </entity>
+	<entity class='PowerupSpawner' name='BottomLeftSpawner'>
+		<vector name='position' value='-4.0, -1.25, -4.0, 0.0' />
+		<vector name='scale' value='0.5, 0.5, 0.5, 0.5' />
+		<float name='Spawn Chance' value='10' />
+		<integer name='Long Boi Spawn Weight' value='100' />
+		<integer name='Big Boi Spawn Weight' value='100' />
+		<integer name='Vortex Boi Spawn Weight' value='100' />
+		<float name='Long Boi Length Increase' value='1.0' />
+		<float name='Big Boi Scale Increase' value='1.0' />
+		<float name='Vortex Boi Rotation Speed' value='1.0' />
+		<entity class='Powerup' name='long boi'>
+			<entity class='MeshEntity' name='ball mesh'>
+				<string name='mesh filename' value='smooth_sphere.obj' />
+				<vector name='scale' value='1, 1, 1, 1' />
+				<string name='texture filename' value='ball.png' />
+				<integer name='render pass' value='1' />
+				<vector name='color' value='0.0, 1.0, 1.0, 1.0' />
+			</entity>
+			<entity class='RigidBody' name='ball collider'>
+				<string name='shape' value='sphere' />
+				<float name='mass' value='50.0' />
+			</entity>
+			<entity class='KatSound' name='pickup sound'>
+				<string name='SoundFile' value='LongBoiAud.ogg' />
+			</entity>
+		</entity>
+		<entity class='Powerup' name='big boi'>
+			<entity class='MeshEntity' name='ball mesh'>
+				<string name='mesh filename' value='smooth_sphere.obj' />
+				<vector name='scale' value='1, 1, 1, 1' />
+				<string name='texture filename' value='ball.png' />
+				<integer name='render pass' value='1' />
+				<vector name='color' value='0.0, 1.0, 1.0, 1.0' />
+			</entity>
+			<entity class='RigidBody' name='ball collider'>
+				<string name='shape' value='sphere' />
+				<float name='mass' value='50.0' />
+			</entity>
+			<entity class='KatSound' name='pickup sound'>
+				<string name='SoundFile' value='BigBoiAud.ogg' />
+			</entity>
+		</entity>
+		<entity class='Powerup' name='vortex boi'>
+			<entity class='MeshEntity' name='ball mesh'>
+				<string name='mesh filename' value='smooth_sphere.obj' />
+				<vector name='scale' value='1, 1, 1, 1' />
+				<string name='texture filename' value='ball.png' />
+				<integer name='render pass' value='1' />
+				<vector name='color' value='0.0, 1.0, 1.0, 1.0' />
+			</entity>
+			<entity class='RigidBody' name='ball collider'>
+				<string name='shape' value='sphere' />
+				<float name='mass' value='50.0' />
+			</entity>
+			<entity class='KatSound' name='pickup sound'>
+				<string name='SoundFile' value='VortexBoiAud.ogg' />
+			</entity>
+		</entity>
 		<entity class='KatSound' name='spawn sound'>
 			<string name='SoundFile' value='PowerupSpawn01.ogg' />
 		</entity>
-  </entity>
+	</entity>
 
-  <entity class='PowerupSpawner' name='BottomRightSpawner'>
-    <vector name='position' value='4.0, -1.25, -4.0, 0.0'/>
-    <vector name='scale' value='0.5, 0.5, 0.5, 0.5'/>
-    <float name='Spawn Chance' value='10'/>
-    <integer name='Long Boi Spawn Weight' value='100'/>
-    <integer name='Big Boi Spawn Weight' value='100'/>
-    <integer name='Vortex Boi Spawn Weight' value='100'/>
-    <float name='Long Boi Length Increase' value='1.0'/>
-    <float name='Big Boi Scale Increase' value='1.0'/>
-    <float name='Vortex Boi Rotation Speed' value='1.0'/>
-    <entity class='Powerup' name='long boi'>
-      <entity class='MeshEntity' name='ball mesh'>
-      	<string name='mesh filename' value='smooth_sphere.obj'/>
-	<vector name='scale' value='1, 1, 1, 1'/>
-      	<string name='texture filename' value='ball.png'/>
-      	<integer name='render pass' value='1'/>
-      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
-      </entity>
-      <entity class='RigidBody' name='ball collider'>
-	<string name='shape' value='sphere'/>
-	<float name='mass' value='50.0'/>
-      </entity>
-    </entity>
-    <entity class='Powerup' name='big boi'>
-      <entity class='MeshEntity' name='ball mesh'>
-      	<string name='mesh filename' value='smooth_sphere.obj'/>
-	<vector name='scale' value='1, 1, 1, 1'/>
-      	<string name='texture filename' value='ball.png'/>
-      	<integer name='render pass' value='1'/>
-      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
-      </entity>
-      <entity class='RigidBody' name='ball collider'>
-	<string name='shape' value='sphere'/>
-	<float name='mass' value='50.0'/>
-      </entity>
-    </entity>
-    <entity class='Powerup' name='vortex boi'>
-      <entity class='MeshEntity' name='ball mesh'>
-      	<string name='mesh filename' value='smooth_sphere.obj'/>
-	<vector name='scale' value='1, 1, 1, 1'/>
-      	<string name='texture filename' value='ball.png'/>
-      	<integer name='render pass' value='1'/>
-      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
-      </entity>
-      <entity class='RigidBody' name='ball collider'>
-	<string name='shape' value='sphere'/>
-	<float name='mass' value='50.0'/>
-      </entity>
-    </entity>
+	<entity class='PowerupSpawner' name='BottomRightSpawner'>
+		<vector name='position' value='4.0, -1.25, -4.0, 0.0' />
+		<vector name='scale' value='0.5, 0.5, 0.5, 0.5' />
+		<float name='Spawn Chance' value='10' />
+		<integer name='Long Boi Spawn Weight' value='100' />
+		<integer name='Big Boi Spawn Weight' value='100' />
+		<integer name='Vortex Boi Spawn Weight' value='100' />
+		<float name='Long Boi Length Increase' value='1.0' />
+		<float name='Big Boi Scale Increase' value='1.0' />
+		<float name='Vortex Boi Rotation Speed' value='1.0' />
+		<entity class='Powerup' name='long boi'>
+			<entity class='MeshEntity' name='ball mesh'>
+				<string name='mesh filename' value='smooth_sphere.obj' />
+				<vector name='scale' value='1, 1, 1, 1' />
+				<string name='texture filename' value='ball.png' />
+				<integer name='render pass' value='1' />
+				<vector name='color' value='0.0, 1.0, 1.0, 1.0' />
+			</entity>
+			<entity class='RigidBody' name='ball collider'>
+				<string name='shape' value='sphere' />
+				<float name='mass' value='50.0' />
+			</entity>
+			<entity class='KatSound' name='pickup sound'>
+				<string name='SoundFile' value='LongBoiAud.ogg' />
+			</entity>
+		</entity>
+		<entity class='Powerup' name='big boi'>
+			<entity class='MeshEntity' name='ball mesh'>
+				<string name='mesh filename' value='smooth_sphere.obj' />
+				<vector name='scale' value='1, 1, 1, 1' />
+				<string name='texture filename' value='ball.png' />
+				<integer name='render pass' value='1' />
+				<vector name='color' value='0.0, 1.0, 1.0, 1.0' />
+			</entity>
+			<entity class='RigidBody' name='ball collider'>
+				<string name='shape' value='sphere' />
+				<float name='mass' value='50.0' />
+			</entity>
+			<entity class='KatSound' name='pickup sound'>
+				<string name='SoundFile' value='BigBoiAud.ogg' />
+			</entity>
+		</entity>
+		<entity class='Powerup' name='vortex boi'>
+			<entity class='MeshEntity' name='ball mesh'>
+				<string name='mesh filename' value='smooth_sphere.obj' />
+				<vector name='scale' value='1, 1, 1, 1' />
+				<string name='texture filename' value='ball.png' />
+				<integer name='render pass' value='1' />
+				<vector name='color' value='0.0, 1.0, 1.0, 1.0' />
+			</entity>
+			<entity class='RigidBody' name='ball collider'>
+				<string name='shape' value='sphere' />
+				<float name='mass' value='50.0' />
+			</entity>
+			<entity class='KatSound' name='pickup sound'>
+				<string name='SoundFile' value='VortexBoiAud.ogg' />
+			</entity>
+		</entity>
 		<entity class='KatSound' name='spawn sound'>
 			<string name='SoundFile' value='PowerupSpawn01.ogg' />
 		</entity>
-  </entity>
+	</entity>
 
-  <entity class='PowerupSpawner' name='TopLeftSpawner'>
-    <vector name='position' value='-4.0, -1.25, 4.0, 0.0'/>
-    <vector name='scale' value='0.5, 0.5, 0.5, 0.5'/>
-    <float name='Spawn Chance' value='10'/>
-    <integer name='Long Boi Spawn Weight' value='100'/>
-    <integer name='Big Boi Spawn Weight' value='100'/>
-    <integer name='Vortex Boi Spawn Weight' value='100'/>
-    <float name='Long Boi Length Increase' value='1.0'/>
-    <float name='Big Boi Scale Increase' value='1.0'/>
-    <float name='Vortex Boi Rotation Speed' value='1.0'/>
-    <entity class='Powerup' name='long boi'>
-      <entity class='MeshEntity' name='ball mesh'>
-      	<string name='mesh filename' value='smooth_sphere.obj'/>
-	<vector name='scale' value='1, 1, 1, 1'/>
-      	<string name='texture filename' value='ball.png'/>
-      	<integer name='render pass' value='1'/>
-      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
-      </entity>
-      <entity class='RigidBody' name='ball collider'>
-	<string name='shape' value='sphere'/>
-	<float name='mass' value='50.0'/>
-      </entity>
-    </entity>
-    <entity class='Powerup' name='big boi'>
-      <entity class='MeshEntity' name='ball mesh'>
-      	<string name='mesh filename' value='smooth_sphere.obj'/>
-	<vector name='scale' value='1, 1, 1, 1'/>
-      	<string name='texture filename' value='ball.png'/>
-      	<integer name='render pass' value='1'/>
-      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
-      </entity>
-      <entity class='RigidBody' name='ball collider'>
-	<string name='shape' value='sphere'/>
-	<float name='mass' value='50.0'/>
-      </entity>
-    </entity>
-    <entity class='Powerup' name='vortex boi'>
-      <entity class='MeshEntity' name='ball mesh'>
-      	<string name='mesh filename' value='smooth_sphere.obj'/>
-	<vector name='scale' value='1, 1, 1, 1'/>
-      	<string name='texture filename' value='ball.png'/>
-      	<integer name='render pass' value='1'/>
-      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
-      </entity>
-      <entity class='RigidBody' name='ball collider'>
-	<string name='shape' value='sphere'/>
-	<float name='mass' value='50.0'/>
-      </entity>
-    </entity>
+	<entity class='PowerupSpawner' name='TopLeftSpawner'>
+		<vector name='position' value='-4.0, -1.25, 4.0, 0.0' />
+		<vector name='scale' value='0.5, 0.5, 0.5, 0.5' />
+		<float name='Spawn Chance' value='10' />
+		<integer name='Long Boi Spawn Weight' value='100' />
+		<integer name='Big Boi Spawn Weight' value='100' />
+		<integer name='Vortex Boi Spawn Weight' value='100' />
+		<float name='Long Boi Length Increase' value='1.0' />
+		<float name='Big Boi Scale Increase' value='1.0' />
+		<float name='Vortex Boi Rotation Speed' value='1.0' />
+		<entity class='Powerup' name='long boi'>
+			<entity class='MeshEntity' name='ball mesh'>
+				<string name='mesh filename' value='smooth_sphere.obj' />
+				<vector name='scale' value='1, 1, 1, 1' />
+				<string name='texture filename' value='ball.png' />
+				<integer name='render pass' value='1' />
+				<vector name='color' value='0.0, 1.0, 1.0, 1.0' />
+			</entity>
+			<entity class='RigidBody' name='ball collider'>
+				<string name='shape' value='sphere' />
+				<float name='mass' value='50.0' />
+			</entity>
+			<entity class='KatSound' name='pickup sound'>
+				<string name='SoundFile' value='LongBoiAud.ogg' />
+			</entity>
+		</entity>
+		<entity class='Powerup' name='big boi'>
+			<entity class='MeshEntity' name='ball mesh'>
+				<string name='mesh filename' value='smooth_sphere.obj' />
+				<vector name='scale' value='1, 1, 1, 1' />
+				<string name='texture filename' value='ball.png' />
+				<integer name='render pass' value='1' />
+				<vector name='color' value='0.0, 1.0, 1.0, 1.0' />
+			</entity>
+			<entity class='RigidBody' name='ball collider'>
+				<string name='shape' value='sphere' />
+				<float name='mass' value='50.0' />
+			</entity>
+			<entity class='KatSound' name='pickup sound'>
+				<string name='SoundFile' value='BigBoiAud.ogg' />
+			</entity>
+		</entity>
+		<entity class='Powerup' name='vortex boi'>
+			<entity class='MeshEntity' name='ball mesh'>
+				<string name='mesh filename' value='smooth_sphere.obj' />
+				<vector name='scale' value='1, 1, 1, 1' />
+				<string name='texture filename' value='ball.png' />
+				<integer name='render pass' value='1' />
+				<vector name='color' value='0.0, 1.0, 1.0, 1.0' />
+			</entity>
+			<entity class='RigidBody' name='ball collider'>
+				<string name='shape' value='sphere' />
+				<float name='mass' value='50.0' />
+			</entity>
+			<entity class='KatSound' name='pickup sound'>
+				<string name='SoundFile' value='VortexBoiAud.ogg' />
+			</entity>
+		</entity>
 		<entity class='KatSound' name='spawn sound'>
 			<string name='SoundFile' value='PowerupSpawn01.ogg' />
 		</entity>
-  </entity>
+	</entity>
 
-  <entity class='PowerupSpawner' name='TopRightSpawner'>
-    <vector name='position' value='4.0, -1.25, 4.0, 0.0'/>
-    <vector name='scale' value='0.5, 0.5, 0.5, 0.5'/>
-    <float name='Spawn Chance' value='10'/>
-    <integer name='Long Boi Spawn Weight' value='100'/>
-    <integer name='Big Boi Spawn Weight' value='100'/>
-    <integer name='Vortex Boi Spawn Weight' value='100'/>
-    <float name='Long Boi Length Increase' value='1.0'/>
-    <float name='Big Boi Scale Increase' value='1.0'/>
-    <float name='Vortex Boi Rotation Speed' value='1.0'/>
-    <entity class='Powerup' name='long boi'>
-      <entity class='MeshEntity' name='ball mesh'>
-      	<string name='mesh filename' value='smooth_sphere.obj'/>
-	<vector name='scale' value='1, 1, 1, 1'/>
-      	<string name='texture filename' value='ball.png'/>
-      	<integer name='render pass' value='1'/>
-      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
-      </entity>
-      <entity class='RigidBody' name='ball collider'>
-	<string name='shape' value='sphere'/>
-	<float name='mass' value='50.0'/>
-      </entity>
-    </entity>
-    <entity class='Powerup' name='big boi'>
-      <entity class='MeshEntity' name='ball mesh'>
-      	<string name='mesh filename' value='smooth_sphere.obj'/>
-	<vector name='scale' value='1, 1, 1, 1'/>
-      	<string name='texture filename' value='ball.png'/>
-      	<integer name='render pass' value='1'/>
-      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
-      </entity>
-      <entity class='RigidBody' name='ball collider'>
-	<string name='shape' value='sphere'/>
-	<float name='mass' value='50.0'/>
-      </entity>
-    </entity>
-    <entity class='Powerup' name='vortex boi'>
-      <entity class='MeshEntity' name='ball mesh'>
-      	<string name='mesh filename' value='smooth_sphere.obj'/>
-	<vector name='scale' value='1, 1, 1, 1'/>
-      	<string name='texture filename' value='ball.png'/>
-      	<integer name='render pass' value='1'/>
-      	<vector name='color' value='0.0, 1.0, 1.0, 1.0'/>
-      </entity>
-      <entity class='RigidBody' name='ball collider'>
-	<string name='shape' value='sphere'/>
-	<float name='mass' value='50.0'/>
-      </entity>
-    </entity>
+	<entity class='PowerupSpawner' name='TopRightSpawner'>
+		<vector name='position' value='4.0, -1.25, 4.0, 0.0' />
+		<vector name='scale' value='0.5, 0.5, 0.5, 0.5' />
+		<float name='Spawn Chance' value='10' />
+		<integer name='Long Boi Spawn Weight' value='100' />
+		<integer name='Big Boi Spawn Weight' value='100' />
+		<integer name='Vortex Boi Spawn Weight' value='100' />
+		<float name='Long Boi Length Increase' value='1.0' />
+		<float name='Big Boi Scale Increase' value='1.0' />
+		<float name='Vortex Boi Rotation Speed' value='1.0' />
+		<entity class='Powerup' name='long boi'>
+			<entity class='MeshEntity' name='ball mesh'>
+				<string name='mesh filename' value='smooth_sphere.obj' />
+				<vector name='scale' value='1, 1, 1, 1' />
+				<string name='texture filename' value='ball.png' />
+				<integer name='render pass' value='1' />
+				<vector name='color' value='0.0, 1.0, 1.0, 1.0' />
+			</entity>
+			<entity class='RigidBody' name='ball collider'>
+				<string name='shape' value='sphere' />
+				<float name='mass' value='50.0' />
+			</entity>
+			<entity class='KatSound' name='pickup sound'>
+				<string name='SoundFile' value='LongBoiAud.ogg' />
+			</entity>
+		</entity>
+		<entity class='Powerup' name='big boi'>
+			<entity class='MeshEntity' name='ball mesh'>
+				<string name='mesh filename' value='smooth_sphere.obj' />
+				<vector name='scale' value='1, 1, 1, 1' />
+				<string name='texture filename' value='ball.png' />
+				<integer name='render pass' value='1' />
+				<vector name='color' value='0.0, 1.0, 1.0, 1.0' />
+			</entity>
+			<entity class='RigidBody' name='ball collider'>
+				<string name='shape' value='sphere' />
+				<float name='mass' value='50.0' />
+			</entity>
+			<entity class='KatSound' name='pickup sound'>
+				<string name='SoundFile' value='BigBoiAud.ogg' />
+			</entity>
+		</entity>
+		<entity class='Powerup' name='vortex boi'>
+			<entity class='MeshEntity' name='ball mesh'>
+				<string name='mesh filename' value='smooth_sphere.obj' />
+				<vector name='scale' value='1, 1, 1, 1' />
+				<string name='texture filename' value='ball.png' />
+				<integer name='render pass' value='1' />
+				<vector name='color' value='0.0, 1.0, 1.0, 1.0' />
+			</entity>
+			<entity class='RigidBody' name='ball collider'>
+				<string name='shape' value='sphere' />
+				<float name='mass' value='50.0' />
+			</entity>
+			<entity class='KatSound' name='pickup sound'>
+				<string name='SoundFile' value='VortexBoiAud.ogg' />
+			</entity>
+		</entity>
 		<entity class='KatSound' name='spawn sound'>
 			<string name='SoundFile' value='PowerupSpawn01.ogg' />
 		</entity>
-  </entity>
+	</entity>
 </entity>
