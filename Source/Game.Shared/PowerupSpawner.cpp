@@ -142,15 +142,18 @@ namespace KatBall
 
 			if (weightedRoll <= mLongBoiSpawnWeight)
 			{
-				(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(*new Powerup(Powerup::PowerupType::LongBoi, mLongBoiLengthIncrease, mSpawnLocation));
+				(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(
+					*new Powerup(Powerup::PowerupType::LongBoi, mLongBoiLengthIncrease, glm::vec4(mPosition.x, mPosition.y, mPosition.z, 0)));
 			}
 			else if (weightedRoll <= mLongBoiSpawnWeight + mBigBoiSpawnWeight)
 			{
-				(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(*new Powerup(Powerup::PowerupType::BigBoi, mBigBoiScaleIncrease, mSpawnLocation));
+				(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(
+					*new Powerup(Powerup::PowerupType::BigBoi, mBigBoiScaleIncrease, glm::vec4(mPosition.x, mPosition.y, mPosition.z, 0)));
 			}
 			else if (weightedRoll <= mLongBoiSpawnWeight + mBigBoiSpawnWeight + mVortexBoiSpawnWeight)
 			{
-				(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(*new Powerup(Powerup::PowerupType::VortexBoi, mVortexBoiRotationSpeed, mSpawnLocation));
+				(*this)[FieaGameEngine::Sector::sSectorEntitiesKey].PushBack(
+					*new Powerup(Powerup::PowerupType::VortexBoi, mVortexBoiRotationSpeed, glm::vec4(mPosition.x, mPosition.y, mPosition.z, 0)));
 			}
 		}
 	}
