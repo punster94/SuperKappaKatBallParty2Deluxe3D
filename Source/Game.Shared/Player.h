@@ -126,6 +126,9 @@ namespace KatBall
 
 		std::uint32_t mLastTouchingPlayerID;
 
+		sf::Sound mSoundPlayer;
+		sf::SoundBuffer mSoundBuffer;
+
 		FieaGameEngine::Vector<FieaGameEngine::MeshGeometry*> mIdleMeshGeometries;
 		FieaGameEngine::Vector<FieaGameEngine::MeshGeometry*> mRunMeshGeometries;
 		FieaGameEngine::Vector<FieaGameEngine::MeshGeometry*> mVictoryMeshGeometries;

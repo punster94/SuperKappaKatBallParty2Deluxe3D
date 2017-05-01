@@ -377,6 +377,9 @@ namespace KatBall
 		mCurrentLength += length;
 
 		OutputDebugString(L"Hi");
+		mSoundBuffer.loadFromFile("sfx/LongBoyAud.ogg");
+		mSoundPlayer.setBuffer(mSoundBuffer);
+		mSoundPlayer.play();
 	}
 
 	void Player::ActivateVortexBoi(float rotationSpeed)
@@ -395,6 +398,10 @@ namespace KatBall
 		mCurrentPunchImpulse = mPunchImpulse * scaleFactor;
 
 		OutputDebugString(L"Howdy");
+
+		mSoundBuffer.loadFromFile("sfx/BigBoyAud.ogg");
+		mSoundPlayer.setBuffer(mSoundBuffer);
+		mSoundPlayer.play();
 	}
 
 	bool Player::CollisionCallback(btManifoldPoint& collisionPoint, const btCollisionObjectWrapper* obj1, int id1, int index1, const btCollisionObjectWrapper* obj2, int id2, int index2)
