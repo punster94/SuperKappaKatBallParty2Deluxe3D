@@ -3,6 +3,7 @@
 #include "Gamepad.h"
 #include "RigidBody.h"
 #include "MeshEntity.h"
+#include "KatSound.h"
 
 namespace KatBall
 {
@@ -40,17 +41,19 @@ namespace KatBall
 
 		Gamepad* mGamepad;
 
+		FieaGameEngine::KatSound* mPunchSound;
+
+		FieaGameEngine::KatSound* mHitSound;
+
 		float mMovementForce;
 
 		static const std::string sRigidBodyKey;
-
 		static const std::string sMeshKey;
-
 		static const std::string sMoveSpeedKey;
-
 		static const std::string sBallMeshKey;
-
 		static const std::string sBallColliderKey;
+		static const std::string sPunchSoundKey;
+		static const std::string sHitSoundKey;
 
 		static std::int32_t sPlayerId;
 	};
