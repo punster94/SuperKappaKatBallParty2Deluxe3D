@@ -10,9 +10,7 @@
 		<string name='subtypes' value='round_over' />
 		<action class='ActionUpdateNumWins' name='UpdateNumWins' />
 		<action class='ActionResetRound' name='ResetRound' />
-	</reaction>
-	
-	
+	</reaction>	
 	
 	<float name='score_dimensions_x' value='0.1' />
 	<float name='score_dimensions_y' value='0.17' />
@@ -28,8 +26,6 @@
 	<vector name='score_colors' value='0.0,1.0,0.0,1.0' index='1' />
 	<vector name='score_colors' value='1.0,0.0,0.0,1.0' index='2' />
 	<vector name='score_colors' value='1.0,1.0,0.0,1.0' index='3' />
-
-	
 	
 	<float name='timer_dimensions_x' value='1' />
 	<float name='timer_dimensions_y' value='0.25' />
