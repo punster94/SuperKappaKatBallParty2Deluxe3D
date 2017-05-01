@@ -134,9 +134,9 @@ void HUD::Initialize(WorldState& worldState)
 	}
 }
 
-void HUD::Reset()
+void HUD::Reset(WorldState& worldState)
 {
-	// TODO
+	Entity::Reset(worldState);
 
 	static_cast<Timer*>(mTimer)->Reset();
 

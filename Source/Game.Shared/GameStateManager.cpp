@@ -10,6 +10,8 @@
 
 #include "KatMusic.h"
 
+#include "ActionUpdateScore.h"	// JUSTIN
+
 using namespace FieaGameEngine;
 using namespace KatBall;
 using namespace std;
@@ -51,6 +53,11 @@ void GameStateManager::Notify(const EventPublisher& eventPublisher)
 	}
 }
 
+void GameStateManager::ResetWorld()
+{
+	mWorld->Reset(*mWorldState);
+}
+
 void GameStateManager::TransitionToMenu()
 {
 	StopSectorMusic(mGameSector);
@@ -67,6 +74,14 @@ void GameStateManager::TransitionToGame()
 	mMenuSector->Orphan();
 	mGameSector->SetWorld(*mWorld);
 	mWorld->Initialize(*mWorldState);
+
+	// JUSTIN
+	EventMessageAttributed args(ActionUpdateScore::sScoreEventSubtype, mWorldState);
+	args.AppendAuxiliaryAttribute(ActionUpdateScore::sPlayerIDKey) = 0;
+
+	Event<EventMessageAttributed>* e = new Event<EventMessageAttributed>(args);
+	mWorld->Enqueue(*e, *mWorldState, 0);
+	// JUSTIN
 }
 
 void GameStateManager::StopSectorMusic(Sector* sector)
@@ -84,6 +99,7 @@ void GameStateManager::StopSectorMusic(Sector* sector)
 
 const GameStateManager::Handlers GameStateManager::sHandlers =
 {
+	{ ActionResetRound::sRoundResetEventSubtype, &GameStateManager::ResetWorld },
 	{ ActionResetRound::sMatchWonEventSubtype, &GameStateManager::TransitionToMenu },
 	{ Game::sStartGameEventSubtype, &GameStateManager::TransitionToGame }
 };

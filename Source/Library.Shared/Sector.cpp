@@ -195,6 +195,17 @@ namespace FieaGameEngine
 		}
 	}
 
+	void Sector::Reset(WorldState& worldState)
+	{
+		worldState.mSector = this;
+
+		Datum& entities = Entities();
+		for(std::uint32_t i = 0; i < entities.Size(); ++i)
+		{
+			static_cast<Entity*>(&entities.Get<Scope&>(i))->Reset(worldState);
+		}
+	}
+
 	const std::string Sector::sSectorNameKey = "name";
 
 	const std::string Sector::sSectorEntitiesKey = "entities";

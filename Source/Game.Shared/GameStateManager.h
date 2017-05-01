@@ -20,6 +20,7 @@ namespace KatBall
 
 	private:
 
+		void ResetWorld();
 		void TransitionToMenu();
 		void TransitionToGame();
 

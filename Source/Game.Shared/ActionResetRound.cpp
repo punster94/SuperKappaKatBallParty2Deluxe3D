@@ -14,6 +14,7 @@ using namespace std;
 
 RTTI_DEFINITIONS(ActionResetRound)
 
+const string ActionResetRound::sRoundResetEventSubtype = "round_reset";
 const string ActionResetRound::sMatchWonEventSubtype = "match_won";
 const string ActionResetRound::sMatchWinnerIDKey = "match_winner";
 
@@ -55,14 +56,9 @@ void ActionResetRound::Update(class WorldState& worldState)
 		// no match winner -- reset round
 		if(matchWinnerID == sNoMatchWinnerFlag)
 		{
-			// TODO -- post reset round event
-
-			Scope* scope = nullptr;
-			Search(HUD::sScoresKey, &scope);
-			if(HUD* hud = scope->As<HUD>())
-			{
-				hud->Reset();
-			}
+			EventMessageAttributed args(sRoundResetEventSubtype, &worldState);
+			Event<EventMessageAttributed>* e = new Event<EventMessageAttributed>(args);
+			worldState.mWorld->Enqueue(*e, worldState, 0);
 		}
 
 		// match winner(s) -- load menu

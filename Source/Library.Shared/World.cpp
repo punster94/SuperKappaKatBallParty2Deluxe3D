@@ -193,11 +193,26 @@ namespace FieaGameEngine
 	{
 		worldState.mWorld = this;
 
+		mEventQueue.Clear();
+
 		Datum& sectors = Sectors();
 
 		for (std::uint32_t i = 0; i < sectors.Size(); ++i)
 		{
 			static_cast<Sector*>(&sectors.Get<Scope&>(i))->Initialize(worldState);
+		}
+	}
+
+	void World::Reset(WorldState& worldState)
+	{
+		worldState.mWorld = this;
+
+		mEventQueue.Clear();
+
+		Datum& sectors = Sectors();
+		for(std::uint32_t i = 0; i < sectors.Size(); ++i)
+		{
+			static_cast<Sector*>(&sectors.Get<Scope&>(i))->Reset(worldState);
 		}
 	}
 
