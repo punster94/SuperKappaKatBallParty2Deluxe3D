@@ -23,6 +23,16 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Score.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TestDummy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionResetRound.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionUpdateNumWins.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionUpdateScore.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStateManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Menu.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MenuGamepad.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MenuCrowns.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionCrownWinners.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionFocus.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ActionRemoveCrowns.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ActionPunch.h" />
@@ -48,5 +58,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Score.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TestDummy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionResetRound.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionUpdateNumWins.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionUpdateScore.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStateManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Menu.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MenuGamepad.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MenuCrowns.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionCrownWinners.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionFocus.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ActionRemoveCrowns.h" />
   </ItemGroup>
 </Project>
