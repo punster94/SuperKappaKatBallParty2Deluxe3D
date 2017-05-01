@@ -110,6 +110,8 @@ namespace KatBall
 		float mBigBoiScaleIncrease;		// The size scale increase of bigBoi on pickup
 		float mVortexBoiRotationSpeed;	// How fast the vortex Boi goes whoosh
 
+		bool mIsInitialized;
+
 		const float mSpawnAttemptInterval = 5.0f;
 
 		static const std::string sSpawnChance;
