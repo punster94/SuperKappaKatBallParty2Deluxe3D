@@ -1,5 +1,6 @@
 #pragma once
 #include "Entity.h"
+#include <random>
 
 namespace KatBall
 {
@@ -14,6 +15,8 @@ namespace KatBall
 		~PowerupSpawner() = default;
 
 		virtual void Initialize(FieaGameEngine::WorldState& worldState) override;
+
+		virtual void Update(FieaGameEngine::WorldState& worldState) override;
 
 		/// Initializes prescribed attributes for this class
 		void InitializeSignatures() override;
@@ -91,6 +94,7 @@ namespace KatBall
 		MeshEntity* mMeshEntity;	
 		glm::vec4 mSpawnLocation;	// Location that powerups will be spawned from this object
 		float mSpawnChance;			// Chance between 0.0 and 100.0 that this spawner will generate an item
+		float mElapsedTime;
 
 		std::int32_t mLongBoiSpawnWeight;	// Relative chance for spawning long Bois
 		std::int32_t mBigBoiSpawnWeight;	// Relative chance for spawning big Bois
@@ -100,9 +104,12 @@ namespace KatBall
 		float mBigBoiScaleIncrease;		// The size scale incrrase of bigBoi on pickup
 		float mVortexBoiRotationSpeed;	// How fast the vortex Boi goes whoosh
 
+		const float mSpawnAttemptInterval = 5.0f;
+
 		static const std::string sRigidBodyKey;
 		static const std::string sBallColliderKey;
 		static const std::string sBallMeshKey;
+		std::default_random_engine mGenerator;
 	};
 
 	ConcreteEntityFactory(PowerupSpawner);
