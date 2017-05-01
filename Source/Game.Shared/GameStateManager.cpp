@@ -2,11 +2,8 @@
 #include "pch.h"
 #include "GameStateManager.h"
 #include "MenuGamepad.h"
-<<<<<<< HEAD
 #include "Menu.h"
-=======
 #include "HUD.h"
->>>>>>> origin/HUD
 
 #include "Event.h"
 #include "EventMessageAttributed.h"
