@@ -5,14 +5,14 @@
 
 namespace KatBall
 {
-	class ActionRoundWinner final : public FieaGameEngine::Action
+	class ActionResetRound final : public FieaGameEngine::Action
 	{
-		RTTI_DECLARATIONS(ActionRoundWinner, FieaGameEngine::Action)
+		RTTI_DECLARATIONS(ActionResetRound, FieaGameEngine::Action)
 
 	public:
 
-		explicit ActionRoundWinner(const std::string& name = "");
-		virtual ~ActionRoundWinner();
+		explicit ActionResetRound(const std::string& name = "");
+		virtual ~ActionResetRound();
 
 		virtual void Update(class FieaGameEngine::WorldState& worldState) override;
 
@@ -27,5 +27,5 @@ namespace KatBall
 		static const std::string sMatchWinnerIDKey;
 	};
 
-	ConcreteFactory(FieaGameEngine::Action, ActionRoundWinner);
+	ConcreteFactory(FieaGameEngine::Action, ActionResetRound);
 }

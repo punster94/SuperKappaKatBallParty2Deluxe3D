@@ -8,7 +8,8 @@
 	
 	<reaction class='ReactionAttributed' name='RoundOver'>
 		<string name='subtypes' value='round_over' />
-		<action class='ActionRoundWinner' name='RoundWinner' />
+		<action class='ActionUpdateNumWins' name='UpdateNumWins' />
+		<action class='ActionResetRound' name='ResetRound' />
 	</reaction>
 	
 	

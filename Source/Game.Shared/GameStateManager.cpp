@@ -6,7 +6,7 @@
 #include "Event.h"
 #include "EventMessageAttributed.h"
 
-#include "ActionRoundWinner.h"
+#include "ActionResetRound.h"
 
 #include "KatMusic.h"
 
@@ -84,6 +84,6 @@ void GameStateManager::StopSectorMusic(Sector* sector)
 
 const GameStateManager::Handlers GameStateManager::sHandlers =
 {
-	{ ActionRoundWinner::sMatchWonEventSubtype, &GameStateManager::TransitionToMenu },
+	{ ActionResetRound::sMatchWonEventSubtype, &GameStateManager::TransitionToMenu },
 	{ Game::sStartGameEventSubtype, &GameStateManager::TransitionToGame }
 };
