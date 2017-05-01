@@ -139,6 +139,7 @@ namespace KatBall
 		Entity* objectB;
 
 		Player* player = nullptr;
+		Player* player2 = nullptr;
 		Powerup* powerUp = nullptr;
 
 		bool shouldDeletePowerUp = false;
@@ -155,11 +156,18 @@ namespace KatBall
 
 			player = objectA->As<Player>();
 			powerUp = objectB->As<Powerup>();
+			player2 = objectB->As<Player>();
 
 			if (player != nullptr && powerUp != nullptr)
 			{
 				powerUp->OnCollect(*player);
 				shouldDeletePowerUp = true;
+			}
+
+			if (player != nullptr && player2!= nullptr)
+			{
+				player->SetLastPlayerTouching(player2->GetPlayerID());
+				player2->SetLastPlayerTouching(player->GetPlayerID());
 			}
 		}
 

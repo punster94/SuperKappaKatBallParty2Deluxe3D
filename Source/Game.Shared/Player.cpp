@@ -332,6 +332,16 @@ namespace KatBall
 		Reset(worldState);
 	}
 
+	int32_t Player::GetPlayerID()
+	{
+		return mGamepad->GetPort();
+	}
+
+	void Player::SetLastPlayerTouching(std::int32_t id)
+	{
+		mLastTouchingPlayerID = id;
+	}
+
 	const string Player::sMeshKey = "mesh";
 	const string Player::sRigidBodyKey = "rigidbody";
 	const string Player::sMoveSpeedKey = "movespeed";

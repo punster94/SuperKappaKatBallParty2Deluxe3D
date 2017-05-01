@@ -51,6 +51,10 @@ namespace KatBall
 
 		void Respawn(FieaGameEngine::WorldState& worldState);
 
+		std::int32_t GetPlayerID();
+
+		void SetLastPlayerTouching(std::int32_t id);
+
 	protected:
 
 		void InitializeSignatures();
