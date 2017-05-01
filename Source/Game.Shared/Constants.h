@@ -56,3 +56,4 @@
 #define TEXTURE_START_SCREEN "StartScreen.png"
 #define TEXTURE_START_BUTTON "Start.png"
 #define TEXTURE_START_BUTTON_HIGHLIGHT "StartHighlight.png"
+#define TEXTURE_PAUSE_BUTTON "Paused.png"

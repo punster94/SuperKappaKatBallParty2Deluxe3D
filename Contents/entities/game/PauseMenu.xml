@@ -1,0 +1,10 @@
+<entity class='Menu' name='pause menu'>
+  <vector name='color' value='1.0,1.0,1.0,1.0'/>
+  <vector name='rect' value='-.5,-.5,1.0,1.0'/>
+  <string name='texture filename' value='StartScreen.png'/>
+  <entity class='QuadEntity' name='start'>
+    <vector name='color' value='1.0,1.0,1.0,1.0'/>
+    <vector name='rect' value='-.25,-.25,.5,.5'/>
+    <string name='texture filename' value='Paused.png'/>
+  </entity>
+</entity>

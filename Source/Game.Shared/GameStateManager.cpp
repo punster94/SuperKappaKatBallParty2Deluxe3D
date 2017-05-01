@@ -2,6 +2,7 @@
 #include "pch.h"
 #include "GameStateManager.h"
 #include "MenuGamepad.h"
+#include "Menu.h"
 
 #include "Event.h"
 #include "EventMessageAttributed.h"
@@ -95,6 +96,22 @@ void GameStateManager::TransitionToGame()
 	mMenuSector->Orphan();
 	mGameSector->SetWorld(*mWorld);
 	mWorld->Initialize(*mWorldState);
+
+	Datum& entites = mGameSector->Entities();
+	Menu* pauseMenu = nullptr;
+	for (uint32_t i = 0; i < entites.Size(); ++i)
+	{
+		Scope& current = entites.Get<Scope&>(i);
+		if (current.Is(Menu::TypeIdClass()))
+		{
+			pauseMenu = static_cast<Menu*>(&current);
+			break;
+		}
+	}
+	if (pauseMenu != nullptr)
+	{
+		pauseMenu->RemoveQuadFromView();
+	}
 
 	// JUSTIN
 	EventMessageAttributed args(ActionUpdateScore::sScoreEventSubtype, mWorldState);

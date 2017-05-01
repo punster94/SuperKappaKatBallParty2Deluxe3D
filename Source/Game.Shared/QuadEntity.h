@@ -26,6 +26,7 @@ namespace KatBall
 
 		void SetTexture(const std::string& fileName);
 		void RemoveQuadFromView();
+		void AddQuadToView();
 
 	protected:
 

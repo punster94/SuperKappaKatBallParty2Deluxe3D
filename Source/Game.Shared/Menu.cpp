@@ -43,24 +43,17 @@ namespace KatBall
 	void Menu::Notify(const FieaGameEngine::EventPublisher& eventPublisher)
 	{
 		assert(eventPublisher.Is(Event<Gamepad>::TypeIdClass()));
-		std::string texture = (*this)[sAlternateTextureFilenameKey].Get<std::string&>();
-		FindChildEntityByName("start")->As<QuadEntity>()->SetTexture(texture);
 
-		RemoveQuadFromView();
-		Datum& entities = Entities();
-		for (uint32_t i = 0; i < entities.Size(); ++i)
+		if (Game::GetWorldState().mSector->Name() != "Game")
 		{
-			Scope& current = entities.Get<Scope&>(i);
-			if (current.Is(QuadEntity::TypeIdClass()))
+			RemoveQuadFromView();
+
+			Entity* entity = FindChildEntityByName("menu gamepad");
+			if (entity != nullptr)
 			{
-				static_cast<QuadEntity&>(current).RemoveQuadFromView();
+				MenuGamepad* gamepad = entity->As<MenuGamepad>();
+				gamepad->DeleteGamepad();
 			}
-		}
-
-		MenuGamepad* gamepad = FindChildEntityByName("menu gamepad")->As<MenuGamepad>();
-		if (gamepad != nullptr)
-		{
-			gamepad->DeleteGamepad();
 		}
 	}
 

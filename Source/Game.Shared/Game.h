@@ -18,6 +18,8 @@ namespace KatBall
 
 		void Run();
 
+		static FieaGameEngine::WorldState& GetWorldState();
+
 	private:
 		void Init();
 		void Update();
@@ -31,7 +33,7 @@ namespace KatBall
 		FieaGameEngine::World mWorld;
 		FieaGameEngine::Sector* mMenuSector;
 		FieaGameEngine::Sector* mGameSector;
-		FieaGameEngine::WorldState mWorldState;
+		static FieaGameEngine::WorldState mWorldState;
 		FieaGameEngine::GameTime mGameTime;
 		FieaGameEngine::GameClock mGameClock;
 

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Event.h"
+#include "Menu.h"
 
 using namespace FieaGameEngine;
 using namespace std;
@@ -100,6 +101,34 @@ namespace KatBall
 		{
 			mBallRigidBody->mBody->applyCentralImpulse(btVector3(mMovementForce * mGamepad->leftStickX, 0, mMovementForce * mGamepad->leftStickY));
 			// RotatePlayer(mGamepad->leftStickX, mGamepad->leftStickY);
+
+			if (mGamepad->IsPressed(XINPUT_GAMEPAD_START))
+			{
+				Datum& entites = GetParent()->Append("entities");
+				Menu* pauseMenu = nullptr;
+				for (uint32_t i = 0; i < entites.Size(); ++i)
+				{
+					Scope& current = entites.Get<Scope&>(i);
+					if (current.Is(Menu::TypeIdClass()))
+					{
+						pauseMenu = static_cast<Menu*>(&current);
+						break;
+					}
+				}
+				worldState.mIsPaused = !worldState.mIsPaused;
+
+				if (pauseMenu != nullptr)
+				{
+					if (worldState.mIsPaused)
+					{
+						pauseMenu->AddQuadToView();
+					}
+					else
+					{
+						pauseMenu->RemoveQuadFromView();
+					}
+				}
+			}
 
 			if(!mPunchRigidBody->mSimulatePhysics && mGamepad->IsPressed(XINPUT_GAMEPAD_A))
 			{

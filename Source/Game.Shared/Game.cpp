@@ -22,6 +22,8 @@ using namespace FieaGameEngine;
 
 namespace KatBall
 {
+	WorldState Game::mWorldState;
+
 	static Camera* sCamera;
 	static InputSubscriber* sInputSubscriber;
 	static Quad* sQuad;
@@ -41,6 +43,11 @@ namespace KatBall
 		}
 
 		Shutdown();
+	}
+
+	WorldState& Game::GetWorldState()
+	{
+		return mWorldState;
 	}
 
 	void Game::Init()
@@ -246,6 +253,7 @@ namespace KatBall
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_START_SCREEN, TEXTURE_START_SCREEN, Asset::TYPE_TEXTURE);
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_START_BUTTON, TEXTURE_START_BUTTON, Asset::TYPE_TEXTURE);
 		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_START_BUTTON_HIGHLIGHT, TEXTURE_START_BUTTON_HIGHLIGHT, Asset::TYPE_TEXTURE);
+		Asset::Load(ASSET_DIRECTORY_TEXTURES TEXTURE_PAUSE_BUTTON, TEXTURE_PAUSE_BUTTON, Asset::TYPE_TEXTURE);
 
 		// Vertex Shaders
 		Asset::Load(ASSET_DIRECTORY_SHADERS SHADER_MESH_VERTEX, SHADER_MESH_VERTEX, Asset::TYPE_VERTEX_SHADER);
