@@ -3,6 +3,8 @@
     <action class='ActionFocus'>
         <string name='target' value='Baby'/>
         <string name='target' value='Tubbs'/>
+        <string name='target' value='Cheermemeow'/>
+        <string name='target' value='Mrmittens'/>
         <float name='min distance' value='10.0'/>
         <float name='max distance' value='18.0'/>
         <float name='focus scale' value='2.0'/>

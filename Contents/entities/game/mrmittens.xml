@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<entity class='Player' name='Mrmittens'>
+	<vector name='position' value='0.0,0.0,3.0,0.0'/>
+	<float name ='length' value ='1.2'/>
+	<float name='movespeed' value='12.0'/>
+	<float name ='punch impulse' value = '900.0'/>
+  <string name='idle meshes' value='kat_idle.obj'/>
+  <string name='run meshes' value='kat_run_1.obj'/>
+  <string name='run meshes' value='kat_run_2.obj'/>
+  <string name='victory meshes' value='kat_victory.obj'/>
+	<entity class='KatSound' name='punch sound'>
+		<string name='SoundFile' value='Meow01.ogg' />
+	</entity>
+	<entity class='KatSound' name='hit sound'>
+		<string name='SoundFile' value='Wimper01.ogg' />
+	</entity>
+	<entity class='RigidBody' name='ball collider'>
+		<vector name='scale' value='0.25,0.25,0.25,0.0'/>
+		<string name='shape' value='sphere'/>
+		<float name='mass' value='50.0'/>
+		<float name='friction' value ='3' />
+		<entity class='MeshEntity' name='ball mesh'>
+            <string name='mesh filename' value='smooth_sphere.obj'/>
+            <string name='texture filename' value='ball.png'/>
+            <integer name='render pass' value='1'/>
+            <vector name='color' value='1.0,1.0,0.0,1.0'/>
+		</entity>
+    <entity class='MeshEntity' name='kat mesh'>
+      <string name='mesh filename' value='kat_idle.obj'/>
+      <string name='texture filename' value='kat_tex_yellow.png'/>
+      <vector name='scale' value='0.25,0.25,0.25,0.0'/>
+		</entity>
+		<entity class='RigidBody' name='punch collider'>
+			<vector name='scale' value='0.75,0.75,0.75,0.0'/>
+			<vector name='position' value='0.5,0.0,0.0,0.0'/>
+			<string name='shape' value='box'/>
+			<float name='mass' value='50.0'/>
+			<integer name='gravity enable' value ='0'/>
+			<entity class='MeshEntity' name='punch mesh'>
+				<string name='mesh filename' value='claw.obj'/>
+				<string name='texture filename' value='claw_tex_yellow.png'/>
+			</entity>
+		</entity>
+	</entity>
+</entity>
